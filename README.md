@@ -8,9 +8,9 @@ Application for managing gps Trackers
 
 <!-- to be fixed later  -->
 
-- Alkis
-- Agis
-- Nick
+- [Alkiviadis Tzortzakis](https://github.com/ALKABOURAS)
+- [Agisilaos Kolliopoulos](https://github.com/agis22)
+- [Nikolas Filippatos](https://github.com/nikolasfil/)
 
 ---
 
@@ -40,6 +40,13 @@ Application for managing gps Trackers
 - [x] Database Filling Users
 - [ ] Database Filling Devices
 - [ ] Database Filling Rest of Tables
+- [ ] Website
+- [x] Website Login
+- [x] Website Register
+- [ ] Website Home
+- [ ] Website Devices
+- [ ] Website User Page
+- [ ] Website Device Map
 
 <!-- URL: -->
 
