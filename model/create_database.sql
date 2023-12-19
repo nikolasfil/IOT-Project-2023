@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS DEVICE (
 CREATE TABLE IF NOT EXISTS USER (
     id          INTEGER PRIMARY Key AUTOINCREMENT NOT NULL, 
     name        varchar(255) NOT NULL, 
-    telephone   varchar(255) NOT NULL,
+    phone   varchar(255) NOT NULL,
     role        varchar(255) NOT NULL,
     password   varchar(255) NOT NULL,
     salt        varchar(255) NOT NULL
