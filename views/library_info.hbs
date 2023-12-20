@@ -1,0 +1,103 @@
+{{>header}}
+
+<main>
+
+    <div id="library-info-main" class="d-flex flex-column justify-content-center pageborder">
+
+
+        <div class="row" id="library-info-">
+            {{!-- get the library json file, the rows from the database --}}
+            <div class="col col-auto m-2">
+                <img src="{{library.photo}}" class="rounded" alt="library image" style="width:282px; height:282px;">
+            </div>
+            <div class="col justify-content-start m-2">
+                <!-- the margins are not working -->
+                <div  id="library-title ">
+                    <h1><strong>{{ library.name }}</strong></h1>
+                    <h3>{{library.address}}</h3>
+                </div>
+                <div id="library-info">
+                    <p>{{library.summary}}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex flex-column justify-content-center flex-wrap pageborder"
+        id="location-working-hours">
+
+        <h2><strong>Location & Working Hours</strong></h2>
+
+        <div class="row justify-content-start">
+            <div class="col m-2">
+                {{!-- longtitude helper get the format of the location and keeps the first part --}}
+                {{>map lon=(longtitude library.location) lat=(latitude library.location)}}
+
+                <div id="map" style="width: 100%, height: 100%"></div>
+                
+            </div>
+            
+            <div class="col justify-content-start m-2" id="library-info-a-c-w">
+
+                <div class="d-flex flex-column justify-content-start" id="libary-address">
+                    <h3>Address</h3>
+                    <p>{{library.address}}</p>
+                </div>
+
+                <div class="d-flex flex-column justify-content-start" id="libary-contact">
+                    <h3>Contact</h3>
+                    <p>Telephone: {{library.phone}}</p>
+                    <p>Email: {{library.email}}</p>
+                </div>
+
+                <div class="d-flex flex-column justify-content-start" id="libary-working">
+                    <h3>Working Hours</h3>
+                    <!-- to be fixed -->
+                    <table>
+                        {{!-- gets the key and value of the dictionary working hours --}}
+                        {{!-- the helper function working hours in controllers/helpers parses the data from the database
+                        and returns a dictionary with the keys being dates and the values being the data from the
+                        database --}}
+                        {{#each (workingHours library.working_hours) as |value key|}}
+                        <tr>
+                            <td>{{key}}:</td>
+                            <td>{{value}}</td>
+                        </tr>
+                        {{/each}}
+
+                    </table>
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2"><strong> Recommended Books </strong></h2>
+
+        <div class="scrolling">
+            {{#each book}}
+            {{!-- book is a list of json dictionaries rendered in views --}}
+            {{!-- location is the url location send when clicked . --}}
+            {{!-- encode : turns the stirng of location into a url appropriate string  --}}
+            {{!-- book_info/title returns the page of the book with that titled --}}
+            {{!-- should be replaced with isbn --}}
+            {{> card photo=photo title=title description=description copies=copies location=( encode (concat
+            'book_info/' isbn ))}}
+            {{/each}}
+
+
+        </div>
+    </div>
+
+</main>

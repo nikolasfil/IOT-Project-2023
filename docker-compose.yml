@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-Node
+    ports:
+      - "8080:8080"
+
+  python-broker:
+    build:
+      context: .
+      dockerfile: Dockerfile-Python

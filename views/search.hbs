@@ -1,0 +1,72 @@
+
+<script src="javascript/show_pages.js" defer></script>
+<script src="javascript/search.js" defer></script>
+
+<script type="text/javascript">
+    window.onload = () => {
+        window.searchBarValue = '{{searchBarValue}}';
+        mainLoad();
+        
+    }
+</script>
+
+
+{{>header}}
+
+<main>
+    <div class="gridContainerSearch justify-content-start pageborder">
+
+        <nav class="navColumn">
+            <div class="navbar">
+                <div class="container nav-container">
+                    <input class="checkbox" type="checkbox" name="" id="" />
+                    <div class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div> 
+                    <h1 class="filterHeader"> Filters</h1>
+                    <div class="menu-items d-flex flex-column justify-content-start align-items-start" id="navbarNav">
+                        {{>filterCategories category='Genre' categoryFilter='genre' list=genre list_all=all_genre}}
+
+                        {{!-- {{>filterCategories category='Availability' categoryFilter='availability' list=availability}} --}}
+
+                        {{>filterCategories category='Edition' categoryFilter='edition' list=edition list_all=all_edition}}
+
+                        {{>filterCategories category='Publisher' categoryFilter='publisher' list=publisher
+                        list_all=all_publisher}}
+
+
+                        {{>filterCategories category="Language" categoryFilter="language" list=language list_all=all_language}}
+
+                        {{>filterCategories category='Library' categoryFilter='library' list=library list_all=all_library}}
+
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+                
+
+
+        <div class="searchColumn d-flex flex-column justify-content-start" id="search-content">
+
+            <div class="selected-filter-list d-flex flex-row justify-content-start " id="filter-selection">
+            </div>
+
+            <div class="result-pages d-flex flex-row justify-content-center flex-wrap" id="results">
+
+            </div>
+
+
+            <div class="page-selector" id="page-selector">
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</main>

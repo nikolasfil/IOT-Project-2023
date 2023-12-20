@@ -1,0 +1,96 @@
+<timeline class="row align-items-center justify-content-center">
+    <div class="col borrowedBookDetails">
+        <img class="borrowedBookimg" src={{img}}>
+        <div>
+        <h7>
+            <a href="/book_info/{{ISBN}}" class="library-reserve-url"><strong>Name: </strong>{{title}} <br>
+            <strong>ISBN: </strong>{{ISBN}} <br></a>
+            <a href="/library_info/{{libraryId}}" class="library-reserve-url"><strong>Library: </strong>{{library}} <br></a>
+        </h7>
+        </div>
+    </div>
+
+    {{#if overdue}}
+        {{#if returned}}
+        <ul class="col timeline scale">
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status1">Reserved<br>{{resDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status2">Borrowed<br>{{borDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status3">Returned Late<br>{{returned}}</span>
+            </div>
+            </li>
+        </ul>
+        {{else}}
+        <ul class="col timeline scale">
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status1">Reserved<br>{{resDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status2">Borrowed<br>{{borDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status3">Overdue<br>{{difference}} days</span>
+            </div>
+            </li>
+        </ul>
+        {{/if}}
+    {{else}}
+    <ul class="col timeline scale">
+        <li class="li complete">
+        <div class="timestamp">
+            <span class="status1">Reserved<br>{{resDate}}</span>
+        </div>
+        </li>
+        {{#if borDate}}
+        <li class="li complete">
+        <div class="timestamp">
+            <span class="status2">Borrowed<br>{{borDate}}</span>
+        </div>
+        </li>
+        {{else}}
+        <li class="li">
+        <div class="timestamp">
+            <span class="status2">Borrowed<br>00/00/0000</span>
+        </div>
+        </li>
+        {{/if}}
+        {{#if returned}}
+        <li class="li complete">
+        <div class="timestamp">
+            <span class="status3 borrowed">Returned<br>{{returned}}</span>
+        </div>
+        </li>
+        {{else}}
+        {{#if retDate}}
+        <li class="li">
+        <div class="timestamp">
+            <span class="status3 borrowed">Return<br>{{retDate}}</span>
+        </div>
+        </li>
+        {{else}}
+        <li class="li">
+        <div class="timestamp">
+            <span class="status3">Return<br>00/00/0000</span>
+        </div>
+        </li>
+        {{/if}}
+        {{/if}}
+        
+    </ul>
+    {{/if}}
+
+</timeline>

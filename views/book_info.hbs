@@ -1,0 +1,121 @@
+{{>header}}
+
+<main class="d-flex flex-column align-content-center pageborder">
+
+    <div class="row justify-content-between" id="book">
+
+        {{!-- <h1 id="title"><strong>Book Title</strong></h1> --}}
+        {{!-- <img src=".card_book_default.jpg" alt="book cover" class="book-img m-3"> --}}
+        {{#if book.photo}}
+        <div class="col">
+            <img src="{{book.photo}}" alt="book cover" class="book-img m-3">
+        </div>
+        {{else}}
+        <div class="col">
+            <img src="/img/card_book_default.jpg" alt="book cover" class="book-img m-3">
+        </div>
+
+        {{/if}}
+
+        <div class="col col-md-6 justify-content-start" id="book-title-summary">
+            <h1 id="title"><strong>{{ book.title }}</strong></h1>
+            {{!-- if there is no book.summary print no summary --}}
+
+            {{#if book.summary}}
+            <p id="summary">{{book.summary}}</p>
+            {{else}}
+            <p id="summary">No summary</p>
+            {{/if}}
+
+        </div>
+
+
+        <div class="col justify-content-end " id="book-info">
+
+            <div class="row">
+                <div class="col" id="author">
+                    <h5 class="p-title" id="author-h"><strong>Author</strong></h5>
+                    <p class="p-info" id="author-p">{{ book.author }}</p>
+                </div>
+                <div class="col" id="publisher">
+                    <h5 class="p-title" id="publisher-h"><strong>Publisher</strong></h5>
+                    <p class="p-info" id="publisher-p">{{ book.publisher }}</p>
+                </div>
+                <div class="col" id="edition">
+                    <h5 class="p-title" id="edition-h"><strong>Edition</strong></h5>
+                    <p class="p-info" id="edition-p">{{ book.edition }}</p>
+                </div>
+                <div class="col" id="genre">
+                    <h5 class="p-title" id="genre-h"><strong>Genre</strong></h5>
+                    <p class="p-info" id="genre-p">{{ book.genre }}</p>
+                </div>
+                <div class="col" id="release">
+                    <h5 class="p-title" id="release-h"><strong>Release</strong></h5>
+                    <p class="p-info" id="release-p">{{ book.release }}</p>
+                </div>
+                <div class="col" id="language">
+                    <h5 class="p-title" id="language-h"><strong>Language</strong></h5>
+                    <p class="p-info" id="language-p">{{ book.language }}</p>
+                </div>
+                <div class="col" id="isbn">
+                    <h5 class="p-title" id="isbn-h"><strong>ISBN</strong></h5>
+                    <p class="p-info" id="isbn-p">{{ book.isbn }}</p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <h2><strong>Reservation points</strong></h2>
+    <div class="row justify-content-start" id="book-location">
+
+        <div class="col m-1">
+            {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
+            {{!-- {{>map locations=libraryLocations }} --}}
+            {{>map isbn=book.isbn library=false}}
+
+{{!--  --}}
+        </div>
+
+
+        <div class="col resLibraries">
+
+            <div class="row">
+                <h4 class="col">Library</h4>
+                <h4 class="col">Address</h4>
+                <h4 class="col">Copies</h4>
+                {{#if signedIn}}                
+                <div class="col"></div>
+                {{/if}}
+            </div>
+            
+
+            {{#each library }}
+            {{!-- this needs to be a for loop --}}
+            {{>librariesReservation
+            id=this.id
+            name=this.name
+            address=this.address
+            copies=this.copy_num
+            isbn=@root.book.isbn
+            dateRes=date_reserved
+            dateRet=date_returned
+            signedIn=@root.signedIn
+            }}
+
+            {{/each}}
+        
+
+        </div>
+
+
+    </div>
+
+</main>

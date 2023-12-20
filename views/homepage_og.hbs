@@ -1,0 +1,60 @@
+<header class="d-flex flex-column justify-content-center cover-page-img cover-page">
+
+    <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
+
+        {{#unless signedIn}}
+        <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
+        {{>sign_in_up}}
+        {{else}}
+
+        <script src="javascript/alerting.js" defer></script>
+
+
+        {{>profile_picture color="white"}}
+        {{/unless}}
+    </div>
+
+    <div class="d-flex flex-row justify-content-center">
+        <img src="img/logo_vertical.svg" alt="Logo" class="logo-vertical">
+
+    </div>
+
+    <div class="d-flex flex-row justify-content-center homeSearch">
+        {{>searchbar}}
+    </div>
+
+
+</header>
+
+<main>
+
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2"><strong> Recommended Books </strong></h2>
+
+        <div class="scrolling">
+
+            {{#each active_trackers }}
+
+            {{> card location=( encode (concat 'device/' serial ))}}
+
+            {{/each}}
+
+
+        </div>
+    </div>
+
+    <div class="recommend" id="recommended-libraries">
+        <h2 class="h2"><strong>Recommended Libraries</strong></h2>
+        <div class="scrolling">
+            {{#each library}}
+            {{!-- The title ? should be with promises and async await and sending requests with javascript --}}
+            {{> card photo=photo title=name description=address copies=copies location=(concat 'library_info/' id ) }}
+
+            {{!-- {{> card photo=photo title=title description=description location="'/library_info'"}} --}}
+
+            {{/each}}
+        </div>
+    </div>
+
+
+</main>
