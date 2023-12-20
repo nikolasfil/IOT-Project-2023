@@ -9,7 +9,8 @@ class Broker:
         if client_id is None:
             client_id = "clienting-stuff"
         if topic is None:
-            topic = "Environmental/dutch-sensor-systems-ranos-db-2:1"
+            topic = "#"
+            #topic = "Environmental/dutch-sensor-systems-ranos-db-2:1"
         if broker is None:
             broker = "150.140.186.118"
         if port is None:
@@ -41,13 +42,14 @@ class Broker:
 
     def on_message(self, client, userdata, msg):
         # print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+        extra = msg
         text = str(
             msg.payload.decode()
         )  # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
         # message = eval(text)
 
         # message = dict(text)
-
+        print(msg)
         # message = json.loads(text)
         # print(message.keys())
         # print(message)

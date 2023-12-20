@@ -2710,3 +2710,1163 @@ false
 
  ---------- 2023-12-20 04:08:11 ----------
 
+
+
+ ---------- 2023-12-20 04:09:02 ----------
+
+{'deduplicationId': 'b126ae50-d836-48c6-b36a-6110f95d6aa2', 'time': '2023-12-20T02:08:59.100893497+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82730, 'fPort': 1, 'confirmed': False, 'data': 'a/9AOSILwlCIEwjBIMQsCQLA', 'object': {'location': None, 'measurements': [{'LAeq': '33.5', 'LCs': '31.9', 'LAmax': '34.9', 'timestamp': 'Wed Dec 20 2023 02:08:57 GMT+0000', 'LAmin': '34.4', 'LCeq': '31.8', 'LCmax': '33.6', 'LAs': '33.7', 'LCf': '33.4', 'LCmin': '34.4', 'LAf': '34.7'}], 'transmitInterval': None, 'bat': 6.4}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 64725, 'rssi': -102, 'snr': 4.8, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'UIUASw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 64431, 'rssi': -65, 'snr': 8.8, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Q/Kj4w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:09:02 ----------
+
+
+
+ ---------- 2023-12-20 04:10:02 ----------
+
+{'deduplicationId': '3fd11374-199f-47c9-8a8e-423b5c55476f', 'time': '2023-12-20T02:09:59.102885655+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82731, 'fPort': 1, 'confirmed': False, 'data': 'a/9AeSILwlCIEgjBIMQrCQKw', 'object': {'bat': 6.4, 'location': None, 'measurements': [{'LAs': '33.7', 'LCmin': '34.3', 'timestamp': 'Wed Dec 20 2023 02:09:57 GMT+0000', 'LCs': '31.8', 'LAmax': '34.9', 'LCmax': '33.6', 'LAf': '34.7', 'LCf': '33.4', 'LCeq': '31.8', 'LAmin': '34.3', 'LAeq': '33.5'}], 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 54161, 'rssi': -66, 'snr': 10.0, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'R4Y+qw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:10:02 ----------
+
+
+
+ ---------- 2023-12-20 04:11:02 ----------
+
+{'deduplicationId': '0786d5d5-2637-4df7-a92b-996201c2c2fb', 'time': '2023-12-20T02:10:59.092008075+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82732, 'fPort': 1, 'confirmed': False, 'data': 'a/9AuSILglCIEgjBIMQsCQLA', 'object': {'location': None, 'bat': 6.4, 'measurements': [{'LAeq': '33.5', 'LAmin': '34.4', 'LAs': '33.7', 'LCmax': '33.6', 'LAmax': '34.9', 'LCmin': '34.4', 'timestamp': 'Wed Dec 20 2023 02:10:57 GMT+0000', 'LCs': '31.8', 'LCf': '33.4', 'LAf': '34.6', 'LCeq': '31.8'}], 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 61642, 'rssi': -65, 'snr': 8.2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Sxmmgw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 25436, 'rssi': -103, 'snr': 4.8, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'V6wDIw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:11:02 ----------
+
+
+
+ ---------- 2023-12-20 04:12:02 ----------
+
+{'deduplicationId': 'd7dd78e7-c873-4858-b218-5aadbb4a61d3', 'time': '2023-12-20T02:11:59.088277387+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82733, 'fPort': 1, 'confirmed': False, 'data': 'a/9A+SILgkCIEgjBIMQsCQLA', 'object': {'transmitInterval': None, 'measurements': [{'LCs': '31.8', 'LAeq': '33.5', 'LCmax': '33.6', 'LAmax': '34.9', 'LAmin': '34.4', 'LAf': '34.6', 'LCmin': '34.4', 'LCeq': '31.8', 'timestamp': 'Wed Dec 20 2023 02:11:57 GMT+0000', 'LCf': '33.4', 'LAs': '33.6'}], 'bat': 6.4, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 3943, 'rssi': -64, 'snr': 8.8, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Tq052w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 56282, 'rssi': -106, 'snr': 3.5, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Wz+Wkw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:12:02 ----------
+
+
+
+ ---------- 2023-12-20 04:13:02 ----------
+
+{'deduplicationId': '9f5a4aa2-709a-4b47-9038-3d4f7f72f8a9', 'time': '2023-12-20T02:12:59.099220510+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82734, 'fPort': 1, 'confirmed': False, 'data': 'a/9AOSMLwlCIEgjBIMQsCQLA', 'object': {'bat': 6.4, 'location': None, 'transmitInterval': None, 'measurements': [{'LAmax': '34.9', 'timestamp': 'Wed Dec 20 2023 02:12:57 GMT+0000', 'LCs': '31.8', 'LAmin': '34.4', 'LAf': '34.7', 'LAs': '33.7', 'LCeq': '31.8', 'LCmax': '33.6', 'LCf': '33.4', 'LCmin': '34.4', 'LAeq': '33.5'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 19740, 'rssi': -63, 'snr': 7.5, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'UkDu7A==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 16778, 'rssi': -101, 'snr': 2.8, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'XtNLvA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:13:02 ----------
+
+
+
+ ---------- 2023-12-20 04:14:02 ----------
+
+{'deduplicationId': '33ebde24-28af-420e-8270-1cfdfe01bc9b', 'time': '2023-12-20T02:13:59.112718181+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82735, 'fPort': 1, 'confirmed': False, 'data': 'a/9AeSMMAlCMEgjBIMQsCQLA', 'object': {'bat': 6.4, 'location': None, 'transmitInterval': None, 'measurements': [{'LAeq': '33.5', 'LCeq': '31.8', 'LCs': '31.8', 'LAmax': '34.9', 'LCmax': '33.6', 'LAf': '34.8', 'LAmin': '34.4', 'LAs': '33.7', 'LCf': '33.5', 'LCmin': '34.4', 'timestamp': 'Wed Dec 20 2023 02:13:57 GMT+0000'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 61448, 'rssi': -65, 'snr': 10.0, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'VdSH2w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 26603, 'rssi': -102, 'snr': 4.8, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Ymbkww==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:14:02 ----------
+
+
+
+ ---------- 2023-12-20 04:15:02 ----------
+
+{'deduplicationId': '8b9794af-59c3-4247-be75-9bd7f74c5b36', 'time': '2023-12-20T02:14:59.112968635+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82736, 'fPort': 1, 'confirmed': False, 'data': 'a/9AuSMLQlCEEgjBIMQsCQLA', 'object': {'measurements': [{'LAmin': '34.4', 'LCmax': '33.6', 'LAs': '33.7', 'LCf': '33.3', 'LAeq': '33.5', 'LCs': '31.8', 'LCeq': '31.8', 'LAmax': '34.9', 'LAf': '34.5', 'LCmin': '34.4', 'timestamp': 'Wed Dec 20 2023 02:14:57 GMT+0000'}], 'transmitInterval': None, 'location': None, 'bat': 6.4}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 2799, 'rssi': -65, 'snr': 9.8, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'WWgTaw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 47899, 'rssi': -102, 'snr': 4.8, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Zfpwcw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:15:02 ----------
+
+
+
+ ---------- 2023-12-20 04:16:02 ----------
+
+{'deduplicationId': '174570a1-82f9-4c53-857e-3522a7479997', 'time': '2023-12-20T02:15:59.107979757+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 82737, 'fPort': 1, 'confirmed': False, 'data': 'a/9A+SMLwlCIEgjBIMQsCQLA', 'object': {'transmitInterval': None, 'location': None, 'bat': 6.4, 'measurements': [{'timestamp': 'Wed Dec 20 2023 02:15:57 GMT+0000', 'LCmax': '33.6', 'LCf': '33.4', 'LAmin': '34.4', 'LAf': '34.7', 'LCs': '31.8', 'LAs': '33.7', 'LCmin': '34.4', 'LAeq': '33.5', 'LCeq': '31.8', 'LAmax': '34.9'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 51242, 'rssi': -63, 'snr': 7.8, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'XPuXDA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 6479, 'rssi': -102, 'snr': 3.2, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'aY30JA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 04:16:02 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+false
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+4
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+Locko
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+true
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+3
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+2
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+2
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+false
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+48
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+false
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+false
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+false
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 17:13:41 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+false
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+4
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+Locko
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+true
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+3
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+2
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+2
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+false
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+48
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+false
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+false
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+false
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 17:14:15 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+false
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+4
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+Locko
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+true
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+3
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+2
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+2
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+false
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+48
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+false
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+false
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+false
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 17:51:54 ----------
+
+
+
+ ---------- 2023-12-20 17:52:00 ----------
+
+{'deduplicationId': 'dfd7b487-b096-4278-877d-e853c0df99c5', 'time': '2023-12-20T15:51:57.174169785+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83553, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+TwKwhCAEAgBEMApCMKQ', 'object': {'measurements': [{'LAf': '34.3', 'LCf': '33.2', 'LCmin': '34.1', 'LAmin': '34.1', 'LCeq': '31.7', 'timestamp': 'Wed Dec 20 2023 15:51:57 GMT+0000', 'LAeq': '33.2', 'LCs': '31.6', 'LCmax': '33.5', 'LAmax': '34.8', 'LAs': '33.3'}], 'bat': 6.5, 'transmitInterval': None, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 15613, 'rssi': -65, 'snr': 7.2, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'wxuPow==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 42345, 'rssi': -97, 'snr': 5.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'z65CQw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:52:00 ----------
+
+
+
+ ---------- 2023-12-20 17:53:00 ----------
+
+{'deduplicationId': '3086ec90-4872-43d8-a756-1fd0ae6388f8', 'time': '2023-12-20T15:52:57.175138496+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83554, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOT0LgjCIEQgBELwpCIKQ', 'object': {'location': None, 'measurements': [{'LCs': '31.7', 'LAs': '33.5', 'LAeq': '33.2', 'LAmax': '34.7', 'LAf': '34.6', 'LCf': '33.4', 'LCmax': '33.4', 'LCeq': '31.7', 'LCmin': '34.1', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 15:52:57 GMT+0000'}], 'transmitInterval': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 14374, 'rssi': -102, 'snr': 5.0, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '00HJKw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 19259, 'rssi': -66, 'snr': 8.8, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'xq8Waw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:53:00 ----------
+
+
+
+ ---------- 2023-12-20 17:53:31 ----------
+
+{'deduplicationId': '2e51c0a3-2046-4d4a-805c-adba50584474', 'time': '2023-12-20T15:53:28.127774956+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '2438a5fb-d125-4540-bdb3-18749af7b760', 'deviceProfileName': 'Tektelic Vivid', 'deviceName': 'tektelic-vivid:1', 'devEui': '647fda0000012041', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'manufacturer': 'Tektelic', 'model': 'Vivid', 'deviceId': 'tektelic-vivid:1'}}, 'devAddr': '0039b9f4', 'adr': True, 'dr': 5, 'fCnt': 10431, 'fPort': 10, 'confirmed': False, 'data': 'A2cAswRoZAC6C64=', 'object': {'battery_voltage': '2.990', 'ambient_temperature': '17.9', 'raw': '03 67 00 B3 04 68 64 00 BA 0B AE', 'relative_humidity': '50.0', 'port': 10.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 14293, 'rssi': -90, 'snr': 6.2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '1Ro3iw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:53:31 ----------
+
+
+
+ ---------- 2023-12-20 17:53:31 ----------
+
+{'deduplicationId': 'e3e89558-48a6-4e80-9e6c-f383e55c12b6', 'time': '2023-12-20T15:53:28.924029447+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '9be10a72-026f-4e3b-8eac-4a74d0beecb8', 'applicationName': 'Asset tracking', 'deviceProfileId': '82ff747e-1de8-4c38-8a8a-9319f3468732', 'deviceProfileName': 'Digital Matter Oyster3', 'deviceName': 'digital-matter-oyster3:1', 'devEui': '70b3d570500134ae', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'digital-matter-oyster3:1'}}, 'devAddr': '002f2c62', 'adr': False, 'dr': 2, 'fCnt': 715, 'fPort': 1, 'confirmed': False, 'data': 'tFLSFjm0/Az7ANI=', 'object': {'batCritical': None, 'inactivityAlarm': None, 'fixFailed': True, 'batV': 5.25, 'inTrip': True, 'cached': {'longitudeDeg': 21.7887801, 'headingDeg': 348.75, 'speedKmph': 0.0, 'latitudeDeg': 38.2882484}, 'type': 'position'}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 47027, 'rssi': -81, 'snr': 7.2, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '1SZf5A==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 10, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:53:31 ----------
+
+
+
+ ---------- 2023-12-20 17:54:00 ----------
+
+{'deduplicationId': '0e6c8c44-bb96-451e-8d33-00af8835e04a', 'time': '2023-12-20T15:53:57.161494888+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83555, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeT0LAiCAEQgBEMApCMKQ', 'object': {'measurements': [{'LCeq': '31.7', 'LAf': '34.4', 'LAeq': '33.2', 'LCs': '31.7', 'LAmax': '34.8', 'LCmin': '34.1', 'LAs': '33.4', 'timestamp': 'Wed Dec 20 2023 15:53:57 GMT+0000', 'LCf': '33.2', 'LAmin': '34.1', 'LCmax': '33.5'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 39365, 'rssi': -101, 'snr': 4.5, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '1tVOgw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 39335, 'rssi': -65, 'snr': 9.2, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'ykKbqw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:54:00 ----------
+
+
+
+ ---------- 2023-12-20 17:55:00 ----------
+
+{'deduplicationId': 'a0102ef6-6d17-4fa9-9471-c710e1943b91', 'time': '2023-12-20T15:54:57.165099672+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83556, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuT0LAiCAEQgBELwpCIKQ', 'object': {'location': None, 'bat': 6.5, 'transmitInterval': None, 'measurements': [{'LCmin': '34.1', 'timestamp': 'Wed Dec 20 2023 15:54:57 GMT+0000', 'LAeq': '33.2', 'LCmax': '33.4', 'LAmin': '34.1', 'LCs': '31.7', 'LAf': '34.4', 'LCf': '33.2', 'LCeq': '31.7', 'LAmax': '34.7', 'LAs': '33.4'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 10095, 'rssi': -103, 'snr': 5.0, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '2mjkgw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 33130, 'rssi': -65, 'snr': 9.2, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'zdYxgw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:55:00 ----------
+
+
+
+ ---------- 2023-12-20 17:56:00 ----------
+
+{'deduplicationId': '30acea44-2d6b-4cde-8b44-41814d26a9c9', 'time': '2023-12-20T15:55:57.177926270+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83557, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+T0LAjCAEQhBEMQqCMKg', 'object': {'measurements': [{'LAs': '33.5', 'LAmin': '34.2', 'LCf': '33.2', 'LCs': '31.7', 'LAeq': '33.3', 'LCeq': '31.7', 'LAmax': '34.9', 'LCmax': '33.5', 'LCmin': '34.2', 'LAf': '34.4', 'timestamp': 'Wed Dec 20 2023 15:55:57 GMT+0000'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 51448, 'rssi': -67, 'snr': 9.2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '0Wm+sw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 60176, 'rssi': -98, 'snr': 6.0, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '3fxx0w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:56:00 ----------
+
+
+
+ ---------- 2023-12-20 17:57:00 ----------
+
+{'deduplicationId': '95e765a9-9604-4e89-9fad-11c8aa5449c6', 'time': '2023-12-20T15:56:57.166403068+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83558, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOT4LQiCAEAhBEMAqCMKg', 'object': {'measurements': [{'LAs': '33.4', 'timestamp': 'Wed Dec 20 2023 15:56:57 GMT+0000', 'LAmax': '34.8', 'LAf': '34.5', 'LCs': '31.6', 'LCf': '33.2', 'LAmin': '34.2', 'LCmax': '33.5', 'LCmin': '34.2', 'LAeq': '33.3', 'LCeq': '31.7'}], 'transmitInterval': None, 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 19270, 'rssi': -100, 'snr': 6.5, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '4Y//5A==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 30071, 'rssi': -66, 'snr': 8.8, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '1P1MpA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:57:00 ----------
+
+
+
+ ---------- 2023-12-20 17:57:25 ----------
+
+{'deduplicationId': '61f0cf7d-6e8f-4664-b101-e1512f0dbc09', 'time': '2023-12-20T15:57:22.155159712+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '575e5296-aa60-45cf-8e8f-425b4ca50eaa', 'deviceProfileName': 'Barani MeteoWind IoT Pro', 'deviceName': 'barani-meteowind-iot-pro:1', 'devEui': '0004a30b00f26852', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '00d6ebf1', 'adr': True, 'dr': 4, 'fCnt': 10387, 'fPort': 1, 'confirmed': False, 'data': 'LhMIAoTggUFA', 'object': {'5_Wind_min10': 0.8999999999999999, '3_Wind_ave10': 1.9, '6_Dir_ave10': 39.0, '4_Wind_max10': 3.5, '1_Type': 0.0, '9_Dir_lo10': 20.0, '2_Battery': 4.2, '7_Dir_max10': 8.0, '8_Dir_hi10': 20.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 10672, 'rssi': -101, 'snr': 3.8, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '4wv9PA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 30507, 'rssi': -45, 'snr': 8.2, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '1nlJ9A==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 8, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:57:25 ----------
+
+
+
+ ---------- 2023-12-20 17:58:00 ----------
+
+{'deduplicationId': 'a872c48d-ff23-4bdc-b049-53592e1b6cf5', 'time': '2023-12-20T15:57:57.180925740+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83559, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeT4LAiCAEAgBEMApCMKQ', 'object': {'measurements': [{'LCf': '33.2', 'LCeq': '31.7', 'LAeq': '33.2', 'LCmax': '33.5', 'LCmin': '34.1', 'LCs': '31.6', 'LAf': '34.4', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 15:57:57 GMT+0000', 'LAs': '33.4', 'LAmax': '34.8'}], 'transmitInterval': None, 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 35442, 'rssi': -65, 'snr': 6.2, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '2JEDXA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 29132, 'rssi': -97, 'snr': 1.0, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '5SO2tA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:58:00 ----------
+
+
+
+ ---------- 2023-12-20 17:58:08 ----------
+
+{'deduplicationId': 'e652b426-69c3-4f3f-bb1d-19dcc80bc817', 'time': '2023-12-20T15:58:05.614191998+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': 'b481fe85-b715-4b6b-9974-a2a0b5d52b67', 'deviceProfileName': 'Barani MeteoHelix IoT Pro', 'deviceName': 'barani-meteohelix-iot-pro:1', 'devEui': '0004a30b00f32bad', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'barani-meteohelix-iot-pro:1'}}, 'devAddr': '008830f8', 'adr': True, 'dr': 5, 'fCnt': 2839, 'fPort': 1, 'confirmed': False, 'data': 'bxzBBn05KAAAOv8=', 'object': {'Pressure': 100105.0, 'Rain min time': 255.0, 'Type': 1.0, 'Temperature': 13.9, 'T_max': 14.0, 'Humidity': 63.6, 'Irradiation': 0.0, 'Battery': 4.15, 'T_min': 13.8, 'Irr_max': 0.0, 'Rain': 58.0}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 23850, 'rssi': -42, 'snr': 9.2, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '2RGgfA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:58:08 ----------
+
+
+
+ ---------- 2023-12-20 17:58:56 ----------
+
+{'deduplicationId': '83075773-981a-4ad0-98a4-3173933c038c', 'time': '2023-12-20T15:58:53.219393695+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '16747162-db5d-46c0-b7c0-1f497b6d5f21', 'deviceProfileName': 'MClimate CO2 Sensor & Notifier', 'deviceName': 'mclimate-co2-sensor:1', 'devEui': '70b3d52dd50011f3', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'mclimate-co2-sensor:1'}}, 'devAddr': '012d4401', 'adr': True, 'dr': 5, 'fCnt': 2896, 'fPort': 2, 'confirmed': False, 'data': 'AQM6AkOS7A==', 'object': {'sensorTemperature': 17.9, 'relativeHumidity': 57.03, 'batteryVoltage': 3.49, 'CO2': 826.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 27058, 'rssi': -95, 'snr': 9.2, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '6HqTcw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 21558, 'rssi': -113, 'snr': 4.2, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '2+ff+w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:58:56 ----------
+
+
+
+ ---------- 2023-12-20 17:59:00 ----------
+
+{'deduplicationId': 'd51f971d-e812-4cea-8b5d-6fec3f10396e', 'time': '2023-12-20T15:58:57.185134424+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83560, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuT4KwhCAEAgBEMApCIKQ', 'object': {'location': None, 'bat': 6.5, 'transmitInterval': None, 'measurements': [{'LAeq': '33.2', 'LCs': '31.6', 'LCmin': '34.1', 'LCmax': '33.4', 'LAmax': '34.8', 'LAmin': '34.1', 'LCf': '33.2', 'LAf': '34.3', 'LAs': '33.3', 'timestamp': 'Wed Dec 20 2023 15:58:57 GMT+0000', 'LCeq': '31.7'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 50875, 'rssi': -97, 'snr': 5.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '6LctAw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 16318, 'rssi': -65, 'snr': 7.5, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '3CR5iw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 17:59:00 ----------
+
+
+
+ ---------- 2023-12-20 18:00:00 ----------
+
+{'deduplicationId': 'd89f3bb2-8b65-4aa9-83ca-b9e1ba9bb027', 'time': '2023-12-20T15:59:57.197739214+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83561, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+T4LAhCAEAgBELwpCIKQ', 'object': {'bat': 6.5, 'location': None, 'transmitInterval': None, 'measurements': [{'LAf': '34.4', 'LAmax': '34.7', 'LCmax': '33.4', 'LAeq': '33.2', 'LAs': '33.3', 'LCf': '33.2', 'LCs': '31.6', 'LCeq': '31.7', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 15:59:57 GMT+0000', 'LCmin': '34.1'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 30605, 'rssi': -66, 'snr': 10.0, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': '37g06w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 30072, 'rssi': -99, 'snr': 7.0, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': '7Erogw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:00:00 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+false
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+4
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+Locko
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+true
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+3
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+2
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+2
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+false
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+48
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+false
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+false
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+false
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 18:12:43 ----------
+
+
+
+ ---------- 2023-12-20 18:13:00 ----------
+
+{'deduplicationId': 'b52d48e7-8131-4556-9fa1-94de6d789369', 'time': '2023-12-20T16:12:57.241769230+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83574, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUMLAhCAEAfBELwpCIKQ', 'object': {'location': None, 'bat': 6.5, 'transmitInterval': None, 'measurements': [{'LAmax': '34.7', 'LCf': '33.2', 'LCs': '31.6', 'LCeq': '31.7', 'LAf': '34.4', 'timestamp': 'Wed Dec 20 2023 16:12:57 GMT+0000', 'LAmin': '34.1', 'LCmin': '34.1', 'LAs': '33.3', 'LAeq': '33.1', 'LCmax': '33.4'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 25047, 'rssi': -101, 'snr': 5.8, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Gsl8sw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 14818, 'rssi': -65, 'snr': 10.0, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'DjbHkw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:13:00 ----------
+
+
+
+ ---------- 2023-12-20 18:14:00 ----------
+
+{'deduplicationId': '3c43fa66-27a5-4e91-a1bd-7b721625816f', 'time': '2023-12-20T16:13:57.235301899+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83575, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUMLQhCEEAgBELwpCIKQ', 'object': {'location': None, 'measurements': [{'LAmax': '34.7', 'LAeq': '33.2', 'LCf': '33.3', 'LAs': '33.3', 'LAf': '34.5', 'timestamp': 'Wed Dec 20 2023 16:13:57 GMT+0000', 'LCs': '31.6', 'LCeq': '31.7', 'LAmin': '34.1', 'LCmax': '33.4', 'LCmin': '34.1'}], 'transmitInterval': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 55433, 'rssi': -64, 'snr': 10.0, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Ecov4w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 40391, 'rssi': -100, 'snr': 6.0, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'HlzlGw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:14:00 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+false
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+4
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+Locko
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+true
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+3
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+2
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+2
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+false
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+48
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+false
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+false
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+false
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 18:14:17 ----------
+
+
+
+ ---------- 2023-12-20 18:15:00 ----------
+
+{'deduplicationId': 'f71d0a6c-a06a-4bff-8fd7-0ae50cb12a0a', 'time': '2023-12-20T16:14:57.244639855+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83576, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUMLAhCAEAfBELwpCIKQ', 'object': {'measurements': [{'LAmin': '34.1', 'LAs': '33.3', 'LAmax': '34.7', 'LAeq': '33.1', 'LAf': '34.4', 'LCeq': '31.7', 'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:14:57 GMT+0000', 'LCf': '33.2', 'LCs': '31.6', 'LCmin': '34.1'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 2, 'rssi': -102, 'snr': 4.8, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'IfCF8w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 21104, 'rssi': -66, 'snr': 10.0, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'FV3Qmw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:15:00 ----------
+
+
+
+ ---------- 2023-12-20 18:16:00 ----------
+
+{'deduplicationId': '85b29268-24e5-4a2b-831e-d8eb08a9d3b9', 'time': '2023-12-20T16:15:57.247387965+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83577, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UMLAhCEEAfBELwpCIKQ', 'object': {'transmitInterval': None, 'measurements': [{'LAs': '33.3', 'LCmin': '34.1', 'LAmax': '34.7', 'LAf': '34.4', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:15:57 GMT+0000', 'LCeq': '31.7', 'LAeq': '33.1', 'LCmax': '33.4', 'LCf': '33.3', 'LCs': '31.6'}], 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 30574, 'rssi': -96, 'snr': 4.5, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'JYQl+w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 37424, 'rssi': -65, 'snr': 7.2, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'GPFwew==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:16:00 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+false
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+4
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+Locko
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+3.7.7
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+true
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+3
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+2
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+2
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+false
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+48
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+false
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+false
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+false
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+2023-12-19T14:57:54Z
+
+ ---------- 2023-12-20 18:16:39 ----------
+
+
+
+ ---------- 2023-12-20 18:16:44 ----------
+
+{'deduplicationId': '431cba6d-c9d6-45ca-ac77-f09075b5c959', 'time': '2023-12-20T16:16:40.756348082+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '9be10a72-026f-4e3b-8eac-4a74d0beecb8', 'applicationName': 'Asset tracking', 'deviceProfileId': '82ff747e-1de8-4c38-8a8a-9319f3468732', 'deviceProfileName': 'Digital Matter Oyster3', 'deviceName': 'digital-matter-oyster3:1', 'devEui': '70b3d570500134ae', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'digital-matter-oyster3:1'}}, 'devAddr': '002f2c62', 'adr': False, 'dr': 1, 'fCnt': 717, 'fPort': 1, 'confirmed': False, 'data': 'CULSFquh/AzxANI=', 'object': {'batV': 5.25, 'inactivityAlarm': None, 'fixFailed': False, 'batCritical': None, 'type': 'position', 'latitudeDeg': 38.2878217, 'longitudeDeg': 21.7883051, 'inTrip': True, 'speedKmph': 0.0, 'headingDeg': 337.5}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 52225, 'rssi': -76, 'snr': 13.5, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'G4kvTA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 49236, 'rssi': -108, 'snr': -3.2, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'KBvk3A==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 11, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:16:44 ----------
+
+
+
+ ---------- 2023-12-20 18:17:00 ----------
+
+{'deduplicationId': '03db5987-0188-4bf1-8e0c-4763e54dbcbb', 'time': '2023-12-20T16:16:57.250413305+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83578, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUQLAhCAEAfBALgpCIKQ', 'object': {'bat': 6.5, 'measurements': [{'timestamp': 'Wed Dec 20 2023 16:16:57 GMT+0000', 'LCmin': '34.1', 'LAeq': '33.1', 'LCeq': '31.6', 'LAf': '34.4', 'LCf': '33.2', 'LAs': '33.3', 'LAmin': '34.1', 'LAmax': '34.6', 'LCs': '31.6', 'LCmax': '33.4'}], 'transmitInterval': None, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 54425, 'rssi': -65, 'snr': 6.5, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'HIUI+w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 4339, 'rssi': -96, 'snr': 4.2, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'KRe+kw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:17:00 ----------
+
+
+
+ ---------- 2023-12-20 18:17:25 ----------
+
+{'deduplicationId': 'b11d12d1-e389-4fc3-ac6b-0777abaa6d2a', 'time': '2023-12-20T16:17:22.080020045+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '575e5296-aa60-45cf-8e8f-425b4ca50eaa', 'deviceProfileName': 'Barani MeteoWind IoT Pro', 'deviceName': 'barani-meteowind-iot-pro:1', 'devEui': '0004a30b00f26852', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '00d6ebf1', 'adr': True, 'dr': 4, 'fCnt': 10389, 'fPort': 1, 'confirmed': False, 'data': 'LgwJgwblAuLg', 'object': {'6_Dir_ave10': 55.0, '2_Battery': 4.2, '7_Dir_max10': 80.0, '5_Wind_min10': 0.0, '3_Wind_ave10': 1.2, '8_Dir_hi10': 46.0, '4_Wind_max10': 3.0999999999999996, '1_Type': 0.0, '9_Dir_lo10': 46.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 24340, 'rssi': -101, 'snr': 6.2, 'channel': 6, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'KpKoTA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 3655, 'rssi': -46, 'snr': 10.2, 'channel': 6, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Hf/yrA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867700000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 8, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:17:25 ----------
+
+
+
+ ---------- 2023-12-20 18:17:30 ----------
+
+{'deduplicationId': '97be65a0-f9f4-4856-bd52-60ff4b281f82', 'time': '2023-12-20T16:17:27.299996186+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '2438a5fb-d125-4540-bdb3-18749af7b760', 'deviceProfileName': 'Tektelic Vivid', 'deviceName': 'tektelic-vivid:2', 'devEui': '647fda0000011fe7', 'tags': {'model': 'Vivid', 'manufacturer': 'Tektelic', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'tektelic-vivid:2'}}, 'devAddr': '01ecdb05', 'adr': True, 'dr': 5, 'fCnt': 7888, 'fPort': 10, 'confirmed': False, 'data': 'A2cAtwRoZAC6C68=', 'object': {'ambient_temperature': '18.3', 'raw': '03 67 00 B7 04 68 64 00 BA 0B AF', 'battery_voltage': '2.991', 'port': 10.0, 'relative_humidity': '50.0'}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 17358, 'rssi': -118, 'snr': -3.0, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Hk+LrA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 58681, 'rssi': -97, 'snr': 8.8, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'KuJBTA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:17:30 ----------
+
+
+
+ ---------- 2023-12-20 18:18:00 ----------
+
+{'deduplicationId': 'c532cbbc-92f1-4685-b120-0c34fa0a720e', 'time': '2023-12-20T16:17:57.245326448+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83579, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUQKghB8EAfBELwpCIKQ', 'object': {'measurements': [{'LAmax': '34.7', 'LCmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:17:57 GMT+0000', 'LAs': '33.3', 'LAf': '34.2', 'LCs': '31.6', 'LAmin': '34.1', 'LCeq': '31.7', 'LCf': '33.1', 'LAeq': '33.1', 'LCmax': '33.4'}], 'transmitInterval': None, 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 56138, 'rssi': -64, 'snr': 9.0, 'channel': 6, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'IBiITA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 62648, 'rssi': -100, 'snr': 6.0, 'channel': 6, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'LKs9/A==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867700000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:18:00 ----------
+
+
+
+ ---------- 2023-12-20 18:18:08 ----------
+
+{'deduplicationId': '9e5c5f6f-5ac3-45eb-9cee-17d8fa53c490', 'time': '2023-12-20T16:18:05.543913028+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': 'b481fe85-b715-4b6b-9974-a2a0b5d52b67', 'deviceProfileName': 'Barani MeteoHelix IoT Pro', 'deviceName': 'barani-meteohelix-iot-pro:1', 'devEui': '0004a30b00f32bad', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'barani-meteohelix-iot-pro:1'}}, 'devAddr': '008830f8', 'adr': True, 'dr': 5, 'fCnt': 2841, 'fPort': 1, 'confirmed': False, 'data': 'bxxBBos5GAAAOv8=', 'object': {'Irr_max': 0.0, 'Rain': 58.0, 'Humidity': 65.0, 'Irradiation': 0.0, 'Pressure': 100095.0, 'Rain min time': 255.0, 'T_max': 13.8, 'T_min': 13.6, 'Temperature': 13.7, 'Type': 1.0, 'Battery': 4.15}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 32485, 'rssi': -100, 'snr': 4.5, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'LSnAFA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 8217, 'rssi': -40, 'snr': 6.8, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'IJcKXA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:18:08 ----------
+
+
+
+ ---------- 2023-12-20 18:19:00 ----------
+
+{'deduplicationId': '53c7dc43-09a8-4297-9719-0001e7247137', 'time': '2023-12-20T16:18:57.259884570+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83580, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUQLAhCEEAfBEMApCMKQ', 'object': {'location': None, 'measurements': [{'LCmax': '33.5', 'timestamp': 'Wed Dec 20 2023 16:18:57 GMT+0000', 'LCs': '31.6', 'LAeq': '33.1', 'LAmax': '34.8', 'LAf': '34.4', 'LAs': '33.3', 'LCeq': '31.7', 'LAmin': '34.1', 'LCmin': '34.1', 'LCf': '33.3'}], 'transmitInterval': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 34579, 'rssi': -65, 'snr': 10.8, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'I6wZYw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 7464, 'rssi': -100, 'snr': 6.5, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'MD7PMw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:19:00 ----------
+
+
+
+ ---------- 2023-12-20 18:19:34 ----------
+
+{'deduplicationId': '37470748-34e6-4b62-9530-bdf568b0ba7f', 'time': '2023-12-20T16:19:24.803156511+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '16747162-db5d-46c0-b7c0-1f497b6d5f21', 'deviceProfileName': 'MClimate CO2 Sensor & Notifier', 'deviceName': 'mclimate-co2-sensor:1', 'devEui': '70b3d52dd50011f3', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'mclimate-co2-sensor:1'}}, 'devAddr': '012d4401', 'adr': True, 'dr': 5, 'fCnt': 2898, 'fPort': 2, 'confirmed': False, 'data': 'AQNHAkST7A==', 'object': {'sensorTemperature': 18.0, 'batteryVoltage': 3.49, 'relativeHumidity': 57.42, 'CO2': 839.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 56689, 'rssi': -88, 'snr': 7.2, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'MeM2uw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 4294, 'rssi': -114, 'snr': 0.8, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'JVCA2w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:19:34 ----------
+
+
+
+ ---------- 2023-12-20 18:20:00 ----------
+
+{'deduplicationId': 'd58a0e57-01e7-4ff8-9479-4dac36a0d18b', 'time': '2023-12-20T16:19:57.266475645+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83581, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UQKwgCAEAfBELwpCIKQ', 'object': {'measurements': [{'LCmax': '33.4', 'LCeq': '31.7', 'timestamp': 'Wed Dec 20 2023 16:19:57 GMT+0000', 'LAs': '33.2', 'LAmax': '34.7', 'LAf': '34.3', 'LCf': '33.2', 'LAeq': '33.1', 'LCmin': '34.1', 'LCs': '31.6', 'LAmin': '34.1'}], 'transmitInterval': None, 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 60014, 'rssi': -100, 'snr': 6.2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'M9KNmw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 2236, 'rssi': -66, 'snr': 9.5, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Jz/Xqw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:20:00 ----------
+
+
+
+ ---------- 2023-12-20 18:21:01 ----------
+
+{'deduplicationId': 'ace4dc25-f621-4fbc-bb84-c3d01c3b48d8', 'time': '2023-12-20T16:20:57.270562495+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83582, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUUKggB8EAfBALgpCIKQ', 'object': {'transmitInterval': None, 'measurements': [{'timestamp': 'Wed Dec 20 2023 16:20:57 GMT+0000', 'LCs': '31.6', 'LCmin': '34.1', 'LAs': '33.2', 'LCmax': '33.4', 'LAf': '34.2', 'LCf': '33.1', 'LCeq': '31.6', 'LAmin': '34.1', 'LAeq': '33.1', 'LAmax': '34.6'}], 'location': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 3815, 'rssi': -65, 'snr': 9.5, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'KtNdww==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 45454, 'rssi': -101, 'snr': 6.2, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'N2YT0w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:21:01 ----------
+
+
+
+ ---------- 2023-12-20 18:22:00 ----------
+
+{'deduplicationId': '7c439d61-e855-46ac-b4bb-4980f45b7dbd', 'time': '2023-12-20T16:21:57.270127054+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83583, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUULAiCEEAgBEMAoCMKA', 'object': {'transmitInterval': None, 'measurements': [{'LAf': '34.4', 'LCf': '33.3', 'LCs': '31.6', 'LAs': '33.4', 'LAmax': '34.8', 'LCmin': '34.0', 'LAeq': '33.2', 'LCeq': '31.7', 'timestamp': 'Wed Dec 20 2023 16:21:57 GMT+0000', 'LAmin': '34.0', 'LCmax': '33.5'}], 'location': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 11689, 'rssi': -65, 'snr': 9.8, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'LmbcMw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 9345, 'rssi': -100, 'snr': 5.8, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'OvmSWw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:22:00 ----------
+
+
+
+ ---------- 2023-12-20 18:23:00 ----------
+
+{'deduplicationId': 'c1bbf918-027b-419b-9b80-7bc69f1d6fe5', 'time': '2023-12-20T16:22:57.282962968+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83584, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUUKwhCAEAgBELwpCIKQ', 'object': {'measurements': [{'LCs': '31.6', 'LCmin': '34.1', 'LAeq': '33.2', 'LAs': '33.3', 'LCf': '33.2', 'LAf': '34.3', 'LCeq': '31.7', 'LAmax': '34.7', 'LAmin': '34.1', 'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:22:57 GMT+0000'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 47591, 'rssi': -65, 'snr': 9.0, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Mfqbcw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 24716, 'rssi': -101, 'snr': 4.8, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Po1Ruw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:23:00 ----------
+
+
+
+ ---------- 2023-12-20 18:24:00 ----------
+
+{'deduplicationId': 'c4563bde-31ca-4639-808b-002bdbc35d35', 'time': '2023-12-20T16:23:57.268362314+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83585, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UUKwgCAEAfBELwpCMKQ', 'object': {'bat': 6.5, 'location': None, 'transmitInterval': None, 'measurements': [{'LCeq': '31.7', 'LCf': '33.2', 'LAmin': '34.1', 'LCmax': '33.5', 'LCs': '31.6', 'LAeq': '33.1', 'LCmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:23:57 GMT+0000', 'LAmax': '34.7', 'LAf': '34.3', 'LAs': '33.2'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 35288, 'rssi': -66, 'snr': 9.2, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'NY4RzA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 24324, 'rssi': -101, 'snr': 6.2, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'QiDINA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:24:00 ----------
+
+
+
+ ---------- 2023-12-20 18:25:00 ----------
+
+{'deduplicationId': '8bd1369c-0e95-4224-b013-5ca833a2f34b', 'time': '2023-12-20T16:24:57.287720358+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83586, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUYLAhCEEAfBELwpCIKQ', 'object': {'transmitInterval': None, 'bat': 6.5, 'location': None, 'measurements': [{'LAf': '34.4', 'LCs': '31.6', 'LCeq': '31.7', 'LAmax': '34.7', 'LCf': '33.3', 'LAeq': '33.1', 'LCmin': '34.1', 'LAs': '33.3', 'LCmax': '33.4', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:24:57 GMT+0000'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 17842, 'rssi': -67, 'snr': 9.2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'OSGjYw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 43256, 'rssi': -99, 'snr': 7.0, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'RbRZ4w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:25:00 ----------
+
+
+
+ ---------- 2023-12-20 18:26:00 ----------
+
+{'deduplicationId': '08903f33-a5ab-4f44-af67-82cef54804fc', 'time': '2023-12-20T16:25:57.276642371+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83587, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUYLAhCAEAfBELgpCIKQ', 'object': {'transmitInterval': None, 'measurements': [{'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:25:57 GMT+0000', 'LAf': '34.4', 'LCs': '31.6', 'LCf': '33.2', 'LAmax': '34.6', 'LAmin': '34.1', 'LCmin': '34.1', 'LCeq': '31.7', 'LAs': '33.3', 'LAeq': '33.1'}], 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 62428, 'rssi': -100, 'snr': 6.5, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'SUfrVA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 39222, 'rssi': -66, 'snr': 9.5, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'PLU0tA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:26:00 ----------
+
+
+
+ ---------- 2023-12-20 18:27:00 ----------
+
+{'deduplicationId': '4a28a81e-ca1a-471c-909c-e8a230212949', 'time': '2023-12-20T16:26:57.281544484+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83588, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUYKwhCAEAfBELgpCIKQ', 'object': {'bat': 6.5, 'transmitInterval': None, 'location': None, 'measurements': [{'LCmin': '34.1', 'LAmax': '34.6', 'timestamp': 'Wed Dec 20 2023 16:26:57 GMT+0000', 'LCs': '31.6', 'LAf': '34.3', 'LAs': '33.3', 'LAeq': '33.1', 'LCeq': '31.7', 'LAmin': '34.1', 'LCf': '33.2', 'LCmax': '33.4'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 4657, 'rssi': -101, 'snr': 6.5, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'TNt9ZA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:27:00 ----------
+
+
+
+ ---------- 2023-12-20 18:27:25 ----------
+
+{'deduplicationId': '68727c47-e586-4160-91c3-b7ed1cceb0b0', 'time': '2023-12-20T16:27:22.083231117+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '575e5296-aa60-45cf-8e8f-425b4ca50eaa', 'deviceProfileName': 'Barani MeteoWind IoT Pro', 'deviceName': 'barani-meteowind-iot-pro:1', 'devEui': '0004a30b00f26852', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '00d6ebf1', 'adr': True, 'dr': 4, 'fCnt': 10390, 'fPort': 1, 'confirmed': False, 'data': 'LhIIgotGoqKg', 'object': {'4_Wind_max10': 3.5, '1_Type': 0.0, '6_Dir_ave10': 90.0, '2_Battery': 4.2, '7_Dir_max10': 106.0, '8_Dir_hi10': 42.0, '9_Dir_lo10': 42.0, '5_Wind_min10': 0.8, '3_Wind_ave10': 1.8}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 21868, 'rssi': -44, 'snr': 8.2, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'QcNHRA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 3897, 'rssi': -95, 'snr': -3.0, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'TlX+FA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 8, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:27:25 ----------
+
+
+
+ ---------- 2023-12-20 18:28:00 ----------
+
+{'deduplicationId': '71a742e7-83b0-48be-8faa-538263c3513c', 'time': '2023-12-20T16:27:57.288052960+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83589, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UYLAhCAEAfBELwpCIKQ', 'object': {'location': None, 'transmitInterval': None, 'measurements': [{'timestamp': 'Wed Dec 20 2023 16:27:57 GMT+0000', 'LCeq': '31.7', 'LCs': '31.6', 'LAmax': '34.7', 'LCmax': '33.4', 'LCf': '33.2', 'LAeq': '33.1', 'LAf': '34.4', 'LAs': '33.3', 'LAmin': '34.1', 'LCmin': '34.1'}], 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 41956, 'rssi': -99, 'snr': 6.0, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'UG8w8w==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 55197, 'rssi': -65, 'snr': 9.8, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Q9x6Gw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:28:00 ----------
+
+
+
+ ---------- 2023-12-20 18:28:08 ----------
+
+{'deduplicationId': '7cf82ac5-1317-4afa-9cbf-7abe73357ac7', 'time': '2023-12-20T16:28:05.501981063+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': 'b481fe85-b715-4b6b-9974-a2a0b5d52b67', 'deviceProfileName': 'Barani MeteoHelix IoT Pro', 'deviceName': 'barani-meteohelix-iot-pro:1', 'devEui': '0004a30b00f32bad', 'tags': {'deviceId': 'barani-meteohelix-iot-pro:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '008830f8', 'adr': True, 'dr': 5, 'fCnt': 2842, 'fPort': 1, 'confirmed': False, 'data': 'bxtECqk5IAAAOv8=', 'object': {'Type': 1.0, 'T_max': 13.5, 'Humidity': 68.0, 'Pressure': 100100.0, 'Irr_max': 0.0, 'Rain': 58.0, 'Irradiation': 0.0, 'Rain min time': 255.0, 'Battery': 4.15, 'Temperature': 13.3, 'T_min': 12.9}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 55064, 'rssi': -41, 'snr': 7.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'RFnAgw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 26740, 'rssi': -103, 'snr': -1.8, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'UOx3Yw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:28:08 ----------
+
+
+
+ ---------- 2023-12-20 18:29:00 ----------
+
+{'deduplicationId': '20cdd5c2-462c-4c3c-a163-416f1ff98da2', 'time': '2023-12-20T16:28:57.304688222+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83590, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUcLAhCAEAgBELwpCIKQ', 'object': {'location': None, 'measurements': [{'LAmax': '34.7', 'LCs': '31.6', 'LAf': '34.4', 'LCeq': '31.7', 'LAeq': '33.2', 'LCmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:28:57 GMT+0000', 'LCf': '33.2', 'LAs': '33.3', 'LCmax': '33.4', 'LAmin': '34.1'}], 'transmitInterval': None, 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 46431, 'rssi': -98, 'snr': 7.2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'VAK6ww==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 57768, 'rssi': -66, 'snr': 9.8, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'R3ADyw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:29:00 ----------
+
+
+
+ ---------- 2023-12-20 18:29:43 ----------
+
+{'deduplicationId': '8c9e7ce8-4bac-4874-b58c-dab98cc3cba6', 'time': '2023-12-20T16:29:40.610200254+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '16747162-db5d-46c0-b7c0-1f497b6d5f21', 'deviceProfileName': 'MClimate CO2 Sensor & Notifier', 'deviceName': 'mclimate-co2-sensor:1', 'devEui': '70b3d52dd50011f3', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'mclimate-co2-sensor:1'}}, 'devAddr': '012d4401', 'adr': True, 'dr': 5, 'fCnt': 2899, 'fPort': 2, 'confirmed': False, 'data': 'AQNOAkSS7A==', 'object': {'CO2': 846.0, 'sensorTemperature': 18.0, 'relativeHumidity': 57.03, 'batteryVoltage': 3.49}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 44171, 'rssi': -118, 'snr': 1.0, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'SgTVNA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 2417, 'rssi': -93, 'snr': 9.8, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'VpeMPA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:29:43 ----------
+
+
+
+ ---------- 2023-12-20 18:30:00 ----------
+
+{'deduplicationId': '217baa0f-3d95-44fe-bfda-3291b2284f0b', 'time': '2023-12-20T16:29:57.307157490+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83591, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUcLAhCEEAfBELwpCIKQ', 'object': {'bat': 6.5, 'transmitInterval': None, 'location': None, 'measurements': [{'LCs': '31.6', 'LAmin': '34.1', 'LAeq': '33.1', 'LAs': '33.3', 'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:29:57 GMT+0000', 'LCf': '33.3', 'LAmax': '34.7', 'LAf': '34.4', 'LCeq': '31.7', 'LCmin': '34.1'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 9273, 'rssi': -64, 'snr': 7.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'SwOysw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 28076, 'rssi': -97, 'snr': 4.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'V5Zpyw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:30:00 ----------
+
+
+
+ ---------- 2023-12-20 18:31:00 ----------
+
+{'deduplicationId': '4191973e-8c4b-4f58-887a-c45a2d1e3b73', 'time': '2023-12-20T16:30:57.336555303+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83592, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUcLQiCEEQgBELwpCIKQ', 'object': {'location': None, 'bat': 6.5, 'transmitInterval': None, 'measurements': [{'LAmax': '34.7', 'LCf': '33.3', 'LAs': '33.4', 'LAeq': '33.2', 'LCmin': '34.1', 'LAf': '34.5', 'LCs': '31.7', 'LCeq': '31.7', 'LAmin': '34.1', 'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:30:57 GMT+0000'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 6834, 'rssi': -100, 'snr': 5.2, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'WynddA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 62462, 'rssi': -67, 'snr': 9.2, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'TpcmRA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:31:00 ----------
+
+
+
+ ---------- 2023-12-20 18:32:00 ----------
+
+{'deduplicationId': 'baab221c-4bca-4cf7-935a-2fad77d7be39', 'time': '2023-12-20T16:31:57.311507767+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83593, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UcKwhCAEAfBELgpCIKQ', 'object': {'bat': 6.5, 'measurements': [{'LAs': '33.3', 'LAmax': '34.6', 'LCs': '31.6', 'LAeq': '33.1', 'LCf': '33.2', 'LCeq': '31.7', 'LAf': '34.3', 'timestamp': 'Wed Dec 20 2023 16:31:57 GMT+0000', 'LAmin': '34.1', 'LCmin': '34.1', 'LCmax': '33.4'}], 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 1462, 'rssi': -65, 'snr': 7.0, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'UirDdA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 26040, 'rssi': -99, 'snr': 5.5, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'Xr16xA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:32:00 ----------
+
+
+
+ ---------- 2023-12-20 18:33:00 ----------
+
+{'deduplicationId': 'cda4e075-d2fb-4e44-850f-723ceac1d693', 'time': '2023-12-20T16:32:57.314391572+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83594, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUgLAgCAEAfBELgpCIKQ', 'object': {'transmitInterval': None, 'bat': 6.5, 'location': None, 'measurements': [{'LAmax': '34.6', 'LCmax': '33.4', 'LAmin': '34.1', 'LAeq': '33.1', 'timestamp': 'Wed Dec 20 2023 16:32:57 GMT+0000', 'LCeq': '31.7', 'LAs': '33.2', 'LCf': '33.2', 'LCmin': '34.1', 'LAf': '34.4', 'LCs': '31.6'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 4526, 'rssi': -102, 'snr': 5.8, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'YlEQGw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 27325, 'rssi': -65, 'snr': 9.0, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Vb5Yqw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:33:00 ----------
+
+
+
+ ---------- 2023-12-20 18:34:00 ----------
+
+{'deduplicationId': '0c68f021-788b-4ecb-b3b9-bc4af4941d40', 'time': '2023-12-20T16:33:57.310375643+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83595, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUgLAiCAEAfBELwpCIKQ', 'object': {'transmitInterval': None, 'location': None, 'bat': 6.5, 'measurements': [{'LCmin': '34.1', 'LCs': '31.6', 'LAeq': '33.1', 'LCeq': '31.7', 'LAmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:33:57 GMT+0000', 'LCf': '33.2', 'LAf': '34.4', 'LAs': '33.4', 'LAmax': '34.7', 'LCmax': '33.4'}]}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 1039, 'rssi': -97, 'snr': 7.0, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'ZeSRiw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 65355, 'rssi': -66, 'snr': 9.2, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'WVHaAw==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:34:00 ----------
+
+
+
+ ---------- 2023-12-20 18:35:00 ----------
+
+{'deduplicationId': 'ab94bfa1-a662-4aee-b58b-b0cc4956f1b1', 'time': '2023-12-20T16:34:57.322967511+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83596, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUgLQhCEEAgBELwpCIKQ', 'object': {'measurements': [{'LAf': '34.5', 'LAeq': '33.2', 'LCeq': '31.7', 'LCmax': '33.4', 'LCmin': '34.1', 'LAmin': '34.1', 'LCs': '31.6', 'LAs': '33.3', 'timestamp': 'Wed Dec 20 2023 16:34:57 GMT+0000', 'LCf': '33.3', 'LAmax': '34.7'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 39183, 'rssi': -64, 'snr': 7.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'XOV2kw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 40181, 'rssi': -99, 'snr': 5.0, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'aXguOw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:35:00 ----------
+
+
+
+ ---------- 2023-12-20 18:36:00 ----------
+
+{'deduplicationId': '219c8bb3-58db-426e-b594-aa1f7834eb19', 'time': '2023-12-20T16:35:57.326747718+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83597, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UgLQiCEEQfBEMApCIKQ', 'object': {'transmitInterval': None, 'bat': 6.5, 'location': None, 'measurements': [{'LAeq': '33.1', 'LCmax': '33.4', 'LAmin': '34.1', 'LAs': '33.4', 'LCs': '31.7', 'LCmin': '34.1', 'LCeq': '31.7', 'LAmax': '34.8', 'LAf': '34.5', 'LCf': '33.3', 'timestamp': 'Wed Dec 20 2023 16:35:57 GMT+0000'}]}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 61411, 'rssi': -65, 'snr': 9.2, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'YHkylA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 2934, 'rssi': -100, 'snr': 6.2, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'bQvqVA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:36:00 ----------
+
+
+
+ ---------- 2023-12-20 18:37:00 ----------
+
+{'deduplicationId': '016c7829-aed4-4209-8f36-016c227ca3d9', 'time': '2023-12-20T16:36:57.330077176+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83598, 'fPort': 1, 'confirmed': False, 'data': 'a/9BOUkLgiCEEQgBELwpCIKQ', 'object': {'transmitInterval': None, 'measurements': [{'LAmin': '34.1', 'LCmax': '33.4', 'LCeq': '31.7', 'LAeq': '33.2', 'LCf': '33.3', 'LCs': '31.7', 'LAmax': '34.7', 'timestamp': 'Wed Dec 20 2023 16:36:57 GMT+0000', 'LCmin': '34.1', 'LAs': '33.4', 'LAf': '34.6'}], 'bat': 6.5, 'location': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 61270, 'rssi': -64, 'snr': 7.5, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'ZAy8Aw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 9433, 'rssi': -97, 'snr': 4.2, 'channel': 2, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'cJ9z4w==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:37:00 ----------
+
+
+
+ ---------- 2023-12-20 18:37:25 ----------
+
+{'deduplicationId': '6bd00c26-0d67-49e3-840d-ff9389f534be', 'time': '2023-12-20T16:37:22.098644476+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '575e5296-aa60-45cf-8e8f-425b4ca50eaa', 'deviceProfileName': 'Barani MeteoWind IoT Pro', 'deviceName': 'barani-meteowind-iot-pro:1', 'devEui': '0004a30b00f26852', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '00d6ebf1', 'adr': True, 'dr': 4, 'fCnt': 10391, 'fPort': 1, 'confirmed': False, 'data': 'Lg4Fg43CsdHQ', 'object': {'7_Dir_max10': 43.0, '8_Dir_hi10': 29.0, '4_Wind_max10': 2.5, '3_Wind_ave10': 1.4, '6_Dir_ave10': 110.0, '1_Type': 0.0, '9_Dir_lo10': 29.0, '2_Battery': 4.2, '5_Wind_min10': 0.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 49186, 'rssi': -101, 'channel': 5, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'chlVPA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 51202, 'rssi': -45, 'snr': 8.2, 'channel': 5, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'ZYadTA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867500000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 8, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:37:25 ----------
+
+
+
+ ---------- 2023-12-20 18:38:00 ----------
+
+{'deduplicationId': 'b7909e2e-254c-4eb8-a523-808362b47eb0', 'time': '2023-12-20T16:37:57.333222385+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'deviceId': 'dutch-sensor-systems-ranos-db-2:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83599, 'fPort': 1, 'confirmed': False, 'data': 'a/9BeUkLwjCIEQgBEMApCMKQ', 'object': {'transmitInterval': None, 'location': None, 'measurements': [{'LCeq': '31.7', 'LCs': '31.7', 'LAmin': '34.1', 'LCmax': '33.5', 'LAs': '33.5', 'LCmin': '34.1', 'timestamp': 'Wed Dec 20 2023 16:37:57 GMT+0000', 'LAf': '34.7', 'LAmax': '34.8', 'LCf': '33.4', 'LAeq': '33.2'}], 'bat': 6.5}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 46889, 'rssi': -101, 'snr': 6.2, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'dDMGPA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 8792, 'rssi': -65, 'snr': 8.5, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'Z6BOPA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:38:00 ----------
+
+
+
+ ---------- 2023-12-20 18:38:08 ----------
+
+{'deduplicationId': '35401ef0-489f-4e60-84f1-55b87aed4317', 'time': '2023-12-20T16:38:05.465439875+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': 'b481fe85-b715-4b6b-9974-a2a0b5d52b67', 'deviceProfileName': 'Barani MeteoHelix IoT Pro', 'deviceName': 'barani-meteohelix-iot-pro:1', 'devEui': '0004a30b00f32bad', 'tags': {'deviceId': 'barani-meteohelix-iot-pro:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '008830f8', 'adr': True, 'dr': 5, 'fCnt': 2843, 'fPort': 1, 'confirmed': False, 'data': 'bxtDCqE5KAAAOv8=', 'object': {'Temperature': 13.3, 'Irr_max': 0.0, 'Irradiation': 0.0, 'Type': 1.0, 'Pressure': 100105.0, 'Rain': 58.0, 'T_max': 13.5, 'Battery': 4.15, 'Humidity': 67.2, 'T_min': 13.0, 'Rain min time': 255.0}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 22338, 'rssi': -106, 'snr': -3.5, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'dK8vCw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 1108, 'rssi': -41, 'snr': 8.8, 'channel': 1, 'rfChain': 1, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'aBx3Ew==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 868300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:38:08 ----------
+
+
+
+ ---------- 2023-12-20 18:39:00 ----------
+
+{'deduplicationId': '43e02755-2220-4d50-9c3e-d6b0909bd718', 'time': '2023-12-20T16:38:57.346102068+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83600, 'fPort': 1, 'confirmed': False, 'data': 'a/9BuUkLAjCAEQgBELwpCIKQ', 'object': {'measurements': [{'LAs': '33.5', 'LAeq': '33.2', 'LCmin': '34.1', 'LAmax': '34.7', 'LAf': '34.4', 'LAmin': '34.1', 'LCeq': '31.7', 'LCf': '33.2', 'LCmax': '33.4', 'timestamp': 'Wed Dec 20 2023 16:38:57 GMT+0000', 'LCs': '31.7'}], 'bat': 6.5, 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee04170f93c058', 'uplinkId': 96, 'rssi': -100, 'snr': 5.8, 'channel': 4, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'd8aXuw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee1a0843acf826', 'uplinkId': 6434, 'rssi': -64, 'snr': 9.5, 'channel': 4, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'azPfow==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867300000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:39:00 ----------
+
+
+
+ ---------- 2023-12-20 18:39:58 ----------
+
+{'deduplicationId': '5d4946c4-b4d6-436a-86d8-384a3ae0d679', 'time': '2023-12-20T16:39:55.257091583+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '0eae44c5-3984-4435-ba51-b439fd835b79', 'applicationName': 'Room monitoring', 'deviceProfileId': '16747162-db5d-46c0-b7c0-1f497b6d5f21', 'deviceProfileName': 'MClimate CO2 Sensor & Notifier', 'deviceName': 'mclimate-co2-sensor:1', 'devEui': '70b3d52dd50011f3', 'tags': {'deviceId': 'mclimate-co2-sensor:1', 'apiKey': '4jggokgpesnvfb2uv1s40d73ov'}}, 'devAddr': '012d4401', 'adr': True, 'dr': 5, 'fCnt': 2900, 'fPort': 2, 'confirmed': False, 'data': 'AQM2AkOT7A==', 'object': {'batteryVoltage': 3.49, 'relativeHumidity': 57.42, 'CO2': 822.0, 'sensorTemperature': 17.9}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 62625, 'rssi': -118, 'snr': 1.0, 'channel': 7, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'bqeuhA==', 'metadata': {'region_config_id': 'eu868', 'region_common_name': 'EU868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 9518, 'rssi': -93, 'snr': 9.0, 'channel': 7, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'ezpmvA==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867900000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:39:58 ----------
+
+
+
+ ---------- 2023-12-20 18:40:00 ----------
+
+{'deduplicationId': 'bc82c386-452b-4337-9520-19b0c8a0ae99', 'time': '2023-12-20T16:39:57.338656872+00:00', 'deviceInfo': {'tenantId': '063a0ecb-e8c2-4a13-975a-93d791e8d40c', 'tenantName': 'Smart Campus', 'applicationId': '2f8d77bf-5f3e-4990-904a-a24fef1ee44f', 'applicationName': 'Environmental', 'deviceProfileId': '0791dd79-3405-48c7-911b-6b6ea21e44e0', 'deviceProfileName': 'Dutch Sensor Systems Ranos dB 2', 'deviceName': 'dutch-sensor-systems-ranos-db-2:1', 'devEui': '0004a30b00e97dca', 'tags': {'apiKey': '4jggokgpesnvfb2uv1s40d73ov', 'deviceId': 'dutch-sensor-systems-ranos-db-2:1'}}, 'devAddr': '002a742e', 'adr': True, 'dr': 5, 'fCnt': 83601, 'fPort': 1, 'confirmed': False, 'data': 'a/9B+UkLAhCAEAgBEMAqCMKg', 'object': {'bat': 6.5, 'measurements': [{'LCmax': '33.5', 'LCf': '33.2', 'LCeq': '31.7', 'LCmin': '34.2', 'timestamp': 'Wed Dec 20 2023 16:39:57 GMT+0000', 'LAf': '34.4', 'LCs': '31.6', 'LAmax': '34.8', 'LAs': '33.3', 'LAeq': '33.2', 'LAmin': '34.2'}], 'location': None, 'transmitInterval': None}, 'rxInfo': [{'gatewayId': '1dee1a0843acf826', 'uplinkId': 19428, 'rssi': -66, 'snr': 9.8, 'channel': 3, 'location': {'latitude': 38.288395556071336, 'longitude': 21.788930292281066}, 'context': 'bsdwMw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}, {'gatewayId': '1dee04170f93c058', 'uplinkId': 22585, 'rssi': -102, 'snr': 4.8, 'channel': 3, 'location': {'latitude': 38.288403977154466, 'longitude': 21.788731921156614}, 'context': 'e1ooaw==', 'metadata': {'region_common_name': 'EU868', 'region_config_id': 'eu868'}, 'crcStatus': 'CRC_OK'}], 'txInfo': {'frequency': 867100000, 'modulation': {'lora': {'bandwidth': 125000, 'spreadingFactor': 7, 'codeRate': 'CR_4_5'}}}}
+
+ ---------- 2023-12-20 18:40:00 ----------
+
