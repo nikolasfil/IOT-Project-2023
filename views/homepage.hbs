@@ -1,0 +1,62 @@
+{{!-- Theoretically this one is set, once the bugs are fixed --}}
+
+
+{{>header}}
+
+<main>
+
+    <div class="d-flex flex-column justify-content-center">
+        <h2>Heatmap</h2>
+        <div class="d-flex flex-row justify-content-between">
+            {{!-- checkbox safe zones --}}
+
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <input type="checkbox" id="safe-zones" name="safe-zones" value="safe-zones">
+                <label for="safe-zones">Safe Zones</label>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <input type="checkbox" id="accessible-paths" name="accessible-paths" value="accessible-paths">
+                <label for="accessible-paths">Accessible Paths</label>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <input type="checkbox" id="dangerous-zones" name="dangerous-zones" value="dangerous-zones">
+                <label for="dangerous-zones">Dangerous Zones</label>
+            </div>
+        </div>
+
+        <div class="heatmaps">
+            <div class="col m-1">
+                {{!-- fix map to handle the device location --}}
+                {{>map isbn=book.isbn library=false}}
+            </div>
+
+            <div>
+                {{!-- Display the Activated trackers on the list next to the map --}}
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="recommend" id="recommended-books">
+                <h2 class="h2"><strong> Active Trackers </strong></h2>
+                {{!-- Missing button to add them on the heat map to display them, and their path --}}
+                <div class="scrolling">
+
+                    {{#each active_trackers }}
+
+                    {{> card photo=photo title=title description="This is a description" copies=copy_num location=(
+                    encode
+                    (concat
+                    'book_info/' isbn ))}}
+
+                    {{/each}}
+
+
+                </div>
+            </div>
+
+        </div>
+
+</main>
