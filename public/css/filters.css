@@ -1,0 +1,240 @@
+#filters {
+  width: fit-content;
+  /* needs to be rearranged */
+  
+  min-height: 44px;
+}
+
+
+.filters {
+  margin: 0;
+  width: 200px;
+}
+
+
+.collapsed {
+  display: none;
+}
+
+.btn-show-more {
+  cursor: pointer;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+
+}
+
+.btn-show-more:hover {
+  color: #ac8fbf;
+}
+
+.scrollable-show-more {
+  /* margin: 10px; */
+  width: 200px;
+  overflow-y: auto;
+  /* height: 10vw; */
+  max-height: 300px;
+  min-height: 100px;
+  height: auto;
+  text-overflow: ellipsis;
+  /* outline: red solid 1px; */
+}
+.text-truncate--1 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* 
+* {
+  outline: red solid 1px;
+} */
+
+.form-check-input, .form-check-label { 
+  cursor: pointer;
+}
+
+.navbar-collapse {
+  display: none;
+  width: 100%;
+    justify-content: center;
+}
+.navbar-toggler {
+  visibility: hidden;
+}
+
+@media (max-width: 1000px) {
+  .navbar-collapse {
+    display: block;
+    
+  }
+  .navbar-toggler {
+    visibility: visible;
+  }
+}
+
+.gridContainerSearch {
+  display: grid;
+}
+
+.navColumn{
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.searchColumn{
+  grid-column: 2;
+  grid-row: 1;
+
+}
+
+.container {
+  width: 300px;
+}
+/*hamburger menu*/
+.nav-container .checkbox{
+  display: none;
+  height: 0px;
+  width: 0px;
+}
+.filterHeader {
+  display: none;
+  height: 0px;
+  width: 0px;
+}
+
+
+@media (max-width: 1000px) {
+.gridContainerSearch {
+  display: grid;
+}
+
+.navColumn{
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 2%;
+}
+
+.searchColumn{
+  grid-column: 1;
+  grid-row: 2;
+
+}
+.scrollable-show-more {
+  width: 100%;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+
+
+.navbar {
+  width: 100%;
+  height: 60px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 20px;
+}
+
+.navbar .menu-items {
+  display: flex;
+}
+
+.nav-container .checkbox {
+  position: absolute;
+  display: block;
+  height: 20px;
+  width: 20px;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+  display: block;
+  height: 17px;
+  width: 20px;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-container .hamburger-lines .line {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background: #0e2431;
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+  padding-top: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  transform: translate(-300%);
+  padding-left: 5%;
+  padding-bottom: 10%;
+  transition: transform 0.5s ease-in-out;
+  z-index: 2;
+}
+
+.filterHeader {
+  position: absolute;
+  top: 11px;
+  left: 50px;
+  color: #0e2431;
+  display: flex;
+  font-size: 25px;
+  width: fit-content;
+  text-align: center;
+  align-self: center;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+  transform: translateX(0);
+  display: flex;
+
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .filterHeader{
+  display: none;
+}
+}
