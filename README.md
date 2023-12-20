@@ -38,7 +38,7 @@ Application for managing gps Trackers
 - [x] Database Automated Script
 - [ ] Database Filling
 - [x] Database Filling Users
-- [ ] Database Filling Devices
+- [x] Database Filling Devices
 - [ ] Database Filling Rest of Tables
 - [ ] Website
 - [x] Website Login
