@@ -27,7 +27,8 @@
         <div class="heatmaps">
             <div class="col m-1">
                 {{!-- fix map to handle the device location --}}
-                {{>map isbn=book.isbn library=false}}
+                {{!-- {{>map isbn=book.isbn library=false}} --}}
+                {{>map lon=100 lat=10 library=true}}
             </div>
 
             <div>
@@ -46,10 +47,13 @@
 
                     {{#each active_trackers }}
 
-                    {{> card photo=photo title=title description="This is a description" copies=copy_num location=(
+                    {{!-- {{> card photo=photo title=title description="This is a description" copies=copy_num location=( --}}
+                    {{> card location=(
                     encode
                     (concat
-                    'book_info/' isbn ))}}
+                    'device/' serial ))}}
+
+                    
 
                     {{/each}}
 

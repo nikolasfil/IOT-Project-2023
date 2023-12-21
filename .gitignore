@@ -1,4 +1,5 @@
 backup*
 **/.vscode/*
 **/node_modules/*
+**/__pycache__/*
 model/sessions/session.sqlite
