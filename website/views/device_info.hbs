@@ -90,21 +90,6 @@
                 {{/if}}
             </div>
             
-
-            {{#each library }}
-            {{!-- this needs to be a for loop --}}
-            {{>librariesReservation
-            id=this.id
-            name=this.name
-            address=this.address
-            copies=this.copy_num
-            isbn=@root.device.isbn
-            dateRes=date_reserved
-            dateRet=date_returned
-            signedIn=@root.signedIn
-            }}
-
-            {{/each}}
         
 
         </div>

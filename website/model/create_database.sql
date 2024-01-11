@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS USER (
     first_name  varchar(255) NOT NULL, 
     last_name   varchar(255) NOT NULL, 
     phone       varchar(255) NOT NULL,
-    role        varchar(255) NOT NULL,
+    role        varchar(255) ,
     password    varchar(255) NOT NULL,
-    salt        varchar(255) NOT NULL
+    salt        varchar(255) 
 );
 
 

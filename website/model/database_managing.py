@@ -51,6 +51,7 @@ class AdventureGuard(Database):
                 self.insert_data(
                     tableName, [data[col] for col in self.tables[tableName]]
                 )
+        print("Filled users table")
 
     def fill_device(self):
         """fills the device table with data from the csv file"""

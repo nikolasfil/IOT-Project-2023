@@ -352,10 +352,14 @@ module.exports = {
     },
 
     addUser: function (user, callback) {
-        const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,password) values (?,?,?,?,?)')
+        let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
+        let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
+        
+        let query = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
+        const stmt = betterDb.prepare(query)
 
         try {
-            stmt.run(user.fname, user.lname, user.email, user.birthdate, bcrypt.hashSync(user.psw, 10))
+            stmt.run(attributes)
             callback(null, true)
         }
         catch (err) {

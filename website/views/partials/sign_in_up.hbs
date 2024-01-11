@@ -1,68 +1,101 @@
 <script src="javascript/sign_in.js" defer></script>
 
 <div id="sign-in-popup" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content align-items-center">
-        <span class="close">&times;</span>
-        <div class="d-flex flex-column justify-content-center ">
-            <p>Don't have an account? <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button></p>
-        </div>
-
-        <form action="/sign_in" class="form-container" id="form_sign_in" method="POST">
-
-            {{!-- add the coloring of the box for validation from front2 --}}
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="id">Id</label>
-                <input type="id" placeholder="Enter id" name="id" required>
-            </div>
-
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="psw">Password</label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-            </div>
-            <div class="d-flex flex-row justify-content-end ">
-                <button type="submit" class="btn" id="submit-sign-in">Sign In</button>
-            </div>
-        </form>
+  <!-- Modal content -->
+  <div class="modal-content align-items-center">
+    <span class="close">&times;</span>
+    <div class="d-flex flex-column justify-content-center">
+      <p>Don't have an account?
+        <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button></p>
     </div>
+
+    <form
+      action="/sign_in"
+      class="form-container"
+      id="form_sign_in"
+      method="POST"
+    >
+
+      {{! add the coloring of the box for validation from front2 }}
+      <div class="d-flex flex-column justify-content-center">
+        <label for="id">Id</label>
+        <input type="id" placeholder="Enter id" name="id" required />
+      </div>
+
+      <div class="d-flex flex-column justify-content-center">
+        <label for="psw">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
+      </div>
+      <div class="d-flex flex-row justify-content-end">
+        <button type="submit" class="btn" id="submit-sign-in">Sign In</button>
+      </div>
+    </form>
+  </div>
 
 </div>
 
-
 <div id="sign-up-popup" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content align-items-center">
-        <span class="close">&times;</span>
-        <form action="/sign_up" class="form-container" id="form_sign_up" method="POST">
+  <!-- Modal content -->
+  <div class="modal-content align-items-center">
+    <span class="close">&times;</span>
+    <form
+      action="/sign_up"
+      class="form-container"
+      id="form_sign_up"
+      method="POST"
+    >
 
+      <div class="d-flex flex-column justify-content-center">
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          placeholder="Enter First Name"
+          name="first_name"
+          required
+        />
+      </div>
 
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="fname">First Name</label>
-                <input type="text" placeholder="Enter First Name" name="fname" required>
-            </div>
+      <div class="d-flex flex-column justify-content-center">
+        <label for="last_name">Last Name</label>
+        <input
+          type="text"
+          placeholder="Enter Last Name"
+          name="last_name"
+          required
+        />
+      </div>
 
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="lname">Last Name</label>
-                <input type="text" placeholder="Enter Last Name" name="lname" required>
-            </div>
+      {{! add the coloring of the box for validation from front2 }}
+      <div class="d-flex flex-column justify-content-center">
+        <label for="phone">Phone</label>
+        <input type="phone" placeholder="Enter phone" name="phone" required />
+      </div>
 
+      <div class="d-flex flex-column justify-content-center">
+        <label for="role">Role</label>
+        <input type="text" placeholder="Enter role" name="role" required />
+      </div>
 
-            {{!-- add the coloring of the box for validation from front2 --}}
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="phone">Phone</label>
-                <input type="phone" placeholder="Enter phone" name="phone" required>
-            </div>
+      <div class="d-flex flex-column justify-content-center">
+        <label for="psw">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
+      </div>
 
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="psw">Password</label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-            </div>
-
-            <div class="d-flex flex-row justify-content-end ">
-                <button type="submit" class="btn" id="submit-sign-up">Sign Up</button>
-            </div>
-        </form>
-    </div>
+      <div class="d-flex flex-row justify-content-end">
+        <button type="submit" class="btn" id="submit-sign-up">Sign Up</button>
+      </div>
+    </form>
+  </div>
 
 </div>

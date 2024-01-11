@@ -59,7 +59,6 @@ app.use(login.alerting);
 // specifying the routes that the user can access
 app.use(require('./routes/route_about.js'));
 app.use(require('./routes/route_device_info.js'));
-app.use(require('./routes/route_library_info.js'));
 app.use(require('./routes/route_homepage.js'));
 app.use(require('./routes/route_search.js'));
 app.use(require('./routes/route_sign.js'));
