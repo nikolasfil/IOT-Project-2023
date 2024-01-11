@@ -229,7 +229,6 @@ module.exports = {
             query += ' OFFSET ?'
             activated.push(data.offset)
         }
-        
         try {
             stmt = betterDb.prepare(query)
             if (activated.length) {
@@ -243,7 +242,6 @@ module.exports = {
             console.log(query)
             callback(err, null)
         }
-
         callback(null, device);
 
 

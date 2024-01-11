@@ -4,9 +4,9 @@
  * Fetches the number of results, creates the navigation if the number of pages exceeds 1 and calls forth the first page to be displayed 
  */
 async function page_initilazation() {
-
+    console.log("page initilazation")
     let numOfResults, numOfPages;
-
+    
     // removes the previous results  
     document.getElementById('page-selector').innerHTML = ''
 
@@ -152,7 +152,8 @@ function createPageNavigationIcon(container, id, content, command) {
 function showPage(number) {
 
     // placeAllBooksBytitle is in the file search.js 
-    placeAllBooksByTitle(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
+    // placeAllBooksByTitle(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
+    placeAllDevicesByID(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
 }
 
 /** 
@@ -160,5 +161,6 @@ function showPage(number) {
  */
 async function showResult() {
     let number = await fetchNumOfResults()
+    console.log(number)
     return number
 }
