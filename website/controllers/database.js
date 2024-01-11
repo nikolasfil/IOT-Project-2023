@@ -244,7 +244,7 @@ module.exports = {
             activated.push(data.offset)
         }
 
-        console.log(query)
+        // console.log(query)
 
         try {
             stmt = betterDb.prepare(query)
@@ -318,7 +318,7 @@ module.exports = {
         let user;
         try {
             user = stmt.get(id)
-            console.log(id)
+            // console.log(id)
             callback(null, user)
         }
         catch (err) {
