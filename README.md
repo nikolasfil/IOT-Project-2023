@@ -47,6 +47,8 @@ Application for managing gps Trackers
 - [ ] Website Devices
 - [ ] Website User Page
 - [ ] Website Device Map
+- [ ] Deployment
+- [x] Docker compose file
 
 <!-- URL: -->
 
