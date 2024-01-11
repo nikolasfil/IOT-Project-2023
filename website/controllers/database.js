@@ -121,6 +121,125 @@ module.exports = {
     },
     
 
+    /**
+     * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
+     * @param {*} data contains everything in a json format (not optional)
+     * @param {*} id For a specific device (optional)
+     * @param {*} serial For a specific serial (optional)
+     * @param {*} battery For a specific battery (optional)
+     * @param {*} status For a specific status (optional)
+     * @param {*} type For a specific type (optional)
+     * @param {*} limit Limiting the number of results (optional)
+     * @param {*} offset Starting from a specific result (optional)
+     * @param {*} numOf true or null, if we want to focus more on the number of results back (optional)
+     * @param {*} filters Filters that are applied (optional)
+     * @param {*} callback function that handles the results
+     *  
+     * This function is the same as getAllDevices but it returns the results in a json format
+    */
+    getAllDevicesJson: function (data,  callback) {
+        
+        let stmt, device;
+
+        // Initialize the query 
+        let query = `Select *`
+        
+        // If the numOf is true then it will return the number of results
+        if (data.numOf) {
+            query = `Select COUNT(*) as count_result`
+        }
+
+        // Add the table name
+        query += ` FROM DEVICE`
+
+
+        // Working on the arguments provided
+        // let list_name = ['id', 'serial', 'battery', 'status', 'type']
+        let activated = []; 
+        let activated_name = [];
+
+
+        // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
+        for (let key in data) {
+
+            if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
+                activated.push(data[key])
+                activated_name.push(key)
+            }
+        }
+
+        // Check which arguments are activated
+        // for (let i = 0; i < list.length; i++) {
+        //     if (list[i]) {
+        //         activated.push(list[i])
+        //         activated_name.push(list_name[i])
+        //     }
+        // }
+
+        // If the activated list has enough arguments then it will run 
+        if (activated.length) {
+            query += ` where ${activated_name[0]} = ?`
+            
+        }
+
+        for (let i=1; i<activated.length; i++) {
+            query += ` and ${activated_name[i]} = ?`
+        }
+
+        
+
+        let filters = data.filters;
+
+        // if (filters && Object.keys(filters) !== 0) {
+        //     filters = JSON.parse(filters);
+
+        //     for (let key in filters) {
+        //         if (filters[key].length) {
+        //             if (!title && !isbn && key !== Object.keys(filters)[0]) {
+        //                 query += ` and`
+        //             } else if (!title && !isbn && key === Object.keys(filters)[0]) {
+        //                 query += ` WHERE`
+        //             }
+        //             else if (title || isbn) {
+        //                 query += ` and`
+        //             }
+
+        //             let list = filters[key].map(word => `'${word}'`).join(',')
+        //             query += ` ${key} in (${list})`
+        //         }
+        //     }
+        // }
+
+      
+        if (data.limit) {
+            query += ' LIMIT ?'
+            activated.push(data.limit)
+            
+        }
+
+        if (data.offset) {
+            query += ' OFFSET ?'
+            activated.push(data.offset)
+        }
+        
+        try {
+            stmt = betterDb.prepare(query)
+            if (activated.length) {
+                device = stmt.all(activated);
+            }
+            else {
+                device = stmt.all();
+            }
+
+        } catch (err) {
+            callback(err, null)
+        }
+
+        callback(null, device);
+
+
+    },
+
 
     getAllAtributes: function(source,attribute, limit, offset, callback) {
         let stmt, result;
