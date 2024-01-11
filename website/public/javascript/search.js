@@ -113,7 +113,7 @@ function placeDevices(data) {
         div.draggable = "false";
 
         let a = document.createElement("a");
-        a.href = `/device/${data[i].serial}`;
+        a.href = `/device_info/${data[i].serial}`;
         a.className = "d-flex flex-column align-content-center";
 
         

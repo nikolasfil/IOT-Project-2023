@@ -90,10 +90,10 @@
             {{!-- book is a list of json dictionaries rendered in views --}}
             {{!-- location is the url location send when clicked . --}}
             {{!-- encode : turns the stirng of location into a url appropriate string  --}}
-            {{!-- book_info/title returns the page of the book with that titled --}}
+            {{!-- device_info/title returns the page of the book with that titled --}}
             {{!-- should be replaced with isbn --}}
             {{> card photo=photo title=title description=description copies=copies location=( encode (concat
-            'book_info/' isbn ))}}
+            'device_info/' isbn ))}}
             {{/each}}
 
 

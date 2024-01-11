@@ -1,0 +1,120 @@
+{{>header}}
+
+<main class="d-flex flex-column align-content-center pageborder">
+
+    <div class="row justify-content-between" id="device">
+
+        {{!-- <h1 id="title"><strong>device Title</strong></h1> --}}
+        {{!-- <img src=".card_device_default.jpg" alt="device cover" class="device-img m-3"> --}}
+        {{#if device.photo}}
+        <div class="col">
+            <img src="{{device.photo}}" alt="device cover" class="device-img m-3">
+        </div>
+        {{else}}
+        <div class="col">
+            <img src="/img/card_device_default.jpg" alt="device cover" class="device-img m-3">
+        </div>
+
+        {{/if}}
+
+        <div class="col col-md-6 justify-content-start" id="device-title-summary">
+            <h1 id="title"><strong>ID: {{ device.id }}</strong></h1>
+            {{!-- if there is no device.summary print no summary --}}
+
+            {{#if device.summary}}
+            <p id="summary">summary Number: {{device.summary}}</p>
+            {{else}}
+            <p id="summary">No summary</p>
+            {{/if}}
+
+        </div>
+
+
+        <div class="col justify-content-end " id="device-info">
+
+            <div class="row">
+                <div class="col" id="author">
+                    <h5 class="p-title" id="author-h"><strong>Serial</strong></h5>
+                    <p class="p-info" id="author-p">{{ device.serial }}</p>
+                </div>
+                <div class="col" id="publisher">
+                    <h5 class="p-title" id="publisher-h"><strong>Device</strong></h5>
+                    <p class="p-info" id="publisher-p">{{ device.type }}</p>
+                </div>
+                <div class="col" id="edition">
+                    <h5 class="p-title" id="edition-h"><strong>Battery</strong></h5>
+                    <p class="p-info" id="edition-p">{{ device.battery }}</p>
+                </div>
+                
+                <div class="col" id="genre">
+                    <h5 class="p-title" id="genre-h"><strong>Status</strong></h5>
+                    <p class="p-info" id="genre-p">{{ device.status }}</p>
+                </div>
+                {{!-- <div class="col" id="release">
+                    <h5 class="p-title" id="release-h"><strong>Release</strong></h5>
+                    <p class="p-info" id="release-p">{{ device.release }}</p>
+                </div>
+                <div class="col" id="language">
+                    <h5 class="p-title" id="language-h"><strong>Language</strong></h5>
+                    <p class="p-info" id="language-p">{{ device.language }}</p>
+                </div>
+                <div class="col" id="isbn">
+                    <h5 class="p-title" id="isbn-h"><strong>ISBN</strong></h5>
+                    <p class="p-info" id="isbn-p">{{ device.isbn }}</p> --}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {{!-- <h2><strong>Reservation points</strong></h2> --}}
+    {{!-- This is where the Map is going to go  --}}
+    <div class="row justify-content-start" id="device-location">
+
+        <div class="col m-1">
+            {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
+            {{!-- {{>map locations=libraryLocations }} --}}
+            {{!-- {{>map isbn=device.isbn library=false}} --}}
+            {{!-- This is temporary  --}}
+            {{>map lon=21.732813401979747 lat=38.24507192398973 library=true}}
+
+{{!--  --}}
+        </div>
+
+
+        <div class="col resLibraries">
+
+            <div class="row">
+                <h4 class="col">Library</h4>
+                <h4 class="col">Address</h4>
+                <h4 class="col">Copies</h4>
+                {{#if signedIn}}                
+                <div class="col"></div>
+                {{/if}}
+            </div>
+            
+
+            {{#each library }}
+            {{!-- this needs to be a for loop --}}
+            {{>librariesReservation
+            id=this.id
+            name=this.name
+            address=this.address
+            copies=this.copy_num
+            isbn=@root.device.isbn
+            dateRes=date_reserved
+            dateRet=date_returned
+            signedIn=@root.signedIn
+            }}
+
+            {{/each}}
+        
+
+        </div>
+
+
+    </div>
+
+</main>
