@@ -117,16 +117,20 @@ function placeDevices(data) {
 
         let h6 = document.createElement("h6");
         h6.className = "text-truncate--2"
-        h6.innerHTML = `<strong>${data[i].id}</strong>`;
+        h6.innerHTML = `<strong>ID: ${data[i].id}</strong>`;
+        div2.appendChild(h6);
 
         let p = document.createElement("p");
         p.className = "text-truncate--3"
 
+        let pserial = document.createElement("p");
+        pserial.className = "text-truncate--3"
+        pserial.innerHTML = `<small>Serial: ${data[i].serial}</small>`;
+        div2.appendChild(pserial);
 
-        div2.appendChild(h6);
 
 
-        p.innerHTML = `<small>${data[i].status}</small>`;
+        p.innerHTML = `<small>Status: ${data[i].status}</small>`;
         div2.appendChild(p);
 
 
@@ -135,6 +139,10 @@ function placeDevices(data) {
         p2.innerHTML = `<small>Available Battery: ${data[i].battery}</small>`;
         div2.appendChild(p2);
 
+
+        let p3 = document.createElement("p");
+        p3.innerHTML = `<small>Device Type: ${data[i].type}</small>`;
+        div2.appendChild(p3);
 
         a.appendChild(div2);
 
