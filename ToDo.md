@@ -28,3 +28,13 @@
 1. fix the python broker connection
 2. Create the orion context broker
 3. fix the python site server with the correct data
+
+---
+
+1. Bluetooth θεωρια coach
+2. Να παρουσιασουμε αυτο που ειπαμε στο κινητο
+3. διευθυνση της γενικης ιδεας της παρουσιασης του προιοντος μας
+
+## Useful links
+
+[OpenLayers](https://openlayers.org/en/latest/apidoc/)
