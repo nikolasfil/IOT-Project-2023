@@ -4,7 +4,6 @@
  * Fetches the number of results, creates the navigation if the number of pages exceeds 1 and calls forth the first page to be displayed 
  */
 async function page_initilazation() {
-    console.log("page initilazation")
     let numOfResults, numOfPages;
     
     // removes the previous results  
@@ -16,7 +15,6 @@ async function page_initilazation() {
     window.devicesPerPage = 24;
 
     numOfPages = Math.ceil(numOfResults / window.devicesPerPage);
-    console.log(numOfPages)
     if (numOfPages > 1) {
         pageNavigationCreation(numOfPages);
     }
@@ -161,6 +159,5 @@ function showPage(number) {
  */
 async function showResult() {
     let number = await fetchNumOfResults()
-    console.log(number)
     return number
 }

@@ -42,7 +42,6 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
         body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue, "offset": offset, "limit": limit }),
 
     }).then((res) => {
-        console.log(res)
         return res.json();
     }).then((data) => {
         return data;
@@ -127,7 +126,6 @@ function placeDevices(data) {
         pserial.className = "text-truncate--3"
         pserial.innerHTML = `<small>Serial: ${data[i].serial}</small>`;
         div2.appendChild(pserial);
-
 
 
         p.innerHTML = `<small>Status: ${data[i].status}</small>`;

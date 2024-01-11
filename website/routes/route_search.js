@@ -40,8 +40,7 @@ router.post('/fetch_filters', (req, res) => {
             delete filters[key]
         }
     }
-
-    database.getAllDevicesJson(data = {filters:filters}, function (err, devices) {
+    database.getAllDevicesJson(data = {filters:filters, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
