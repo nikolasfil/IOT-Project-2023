@@ -39,7 +39,11 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue, "offset": offset, "limit": limit }),
+        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "offset": offset, "limit": limit }),
+        body: JSON.stringify({ "filters": window.gFilters, 
+         "offset": offset, "limit": limit ,
+            "id": window.searchBarValue,
+        }),
 
     }).then((res) => {
         return res.json();
@@ -70,7 +74,10 @@ async function fetchNumOfResults() {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters}),
+        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "id": window.searchBarValue }),
+            
+            body: JSON.stringify({ "filters": window.gFilters
+            ,"id": window.searchBarValue}),
     }).then((res) => {
         return res.json();
     }).then((data) => {
@@ -95,7 +102,6 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
  * @param {*} data list of json objects containing corresponding attributes of the book 
  */
 function placeDevices(data) {
-    console.log('data')
     let container = document.getElementById("results");
     container.innerHTML = "";
 

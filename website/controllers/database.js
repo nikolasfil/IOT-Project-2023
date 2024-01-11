@@ -138,7 +138,6 @@ module.exports = {
      * This function is the same as getAllDevices but it returns the results in a json format
     */
     getAllDevicesJson: function (data,  callback) {
-        
         let stmt, device;
 
         // Initialize the query 
@@ -173,6 +172,24 @@ module.exports = {
             query += ` where`
         }
 
+        
+
+        // if ("serial" in activated_name) {
+        //     let title_index = activated_name.indexOf("serial");
+        //     let title = activated[title_index];
+        //     let matchingPhrases;
+        //     try {
+
+        //         matchingPhrases = getRegex(title);
+        //     } catch (err) {
+        //         callback(err, null);
+        //     }
+
+        //     query += ` title in (${matchingPhrases.map(() => '?').join(', ')})`
+        //     activated[title_index] = title;
+
+        // }
+        
         // Add the activated arguments to the query
         if (activated.length) {
             query += ` ${activated_name[0]} = ?`
@@ -182,9 +199,6 @@ module.exports = {
         for (let i=1; i<activated.length; i++) {
             query += ` and ${activated_name[i]} = ?`
         }
-
-
-        
 
         let filters = data.filters;
 
@@ -229,6 +243,9 @@ module.exports = {
             query += ' OFFSET ?'
             activated.push(data.offset)
         }
+
+        console.log(query)
+
         try {
             stmt = betterDb.prepare(query)
             if (activated.length) {

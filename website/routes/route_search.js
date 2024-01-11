@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const database = require('../controllers/database.js');
 
+
+// Change the search to include complex like id:1, serial:2342 and so forth for the users 
+
 /**
  * returns the number of books that correspond to the parameters specified in the search
  */
@@ -15,7 +18,7 @@ router.post('/fetchNumOfResults', (req, res) => {
         }
     }
 
-    database.getAllDevicesJson(data = {filters:filters, numOf: true}, function (err, devices) {
+        database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, numOf: true}, function (err, devices) {
         if (err) {
             console.log(err)
             console.log(filters)
@@ -40,7 +43,7 @@ router.post('/fetch_filters', (req, res) => {
             delete filters[key]
         }
     }
-    database.getAllDevicesJson(data = {filters:filters, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
+    database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
