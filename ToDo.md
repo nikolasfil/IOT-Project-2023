@@ -34,3 +34,7 @@
 1. Bluetooth θεωρια coach
 2. Να παρουσιασουμε αυτο που ειπαμε στο κινητο
 3. διευθυνση της γενικης ιδεας της παρουσιασης του προιοντος μας
+
+## Useful links
+
+[OpenLayers](https://openlayers.org/en/latest/apidoc/)
