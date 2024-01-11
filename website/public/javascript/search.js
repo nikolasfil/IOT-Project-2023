@@ -11,11 +11,9 @@ function mainLoad() {
 
     // global variable for filters
     window.gFilters = {};
-
+    
     addShowMore();
-
     addFilterListeners(window.gFilters);
-
     page_initilazation();
 
 }
@@ -41,7 +39,11 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue, "offset": offset, "limit": limit }),
+        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "offset": offset, "limit": limit }),
+        body: JSON.stringify({ "filters": window.gFilters, 
+         "offset": offset, "limit": limit ,
+            "id": window.searchBarValue,
+        }),
 
     }).then((res) => {
         return res.json();
@@ -60,11 +62,10 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
  * @returns 
  */
 async function fetchNumOfResults() {
-
+    
     let link;
 
     link = '/fetchNumOfResults'
-
     return await fetch(link, {
         method: "POST",
         credentials: "same-origin",
@@ -73,7 +74,10 @@ async function fetchNumOfResults() {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue }),
+        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "id": window.searchBarValue }),
+            
+            body: JSON.stringify({ "filters": window.gFilters
+            ,"id": window.searchBarValue}),
     }).then((res) => {
         return res.json();
     }).then((data) => {
@@ -109,49 +113,41 @@ function placeDevices(data) {
         div.draggable = "false";
 
         let a = document.createElement("a");
-        a.href = `/book_info/${data[i].isbn}`;
+        a.href = `/device/${data[i].serial}`;
         a.className = "d-flex flex-column align-content-center";
 
-        let img = document.createElement("img");
-        img.className = "rounded-corners card-img-class";
-        if (data[i].photo == null) {
-            data[i].photo = "/img/card_book_default.jpg";
-        }
-        img.src = data[i].photo;
-        img.alt = "photo";
-        img.draggable = "false";
-
+        
         let div2 = document.createElement("div");
         div2.className = "p-2";
 
         let h6 = document.createElement("h6");
         h6.className = "text-truncate--2"
-        h6.innerHTML = `<strong>${data[i].title}</strong>`;
+        h6.innerHTML = `<strong>ID: ${data[i].id}</strong>`;
+        div2.appendChild(h6);
 
         let p = document.createElement("p");
         p.className = "text-truncate--3"
 
-
-        div2.appendChild(h6);
-
-
-        if (data[i].summary) {
-            p.innerHTML = `<small>${data[i].summary}</small>`;
-            div2.appendChild(p);
-        }
+        let pserial = document.createElement("p");
+        pserial.className = "text-truncate--3"
+        pserial.innerHTML = `<small>Serial: ${data[i].serial}</small>`;
+        div2.appendChild(pserial);
 
 
-        if (data[i].copy_num) {
-
-            let p2 = document.createElement("p");
-            // p2.textContent = `Available Copies: ${data[i].copies}`;
-            // get the number of available copies 
-            p2.innerHTML = `<small>Available Copies: ${data[i].copy_num}</small>`;
-            div2.appendChild(p2);
-        }
+        p.innerHTML = `<small>Status: ${data[i].status}</small>`;
+        div2.appendChild(p);
 
 
-        a.appendChild(img);
+
+        let p2 = document.createElement("p");
+        p2.innerHTML = `<small>Available Battery: ${data[i].battery}</small>`;
+        div2.appendChild(p2);
+
+
+        let p3 = document.createElement("p");
+        p3.innerHTML = `<small>Device Type: ${data[i].type}</small>`;
+        div2.appendChild(p3);
+
         a.appendChild(div2);
 
         div.appendChild(a);

@@ -4,19 +4,17 @@
  * Fetches the number of results, creates the navigation if the number of pages exceeds 1 and calls forth the first page to be displayed 
  */
 async function page_initilazation() {
-
     let numOfResults, numOfPages;
-
+    
     // removes the previous results  
     document.getElementById('page-selector').innerHTML = ''
 
     // for the number of page created 
     numOfResults = await showResult();
 
-    window.booksPerPage = 24;
+    window.devicesPerPage = 24;
 
-    numOfPages = Math.ceil(numOfResults / window.booksPerPage);
-
+    numOfPages = Math.ceil(numOfResults / window.devicesPerPage);
     if (numOfPages > 1) {
         pageNavigationCreation(numOfPages);
     }
@@ -152,7 +150,8 @@ function createPageNavigationIcon(container, id, content, command) {
 function showPage(number) {
 
     // placeAllBooksBytitle is in the file search.js 
-    placeAllBooksByTitle(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
+    // placeAllBooksByTitle(limit = window.devicesPerPage, offset = (number - 1) * window.devicesPerPage);
+    placeAllDevicesByID(limit = window.devicesPerPage, offset = (number - 1) * window.devicesPerPage);
 }
 
 /** 
