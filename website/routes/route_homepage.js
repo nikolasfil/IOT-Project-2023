@@ -27,6 +27,7 @@ router.get('/',
         
     },
     
+    
     (req, res) => {
         res.render('homepage', {
             style: 'index.css',

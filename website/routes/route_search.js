@@ -8,11 +8,18 @@ const database = require('../controllers/database.js');
 router.post('/fetchNumOfResults', (req, res) => {
 
     let filters = JSON.stringify(req.body.filters);
-    console.log(filters)
-    // database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=true, function (err, devices) {
+    // throw out all the keys in the json that don't they have an empty list as value
+    filters = JSON.parse(filters)
+    for (let key in filters) {
+        if (filters[key].length == 0) {
+            delete filters[key]
+        }
+    }
+
     database.getAllDevicesJson(data = {filters:filters, numOf: true}, function (err, devices) {
         if (err) {
             console.log(err)
+            console.log(filters)
             res.status(500).send('Internal Server Error Couldnt fetch number of results')
         } else {
             res.send(devices);
@@ -29,7 +36,7 @@ router.post('/fetch_filters', (req, res) => {
     let filters = JSON.stringify(req.body.filters);
 
     // database.getAllDevices(id=req.body.id, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
-    database.getAllDevicesJson(data = {}, function (err, devices) {
+    database.getAllDevicesJson(data = {filters:filters}, function (err, devices) {
     // database.getBookInfo(isbn = null, title = req.body.title, numOf = false, copies = true, filters = filters, limit = req.body.limit, offset = req.body.offset, function (err, books) {
         if (err) {
             console.log(err)
@@ -46,19 +53,8 @@ router.post('/fetch_filters', (req, res) => {
  */
 router.get('/search',
     (req, res, next) => {
-        // Fetches the genre filters that have the most books
-        // database.getAllAttribute('genre', limit = 5, offset = null, function (err, attributeList) {
-        //     if (err) {
-        //         console.log(err)
-        //         res.status(500).send('Internal Server Error')
-        //     } else {
-        //         res.locals.genre = attributeList;
-        //         next();
-        //     }
-        // });
-
-        // database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
-
+        
+        
         database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
         if (err) {
                 console.log(err)
@@ -69,6 +65,18 @@ router.get('/search',
             }
         });
 
+    },
+
+    (req, res, next) => {
+        database.getAllAtributes('DEVICE','type', limit = null, offset = null, function (err, devices)    {   
+        if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                res.locals.type = devices;
+                next();
+            }
+        });
     },
 
     

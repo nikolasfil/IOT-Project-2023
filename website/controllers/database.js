@@ -137,108 +137,6 @@ module.exports = {
      *  
      * This function is the same as getAllDevices but it returns the results in a json format
     */
-    getAllDevicesJson2: function (data,  callback) {
-        
-        let stmt, device;
-
-        // Initialize the query 
-        let query = `Select *`
-        
-        // If the numOf is true then it will return the number of results
-        if (data.numOf) {
-            query = `Select COUNT(*) as count_result`
-        }
-
-        // Add the table name
-        query += ` FROM DEVICE`
-
-
-        // Working on the arguments provided
-        // let list = [data.id, data.serial, data.battery, data.status, data.type]
-        // let list_name = ['id', 'serial', 'battery', 'status', 'type']
-        let activated = []; 
-        let activated_name = [];
-
-
-        // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
-        for (let key in data) {
-
-            if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
-                activated.push(data[key])
-                activated_name.push(key)
-            }
-        }
-
-
-        // If the activated list has enough arguments then it will run 
-        if (activated.length || data.filters) {
-            query += ` where`
-        }
-
-        if (activated.length) {
-            query += ` ${activated_name[0]} = ?`
-            
-        }
-
-        for (let i=1; i<activated.length; i++) {
-            query += ` and ${activated_name[i]} = ?`
-        }
-
-
-        
-
-        let filters = data.filters;
-
-        // if (filters && Object.keys(filters) !== 0) {
-        //     filters = JSON.parse(filters);
-
-        //     for (let key in filters) {
-        //         if (filters[key].length) {
-        //             if (!title && !isbn && key !== Object.keys(filters)[0]) {
-        //                 query += ` and`
-        //             } else if (!title && !isbn && key === Object.keys(filters)[0]) {
-        //                 query += ` WHERE`
-        //             }
-        //             else if (title || isbn) {
-        //                 query += ` and`
-        //             }
-
-        //             let list = filters[key].map(word => `'${word}'`).join(',')
-        //             query += ` ${key} in (${list})`
-        //         }
-        //     }
-        // }
-
-      
-        if (data.limit) {
-            query += ' LIMIT ?'
-            activated.push(data.limit)
-            
-        }
-
-        if (data.offset) {
-            query += ' OFFSET ?'
-            activated.push(data.offset)
-        }
-        
-        try {
-            stmt = betterDb.prepare(query)
-            if (activated.length) {
-                device = stmt.all(activated);
-            }
-            else {
-                device = stmt.all();
-            }
-
-        } catch (err) {
-            callback(err, null)
-        }
-
-        callback(null, device);
-
-
-    },
-
     getAllDevicesJson: function (data,  callback) {
         
         let stmt, device;
@@ -262,7 +160,7 @@ module.exports = {
 
         // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
         for (let key in data) {
-
+            // Get all the data that are not null and are not filters
             if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
                 activated.push(data[key])
                 activated_name.push(key)
@@ -271,11 +169,11 @@ module.exports = {
 
 
         // If the activated list has enough arguments or there are filters 
-        if (activated.length >0  || Object.keys(data.filters) > 0) {
-
+        if (activated.length >0 ) {
             query += ` where`
         }
 
+        // Add the activated arguments to the query
         if (activated.length) {
             query += ` ${activated_name[0]} = ?`
             
@@ -290,32 +188,37 @@ module.exports = {
 
         let filters = data.filters;
 
+        // If there are filters and they are not empty
         if (filters && Object.keys(filters) !== 0) {
-            filters = JSON.parse(filters);
+            // filters = JSON.parse(filters);
+
 
             for (let key in filters) {
+                
+                // If the filter is not empty
                 if (filters[key].length) {
+
+                    // If there are activated arguments and it's not the first filter then add an and
                     if (!activated.length && key !== Object.keys(filters)[0]) {
                         query += ` and`
-                    }
-                    else if (activated.length && key !== Object.keys(filters)[0]) {
-                        query += ` and`
+                    // If there are activated arguments and it's the first filter then add an and 
                     } else if (activated.length && key === Object.keys(filters)[0]) {
                         query += ` and`
                     }
+                    // If there are activated arguments and it's the first filter then add a where
                     else if (!activated.length && key === Object.keys(filters)[0]) {
                         query += ` WHERE`
                     }
 
+                    // Add the filter to the query in the format of key in (list of words)
                     let list = filters[key].map(word => `'${word}'`).join(',')
                     query += ` ${key} in (${list})`
-
                 }
 
             }
         }
 
-      
+
         if (data.limit) {
             query += ' LIMIT ?'
             activated.push(data.limit)
@@ -327,7 +230,6 @@ module.exports = {
             activated.push(data.offset)
         }
         
-        console.log(query)
         try {
             stmt = betterDb.prepare(query)
             if (activated.length) {
@@ -338,6 +240,7 @@ module.exports = {
             }
 
         } catch (err) {
+            console.log(query)
             callback(err, null)
         }
 
