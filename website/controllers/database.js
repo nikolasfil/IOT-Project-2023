@@ -154,6 +154,7 @@ module.exports = {
 
 
         // Working on the arguments provided
+        // let list = [data.id, data.serial, data.battery, data.status, data.type]
         // let list_name = ['id', 'serial', 'battery', 'status', 'type']
         let activated = []; 
         let activated_name = [];
@@ -168,23 +169,21 @@ module.exports = {
             }
         }
 
-        // Check which arguments are activated
-        // for (let i = 0; i < list.length; i++) {
-        //     if (list[i]) {
-        //         activated.push(list[i])
-        //         activated_name.push(list_name[i])
-        //     }
-        // }
 
         // If the activated list has enough arguments then it will run 
+        if (activated.length || data.filters) {
+            query += ` where`
+        }
+
         if (activated.length) {
-            query += ` where ${activated_name[0]} = ?`
+            query += ` ${activated_name[0]} = ?`
             
         }
 
         for (let i=1; i<activated.length; i++) {
             query += ` and ${activated_name[i]} = ?`
         }
+
 
         
 
