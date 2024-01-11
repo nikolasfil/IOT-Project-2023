@@ -6,13 +6,13 @@
 
         {{!-- <h1 id="title"><strong>device Title</strong></h1> --}}
         {{!-- <img src=".card_device_default.jpg" alt="device cover" class="device-img m-3"> --}}
-        {{#if device.photo}}
+        {{#if (eq device.type "button")}}
         <div class="col">
-            <img src="{{device.photo}}" alt="device cover" class="device-img m-3">
+            <img src="/img/button.png" alt="device cover" class="device-img m-3" width="200px">
         </div>
         {{else}}
         <div class="col">
-            <img src="/img/card_device_default.jpg" alt="device cover" class="device-img m-3">
+            <img src="/img/gps-over.png" alt="device cover" class="device-img m-3" width="200px">
         </div>
 
         {{/if}}
@@ -21,11 +21,6 @@
             <h1 id="title"><strong>ID: {{ device.id }}</strong></h1>
             {{!-- if there is no device.summary print no summary --}}
 
-            {{#if device.summary}}
-            <p id="summary">summary Number: {{device.summary}}</p>
-            {{else}}
-            <p id="summary">No summary</p>
-            {{/if}}
 
         </div>
 
