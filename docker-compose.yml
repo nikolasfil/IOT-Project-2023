@@ -1,16 +1,22 @@
-version: "3"
+# version: "3"
 
 services:
   node-app:
     build:
       context: .
       # Change the location of the docker file to DockerFiles/Dockerfile-Node
-      dockerfile: DockerFiles/Dockerfile-Node
+      dockerfile: DockerFiles/Dockerfile-Node-Volumes
+    # ports:
+    #   - "8080:8080"
+    image: adguardwebside
+    volumes:
+      - ./website:/app
     ports:
       - "8080:8080"
+    working_dir: /app
 
-  python-broker:
-    build:
-      context: .
-      # Change the location of the docker file to DockerFiles/Dockerfile-Python
-      dockerfile: DockerFiles/Dockerfile-Python
+  # python-broker:
+  #   build:
+  #     context: .
+  #     # Change the location of the docker file to DockerFiles/Dockerfile-Python
+  #     dockerfile: DockerFiles/Dockerfile-Python
