@@ -13,7 +13,7 @@ router.get('/',
         // this is a static book list displaying 12 books
         // database.getAllDevices(id=null, serial=null, battery=null, status='active', type='tracker', function (err, devices) {
             database.getAllDevices(id=null, serial=null, battery=null, 
-                status="active", type="tracker", limit=5, offset = null,
+                status="active", type="tracker", limit=5, offset = null,numOf = null,
                 function (err, devices) {
             if (err) {
                 console.log(err)
