@@ -7,8 +7,24 @@
 FROM node:18.16-alpine
 
 # Set the working directory to /app
-
 WORKDIR /app
+
+# Install app dependencies
+COPY website/package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+
+# Bundle app source 
+# COPY . . 
+# COPY controllers controllers  
+# COPY model model         
+# COPY public public     
+# COPY routes routes   
+# COPY views views
+# COPY index.js .
+
 
 # Expose port 8080 (adjust as needed)
 

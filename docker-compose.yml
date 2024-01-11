@@ -1,4 +1,4 @@
-version: "3"
+# version: "3"
 
 services:
   node-app:
@@ -10,7 +10,13 @@ services:
     #   - "8080:8080"
     image: adguardwebside
     volumes:
-      - ./website:/app
+      # - ./website:/app
+      - ./website/controllers:/app/controllers
+      - ./website/model:/app/model
+      - ./website/public:/app/public
+      - ./website/routes:/app/routes
+      - ./website/views:/app/views
+      - ./website/index.js:/app/index.js
     ports:
       - "8080:8080"
     working_dir: /app

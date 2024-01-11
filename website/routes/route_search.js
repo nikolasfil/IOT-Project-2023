@@ -57,12 +57,14 @@ router.get('/search',
         //     }
         // });
 
-        database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
-            if (err) {
+        // database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
+
+        database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
+        if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             } else {
-                res.locals.devices = devices;
+                res.locals.status = devices;
                 next();
             }
         });

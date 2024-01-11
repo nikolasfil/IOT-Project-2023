@@ -47,6 +47,8 @@ Application for managing gps Trackers
 - [ ] Website Devices
 - [ ] Website User Page
 - [ ] Website Device Map
+- [ ] Deployment
+- [x] Docker compose file
 
 <!-- URL: -->
 
@@ -124,3 +126,9 @@ docker run -d -p 8080:8080 app
 Then head over to [localhost:8080](http://localhost:8080)
 
 ---
+
+## Docker without copy
+
+```bash
+docker-compose up --build
+```

@@ -2,10 +2,11 @@
 FROM node:18.16-alpine
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
-COPY package*.json ./
+COPY website/package*.json ./
+
 
 
 
@@ -13,12 +14,12 @@ COPY package*.json ./
 RUN npm ci
 
 
-COPY controllers controllers  
-COPY model model         
-COPY public public     
-COPY routes routes   
-COPY views views
-COPY index.js .
+COPY website/controllers controllers  
+COPY website/model model         
+COPY website/public public     
+COPY website/routes routes   
+COPY website/views views
+COPY website/index.js .
 
 
 
