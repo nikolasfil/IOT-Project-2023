@@ -4,11 +4,13 @@ services:
   node-app:
     build:
       context: .
-      dockerfile: Dockerfile-Node
+      # Change the location of the docker file to DockerFiles/Dockerfile-Node
+      dockerfile: DockerFiles/Dockerfile-Node
     ports:
       - "8080:8080"
 
   python-broker:
     build:
       context: .
-      dockerfile: Dockerfile-Python
+      # Change the location of the docker file to DockerFiles/Dockerfile-Python
+      dockerfile: DockerFiles/Dockerfile-Python

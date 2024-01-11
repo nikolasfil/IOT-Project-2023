@@ -52,14 +52,21 @@ module.exports = {
      * @param {*} type For a specific type (optional)
      * @param {*} limit Limiting the number of results (optional)
      * @param {*} offset Starting from a specific result (optional)
+     * @param {*} numOf true or null, if we want to focus more on the number of results back
      * @param {*} callback function that handles the results
      *  
      */
-    getAllDevices: function (id, serial, battery, status, type,limit, offset,  callback) {
+    getAllDevices: function (id, serial, battery, status, type,limit, offset,numOf,  callback) {
         
         let stmt, device;
 
-        let query = `Select * FROM DEVICE`
+        let query = `Select *`
+        
+        if (numOf) {
+            query = `Select COUNT(*) as count_result`
+        }
+
+        query += ` FROM DEVICE`
 
         let list = [id, serial, battery, status, type]
         let list_name = ['id', 'serial', 'battery', 'status', 'type']
@@ -76,6 +83,7 @@ module.exports = {
         if (activated.length) {
             query += ` where ${activated_name[0]} = ?`
         }
+
 
 
         for (let i=1; i<activated.length; i++) {

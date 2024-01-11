@@ -9,12 +9,13 @@ router.post('/fetchNumOfResults', (req, res) => {
 
     let filters = JSON.stringify(req.body.filters);
 
-    database.getBookInfo(isbn = null, title = req.body.title, numOf = true, copies = null, filters = filters, limit = null, offset = null, function (err, books) {
+    database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=true, function (err, devices) {
+
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error Couldnt fetch number of results')
         } else {
-            res.send(books);
+            res.send(devices);
         }
     })
 })
@@ -27,12 +28,14 @@ router.post('/fetch_filters', (req, res) => {
 
     let filters = JSON.stringify(req.body.filters);
 
-    database.getBookInfo(isbn = null, title = req.body.title, numOf = false, copies = true, filters = filters, limit = req.body.limit, offset = req.body.offset, function (err, books) {
+    database.getAllDevices(id=req.body.id, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
+
+    // database.getBookInfo(isbn = null, title = req.body.title, numOf = false, copies = true, filters = filters, limit = req.body.limit, offset = req.body.offset, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
         } else {
-            res.send(books);
+            res.send(devices);
         }
     })
 })
@@ -54,7 +57,7 @@ router.get('/search',
         //     }
         // });
 
-        database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,function (err, devices) {
+        database.getAllDevices(id=null, serial=null, battery=null, status=null, type=null, limit=null, offset=null,numOf=null, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

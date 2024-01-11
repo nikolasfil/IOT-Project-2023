@@ -1,4 +1,9 @@
 
+
+// All this needs changing !!!
+
+
+
 /** 
  * This function runs everytime the page of search page is loaded 
  */
@@ -22,7 +27,7 @@ function mainLoad() {
  * @param {*} offset Returns books after the number offset 
  * @returns a list of json objects corresponding to book attributes 
  */
-async function fetchAllBooksByTitle(limit = -1, offset = 0) {
+async function fetchAllDevicesByID(limit = -1, offset = 0) {
 
     let link;
 
@@ -46,6 +51,8 @@ async function fetchAllBooksByTitle(limit = -1, offset = 0) {
         console.log(error);
     });
 }
+
+
 
 
 /**
@@ -77,20 +84,20 @@ async function fetchNumOfResults() {
 }
 
 /**
- * Middlware that fetches the books that resulted from the search and sends them to placeBooks function to be placed into pages  
+ * Middlware that fetches the books that resulted from the search and sends them to placeDevices function to be placed into pages  
  * @param {*} limit 
  * @param {*} offset 
  */
-async function placeAllBooksByTitle(limit = -1, offset = 0) {
-    let data = await fetchAllBooksByTitle(limit, offset);
-    placeBooks(data);
+async function placeAllDevicesByID(limit = -1, offset = 0) {
+    let data = await fetchAllDevicesByID(limit, offset);
+    placeDevices(data);
 }
 
 /**
  * Takes the resulted books and places them on the page .
  * @param {*} data list of json objects containing corresponding attributes of the book 
  */
-function placeBooks(data) {
+function placeDevices(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
 
