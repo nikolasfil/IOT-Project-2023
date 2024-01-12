@@ -9,16 +9,28 @@ const database = require('../controllers/database.js');
  * returns the number of books that correspond to the parameters specified in the search
  */
 router.post('/fetchNumOfResults', (req, res) => {
+    let data ;
     let filters = JSON.stringify(req.body.filters);
     // throw out all the keys in the json that don't they have an empty list as value
     filters = JSON.parse(filters)
+
     for (let key in filters) {
         if (filters[key].length == 0) {
             delete filters[key]
         }
     }
 
-        database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, numOf: true}, function (err, devices) {
+    data = {filters:filters, numOf: true}
+
+    if (req.body.searchValue) {
+        data.serial = req.body.searchValue;
+        data.id = req.body.searchValue;
+        // data.user = req.body.searchValue;
+        data.exclusively = null;
+    }
+
+    database.getAllDevicesJson(data = data, function (err, devices) {
+        // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, numOf: true}, function (err, devices) {
         if (err) {
             console.log(err)
             console.log(filters)
@@ -35,7 +47,9 @@ router.post('/fetchNumOfResults', (req, res) => {
  */
 router.post('/fetch_filters', (req, res) => {
 
+    let data ;
     let filters = JSON.stringify(req.body.filters);
+    
     // throw out all the keys in the json that don't they have an empty list as value
     filters = JSON.parse(filters)
     for (let key in filters) {
@@ -43,7 +57,20 @@ router.post('/fetch_filters', (req, res) => {
             delete filters[key]
         }
     }
-    database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
+
+    data = {filters:filters, limit: req.body.limit, offset:req.body.offset }
+    console.log(data)
+
+    if (req.body.searchValue) {
+        data.serial = req.body.searchValue;
+        data.id = req.body.searchValue;
+        // data.user = req.body.searchValue;
+        data.exclusively = null;
+    }
+    console.log(data)
+
+    // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
+    database.getAllDevicesJson(data = data , function (err, devices) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -58,9 +85,10 @@ router.post('/fetch_filters', (req, res) => {
  * Rendering the search page
  */
 router.get('/search',
+    /** 
+     * Get all the filters that are available in the database and pass them to the search page
+     */
     (req, res, next) => {
-        
-        
         database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
         if (err) {
                 console.log(err)

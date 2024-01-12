@@ -10,7 +10,7 @@ const login = require('../controllers/login.js');
  */
 router.get('/',
     (req, res, next) => {
-        // this is a static book list displaying 12 books
+        // this is a static device list displaying 12 active trackers
             database.getAllDevicesJson(data = {status: 'active', type: 'tracker', limit: 12}, function (err, devices) {
             if (err) {
                 console.log(err)

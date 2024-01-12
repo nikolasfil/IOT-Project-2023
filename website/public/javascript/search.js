@@ -40,9 +40,11 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "offset": offset, "limit": limit }),
-        body: JSON.stringify({ "filters": window.gFilters, 
-         "offset": offset, "limit": limit ,
-            "id": window.searchBarValue,
+        body: JSON.stringify({ 
+            "filters": window.gFilters, 
+            "offset": offset,
+            "limit": limit ,
+            "searchValue": window.searchBarValue,
         }),
 
     }).then((res) => {
@@ -76,8 +78,11 @@ async function fetchNumOfResults() {
         referrerPolicy: "no-referrer",
         // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "id": window.searchBarValue }),
             
-            body: JSON.stringify({ "filters": window.gFilters
-            ,"id": window.searchBarValue}),
+            body: JSON.stringify({ 
+                "filters": window.gFilters,
+                // "id": window.searchBarValue
+                "searchValue": window.searchBarValue,
+            }),
     }).then((res) => {
         return res.json();
     }).then((data) => {
