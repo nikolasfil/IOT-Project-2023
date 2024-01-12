@@ -195,30 +195,31 @@ module.exports = {
 
 
         // If there are filters and they are not empty
-        if (filters && Object.keys(filters) !== 0) {
-            // filters = JSON.parse(filters);
+        // if (filters && Object.keys(filters) !== 0) {
+        //     // filters = JSON.parse(filters);
 
-
-            for (let key in filters) {
+        //     for (let key in filters) {
                 
-                // If the filter is not empty
-                if (filters[key].length) {
+        //         // If the filter is not empty
+        //         if (filters[key].length) {
 
-                    // If there are activated arguments and it's not the first filter then add an and
-                    if (!activated.length && key !== Object.keys(filters)[0]) {
-                        query_filters += ` and`
-                    // If there are activated arguments and it's the first filter then add an and 
-                    } else if (activated.length && key === Object.keys(filters)[0]) {
-                        query_filters += ` and`
-                    }
-                    
-                    // Add the filter to the query in the format of key in (list of words)
-                    let list = filters[key].map(word => `'${word}'`).join(',')
-                    query_filters += ` ${key} in (${list})`
-                }
+        //             // If there are activated arguments and it's not the first filter then add an and
+        //             if (!activated.length && key !== Object.keys(filters)[0]) {
+        //                 query_filters += ` and`
+        //             // If there are activated arguments and it's the first filter then add an and 
+        //             } else if (activated.length && key === Object.keys(filters)[0]) {
+        //                 query_filters += ` and`
+        //             }
 
-            }
-        }
+        //             // Add the filter to the query in the format of key in (list of words)
+        //             let list = filters[key].map(word => `'${word}'`).join(',')
+        //             query_filters += ` ${key} in (${list})`
+        //         }
+
+        //     }
+        // }
+
+        
 
         if ( query_activated.length || query_filters.length  ) {
             query += ` WHERE `
