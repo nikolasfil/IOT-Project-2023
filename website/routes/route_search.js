@@ -11,7 +11,7 @@ const c_search = require('../controllers/c_search.js')
  * returns the number of books that correspond to the parameters specified in the search
  */
 router.post('/fetchNumOfResults', 
-    (req, res) => {
+    (req, res,next) => {
         // let filters = JSON.stringify(req.body.filters);
         // // throw out all the keys in the json that don't they have an empty list as value
         // filters = JSON.parse(filters)
@@ -25,8 +25,9 @@ router.post('/fetchNumOfResults',
     },
     c_search.filtering,
     (req, res, next) => {
-        let filters = res.locals.filters;
         let data ={};
+        let filters = res.locals.filters;
+        
         data.numOf=true
 
         data.limit = req.body.limit;
@@ -48,6 +49,7 @@ router.post('/fetchNumOfResults',
         
         data.exclusively = req.body.exclusively;
         data.regex = req.body.regex;
+        
         res.locals.data = data;
         next();
     },
@@ -67,44 +69,49 @@ router.post('/fetchNumOfResults',
 /**
  * Fetches the results that correspond to the parameters specified in the search page 
  */
-router.post('/fetch_filters', (req, res,next) => {
+router.post('/fetch_filters', 
+    (req, res,next) => {
 
-    // let filters = JSON.stringify(req.body.filters);
-    
-    // // throw out all the keys in the json that don't they have an empty list as value
-    // filters = JSON.parse(filters)
-    // for (let key in filters) {
-        //     if (filters[key].length == 0) {
-            //         delete filters[key]
-            //     }
-            // }
+        // let filters = JSON.stringify(req.body.filters);
+        
+        // // throw out all the keys in the json that don't they have an empty list as value
+        // filters = JSON.parse(filters)
+        // for (let key in filters) {
+            //     if (filters[key].length == 0) {
+                //         delete filters[key]
+                //     }
+                // }
         next();
     },
     c_search.filtering,
-    (req, res, next) => {
-        let data ={};
-        let filters = res.locals.filters;
+    // (req, res, next) => {
+    //     let data ={};
+    //     let filters = res.locals.filters;
 
-        data.limit = req.body.limit;
-        data.offset = req.body.offset;
+    //     data.limit = req.body.limit;
+    //     data.offset = req.body.offset;
 
-        if (filters.assigned){
-            data.u_id = req.body.searchValue;
-            data.assigned = true;
-            delete filters.assigned;
-        }
+    //     if (filters.assigned == "Assigned"){
+    //         data.u_id = req.body.searchValue;
+    //         delete filters.assigned;
+    //     }
+    //     else { 
+    //         data.assigned = false;
+    //         delete filters.assigned;
+    //     }
 
-        data.filters = filters;
+    //     data.filters = filters;
         
-        data.serial = req.body.searchValue;
-        data.d_id = req.body.searchValue;
+    //     data.serial = req.body.searchValue;
+    //     data.d_id = req.body.searchValue;
 
-        data.exclusively = req.body.exclusively;
-        data.regex = req.body.regex;
+    //     data.exclusively = req.body.exclusively;
+    //     data.regex = req.body.regex;
 
-        res.locals.data = data;
-        next();
-    }, 
+    //     res.locals.data = data;
+    //     next();
+    // }, 
+    c_search.data_minining,
     (req, res) => {
         let data = res.locals.data;
 
@@ -116,7 +123,7 @@ router.post('/fetch_filters', (req, res,next) => {
                 res.send(devices);
             }
         })
-}   
+    }
 )
 
 

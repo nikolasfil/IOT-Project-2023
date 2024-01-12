@@ -159,9 +159,13 @@ module.exports = {
         let filters = data.filters;
 
         if (filters) {
+
+
+
             // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
             query_filters = Object.entries(filters)
-            .filter(([key, value]) => value.length)
+            // .filter(([key, value]) => value.length || key !== 'assigned')
+            .filter(([key, value]) => value.length && key !== 'assigned')
             .map(([key, value]) => `${key} in (${value.map(word => `'${word}'`).join(',')})`)
             .join(' and ');
         }
