@@ -21,6 +21,7 @@ Application for managing gps Trackers
 <!-- - [Description](#description) -->
 <!-- - [Table of Contents](#table-of-contents) -->
 
+- [ToDO](./ToDo.md)
 - [Developers](#developers)
 - [Developing Stage](#developing-stage)
 - [Technologies](#technologies)
