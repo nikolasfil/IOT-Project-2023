@@ -59,7 +59,6 @@ router.post('/fetch_filters', (req, res) => {
     }
 
     data = {filters:filters, limit: req.body.limit, offset:req.body.offset }
-    console.log(data)
 
     if (req.body.searchValue) {
         data.serial = req.body.searchValue;
@@ -67,7 +66,6 @@ router.post('/fetch_filters', (req, res) => {
         // data.user = req.body.searchValue;
         data.exclusively = null;
     }
-    console.log(data)
 
     // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
     database.getAllDevicesJson(data = data , function (err, devices) {
@@ -85,9 +83,7 @@ router.post('/fetch_filters', (req, res) => {
  * Rendering the search page
  */
 router.get('/search',
-    /** 
-     * Get all the filters that are available in the database and pass them to the search page
-     */
+    
     (req, res, next) => {
         database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
         if (err) {

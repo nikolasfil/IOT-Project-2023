@@ -2,8 +2,7 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/database.sqlite')
 
 const bcrypt = require('bcrypt');
-const { link } = require('../routes/route_search');
-
+const { query } = require('express');
 
 module.exports = {
 
