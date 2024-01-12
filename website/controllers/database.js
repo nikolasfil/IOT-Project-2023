@@ -2,7 +2,6 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/database.sqlite')
 
 const bcrypt = require('bcrypt');
-const { query } = require('express');
 
 module.exports = {
 
@@ -36,7 +35,7 @@ module.exports = {
         
         // ----------- initializing arguments -----------
 
-        // Assigning value to the linker 
+        // Assigning value to the linker
         if (!data.exclusively) {
             linker = ' or '
         }else {
@@ -94,6 +93,7 @@ module.exports = {
             .join(' and ');
         }
         
+        // ----------- Building the final query -----------
         if ( query_activated.length || query_filters.length  ) {
             query += ` WHERE `
         }
@@ -104,6 +104,7 @@ module.exports = {
         // Add the filter arguments to the query 
         query += query_filters
 
+        // Add the limit and offset to the query
         if (data.limit) {
             query += ' LIMIT ? '
             activated.push(data.limit)
@@ -114,6 +115,7 @@ module.exports = {
             activated.push(data.offset)
         }
 
+        // ----------- Printing the final query -----------
         console.log(query)
 
         try {
