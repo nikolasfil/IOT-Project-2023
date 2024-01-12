@@ -181,23 +181,28 @@ module.exports = {
         query += ` FROM DEVICE`
 
 
-        
+        // Do this later 
         // If the activated list has enough arguments or there are filters 
         if (activated.length >0 ) {
-            query += ` where`
+            query += ` WHERE `
         }
 
         
         // Add the activated arguments to the query
-        if (activated.length) {
-            query += ` ${activated_name[0]} = ?`
+        // if (activated.length) {
+        //     query_activated += ` ${activated_name[0]} = ?`
             
-        }
+        // }
 
-        for (let i=1; i<activated.length; i++) {
-            query += ` and ${activated_name[i]} = ?`
-        }
 
+        query_activated = activated_name.map((name) => `${name} = ?`).join(' and ')
+
+        // for (let i=0; i<activated.length; i++) {
+        //     query_activated += ` and ${activated_name[i]} = ?`
+        // }
+
+        // Add the activated arguments to the query
+        query += query_activated
 
         // ----------- Building the filters -----------
 
@@ -245,7 +250,7 @@ module.exports = {
             activated.push(data.offset)
         }
 
-        // console.log(query)
+        console.log(query)
 
         try {
             stmt = betterDb.prepare(query)
