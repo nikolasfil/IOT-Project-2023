@@ -21,26 +21,25 @@ router.post('/fetchNumOfResults', (req, res) => {
         }
     }
 
-
     data.numOf=true
 
-    // data.limit = req.body.limit;
-    // data.offset = req.body.offset;
+    data.limit = req.body.limit;
+    data.offset = req.body.offset;
 
-    if (filters.assigned){
+    if (filters.assigned == "Assigned"){
         data.u_id = req.body.searchValue;
-        data.assigned = true;
+        delete filters.assigned;
+    }
+    else { 
+        data.assigned = false;
         delete filters.assigned;
     }
 
     data.filters = filters;
 
-    
-
     data.serial = req.body.searchValue;
     data.d_id = req.body.searchValue;
     
-
     data.exclusively = req.body.exclusively;
     data.regex = req.body.regex;
 
@@ -48,7 +47,6 @@ router.post('/fetchNumOfResults', (req, res) => {
     database.getAllDevicesJson(data = data, function (err, devices) {
         if (err) {
             console.log(err)
-            console.log(filters)
             res.status(500).send('Internal Server Error Couldnt fetch number of results')
         } else {
             res.send(devices);

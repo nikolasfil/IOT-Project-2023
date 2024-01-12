@@ -1,9 +1,4 @@
 
-
-// All this needs changing !!!
-
-
-
 /** 
  * This function runs everytime the page of search page is loaded 
  */
@@ -20,112 +15,32 @@ function mainLoad() {
 
 
 /**
- * Makes a post request to the server to return all the books that match with the title given by the global variable that takes the value from the searchbar input 
- * @param {*} limit This limits the results we want back
- * @param {*} offset Returns books after the number offset 
- * @returns a list of json objects corresponding to book attributes 
- */
-async function fetchAllDevicesByID(limit = -1, offset = 0) {
-
-    let link,data;
-
-    link = '/fetch_filters'
-
-    data = {
-        "filters": window.gFilters, 
-        "offset": offset,
-        "limit": limit ,
-        "searchValue": window.searchBarValue,
-        "exclusively": null,
-    }
-
-    if (data.filters.assigned === "Assigned") {
-        data.filters.assigned = true;
-        // delete data.filters.assigned;
-    } 
-
-    return await fetch(link, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(data),
-
-    }).then((res) => {
-        return res.json();
-    }).then((data) => {
-        return data;
-    }).catch(error => {
-        console.log(error);
-    });
-}
-
-
-
-
-/**
- * Returns the number of results we would get with the title and filters that the user searched 
+ * 
+ * fetchResults is used to both fetch the number of results and the results themselves,
+ *  simply by changing the variable numbering which is originally false
+ * 
+ * @param {*} limit 
+ * @param {*} offset 
+ * @param {*} numbering 
  * @returns 
  */
-async function fetchNumOfResults() {
-    
-    let link,data;
-
-    data = { 
-        "filters": window.gFilters,
-        "searchValue": window.searchBarValue,
-        "exclusively": null,
-    }
-
-    if (data.filters.assigned === "Assigned") {
-        data.assigned = true;
-        delete data.filters.assigned;
-    }
-
-    link = '/fetchNumOfResults'
-    return await fetch(link, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-            
-        body: JSON.stringify(data),
-    }).then((res) => {
-        return res.json();
-    }).then((data) => {
-        return data[0].count_result;
-    }).catch(error => {
-        console.log(error);
-    });
-}
-
-
 async function fetchResults(limit = null, offset = null, numbering = false){
-    let link,data = {} ;
+    let link,body_data = {} ;
 
+    // Changing where the request is being made, to return either a number or a list 
     if (numbering){
         link = '/fetchNumOfResults'
     } else {
         link = '/fetch_filters'
-        data.offset = offset;
-        data.limit = limit;
     }
+
+    body_data.offset = offset;
+    body_data.limit = limit;
     
+    body_data.filters = window.gFilters;
+    body_data.searchValue = window.searchBarValue;
+    body_data.exclusively = null;
 
-    data.filters = window.gFilters;
-    data.searchValue = window.searchBarValue;
-    data.exclusively = null;
-
-    if (data.filters.assigned === "Assigned") {
-        data.filters.assigned = true;
-        // delete data.filters.assigned;
-    } 
 
     return await fetch(link, {
         method: "POST",
@@ -135,7 +50,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify(data),
+        body: JSON.stringify(body_data),
 
     }).then((res) => {
         return res.json();
@@ -150,7 +65,8 @@ async function fetchResults(limit = null, offset = null, numbering = false){
 }
 
 /**
- * Middlware that fetches the books that resulted from the search and sends them to placeDevices function to be placed into pages  
+ * Middlware that fetches the books that resulted from the search and sends them 
+ * to placeDevices function to be placed into pages  
  * @param {*} limit 
  * @param {*} offset 
  */
