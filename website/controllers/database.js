@@ -42,30 +42,31 @@ function getRegex(searchValue, rows) {
 
 }
 
-function addingActivated(activated_name, linker, regex) {
-    let query_activated ;
-    let searchable = [] ;
 
-    getAllDevicesJson(data={linker:'or', regex:false}, function(err, rows) {
-        searchable.push(rows.map(row => row.serial));
-        searchable.push(rows.map(row => row.id));
-        // searchable.push(rows.map(row => row.user));
-    })
-
-    if (!regex){
-        query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
-    }
-    else {
-        query_activated = activated_name.map(
-            (name) => `${name} in (${getRegex(name, searchable).map(word => `'${word}'`).join(',')})`
-            ).join(linker)
-    }    
-    return query_activated
-}
 
 module.exports = {
 
+    addingActivated: function(activated_name, linker, regex) {
+        let query_activated ;
+        
     
+        if (!regex){
+            query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
+        }
+        else {
+            let searchable = [] ;
+    
+            this.getAllDevicesJson(data={linker:'or', regex:false}, function(err, rows) {
+                searchable.push(rows.map(row => row.serial));
+                searchable.push(rows.map(row => row.id));
+                // searchable.push(rows.map(row => row.user));
+            })
+            query_activated = activated_name.map(
+                (name) => `${name} in (${getRegex(name, searchable).map(word => `'${word}'`).join(',')})`
+                ).join(linker)
+        }    
+        return query_activated
+    },
     
     /**
      * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
@@ -122,6 +123,7 @@ module.exports = {
         }
 
 
+
         // ----------- Building the query -----------
 
         if (data.numOf) {
@@ -140,8 +142,8 @@ module.exports = {
         // ----------- Building the activated arguments -----------
 
         
-        // query_activated = addingActivated(activated_name, linker, true)
-        query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
+        query_activated = this.addingActivated(activated_name, linker, data.regex)
+        // query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
         
 
         // ----------- Building the filters -----------
@@ -221,7 +223,8 @@ module.exports = {
         //     query += ' OFFSET ?'
         //     list.push(offset)
         // }
-    
+        
+
         try {
             stmt = betterDb.prepare(query)
             result = stmt.all(list);
