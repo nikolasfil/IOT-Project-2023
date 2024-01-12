@@ -58,7 +58,7 @@ module.exports = {
     
             this.getAllDevicesJson(data={linker:'or', regex:false}, function(err, rows) {
                 searchable.push(rows.map(row => row.serial));
-                searchable.push(rows.map(row => row.id));
+                searchable.push(rows.map(row => row.d_id));
                 // searchable.push(rows.map(row => row.user));
             })
             query_activated = activated_name.map(
@@ -111,14 +111,7 @@ module.exports = {
         let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
 
 
-        // ----------- Changing the ambigues column --------------
 
-        if (data.assigned){
-            data['DEVICE.id'] = data.id
-            delete data.id
-            data['USER.id'] = data.user 
-            delete data.user
-        }
 
         // ----------- Building the list of activated arguments ----------- 
 
@@ -142,7 +135,7 @@ module.exports = {
             query = `Select COUNT(*) as count_result`
         } else if (data.assigned){
             // Else it will return all the fields 
-            query = `Select DEVICE.id , serial, battery, status, type, USER.id as user, first_name, last_name, phone, date_received, date_returned `
+            query = `Select d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
         } 
 
 
@@ -150,7 +143,7 @@ module.exports = {
         query += ` FROM DEVICE `
         
         if (data.assigned) {
-            query += ` JOIN Assigned on DEVICE.id = Assigned.device_id JOIN USER on Assigned.user_id = USER.id`
+            query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
         }
 
 

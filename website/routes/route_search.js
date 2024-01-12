@@ -10,7 +10,7 @@ const login = require('../controllers/login.js')
  * returns the number of books that correspond to the parameters specified in the search
  */
 router.post('/fetchNumOfResults', (req, res) => {
-    let data ;
+    let data ={};
     let filters = JSON.stringify(req.body.filters);
     // throw out all the keys in the json that don't they have an empty list as value
     filters = JSON.parse(filters)
@@ -21,19 +21,31 @@ router.post('/fetchNumOfResults', (req, res) => {
         }
     }
 
-    data = {filters:filters, numOf: true}
 
-    if (req.body.searchValue) {
-        data.serial = req.body.searchValue;
-        data.id = req.body.searchValue;
-        data.user = req.body.searchValue;
-        data.exclusively = null;
+    data.numOf=true
+
+    // data.limit = req.body.limit;
+    // data.offset = req.body.offset;
+
+    if (filters.assigned){
+        data.u_id = req.body.searchValue;
         data.assigned = true;
-        // data.regex = true;
+        delete filters.assigned;
     }
 
+    data.filters = filters;
+
+    
+
+    data.serial = req.body.searchValue;
+    data.d_id = req.body.searchValue;
+    
+
+    data.exclusively = req.body.exclusively;
+    data.regex = req.body.regex;
+
+
     database.getAllDevicesJson(data = data, function (err, devices) {
-        // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, numOf: true}, function (err, devices) {
         if (err) {
             console.log(err)
             console.log(filters)
@@ -50,7 +62,7 @@ router.post('/fetchNumOfResults', (req, res) => {
  */
 router.post('/fetch_filters', (req, res) => {
 
-    let data ;
+    let data ={};
     let filters = JSON.stringify(req.body.filters);
     
     // throw out all the keys in the json that don't they have an empty list as value
@@ -61,21 +73,24 @@ router.post('/fetch_filters', (req, res) => {
         }
     }
 
-    data = {filters:filters, 
-            // limit: req.body.limit,
-            // offset:req.body.offset 
-        }
+    data.limit = req.body.limit;
+    data.offset = req.body.offset;
 
-    if (req.body.searchValue) {
-        data.serial = req.body.searchValue;
-        data.id = req.body.searchValue;
-        data.user = req.body.searchValue;
-        data.exclusively = null;
-        // data.regex = true;
+    if (filters.assigned){
+        data.u_id = req.body.searchValue;
         data.assigned = true;
+        delete filters.assigned;
     }
 
-    // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
+    data.filters = filters;
+
+    
+    data.serial = req.body.searchValue;
+    data.d_id = req.body.searchValue;
+
+    data.exclusively = req.body.exclusively;
+    data.regex = req.body.regex;
+
     database.getAllDevicesJson(data = data , function (err, devices) {
         if (err) {
             console.log(err)
@@ -117,6 +132,11 @@ router.get('/search',
         });
     },
 
+    (req, res, next) => {
+        // New category if they are assigned or not 
+        res.locals.assigned = [{"name":"Assigned"}, {"name":"Unassigned"}];
+        next();
+    },
     
 
     (req, res) => {

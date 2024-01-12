@@ -148,9 +148,6 @@ function createPageNavigationIcon(container, id, content, command) {
  * @param number Is the page number called forth to be displayed
  */
 function showPage(number) {
-
-    // placeAllBooksBytitle is in the file search.js 
-    // placeAllBooksByTitle(limit = window.devicesPerPage, offset = (number - 1) * window.devicesPerPage);
     placeAllDevicesByID(limit = window.devicesPerPage, offset = (number - 1) * window.devicesPerPage);
 }
 
@@ -158,6 +155,6 @@ function showPage(number) {
  * @returns The number of results the search page has to handle 
  */
 async function showResult() {
-    let number = await fetchNumOfResults()
+    let number = await fetchResults(limit=null,offset=null,numbering = true)
     return number
 }

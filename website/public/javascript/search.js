@@ -27,9 +27,22 @@ function mainLoad() {
  */
 async function fetchAllDevicesByID(limit = -1, offset = 0) {
 
-    let link;
+    let link,data;
 
     link = '/fetch_filters'
+
+    data = {
+        "filters": window.gFilters, 
+        "offset": offset,
+        "limit": limit ,
+        "searchValue": window.searchBarValue,
+        "exclusively": null,
+    }
+
+    if (data.filters.assigned === "Assigned") {
+        data.filters.assigned = true;
+        // delete data.filters.assigned;
+    } 
 
     return await fetch(link, {
         method: "POST",
@@ -39,13 +52,7 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "offset": offset, "limit": limit }),
-        body: JSON.stringify({ 
-            "filters": window.gFilters, 
-            "offset": offset,
-            "limit": limit ,
-            "searchValue": window.searchBarValue,
-        }),
+        body: JSON.stringify(data),
 
     }).then((res) => {
         return res.json();
@@ -65,7 +72,18 @@ async function fetchAllDevicesByID(limit = -1, offset = 0) {
  */
 async function fetchNumOfResults() {
     
-    let link;
+    let link,data;
+
+    data = { 
+        "filters": window.gFilters,
+        "searchValue": window.searchBarValue,
+        "exclusively": null,
+    }
+
+    if (data.filters.assigned === "Assigned") {
+        data.assigned = true;
+        delete data.filters.assigned;
+    }
 
     link = '/fetchNumOfResults'
     return await fetch(link, {
@@ -76,17 +94,56 @@ async function fetchNumOfResults() {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        // body: JSON.stringify({ "filters": window.gFilters, "serial": window.searchBarValue, "id": window.searchBarValue }),
             
-            body: JSON.stringify({ 
-                "filters": window.gFilters,
-                // "id": window.searchBarValue
-                "searchValue": window.searchBarValue,
-            }),
+        body: JSON.stringify(data),
     }).then((res) => {
         return res.json();
     }).then((data) => {
         return data[0].count_result;
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+
+async function fetchResults(limit = null, offset = null, numbering = false){
+    let link,data = {} ;
+
+    if (numbering){
+        link = '/fetchNumOfResults'
+    } else {
+        link = '/fetch_filters'
+        data.offset = offset;
+        data.limit = limit;
+    }
+    
+
+    data.filters = window.gFilters;
+    data.searchValue = window.searchBarValue;
+    data.exclusively = null;
+
+    if (data.filters.assigned === "Assigned") {
+        data.filters.assigned = true;
+        // delete data.filters.assigned;
+    } 
+
+    return await fetch(link, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data),
+
+    }).then((res) => {
+        return res.json();
+    }).then((data) => {
+        if (numbering){
+            return data[0].count_result;
+        }
+        return data;
     }).catch(error => {
         console.log(error);
     });
@@ -98,7 +155,7 @@ async function fetchNumOfResults() {
  * @param {*} offset 
  */
 async function placeAllDevicesByID(limit = -1, offset = 0) {
-    let data = await fetchAllDevicesByID(limit, offset);
+    let data = await fetchResults(limit=limit, offset=offset, numbering=false);
     placeDevices(data);
 }
 
@@ -127,7 +184,7 @@ function placeDevices(data) {
 
         let h6 = document.createElement("h6");
         h6.className = "text-truncate--2"
-        h6.innerHTML = `<strong>ID: ${data[i].id}</strong>`;
+        h6.innerHTML = `<strong>ID: ${data[i].d_id}</strong>`;
         div2.appendChild(h6);
 
         let p = document.createElement("p");
@@ -153,13 +210,17 @@ function placeDevices(data) {
         p3.innerHTML = `<small>Device Type: ${data[i].type}</small>`;
         div2.appendChild(p3);
 
-        let p4 = document.createElement("p");
-        p4.innerHTML = `<small>User assigned: ${data[i].user}</small>`;
-        div2.appendChild(p4);
+        if (data[i].u_id){
 
-        let p5 = document.createElement("p");
-        p5.innerHTML = `<small>First name: ${data[i].first_name}</small>`;
-        div2.appendChild(p5);
+            let p4 = document.createElement("p");
+            p4.innerHTML = `<small>User assigned: ${data[i].u_id}</small>`;
+            div2.appendChild(p4);
+
+            let p5 = document.createElement("p");
+            p5.innerHTML = `<small>First name: ${data[i].first_name}</small>`;
+            div2.appendChild(p5);
+
+        }
 
         a.appendChild(div2);
 
