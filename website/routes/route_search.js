@@ -26,8 +26,9 @@ router.post('/fetchNumOfResults', (req, res) => {
     if (req.body.searchValue) {
         data.serial = req.body.searchValue;
         data.id = req.body.searchValue;
-        // data.user = req.body.searchValue;
+        data.user = req.body.searchValue;
         data.exclusively = null;
+        data.assigned = true;
         // data.regex = true;
     }
 

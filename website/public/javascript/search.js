@@ -153,11 +153,21 @@ function placeDevices(data) {
         p3.innerHTML = `<small>Device Type: ${data[i].type}</small>`;
         div2.appendChild(p3);
 
+        let p4 = document.createElement("p");
+        p4.innerHTML = `<small>User assigned: ${data[i].user}</small>`;
+        div2.appendChild(p4);
+
+        let p5 = document.createElement("p");
+        p5.innerHTML = `<small>First name: ${data[i].first_name}</small>`;
+        div2.appendChild(p5);
+
         a.appendChild(div2);
 
         div.appendChild(a);
 
         container.appendChild(div);
+
+
 
 
     }

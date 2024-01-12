@@ -135,13 +135,15 @@ module.exports = {
 
         // ----------- Building the query -----------
 
+        query = ` Select * `
+
         if (data.numOf) {
             // If the numOf is true then it will return the number of results
             query = `Select COUNT(*) as count_result`
-        } else {
+        } else if (data.assigned){
             // Else it will return all the fields 
-            query = `Select * `
-        }
+            query = `Select DEVICE.id , serial, battery, status, type, USER.id as user, first_name, last_name, phone, date_received, date_returned `
+        } 
 
 
         // Add the table name
