@@ -128,14 +128,22 @@ module.exports = {
 
         // ----------- Building the query -----------
 
-        query = ` Select * `
+        query = ` Select `
 
-        if (data.numOf) {
+        if (data.numOf ) {
             // If the numOf is true then it will return the number of results
-            query = `Select COUNT(*) as count_result`
-        } else if (data.assigned){
+            query += ` COUNT(*) as count_result`
+        }
+        
+        if (data.numOf && data.assigned) {
+            query += ` , `
+        } else if (!data.numOf && !data.assigned) {
+            query += ` * `
+        } 
+
+        if (data.assigned){
             // Else it will return all the fields 
-            query = `Select d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
+            query += ` d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
         } 
 
 
@@ -159,9 +167,6 @@ module.exports = {
         let filters = data.filters;
 
         if (filters) {
-
-
-
             // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
             query_filters = Object.entries(filters)
             // .filter(([key, value]) => value.length || key !== 'assigned')

@@ -21,14 +21,16 @@ exports.data_minining = (req, res, next) => {
         data.limit = req.body.limit;
         data.offset = req.body.offset;
 
-        if (filters.assigned == "Assigned"){
+        if (filters.assigned && filters.assigned.includes('Assigned') ){
+            console.log(filters);
             data.u_id = req.body.searchValue;
-            delete filters.assigned;
-        }
-        else { 
-            data.assigned = false;
-            delete filters.assigned;
-        }
+            data.assigned = true;
+            // delete filters.assigned;
+        } 
+        // else { 
+            // data.assigned = false;
+            // delete filters.assigned;
+        // }
 
         data.filters = filters;
         
