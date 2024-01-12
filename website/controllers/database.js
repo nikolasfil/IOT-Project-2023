@@ -138,29 +138,26 @@ module.exports = {
      * This function is the same as getAllDevices but it returns the results in a json format
     */
     getAllDevicesJson: function (data,  callback) {
-        let stmt, device;
-
-        // Initialize the query 
-        let query = `Select *`
         
-        // If the numOf is true then it will return the number of results
-        if (data.numOf) {
-            query = `Select COUNT(*) as count_result`
-        }
-
-        // Add the table name
-        query += ` FROM DEVICE`
-
+        // Defining the variables
+        let stmt, device, query, query_filters, query_activated;
+        
+        // initializing some variables
+        query_filters = "";
+        query_activated = "";
 
         // Working on the arguments provided
         let activated = []; 
         let activated_name = [];
+
+        // List of arguments that are not iterated
         let non_iterated = ['filters', 'limit', 'offset', 'numOf']
+
+        // ----------- Building the list of activated arguments ----------- 
 
         // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
         for (let key in data) {
-            // Get all the data that are not null and are not filters
-            // if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
+            // Get all the data that are not null and are not in the not iterate list 
             if (data[key] && !non_iterated.includes(key)) {
                 activated.push(data[key])
                 activated_name.push(key)
@@ -168,28 +165,28 @@ module.exports = {
         }
 
 
+
+        // ----------- Building the query -----------
+
+        // If the numOf is true then it will return the number of results
+        if (data.numOf) {
+            query = `Select COUNT(*) as count_result`
+        } else {
+            // Else it will return all the fields 
+            query = `Select *`
+        }
+
+
+        // Add the table name
+        query += ` FROM DEVICE`
+
+
+        
         // If the activated list has enough arguments or there are filters 
         if (activated.length >0 ) {
             query += ` where`
         }
 
-        
-
-        // if ("serial" in activated_name) {
-        //     let title_index = activated_name.indexOf("serial");
-        //     let title = activated[title_index];
-        //     let matchingPhrases;
-        //     try {
-
-        //         matchingPhrases = getRegex(title);
-        //     } catch (err) {
-        //         callback(err, null);
-        //     }
-
-        //     query += ` title in (${matchingPhrases.map(() => '?').join(', ')})`
-        //     activated[title_index] = title;
-
-        // }
         
         // Add the activated arguments to the query
         if (activated.length) {
@@ -200,6 +197,9 @@ module.exports = {
         for (let i=1; i<activated.length; i++) {
             query += ` and ${activated_name[i]} = ?`
         }
+
+
+        // ----------- Building the filters -----------
 
         let filters = data.filters;
 
@@ -273,15 +273,6 @@ module.exports = {
         let list = []
 
         query += ` ${attribute} as name from ${source}`
-
-        // switch (source) {
-        //     case 'device':
-        //         query += ` ${attribute} from DEVICE`
-        //         break;
-        //     default:
-        //         callback('Wrong source', null)
-        //         break;
-        // }
 
         query += ` where ${attribute} is not null` 
         query += ` order by ${attribute} asc`
