@@ -151,7 +151,7 @@ module.exports = {
         let activated_name = [];
 
         // List of arguments that are not iterated
-        let non_iterated = ['filters', 'limit', 'offset', 'numOf']
+        let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively']
 
         // ----------- Building the list of activated arguments ----------- 
 
@@ -173,40 +173,26 @@ module.exports = {
             query = `Select COUNT(*) as count_result`
         } else {
             // Else it will return all the fields 
-            query = `Select *`
+            query = `Select * `
         }
 
 
         // Add the table name
-        query += ` FROM DEVICE`
+        query += ` FROM DEVICE `
 
 
         // Do this later 
-        // If the activated list has enough arguments or there are filters 
-        if (activated.length >0 ) {
-            query += ` WHERE `
-        }
 
-        
-        // Add the activated arguments to the query
-        // if (activated.length) {
-        //     query_activated += ` ${activated_name[0]} = ?`
-            
-        // }
-
-
+        // ----------- Building the activated arguments -----------
         query_activated = activated_name.map((name) => `${name} = ?`).join(' and ')
 
-        // for (let i=0; i<activated.length; i++) {
-        //     query_activated += ` and ${activated_name[i]} = ?`
-        // }
-
-        // Add the activated arguments to the query
-        query += query_activated
+        // If the activated list has enough arguments or there are filters 
+        
 
         // ----------- Building the filters -----------
 
         let filters = data.filters;
+
 
         // If there are filters and they are not empty
         if (filters && Object.keys(filters) !== 0) {
@@ -220,24 +206,29 @@ module.exports = {
 
                     // If there are activated arguments and it's not the first filter then add an and
                     if (!activated.length && key !== Object.keys(filters)[0]) {
-                        query += ` and`
+                        query_filters += ` and`
                     // If there are activated arguments and it's the first filter then add an and 
                     } else if (activated.length && key === Object.keys(filters)[0]) {
-                        query += ` and`
+                        query_filters += ` and`
                     }
-                    // If there are activated arguments and it's the first filter then add a where
-                    else if (!activated.length && key === Object.keys(filters)[0]) {
-                        query += ` WHERE`
-                    }
-
+                    
                     // Add the filter to the query in the format of key in (list of words)
                     let list = filters[key].map(word => `'${word}'`).join(',')
-                    query += ` ${key} in (${list})`
+                    query_filters += ` ${key} in (${list})`
                 }
 
             }
         }
 
+        if ( query_activated.length || query_filters.length  ) {
+            query += ` WHERE `
+        }
+
+        // Add the activated arguments to the query
+        query += query_activated
+
+        // Add the filter arguments to the query 
+        query += query_filters
 
         if (data.limit) {
             query += ' LIMIT ?'
