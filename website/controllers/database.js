@@ -219,8 +219,12 @@ module.exports = {
         //     }
         // }
 
-        
-
+        // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
+        query_filters = Object.entries(filters)
+        .filter(([key, value]) => value.length)
+        .map(([key, value]) => `${key} in (${value.map(word => `'${word}'`).join(',')})`)
+        .join(' and ');
+      
         if ( query_activated.length || query_filters.length  ) {
             query += ` WHERE `
         }
