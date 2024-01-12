@@ -111,6 +111,15 @@ module.exports = {
         let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
 
 
+        // ----------- Changing the ambigues column --------------
+
+        if (data.assigned){
+            data['DEVICE.id'] = data.id
+            delete data.id
+            data['USER.id'] = data.user 
+            delete data.user
+        }
+
         // ----------- Building the list of activated arguments ----------- 
 
         // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 

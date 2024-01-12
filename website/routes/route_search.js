@@ -60,14 +60,18 @@ router.post('/fetch_filters', (req, res) => {
         }
     }
 
-    data = {filters:filters, limit: req.body.limit, offset:req.body.offset }
+    data = {filters:filters, 
+            // limit: req.body.limit,
+            // offset:req.body.offset 
+        }
 
     if (req.body.searchValue) {
         data.serial = req.body.searchValue;
         data.id = req.body.searchValue;
-        // data.user = req.body.searchValue;
+        data.user = req.body.searchValue;
         data.exclusively = null;
         // data.regex = true;
+        data.assigned = true;
     }
 
     // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {
@@ -86,7 +90,7 @@ router.post('/fetch_filters', (req, res) => {
  * Rendering the search page
  */
 router.get('/search',
-    login.checkAuthentication,
+    // login.checkAuthentication,
 
     (req, res, next) => {
         database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   

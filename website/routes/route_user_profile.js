@@ -6,7 +6,8 @@ const database = require('../controllers/database.js');
 const router = express.Router();
 
 
-router.get('/user_profile', login.checkAuthentication,
+router.get('/user_profile', 
+    login.checkAuthentication,
     (req, res, next) => {
         database.userDetails(req.session.userid, (err, result) => {
             if (err) {
