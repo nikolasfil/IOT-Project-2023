@@ -27,6 +27,7 @@ router.post('/fetchNumOfResults', (req, res) => {
         data.id = req.body.searchValue;
         // data.user = req.body.searchValue;
         data.exclusively = null;
+        // data.regex = true;
     }
 
     database.getAllDevicesJson(data = data, function (err, devices) {
@@ -65,6 +66,7 @@ router.post('/fetch_filters', (req, res) => {
         data.id = req.body.searchValue;
         // data.user = req.body.searchValue;
         data.exclusively = null;
+        // data.regex = true;
     }
 
     // database.getAllDevicesJson(data = {filters:filters,serial:req.body.serial, id:req.body.id, limit: req.body.limit, offset:req.body.offset }, function (err, devices) {

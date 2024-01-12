@@ -49,7 +49,7 @@ module.exports = {
     addingActivated: function(activated_name, linker, regex) {
         let query_activated ;
         
-    
+        console.log(regex)
         if (!regex){
             query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
         }
@@ -108,7 +108,7 @@ module.exports = {
         let activated_name = [];
 
         // List of arguments that are not iterated
-        let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively']
+        let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex']
 
 
         // ----------- Building the list of activated arguments ----------- 
@@ -142,8 +142,8 @@ module.exports = {
         // ----------- Building the activated arguments -----------
 
         
-        query_activated = this.addingActivated(activated_name, linker, data.regex)
         // query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
+        query_activated = this.addingActivated(activated_name, linker, data.regex)
         
 
         // ----------- Building the filters -----------
