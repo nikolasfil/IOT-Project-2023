@@ -109,10 +109,10 @@ class AdventureGuard(Database):
             # user_id = random.choice(available_users)
             # device_id = random.choice(available_devices)
             user_id = self.select(
-                "SELECT DISTINCT id FROM USER WHERE id NOT IN (SELECT user_id FROM Assigned)"
+                "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)"
             )
             device_id = self.select(
-                "SELECT DISTINCT id FROM DEVICE WHERE id NOT IN (SELECT device_id FROM Assigned) and status = 'active'"
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active'"
             )
             date_received = self.random_date()
             date_returned = self.random_date(date_received)

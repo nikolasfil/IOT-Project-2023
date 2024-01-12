@@ -1,4 +1,4 @@
-id,serial,battery,status,type
+d_id,serial,battery,status,type
 1,413676,70,active,tracker
 2,339046,49,broken,button
 3,725002,72,deactivated,tracker
