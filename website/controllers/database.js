@@ -185,46 +185,20 @@ module.exports = {
 
         // ----------- Building the activated arguments -----------
         query_activated = activated_name.map((name) => `${name} = ?`).join(' and ')
-
-        // If the activated list has enough arguments or there are filters 
         
 
         // ----------- Building the filters -----------
 
         let filters = data.filters;
 
-
-        // If there are filters and they are not empty
-        // if (filters && Object.keys(filters) !== 0) {
-        //     // filters = JSON.parse(filters);
-
-        //     for (let key in filters) {
-                
-        //         // If the filter is not empty
-        //         if (filters[key].length) {
-
-        //             // If there are activated arguments and it's not the first filter then add an and
-        //             if (!activated.length && key !== Object.keys(filters)[0]) {
-        //                 query_filters += ` and`
-        //             // If there are activated arguments and it's the first filter then add an and 
-        //             } else if (activated.length && key === Object.keys(filters)[0]) {
-        //                 query_filters += ` and`
-        //             }
-
-        //             // Add the filter to the query in the format of key in (list of words)
-        //             let list = filters[key].map(word => `'${word}'`).join(',')
-        //             query_filters += ` ${key} in (${list})`
-        //         }
-
-        //     }
-        // }
-
-        // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
-        query_filters = Object.entries(filters)
-        .filter(([key, value]) => value.length)
-        .map(([key, value]) => `${key} in (${value.map(word => `'${word}'`).join(',')})`)
-        .join(' and ');
-      
+        if (filters) {
+            // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
+            query_filters = Object.entries(filters)
+            .filter(([key, value]) => value.length)
+            .map(([key, value]) => `${key} in (${value.map(word => `'${word}'`).join(',')})`)
+            .join(' and ');
+        }
+        
         if ( query_activated.length || query_filters.length  ) {
             query += ` WHERE `
         }
@@ -236,17 +210,17 @@ module.exports = {
         query += query_filters
 
         if (data.limit) {
-            query += ' LIMIT ?'
+            query += ' LIMIT ? '
             activated.push(data.limit)
             
         }
 
         if (data.offset) {
-            query += ' OFFSET ?'
+            query += ' OFFSET ? '
             activated.push(data.offset)
         }
 
-        console.log(query)
+        // console.log(query)
 
         try {
             stmt = betterDb.prepare(query)
