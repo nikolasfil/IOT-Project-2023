@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../controllers/database.js');
+const login = require('../controllers/login.js')
 
 
 // Change the search to include complex like id:1, serial:2342 and so forth for the users 
@@ -85,7 +86,8 @@ router.post('/fetch_filters', (req, res) => {
  * Rendering the search page
  */
 router.get('/search',
-    
+    login.checkAuthentication,
+
     (req, res, next) => {
         database.getAllAtributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
         if (err) {
@@ -96,7 +98,6 @@ router.get('/search',
                 next();
             }
         });
-
     },
 
     (req, res, next) => {
@@ -121,6 +122,8 @@ router.get('/search',
         });
     }
 );
+
+
 
 
 module.exports = router;

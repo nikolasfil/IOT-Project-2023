@@ -108,7 +108,7 @@ module.exports = {
         let activated_name = [];
 
         // List of arguments that are not iterated
-        let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex']
+        let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
 
 
         // ----------- Building the list of activated arguments ----------- 
@@ -137,6 +137,10 @@ module.exports = {
 
         // Add the table name
         query += ` FROM DEVICE `
+        
+        if (data.assigned) {
+            query += ` JOIN Assigned on DEVICE.id = Assigned.device_id JOIN USER on Assigned.user_id = USER.id`
+        }
 
 
         // ----------- Building the activated arguments -----------
@@ -201,6 +205,16 @@ module.exports = {
 
     },
 
+    select: function(command, callback) {
+        let stmt, result;
+        try {
+            stmt = betterDb.prepare(command)
+            result = stmt.all();
+        } catch (err) {
+            callback(err, null)
+        }
+        callback(null, result);
+    },
 
 
     getAllAtributes: function(source,attribute, limit, offset, callback) {

@@ -98,4 +98,4 @@ class Database:
         except Exception as e:
             print(e)
             print(command)
-            return []
+            return None

@@ -62,7 +62,7 @@ class AdventureGuard(Database):
                 self.insert_data(
                     tableName, [data[col] for col in self.tables[tableName]]
                 )
-                self.users.append(data)
+                # self.users.append(data)
 
     def fill_device(self):
         """fills the device table with data from the csv file"""
@@ -91,23 +91,19 @@ class AdventureGuard(Database):
                     tableName, [data[col] for col in self.tables[tableName]]
                 )
 
-                self.devices.append(data)
+                # self.devices.append(data)
 
     def fill_assigned(self):
         tableName = "Assigned"
         self.clearing(tableName)
 
-        # user id
-        # device id
-        # date_received
-        # date_returned
-        # available_users = [user["id"] for user in self.users]
-        # available_devices = [
-        # device["id"] for device in self.devices if device["status"] == "active"
-        # ]
         count_active = self.select(
             "SELECT COUNT(*) FROM DEVICE WHERE status = 'active'"
-        )[0][0]
+        )
+        if count_active:
+            count_active = count_active[0][0]
+        else:
+            count_active = 0
         num = min(self.num, count_active)
         for i in range(num):
             # user_id = random.choice(available_users)
@@ -119,14 +115,13 @@ class AdventureGuard(Database):
                 "SELECT DISTINCT id FROM DEVICE WHERE id NOT IN (SELECT device_id FROM Assigned) and status = 'active'"
             )
             date_received = self.random_date()
-            # date_returned is after date_received
             date_returned = self.random_date(date_received)
 
             if not user_id or not device_id:
                 continue
             data = [user_id[0][0], device_id[0][0], date_received, date_returned]
 
-            self.assigned.append(data)
+            # self.assigned.append(data)
             self.insert_data(tableName, data)
 
     def fill_pressed(self):

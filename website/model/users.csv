@@ -1,5 +1,5 @@
 id,first_name,last_name,phone,role,password
-1,Pénélope,Vickars,195-647-6246,customer,1
+1,admin,admin,195-647-6246,admin,a
 2,Océanne,Dudek,619-310-7854,admin,2
 3,Séverine,Wills,197-900-7346,first aid,3
 4,Solène,De Bischof,643-105-1050,first aid,4
