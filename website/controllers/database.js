@@ -155,12 +155,13 @@ module.exports = {
         // Working on the arguments provided
         let activated = []; 
         let activated_name = [];
-
+        let non_iterated = ['filters', 'limit', 'offset', 'numOf']
 
         // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
         for (let key in data) {
             // Get all the data that are not null and are not filters
-            if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
+            // if (data[key] && key !== 'filters' && key !== 'limit' && key !== 'offset' && key !== 'numOf') {
+            if (data[key] && !non_iterated.includes(key)) {
                 activated.push(data[key])
                 activated_name.push(key)
             }
