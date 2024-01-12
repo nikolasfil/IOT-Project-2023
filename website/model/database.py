@@ -91,3 +91,11 @@ class Database:
     def path_to_file(self, filename):
         """returns the path to the file"""
         return Path(__file__).parent / filename
+
+    def select(self, command):
+        try:
+            return self.conn.execute(command).fetchall()
+        except Exception as e:
+            print(e)
+            print(command)
+            return []
