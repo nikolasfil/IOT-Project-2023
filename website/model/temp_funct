@@ -1,0 +1,28 @@
+from datetime import datetime, timedelta
+import random
+
+
+def random_date(start=None):
+    """Generate a random date, later than the provided start date if given."""
+    if start:
+        start_date = datetime.strptime(start, "%m/%d/%Y")
+    else:
+        start_date = datetime.now()
+
+    # Generate a random number of days to add
+    random_days = random.randint(1, 365)  # Adjust the range as needed
+
+    # Calculate the new date
+    new_date = start_date + timedelta(days=random_days)
+
+    return new_date.strftime("%m/%d/%Y")
+
+
+# Example usage without providing a start date
+random_date_result = random_date()
+print("Random Date:", random_date_result)
+
+# Example usage with a start date
+provided_start_date = "01/01/2023"
+random_date_result_after_start = random_date(provided_start_date)
+print("Random Date After", provided_start_date + ":", random_date_result_after_start)

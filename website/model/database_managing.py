@@ -1,6 +1,8 @@
 #!/bin/python3
 
 from database import Database
+import random
+from datetime import datetime, timedelta
 
 
 class AdventureGuard(Database):
@@ -62,8 +64,6 @@ class AdventureGuard(Database):
                 )
                 self.users.append(data)
 
-        print("Filled users table")
-
     def fill_device(self):
         """fills the device table with data from the csv file"""
         # curl "https://api.mockaroo.com/api/35a73c80?count=1000&key=cf225740" > "device.csv"
@@ -101,17 +101,22 @@ class AdventureGuard(Database):
         # device id
         # date_received
         # date_returned
-
+        available_users = [user["id"] for user in self.users]
+        available_devices = [
+            device["id"] for device in self.devices if device["status"] == "active"
+        ]
         for i in range(self.num):
-            user_id = self.users[i]["id"]
-            device_id = self.devices[i]["id"]
+            user_id = random.choice(available_users)
+            device_id = random.choice(available_devices)
             date_received = self.random_date()
             # date_returned is after date_received
             date_returned = self.random_date(date_received)
 
             data = [user_id, device_id, date_received, date_returned]
-            self.insert_data(tableName, data)
+            if data in self.assigned:
+                continue
             self.assigned.append(data)
+            self.insert_data(tableName, data)
 
     def fill_pressed(self):
         pass
@@ -119,15 +124,20 @@ class AdventureGuard(Database):
     def fill_tracked(self):
         pass
 
-    def random_date(self, start="1/1/2023", end="1/1/2024"):
-        """Generate a random date between two dates"""
-        from datetime import datetime
-        import random
+    def random_date(self, start=None):
+        """Generate a random date, later than the provided start date if given."""
+        if start:
+            start_date = datetime.strptime(start, "%m/%d/%Y")
+        else:
+            start_date = datetime.now()
 
-        start = datetime.strptime(start, "%m/%d/%Y")
-        end = datetime.strptime(end, "%m/%d/%Y")
+        # Generate a random number of days to add
+        random_days = random.randint(1, 365)  # Adjust the range as needed
 
-        return start + (end - start) * random.random()
+        # Calculate the new date
+        new_date = start_date + timedelta(days=random_days)
+
+        return new_date.strftime("%m/%d/%Y")
 
 
 if __name__ == "__main__":
