@@ -69,14 +69,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
  */
 async function placeAllDevicesByID(limit = -1, offset = 0) {
     let data = await fetchResults(limit=limit, offset=offset, numbering=false);
-    placeDevices(data);
-}
-
-/**
- * Takes the resulted books and places them on the page .
- * @param {*} data list of json objects containing corresponding attributes of the book 
- */
-function placeDevices(data) {
+    // placeDevices(data);
     let container = document.getElementById("results");
     container.innerHTML = "";
 
@@ -87,65 +80,70 @@ function placeDevices(data) {
     }
 }
 
+// /**
+//  * Takes the resulted books and places them on the page .
+//  * @param {*} data list of json objects containing corresponding attributes of the book 
+//  */
+// function placeDevices(data) {
+    
+// }
+
 function htmlPlacement(data){
-    let div = document.createElement("div");
-    div.className = "card-img-top card-space";
-    div.draggable = "false";
+    let div_box = document.createElement("div");
+    div_box.className = "card-img-top card-space";
+    div_box.draggable = "false";
 
-    let a = document.createElement("a");
-    a.href = `/device_info/${data.serial}`;
-    a.className = "d-flex flex-column align-content-center";
+    let a_serial = document.createElement("a");
+    a_serial.href = `/device_info/${data.serial}`;
+    a_serial.className = "d-flex flex-column align-content-center";
 
-        
-    let div2 = document.createElement("div");
-    div2.className = "p-2";
+    let div_info = document.createElement("div");
+    div_info.className = "p-2";
 
-    let h6 = document.createElement("h6");
-    h6.className = "text-truncate--2"
-    h6.innerHTML = `<strong>ID: ${data.d_id}</strong>`;
-    div2.appendChild(h6);
+    let h_id = document.createElement("h6");
+    h_id.className = "text-truncate--2"
+    h_id.innerHTML = `<strong>ID: ${data.d_id}</strong>`;
+    div_info.appendChild(h_id);
 
-    let p = document.createElement("p");
-    p.className = "text-truncate--3"
+    let p_status = document.createElement("p");
+    p_status.className = "text-truncate--3"
+    p_status.innerHTML = `<small>Status: ${data.status}</small>`;
+    div_info.appendChild(p_status);
 
-    let pserial = document.createElement("p");
-    pserial.className = "text-truncate--3"
-    pserial.innerHTML = `<small>Serial: ${data.serial}</small>`;
-    div2.appendChild(pserial);
-
-
-    p.innerHTML = `<small>Status: ${data.status}</small>`;
-    div2.appendChild(p);
+    let p_serial = document.createElement("p");
+    p_serial.className = "text-truncate--3"
+    p_serial.innerHTML = `<small>Serial: ${data.serial}</small>`;
+    div_info.appendChild(p_serial);
 
 
+    let p_battery = document.createElement("p");
+    p_battery.className = "text-truncate--3"
+    p_battery.innerHTML = `<small>Available Battery: ${data.battery}</small>`;
+    div_info.appendChild(p_battery);
 
-    let p2 = document.createElement("p");
-    p2.innerHTML = `<small>Available Battery: ${data.battery}</small>`;
-    div2.appendChild(p2);
 
-
-    let p3 = document.createElement("p");
-    p3.innerHTML = `<small>Device Type: ${data.type}</small>`;
-    div2.appendChild(p3);
+    let p_type = document.createElement("p");
+    p_type.className = "text-truncate--3"
+    p_type.innerHTML = `<small>Device Type: ${data.type}</small>`;
+    div_info.appendChild(p_type);
 
     if (data.u_id){
 
-        let p4 = document.createElement("p");
-        p4.innerHTML = `<small>User assigned: ${data.u_id}</small>`;
-        div2.appendChild(p4);
+        let p_assigned = document.createElement("p");
+        p_assigned.innerHTML = `<small>User assigned: ${data.u_id}</small>`;
+        div_info.appendChild(p_assigned);
 
-        let p5 = document.createElement("p");
-        p5.innerHTML = `<small>First name: ${data.first_name}</small>`;
-        div2.appendChild(p5);
+        let p_assigned_name = document.createElement("p");
+        p_assigned_name.innerHTML = `<small>First name: ${data.first_name}</small>`;
+        div_info.appendChild(p_assigned_name);
 
     }
 
-    a.appendChild(div2);
+    a_serial.appendChild(div_info);
 
-    div.appendChild(a);
+    div_box.appendChild(a_serial);
 
-    return div;
+    return div_box;
 }
 
-// ------------------  Filters ------------------
 
