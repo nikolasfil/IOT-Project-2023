@@ -1,4 +1,17 @@
 
+// if (window.searchBarValue == undefined) {
+//     window.searchBarValue = '';
+// }
+// window.searchBarValue = '{{searchBarValue}}';
+
+// <script type="text/javascript">
+//     window.onload = () => {
+        
+//         mainLoad();
+        
+//     }
+// </script>
+
 /** 
  * This function runs everytime the page of search page is loaded 
  */
@@ -6,13 +19,22 @@ function mainLoad() {
 
     // global variable for filters
     window.gFilters = {};
-    
+    window.searchBarValue = getSearchBarValue();
+
     addShowMore();
     addFilterListeners(window.gFilters);
     // in show_pages
     page_initilazation();
 }
 
+function getSearchBarValue(){
+    let searchBar = document.getElementById("searchBarInput");
+    // window.searchBarValue = searchBar.value;
+    if (searchBar.value == undefined){
+        return ""
+    }
+    return searchBar.value;
+}
 
 /**
  * 
@@ -69,7 +91,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
  */
 async function placeAllDevicesByID(limit = -1, offset = 0) {
     let data = await fetchResults(limit=limit, offset=offset, numbering=false);
-    // placeDevices(data);
+
     let container = document.getElementById("results");
     container.innerHTML = "";
 
@@ -80,14 +102,9 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
     }
 }
 
-// /**
-//  * Takes the resulted books and places them on the page .
-//  * @param {*} data list of json objects containing corresponding attributes of the book 
-//  */
-// function placeDevices(data) {
-    
-// }
-
+/**
+ * This function is used to add box cards with information about the devices
+ */
 function htmlPlacement(data){
     let div_box = document.createElement("div");
     div_box.className = "card-img-top card-space";
@@ -147,3 +164,4 @@ function htmlPlacement(data){
 }
 
 
+mainLoad();

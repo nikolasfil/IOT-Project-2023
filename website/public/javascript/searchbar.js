@@ -18,3 +18,5 @@ function searchbarClick() {
     let searchbar = window.document.getElementById("searchBarInput");    
     window.location = "/search?search=" + searchbar.value;
 }
+
+
