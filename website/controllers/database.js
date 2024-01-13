@@ -4,6 +4,8 @@ const betterDb = new sql('model/database.sqlite')
 const bcrypt = require('bcrypt');
 
 
+// --------- Generic Functions ---------
+
 function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
@@ -64,6 +66,8 @@ exports.addingActivated=(activated_name, linker, regex)=> {
     }    
     return query_activated
 }
+
+// --------- Dynamic Selection from Database 
 
 /**
  * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
@@ -230,16 +234,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
 }
 
-exports.select=(command, callback) =>  {
-    let stmt, result;
-    try {
-        stmt = betterDb.prepare(command)
-        result = stmt.all();
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
-}
 
 exports.getAllAtributes=(source,attribute, limit, offset, callback) =>  {
     let stmt, result;
@@ -271,6 +265,7 @@ exports.getAllAtributes=(source,attribute, limit, offset, callback) =>  {
     }
     callback(null, result);
 }
+
 
 exports.checkIfUserExists= (id, callback) =>  {
     const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
@@ -325,6 +320,30 @@ exports.checkUser= (id, password, callback) =>  {
     }
 }
 
+
+// --------- Static Selection in the database -----------
+
+exports.select=(command, callback) =>  {
+    let stmt, result;
+    
+    try {
+        stmt = betterDb.prepare(command.query)
+        if (command.arguments.length) {
+            result = stmt.all(command.arguments);
+        }
+        else {
+            result = stmt.all();
+        }
+    } catch (err) {
+        callback(err, null)
+    }
+    callback(null, result);
+}
+
+
+
+// --------- Dynamic Insertion into Database --------
+
 exports.addUser= (user, callback) =>  {
     let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
     let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
@@ -341,4 +360,4 @@ exports.addUser= (user, callback) =>  {
     }
 }
 
-
+// ----------------------------------------------------

@@ -42,25 +42,37 @@ router.get('/device_info',
     },
     (req, res, next) => {
         // get device info
-        // database.getdeviceInfo(serial = req.query['serial'], title = null, numOf = false, copies = true, filters = null, limit = null, offset = null, (err, device) => {
-        database.getAllDevicesJson(
-            data = {
-                serial:req.query['serial'] 
-            },
-                (err, device) => {
+        let data = {}
+        data.serial = req.query['serial'];
+        database.getAllDevicesJson(data = data,(err, device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             } else {
                 // assign the res.locals.device the first device in the list
-
                 res.locals.device = device[0];
+                console.log(res.locals.device)
                 next();
             }
         });
     },
-    
 
+    (req,res,next) => {
+        // select d_id,user_id,date_received,date_returned  
+        // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
+        let command = {}
+        command.query = "SELECT d_id,user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ?"
+        command.arguments = [req.query['serial']]
+        database.select(command,(err,device) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                res.locals.deviceHistory = device;
+                next();
+            }
+        })
+    },
     (req, res) => {
         res.render('device_info', {
             title: 'device Info',
@@ -70,7 +82,7 @@ router.get('/device_info',
     });
 
     
-
+    
 module.exports = router;
 
 
