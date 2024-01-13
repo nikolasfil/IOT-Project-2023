@@ -6,53 +6,9 @@ const c_search = require('../controllers/c_search.js')
 
 
 
-
-
 // 
 /**
- * returns the number of books that correspond to the parameters specified in the search
- */
-router.post('/fetchNumOfResults', 
-    c_search.filtering,
-    c_search.data_minining,
-    (req, res) => {
-        let data = res.locals.data;
-        data.numOf = true;
-        database.getAllDevicesJson(data = data, function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error Couldnt fetch number of results')
-            } else {
-                res.send(devices);
-        }
-    })  
-})
-
-
-/**
- * Fetches the results that correspond to the parameters specified in the search page 
- */
-router.post('/fetch_filters', 
-
-    c_search.filtering,
-    c_search.data_minining,
-    (req, res) => {
-        let data = res.locals.data;
-
-        database.getAllDevicesJson(data = data , function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.send(devices);
-            }
-        })
-    }
-)
-
-// 
-/**
- * returns the number of books that correspond to the parameters specified in the search
+ * returns the number of devices that resulted from the search or the result of devices in the database
  */
 router.post('/fetchResults/:numOf', 
     c_search.filtering,
