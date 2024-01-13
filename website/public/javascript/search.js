@@ -27,14 +27,7 @@ function mainLoad() {
 async function fetchResults(limit = null, offset = null, numbering = false){
     let link,body_data = {} ;
 
-    // Changing where the request is being made, to return either a number or a list 
-    if (numbering){
-        // link = '/fetchNumOfResults'
-        link = '/fetchResults/true'
-    } else {
-        // link = '/fetch_filters'
-        link = '/fetchResults/false'
-    }
+    link = `/fetchResults/${numbering}`
 
     body_data.offset = offset;
     body_data.limit = limit;
@@ -43,8 +36,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
     body_data.searchValue = window.searchBarValue;
     body_data.exclusively = null;
 
-
-    return await fetch(link, {
+    let link_data = {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -54,7 +46,9 @@ async function fetchResults(limit = null, offset = null, numbering = false){
         referrerPolicy: "no-referrer",
         body: JSON.stringify(body_data),
 
-    }).then((res) => {
+    }
+
+    return await fetch(link, link_data ).then((res) => {
         return res.json();
     }).then((data) => {
         if (numbering){
