@@ -43,8 +43,7 @@ Either make it an extra page for admins or make the search page only for admins
 
 ### 4. Search page for admins
 
-1. search for devices based on the filters
-2. perhaps complex search for users as well (?)
+1. Fix Assigned to be a radius box instead of a check box
 
 ### 5. Device Page
 
