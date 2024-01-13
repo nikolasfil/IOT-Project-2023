@@ -23,15 +23,16 @@ class AdventureGuard(Database):
 
     def fill_database(self):
         self.clear_all()
-        self.fill_users()
+        # self.fill_users()
         print("Filled users table")
-        self.fill_device()
+        # self.fill_device()
         print("Filled device table")
-        self.fill_assigned()
+        # self.fill_assigned()
         print("Filled assigned table")
         self.fill_pressed()
-
+        # print("Filled pressed table")
         self.fill_tracked()
+        # print("Filled tracked table")
 
     def fill_users(self):
         """fills the users table with data from the csv file"""
@@ -62,7 +63,6 @@ class AdventureGuard(Database):
                 self.insert_data(
                     tableName, [data[col] for col in self.tables[tableName]]
                 )
-                # self.users.append(data)
 
     def fill_device(self):
         """fills the device table with data from the csv file"""
@@ -90,8 +90,6 @@ class AdventureGuard(Database):
                 self.insert_data(
                     tableName, [data[col] for col in self.tables[tableName]]
                 )
-
-                # self.devices.append(data)
 
     def fill_assigned(self):
         tableName = "Assigned"

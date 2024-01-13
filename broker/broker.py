@@ -10,7 +10,7 @@ class Broker:
             client_id = "clienting-stuff"
         if topic is None:
             topic = "#"
-            #topic = "Environmental/dutch-sensor-systems-ranos-db-2:1"
+            # topic = "Environmental/dutch-sensor-systems-ranos-db-2:1"
         if broker is None:
             broker = "150.140.186.118"
         if port is None:

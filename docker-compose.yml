@@ -1,6 +1,13 @@
 # version: "3"
 
 services:
+  python-app:
+    build:
+      context: .
+      dockerfile: DockerFiles/Dockerfile-Python
+    image: pythonbroker
+    depends_on:
+      - node-app
   node-app:
     build:
       context: .

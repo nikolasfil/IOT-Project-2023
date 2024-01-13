@@ -14,7 +14,7 @@ COPY website/package\*.json ./
 
 # Install dependencies
 
-RUN npm ci
+RUN npm ciD
 
 # Bundle app source
 
