@@ -5,8 +5,10 @@ const login = require('../controllers/login.js')
 const c_search = require('../controllers/c_search.js')
 
 
-// Change the search to include complex like id:1, serial:2342 and so forth for the users 
 
+
+
+// 
 /**
  * returns the number of books that correspond to the parameters specified in the search
  */
@@ -47,6 +49,28 @@ router.post('/fetch_filters',
         })
     }
 )
+
+// 
+/**
+ * returns the number of books that correspond to the parameters specified in the search
+ */
+router.post('/fetchResults/:numOf', 
+    c_search.filtering,
+    c_search.data_minining,
+    (req, res) => {
+        let data = res.locals.data;
+        if (req.params.numOf == 'true'){
+            data.numOf = true;
+        }
+        database.getAllDevicesJson(data = data, function (err, devices) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error Couldnt fetch number of results')
+            } else {
+                res.send(devices);
+        }
+    })  
+})
 
 
 /**

@@ -21,7 +21,6 @@ exports.filtering=(req, res, next) =>{
         data.assigned = false;
     }
 
-
     res.locals.filters = filters;
     res.locals.data = data;
     next();

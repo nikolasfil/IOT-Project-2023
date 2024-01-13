@@ -29,9 +29,11 @@ async function fetchResults(limit = null, offset = null, numbering = false){
 
     // Changing where the request is being made, to return either a number or a list 
     if (numbering){
-        link = '/fetchNumOfResults'
+        // link = '/fetchNumOfResults'
+        link = '/fetchResults/true'
     } else {
-        link = '/fetch_filters'
+        // link = '/fetch_filters'
+        link = '/fetchResults/false'
     }
 
     body_data.offset = offset;
