@@ -93,6 +93,7 @@ module.exports = {
         // initializing some variables
         query_filters = "";
         query_activated = "";
+        query_unassigned = "";
         
         // ----------- initializing arguments -----------
 
@@ -152,6 +153,8 @@ module.exports = {
         
         if (data.assigned) {
             query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
+        } else if (data.assigned === false ){ 
+            query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned) `
         }
 
 
@@ -176,15 +179,27 @@ module.exports = {
         }
         
         // ----------- Building the final query -----------
-        if ( query_activated.length || query_filters.length  ) {
+        if ( query_activated.length || query_filters.length  || query_unassigned.length) {
             query += ` WHERE `
         }
 
         // Add the activated arguments to the query
         query += query_activated
 
+        if ( query_activated.length && query_filters.length ) {
+            query += ` and `
+        }
+
         // Add the filter arguments to the query 
         query += query_filters
+
+        if ( (query_activated.length && query_unassigned.length) || (query_filters.length && query_unassigned.length)) {
+            query += ` and `
+        }
+
+        // Add the unassigned argument to the query
+        query += query_unassigned
+
 
         // Add the limit and offset to the query
         if (data.limit) {

@@ -26,7 +26,10 @@ exports.data_minining = (req, res, next) => {
             data.u_id = req.body.searchValue;
             data.assigned = true;
             // delete filters.assigned;
-        } 
+        } else if (filters.assigned && filters.assigned.includes('Unassigned') ){
+            data.assigned = false;
+            // delete filters.assigned;
+        }
         // else { 
             // data.assigned = false;
             // delete filters.assigned;
