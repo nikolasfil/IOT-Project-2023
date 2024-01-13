@@ -43,9 +43,6 @@ function getRegex(searchValue, rows) {
 }
 
 
-
-// module.exports = {
-
 exports.addingActivated=(activated_name, linker, regex)=> {
     let query_activated ;
     
@@ -244,7 +241,6 @@ exports.select=(command, callback) =>  {
     callback(null, result);
 }
 
-
 exports.getAllAtributes=(source,attribute, limit, offset, callback) =>  {
     let stmt, result;
     let query = `Select distinct`
@@ -275,7 +271,6 @@ exports.getAllAtributes=(source,attribute, limit, offset, callback) =>  {
     }
     callback(null, result);
 }
-
 
 exports.checkIfUserExists= (id, callback) =>  {
     const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
@@ -347,7 +342,3 @@ exports.addUser= (user, callback) =>  {
 }
 
 
-
-    
-
-// }

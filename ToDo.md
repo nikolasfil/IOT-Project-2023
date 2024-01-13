@@ -54,6 +54,7 @@ Either make it an extra page for admins or make the search page only for admins
 4. assign the device to a user
 5. view the user assigned to the device
 6. history of users
+7. A slider to view current map or selected from history map
 
 ### 6. About us page
 
