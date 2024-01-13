@@ -278,7 +278,7 @@ module.exports = {
 
 
     checkIfUserExists: function (id, callback) {
-        const stmt = betterDb.prepare('Select * from USER where id = ? ')
+        const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
         let user;
         try {
             user = stmt.get(id)
@@ -290,7 +290,10 @@ module.exports = {
     },
 
     userDetails: function (id, callback) {
-        const stmt = betterDb.prepare('Select id, first_name, last_name, phone,role from USER where id = ? ')
+        // let query = `Select u_id, first_name, last_name, phone,role from USER where u_id = ? `
+        let query = `Select * from USER where u_id = ? `
+        // const stmt = betterDb.prepare('Select u_id, first_name, last_name, phone,role from USER where u_id = ? ')
+        const stmt = betterDb.prepare(query)
         let user;
         try {
             user = stmt.get(id)
@@ -307,7 +310,7 @@ module.exports = {
         let user, error_message;
 
         try {
-            const stmt = betterDb.prepare('Select * from USER where id = ?')
+            const stmt = betterDb.prepare('Select * from USER where u_id = ?')
             user = stmt.get(id)
             if (user) {
                 const match = bcrypt.compareSync(password, user.password);

@@ -10,6 +10,7 @@ router.get('/user_profile',
     login.checkAuthentication,
     (req, res, next) => {
         database.userDetails(req.session.userid, (err, result) => {
+            console.log(result)
             if (err) {
                 console.log(err);
             }

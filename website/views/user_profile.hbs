@@ -11,7 +11,7 @@
     <div class="row align-items-center">
       <!-- card -->
       <div class="col justify-self-center align-items-center scale">
-        {{>membershipCard name=profile.first_name surname=profile.last_name id=profile.id}}
+        {{>membershipCard name=profile.first_name surname=profile.last_name id=profile.u_id}}
       </div>
 
       <!-- Personal information -->
@@ -25,7 +25,7 @@
         </div>
         <div class="profileInfoDetails">
           <h6><strong>ID</strong></h6>
-          <p>{{profile.id}}</p>
+          <p>{{profile.u_id}}</p>
           <h6><strong>Role</strong></h6>
           <p>{{profile.role}}</p>
           <h6><strong>Phone</strong></h6>

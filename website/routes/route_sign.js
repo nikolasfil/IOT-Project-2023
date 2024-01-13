@@ -12,6 +12,7 @@ router.get('/sign_in', (req, res) => {
 
 router.post('/sign_in',
     (req, res) => {
+
         database.checkUser(req.body.id, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
@@ -25,7 +26,8 @@ router.post('/sign_in',
                 }
                 else {
                     req.session.signedIn = true;
-                    req.session.userid = result.id;
+                    req.session.userid = result.u_id;
+                    req.session.role = result.role;
                     res.redirect(req.get('referer'));
                 }
             }
