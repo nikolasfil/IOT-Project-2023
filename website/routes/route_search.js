@@ -29,8 +29,23 @@ router.post('/fetchResults/:numOf',
             }
         });
     },
+    (req,res,next) => {
+        if (req.params.numOf == 'true'){
+            res.send(res.locals.devices);
+        }
+        else{
+            next();
+        }
+    },
     (req, res) => {
-        res.send(res.locals.devices);
+        console.log(res.locals.devices)
+        // res.send(res.locals.devices);
+        res.render('partials/devices_grid',
+        {
+            layout: false,
+            devices: res.locals.devices,
+            signedIn: req.session.signedIn,
+        });
     }
     )  
 

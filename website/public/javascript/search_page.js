@@ -81,15 +81,17 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
     let data = await fetchResults(limit=limit, offset=offset, numbering=false);
 
     let container = document.getElementById("results");
-    container.innerHTML = "";
+    console.log(data);
+    container.innerHTML = data;
+    // container.innerHTML = "";
 
     // This for loop could have been replaced by a call in the backend
 
-    for (let i = 0; i < data.length; i++) {
-        let div = document.createElement("div");
-        div = htmlPlacement(data[i]);
-        container.appendChild(div);
-    }
+    // for (let i = 0; i < data.length; i++) {
+    //     let div = document.createElement("div");
+    //     div = htmlPlacement(data[i]);
+    //     container.appendChild(div);
+    // }
 }
 
 /**
