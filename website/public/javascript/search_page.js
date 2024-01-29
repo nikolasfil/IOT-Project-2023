@@ -34,6 +34,7 @@ function getSearchBarValue(){
  * @returns 
  */
 async function fetchResults(limit = null, offset = null, numbering = false){
+    
     let link,body_data = {} ;
 
     link = `/fetchResults/${numbering}`
@@ -82,6 +83,8 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
     let container = document.getElementById("results");
     container.innerHTML = "";
 
+    // This for loop could have been replaced by a call in the backend
+
     for (let i = 0; i < data.length; i++) {
         let div = document.createElement("div");
         div = htmlPlacement(data[i]);
@@ -93,6 +96,8 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
  * This function is used to add box cards with information about the devices
  */
 function htmlPlacement(data){
+    // This needs to come from the server side ! 
+
     let div_box = document.createElement("div");
     div_box.className = "card-img-top card-space";
     div_box.draggable = "false";

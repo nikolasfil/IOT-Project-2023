@@ -47,7 +47,6 @@ router.get('/map/:serial',
 )
 
 
-
 // returns a list of device that have the given title
 router.get('/device_info',
     (req, res, next) => {
@@ -116,8 +115,8 @@ router.get('/device_info',
         });
     });
 
-    
-    
+
+
 module.exports = router;
 
 
