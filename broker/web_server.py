@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -7,7 +7,9 @@ app = Flask(__name__)
 def home():
     html = "<p>Hello World!</p>"
     html = ["testing"]
-    return html
+    data = {"message": "Hello World!"}
+    data = jsonify(data)
+    return data
 
 
 @app.route("/about", methods=["GET", "POST"])
