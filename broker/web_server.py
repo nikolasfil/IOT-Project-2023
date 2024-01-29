@@ -6,6 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     html = "<p>Hello World!</p>"
+    html = ["testing"]
     return html
 
 
@@ -25,4 +26,5 @@ def get():
 # url_for('static', filename='style.css')
 
 if __name__ == "__main__":
+    # app.run(host="0.0.0.0", port=5000, debug=True)
     app.run(host="0.0.0.0", port=5000, debug=True)
