@@ -47,6 +47,36 @@ router.get('/map/:serial',
 )
 
 
+router.get('/device_general',
+    (req,res,next) => {
+
+        link = "http://localhost:3000"
+        let link_data = {
+            method: "GET",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+        }
+
+        fetch(link, link_data).then((res) => {
+            return res.text();
+        }
+        ).then((data) => {
+            res.locals.info = data;
+            next();
+        }).catch(error => {
+            console.log(error);
+        });
+
+        next();
+    },      
+    (req, res) => {
+        res.send(res.locals.info);
+    });
+
 // returns a list of device that have the given title
 router.get('/device_info',
     (req, res, next) => {

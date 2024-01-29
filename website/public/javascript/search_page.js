@@ -46,6 +46,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
     body_data.searchValue = window.searchBarValue;
     body_data.exclusively = null;
 
+    // Data to be sent as body to the server in order to get back results
     let link_data = {
         method: "POST",
         credentials: "same-origin",
@@ -58,11 +59,12 @@ async function fetchResults(limit = null, offset = null, numbering = false){
 
     }
 
-    let response =  await fetch(link, link_data ).then((res) => {
+    let response =  await fetch(link, link_data).then((res) => {
+        // It checks if it should be returning a json or text (which in this case is html code )
         if (numbering){
             return res.json();
-        }
-        else {
+        } else {
+            // html rendered results ready to just be placed
             return res.text();
         }
     }).then((data) => {
@@ -70,6 +72,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
             // return only the number of results
             return data[0].count_result;
         }
+        // Return the html code
         return data;
     }).catch(error => {
         console.log(error);
@@ -88,80 +91,7 @@ async function placeAllDevicesByID(limit = -1, offset = 0) {
     let data = await fetchResults(limit=limit, offset=offset, numbering=false);
 
     let container = document.getElementById("results");
-    console.log(data);
     container.innerHTML = data;
-    // container.innerHTML = "";
-
-    // This for loop could have been replaced by a call in the backend
-
-    // for (let i = 0; i < data.length; i++) {
-    //     let div = document.createElement("div");
-    //     div = htmlPlacement(data[i]);
-    //     container.appendChild(div);
-    // }
-}
-
-/**
- * This function is used to add box cards with information about the devices
- */
-function htmlPlacement(data){
-    // This needs to come from the server side ! 
-
-    let div_box = document.createElement("div");
-    div_box.className = "card-img-top card-space";
-    div_box.draggable = "false";
-
-    let a_serial = document.createElement("a");
-    a_serial.href = `/device_info/${data.serial}`;
-    a_serial.className = "d-flex flex-column align-content-center";
-
-    let div_info = document.createElement("div");
-    div_info.className = "p-2";
-
-    let h_id = document.createElement("h6");
-    h_id.className = "text-truncate--2"
-    h_id.innerHTML = `<strong>ID: ${data.d_id}</strong>`;
-    div_info.appendChild(h_id);
-
-    let p_status = document.createElement("p");
-    p_status.className = "text-truncate--3"
-    p_status.innerHTML = `<small>Status: ${data.status}</small>`;
-    div_info.appendChild(p_status);
-
-    let p_serial = document.createElement("p");
-    p_serial.className = "text-truncate--3"
-    p_serial.innerHTML = `<small>Serial: ${data.serial}</small>`;
-    div_info.appendChild(p_serial);
-
-
-    let p_battery = document.createElement("p");
-    p_battery.className = "text-truncate--3"
-    p_battery.innerHTML = `<small>Available Battery: ${data.battery}</small>`;
-    div_info.appendChild(p_battery);
-
-
-    let p_type = document.createElement("p");
-    p_type.className = "text-truncate--3"
-    p_type.innerHTML = `<small>Device Type: ${data.type}</small>`;
-    div_info.appendChild(p_type);
-
-    if (data.u_id){
-
-        let p_assigned = document.createElement("p");
-        p_assigned.innerHTML = `<small>User assigned: ${data.u_id}</small>`;
-        div_info.appendChild(p_assigned);
-
-        let p_assigned_name = document.createElement("p");
-        p_assigned_name.innerHTML = `<small>First name: ${data.first_name}</small>`;
-        div_info.appendChild(p_assigned_name);
-
-    }
-
-    a_serial.appendChild(div_info);
-
-    div_box.appendChild(a_serial);
-
-    return div_box;
 }
 
 

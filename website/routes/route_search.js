@@ -52,36 +52,6 @@ router.post('/fetchResults/:numOf',
 
 
 /**
- * Returns a handlebar page with the devices that result from search pagified
- */
-router.post('/placeResults',
-    c_search.filtering,
-    c_search.data_minining,
-    (req, res, next) => {
-        // get the data from the body
-        let data = res.locals.data;
-
-        database.getAllDevicesJson(data = data, function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error Couldnt fetch number of results')
-            } else {
-                res.locals.devices = devices;
-        }
-    })  
-        next();
-    },
-    (req, res) => {
-        res.render('partials/devices_grid',
-        {
-            layout: false,
-            devices: res.locals.devices,
-            signedIn: req.session.signedIn,
-        });
-    }
-)
-
-/**
  * Rendering the search page
  */
 router.get('/search',
@@ -112,6 +82,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
+        // Fix this to be a differente function that returns the categories of the devices  
         // New category if they are assigned or not 
         res.locals.assigned = [{"name":"Assigned"}, {"name":"Unassigned"}];
         next();

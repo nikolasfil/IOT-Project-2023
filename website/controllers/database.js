@@ -44,6 +44,14 @@ function getRegex(searchValue, rows) {
 
 }
 
+/**
+ * 
+ * 
+ * @param {*} activated_name 
+ * @param {*} linker 
+ * @param {*} regex 
+ * @returns 
+ */
 
 exports.addingActivated=(activated_name, linker, regex)=> {
     let query_activated ;
@@ -60,6 +68,7 @@ exports.addingActivated=(activated_name, linker, regex)=> {
             searchable.push(rows.map(row => row.d_id));
             // searchable.push(rows.map(row => row.user));
         })
+        
         query_activated = activated_name.map(
             (name) => `${name} in (${getRegex(name, searchable).map(word => `'${word}'`).join(',')})`
             ).join(linker)
@@ -98,7 +107,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     
     // ----------- initializing arguments -----------
 
-    // Assigning value to the linker
+    // Assigning value to the linker, if it is to search every possibility or strict correlations 
     if (!data.exclusively) {
         linker = ' or '
     }else {
@@ -109,7 +118,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     let activated = []; 
     let activated_name = [];
 
-    // List of arguments that are not iterated
+    // List of arguments to exclude from iteration
     let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
 
 
@@ -138,13 +147,16 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     }
     
     if (data.numOf && data.assigned) {
+        // If the request if for both the number of results data fields and information on assigned
         query += ` , `
     } else if (!data.numOf && !data.assigned) {
+        // If the request is not for the number or results and it does not include fields, then return everything
         query += ` * `
     } 
 
     if (data.assigned){
-        // Else it will return all the fields 
+        // We want specific fields to be reutrned if the request is for the assigned devices
+        // Else it will return all the fields of the Assigned table so that they are joined
         query += ` d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
     } 
 
@@ -153,8 +165,10 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     query += ` FROM DEVICE `
     
     if (data.assigned) {
+        // Join the tables we want if the request is for the assigned devices
         query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
     } else if (data.assigned === false ){ 
+        // If the request is for the unassigned devices then we want to exclude the assigned devices
         query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned) `
     }
 
@@ -163,6 +177,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     
     // query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
+    // This query returns the results from search that are in the activated arguments
     query_activated = this.addingActivated(activated_name, linker, data.regex)
     
 
@@ -171,7 +186,8 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     let filters = data.filters;
 
     if (filters) {
-        // Filters for the filters that have a value, changed into the format of key in (values) and joins them in an and 
+        // Filters for the filters that have a value, 
+        // changed into the format of key in (values) and joins them in an and 
         query_filters = Object.entries(filters)
         // .filter(([key, value]) => value.length || key !== 'assigned')
         .filter(([key, value]) => value.length && key !== 'assigned')
@@ -180,6 +196,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     }
     
     // ----------- Building the final query -----------
+    // If either of the activated arguments or the filters are not empty then we want to add a where to the query
     if ( query_activated.length || query_filters.length  || query_unassigned.length) {
         query += ` WHERE `
     }
@@ -340,6 +357,23 @@ exports.select=(command, callback) =>  {
     callback(null, result);
 }
 
+
+exports.insert = (command,callback) => {
+    let stmt, result;
+    
+    try {
+        stmt = betterDb.prepare(command.query)
+        if (command.arguments.length) {
+            result = stmt.run(command.arguments);
+        }
+        else {
+            result = stmt.run();
+        }
+    } catch (err) {
+        callback(err, null)
+    }
+    callback(null, result);
+}
 
 
 // --------- Dynamic Insertion into Database --------
