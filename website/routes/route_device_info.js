@@ -50,7 +50,8 @@ router.get('/map/:serial',
 router.get('/device_general',
     (req,res,next) => {
 
-        link = "http://localhost:3000"
+        // link = "http://172.22.0.3:5000/"
+        link = "http://python-app:5000/"
         let link_data = {
             method: "GET",
             credentials: "same-origin",
@@ -62,18 +63,20 @@ router.get('/device_general',
         }
 
         fetch(link, link_data).then((res) => {
-            return res.text();
-        }
-        ).then((data) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            // Because it is async you have to let the next function know that it is done
             res.locals.info = data;
             next();
+            return data;            
         }).catch(error => {
             console.log(error);
+            res.send(error)
         });
-
-        next();
     },      
     (req, res) => {
+        console.log(res.locals.info);   
         res.send(res.locals.info);
     });
 

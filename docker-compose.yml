@@ -1,13 +1,20 @@
 # version: "3"
 
 services:
-  # python-app:
-  #   build:
-  #     context: .
-  #     dockerfile: DockerFiles/Dockerfile-Python
-  #   image: pythonbroker
-  #   depends_on:
-  #     - node-app
+  python-app:
+    build:
+      context: .
+      dockerfile: DockerFiles/Dockerfile-Python-Volumes
+    image: pythonbroker
+    volumes:
+      - ./broker:/app
+    depends_on:
+      - node-app
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
   node-app:
     build:
       context: .
@@ -27,9 +34,15 @@ services:
     ports:
       - "8080:8080"
     working_dir: /app
+    networks:
+      - app-network
 
   # python-broker:
   #   build:
   #     context: .
   #     # Change the location of the docker file to DockerFiles/Dockerfile-Python
   #     dockerfile: DockerFiles/Dockerfile-Python
+
+networks:
+  app-network:
+    driver: bridge
