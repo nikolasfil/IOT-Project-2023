@@ -13,7 +13,8 @@ const c_search = require('../controllers/c_search.js')
 router.post('/fetchResults/:numOf', 
     c_search.filtering,
     c_search.data_minining,
-    (req, res) => {
+    (req, res, next) => {
+        // get the data from the body
         let data = res.locals.data;
         if (req.params.numOf == 'true'){
             data.numOf = true;
@@ -23,16 +24,22 @@ router.post('/fetchResults/:numOf',
                 console.log(err)
                 res.status(500).send('Internal Server Error Couldnt fetch number of results')
             } else {
-                res.send(devices);
-        }
-    })  
-})
+                res.locals.devices = devices;
+                next();
+            }
+        });
+    },
+    (req, res) => {
+        res.send(res.locals.devices);
+    }
+    )  
+
 
 
 /**
  * Returns a handlebar page with the devices that result from search pagified
  */
-route.post('/placeResults',
+router.post('/placeResults',
     c_search.filtering,
     c_search.data_minining,
     (req, res, next) => {
@@ -49,15 +56,14 @@ route.post('/placeResults',
     })  
         next();
     },
-    (req, res, next) => {
+    (req, res) => {
         res.render('partials/devices_grid',
         {
             layout: false,
             devices: res.locals.devices,
             signedIn: req.session.signedIn,
         });
-    },
-
+    }
 )
 
 /**
