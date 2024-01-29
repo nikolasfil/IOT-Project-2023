@@ -58,8 +58,13 @@ async function fetchResults(limit = null, offset = null, numbering = false){
 
     }
 
-    return await fetch(link, link_data ).then((res) => {
-        return res.json();
+    let response =  await fetch(link, link_data ).then((res) => {
+        if (numbering){
+            return res.json();
+        }
+        else {
+            return res.text();
+        }
     }).then((data) => {
         if (numbering){
             // return only the number of results
@@ -69,6 +74,8 @@ async function fetchResults(limit = null, offset = null, numbering = false){
     }).catch(error => {
         console.log(error);
     });
+
+    return response;
 }
 
 /**
