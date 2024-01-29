@@ -4,6 +4,24 @@ const login = require('../controllers/login.js')
 const router = express.Router();
 const database = require('../controllers/database.js');
 
+// All this should first pass by the middleware login to be on the safe side
+
+router.post('/device_info/assigned',
+    (req,res,next) => {
+        // If the variable mode: read is in the body, then it should return jsons of the user information 
+        // If the variable mode: write is in the body then it should update the database with the new information about the device assigned to the user
+        if (req.body.mode === 'read'){
+            next();
+        }
+        else if (req.body.mode === 'write'){
+            next();
+        }
+        else{
+            res.status(400).send('Bad Request')
+        }
+    }
+)
+
 
 // redirects to device_info page with serial as query
 router.get('/device_info/:serial',
@@ -57,11 +75,28 @@ router.get('/device_info',
         });
     },
 
+    // (req,res,next) => {
+    //     // select d_id,user_id,date_received,date_returned  
+    //     // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
+    //     let command = {}
+    //     command.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received DESC LIMIT 1"
+    //     command.arguments = [req.query['serial']]
+    //     database.select(command,(err,user) => {
+    //         if (err) {
+    //             console.log(err)
+    //             res.status(500).send('Internal Server Error')
+    //         } else {
+    //             res.locals.deviceUser = user;
+    //             console.log(res.locals.deviceUser)
+    //             next();
+    //         }
+    //     })
+    // },
     (req,res,next) => {
         // select d_id,user_id,date_received,date_returned  
         // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
         let command = {}
-        command.query = "SELECT d_id,user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ?"
+        command.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
         command.arguments = [req.query['serial']]
         database.select(command,(err,device) => {
             if (err) {

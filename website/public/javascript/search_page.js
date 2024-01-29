@@ -1,17 +1,4 @@
 
-// if (window.searchBarValue == undefined) {
-//     window.searchBarValue = '';
-// }
-// window.searchBarValue = '{{searchBarValue}}';
-
-// <script type="text/javascript">
-//     window.onload = () => {
-        
-//         mainLoad();
-        
-//     }
-// </script>
-
 /** 
  * This function runs everytime the page of search page is loaded 
  */
