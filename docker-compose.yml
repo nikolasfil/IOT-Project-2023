@@ -20,8 +20,6 @@ services:
       context: .
       # Change the location of the docker file to DockerFiles/Dockerfile-Node
       dockerfile: DockerFiles/Dockerfile-Node-Volumes
-    # ports:
-    #   - "8080:8080"
     image: adguardwebside
     volumes:
       # - ./website:/app
@@ -37,11 +35,7 @@ services:
     networks:
       - app-network
 
-  # python-broker:
-  #   build:
-  #     context: .
-  #     # Change the location of the docker file to DockerFiles/Dockerfile-Python
-  #     dockerfile: DockerFiles/Dockerfile-Python
+
 
 networks:
   app-network:
