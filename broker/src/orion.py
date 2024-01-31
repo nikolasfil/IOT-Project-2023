@@ -4,7 +4,7 @@ import requests
 class Orion:
     def __init__(self) -> None:
         self.host = "150.140.186.118"
-        self.port = "1883"
+        self.port = "1026"
 
     def send_data_to_orion(self, data):
         # url = f"http://{self.host}:{self.port}/v2/entities"

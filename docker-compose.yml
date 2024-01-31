@@ -8,8 +8,7 @@ services:
     image: pythonbroker
     volumes:
       - ./broker:/app
-    depends_on:
-      - node-app
+
     ports:
       - "5000:5000"
     networks:
@@ -29,13 +28,13 @@ services:
       - ./website/routes:/app/routes
       - ./website/views:/app/views
       - ./website/index.js:/app/index.js
+    depends_on:
+      - python-app
     ports:
       - "8080:8080"
     working_dir: /app
     networks:
       - app-network
-
-
 
 networks:
   app-network:

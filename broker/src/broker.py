@@ -81,4 +81,4 @@ class Broker:
 
 
 if __name__ == "__main__":
-    broker = Broker(topic="#")
+    broker = Broker(topic="")
