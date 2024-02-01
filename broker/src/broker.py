@@ -21,6 +21,7 @@ class Broker:
         self.publish_topic = topic
         self.broker = broker
         self.port = port
+        self.run_only_once = False
 
         # Connecting client
         # self.client = self.connect_mqtt()
@@ -69,7 +70,8 @@ class Broker:
         # final_text = delim + str("") + delim
 
         print(final_text)
-
+        if self.run_only_once:
+            self.client.disconnect()
         # self.logging(final_text)
 
     def on_publish(self, client, userdata, mid):
@@ -86,6 +88,18 @@ class Broker:
         file = self.path_to_file(file)
         with open(file, "a") as f:
             f.write(message)
+
+    def run_loop(self):
+        self.main()
+        self.client.loop_forever()
+
+    def run_once(self):
+        # self.client.loop_start()
+        self.run_only_once = True
+        self.run_loop()
+
+    def main(self):
+        pass
 
 
 if __name__ == "__main__":

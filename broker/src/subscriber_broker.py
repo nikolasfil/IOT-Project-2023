@@ -7,16 +7,16 @@ class Subscriber(Broker):
         self.subscribe_topic = "team7/custom/trackers"
         self.topic = "team7/custom/trackers"
         self.client_id = "indi-sub"
+        self.client = self.connect_mqtt()
 
     def main(self):
         self.subscribe(self.client)
 
-    def run_loop(self):
-        client = self.connect_mqtt()
-        self.subscribe(client)
-        client.loop_forever()
+    def on_message(self, client, userdata, msg):
+        super().on_message(client, userdata, msg)
 
 
 if __name__ == "__main__":
     broker = Subscriber()
-    broker.run_loop()
+    # broker.run_loop()
+    broker.run_once()
