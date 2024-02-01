@@ -14,6 +14,7 @@ class Publisher(Broker):
 
     def main(self):
         # for i in range(10):
+        # This needs to be from a folder
         counter = 0
         while counter < 1000:
             important_info = {

@@ -113,6 +113,8 @@ class Tracker(Sensor):
                 "snr": 7.2,
                 "channel": 5,
                 "context": "1SZf5A==",
+                "latitude": 38.288403977154466,
+                "longitude": 21.788731921156614,
                 "region_common_name": "EU868",
                 "region_config_id": "eu868",
                 "crcStatus": "CRC_OK",
@@ -136,8 +138,6 @@ if __name__ == "__main__":
     important_info = {
         "type": "position",
         "deviceId": "digital-matter-oyster3:1",
-        "latitude": 38.288403977154466,
-        "longitude": 21.788731921156614,
         "speedKmph": 0,
         "latitudeDeg": 38.2882484,
         "headingDeg": 348.75,

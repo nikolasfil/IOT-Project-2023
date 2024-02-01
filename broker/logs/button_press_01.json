@@ -1,0 +1,81 @@
+{
+    "deduplicationId": "4f72b398-acd9-4a90-b505-cf8ec6df2c9c",
+    "time": "2023-12-22T10:50:24.346366889+00:00",
+    "deviceInfo": {
+        "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+        "tenantName": "Smart Campus",
+        "applicationId": "97865748-6f77-4f37-82f0-d76771651b21",
+        "applicationName": "Buttons",
+        "deviceProfileId": "c707a935-359c-4359-9186-53bccc74bcb5",
+        "deviceProfileName": "MClimate Multipurpose Button",
+        "deviceName": "mclimate-multipurpose-button:1",
+        "devEui": "70b3d52dd6000065",
+        "tags": {
+            "deviceId": "mclimate-multipurpose-button:1",
+            "manufacturer": "mclimate",
+            "apiKey": "4jggokgpesnvfb2uv1s40d73ov",
+            "model": "multipurpose-button"
+        }
+    },
+    "devAddr": "01ee6c87",
+    "adr": true,
+    "dr": 5,
+    "fCnt": 2,
+    "fPort": 2,
+    "confirmed": true,
+    "data": "Ab4A2gE=",
+    "object": {
+        "batteryVoltage": 3.1,
+        "thermistorProperlyConnected": true,
+        "pressEvent": "01",
+        "temperature": 21.8
+    },
+    "rxInfo": [
+        {
+            "gatewayId": "1dee1a0843acf826",
+            "uplinkId": 16848,
+            "rssi": -109,
+            "snr": 6,
+            "channel": 2,
+            "rfChain": 1,
+            "location": {
+                "latitude": 38.288395556071336,
+                "longitude": 21.788930292281066
+            },
+            "context": "yF1Tkw==",
+            "metadata": {
+                "region_common_name": "EU868",
+                "region_config_id": "eu868"
+            },
+            "crcStatus": "CRC_OK"
+        },
+        {
+            "gatewayId": "1dee04170f93c058",
+            "uplinkId": 64748,
+            "rssi": -85,
+            "snr": 7,
+            "channel": 2,
+            "rfChain": 1,
+            "location": {
+                "latitude": 38.288403977154466,
+                "longitude": 21.788731921156614
+            },
+            "context": "1PEmIw==",
+            "metadata": {
+                "region_common_name": "EU868",
+                "region_config_id": "eu868"
+            },
+            "crcStatus": "CRC_OK"
+        }
+    ],
+    "txInfo": {
+        "frequency": 868500000,
+        "modulation": {
+            "lora": {
+                "bandwidth": 125000,
+                "spreadingFactor": 7,
+                "codeRate": "CR_4_5"
+            }
+        }
+    }
+}

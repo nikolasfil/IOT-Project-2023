@@ -1,6 +1,5 @@
 from broker import Broker
 import datetime
-import json
 
 
 class Subscriber(Broker):
@@ -25,8 +24,8 @@ class Subscriber(Broker):
         # print(payload)
 
         deviceId = payload.get("deviceInfo").get("tags").get("deviceId")
-        latitude = payload.get("rxInfo")[0].get("location").get("latitude")
-        longitude = payload.get("rxInfo")[0].get("location").get("longitude")
+        latitude = payload.get("object").get("cached").get("latitudeDeg")
+        longitude = payload.get("object").get("cached").get("longitudeDeg")
         batV = payload.get("object").get("batV")
         time_recorded = payload.get("time")
 
