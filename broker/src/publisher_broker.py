@@ -15,7 +15,15 @@ class Publisher(Broker):
     def main(self):
         for i in range(10):
             info = {
-                "object_info": {"type": "position", "batV": 600 - i},
+                "device_info": {
+                    "deviceName": "DPP",
+                    # "deviceName": "digital-matter-oyster3:1",
+                    "deviceId": "DOYO",
+                },
+                "object_info": {
+                    "type": "position",
+                    "batV": 600 - i,
+                },
                 "rxInfo_info": {"latitude": 38 + 0.1 * i, "longitude": 21 + 0.1 * i},
                 # "device_info": {}
             }

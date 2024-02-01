@@ -75,7 +75,8 @@ class Broker:
         # self.logging(final_text)
 
     def on_publish(self, client, userdata, mid):
-        print(userdata)
+        if userdata:
+            print(userdata)
         # json_payload = json.dumps(dict)
 
     def path_to_file(self, filename):
