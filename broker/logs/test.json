@@ -1,0 +1,84 @@
+{
+  "deduplicationId": "20e4ad07-3daa-4076-90be-940171ad0ea8",
+  "time": "2024-02-01T12:44:27.448773290+00:00",
+  "deviceInfo": {
+    "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+    "tenantName": "Smart Campus",
+    "applicationId": "2f8d77bf-5f3e-4990-904a-a24fef1ee44f",
+    "applicationName": "Environmental",
+    "deviceProfileId": "b481fe85-b715-4b6b-9974-a2a0b5d52b67",
+    "deviceProfileName": "Barani MeteoHelix IoT Pro",
+    "deviceName": "barani-meteohelix-iot-pro:1",
+    "devEui": "0004a30b00f32bad",
+    "tags": {
+      "deviceId": "barani-meteohelix-iot-pro:1",
+      "apiKey": "4jggokgpesnvfb2uv1s40d73ov"
+    }
+  },
+  "devAddr": "01fddfb4",
+  "adr": true,
+  "dr": 5,
+  "fCnt": 6121,
+  "fPort": 1,
+  "confirmed": false,
+  "data": "bxcCCZVCGDIDyP8=",
+  "object": {
+    "Temperature": 11.6,
+    "Irradiation": 50.0,
+    "Irr_max": 56.0,
+    "T_min": 11.4,
+    "Rain": 200.0,
+    "Rain min time": 255.0,
+    "Type": 1.0,
+    "Humidity": 40.4,
+    "T_max": 11.8,
+    "Battery": 4.15,
+    "Pressure": 101535.0
+  },
+  "rxInfo": [
+    {
+      "gatewayId": "1dee04170f93c058",
+      "uplinkId": 11177,
+      "rssi": -107,
+      "snr": -2.0,
+      "channel": 4,
+      "location": {
+        "latitude": 38.288403977154466,
+        "longitude": 21.788731921156614
+      },
+      "context": "QlFxww==",
+      "metadata": {
+        "region_config_id": "eu868",
+        "region_common_name": "EU868"
+      },
+      "crcStatus": "CRC_OK"
+    },
+    {
+      "gatewayId": "1dee1a0843acf826",
+      "uplinkId": 5166,
+      "rssi": -42,
+      "snr": 9.2,
+      "channel": 4,
+      "location": {
+        "latitude": 38.288395556071336,
+        "longitude": 21.788930292281066
+      },
+      "context": "N2NLsw==",
+      "metadata": {
+        "region_common_name": "EU868",
+        "region_config_id": "eu868"
+      },
+      "crcStatus": "CRC_OK"
+    }
+  ],
+  "txInfo": {
+    "frequency": 867300000,
+    "modulation": {
+      "lora": {
+        "bandwidth": 125000,
+        "spreadingFactor": 7,
+        "codeRate": "CR_4_5"
+      }
+    }
+  }
+}

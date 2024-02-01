@@ -21,7 +21,8 @@ class Broker:
         self.broker = broker
         self.port = port
 
-        self.run()
+        # Connecting client
+        self.client = self.connect_mqtt()
 
     def connect_mqtt(self):
         client = mqtt_client.Client(self.client_id)
@@ -49,24 +50,37 @@ class Broker:
         # message = eval(text)
 
         # message = dict(text)
-        print(msg)
-        # message = json.loads(text)
-        # print(message.keys())
-        # print(message)
-        # display the current date and time
-
+        # tutn msg.payload.decode() into a dict
         current_datetime = datetime.datetime.now()
 
         delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
         final_text = delim + text + delim
+        # final_text = delim + str("") + delim
 
-        self.logging(final_text)
         print(final_text)
 
-    def run(self):
-        client = self.connect_mqtt()
-        self.subscribe(client)
-        client.loop_forever()
+        # message = json.loads(msg.payload)
+        # print(message)
+        # display the current date and time
+
+        # self.logging(final_text)
+        # print(final_text)
+
+    def main(self):
+        self.subscribe(self.client)
+
+    def run_loop(self):
+        # client = self.connect_mqtt()
+        # self.subscribe(client)
+        self.main()
+        self.client.loop_forever()
+
+    def run_once(self):
+        # Alternative
+        self.client.loop_start()
+        self.main()
+        # self.publish(self.main_client)
+        self.client.loop_stop()
 
     def path_to_file(self, filename):
         """returns the path to the file"""
@@ -79,6 +93,23 @@ class Broker:
         with open(file, "a") as f:
             f.write(message)
 
+    def publish(self, client):
+        msg_count = 1
+        while True:
+            # time.sleep(1)
+            msg = f"messages: {msg_count}"
+            result = client.publish("test", msg)
+            # result: [0, 1]
+            status = result[0]
+            if status == 0:
+                print(f"Send `{msg}` to topic `test`")
+            else:
+                print(f"Failed to send message to topic `test`")
+            msg_count += 1
+            if msg_count > 5:
+                break
+
 
 if __name__ == "__main__":
-    broker = Broker(topic="")
+    broker = Broker(topic="#")
+    broker.run_loop()
