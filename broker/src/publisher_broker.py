@@ -1,6 +1,7 @@
 from broker import Broker
 import json
 import time
+from tracker_sensor import Tracker
 
 
 class Publisher(Broker):
@@ -23,19 +24,17 @@ class Publisher(Broker):
         self.publish(self.client, payload)
 
     def run_loop(self):
-        example = {
-            "dataid": 1,
-            "data": {
-                "id": "entity_id",
-                "type": "Entity",
-                "temperature": {"value": 25.0, "type": "Float"},
-            },
-        }
-        payload = json.dumps(example)
         client = self.connect_mqtt()
         client.loop_start()
         for i in range(10):
-            time.sleep(1)
+            info = {
+                "object_info": {"type": "position", "batV": 600 - i},
+                "rxInfo_info": {"latitude": 38 + 0.1 * i, "longitude": 21 + 0.1 * i},
+                # "device_info": {}
+            }
+            payload = Tracker(**info).info_json
+
+            time.sleep(2)
             self.publish(client, payload)
         client.loop_stop()
         # client.loop_forever()
