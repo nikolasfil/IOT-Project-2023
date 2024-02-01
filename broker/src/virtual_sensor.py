@@ -11,6 +11,12 @@ class Sensor:
         }
         # self.info.update(another_dict)
 
+    def kwarging(self, arguments, item):
+        if arguments.get(item):
+            return arguments.get(item)
+        else:
+            return {}
+
     def generate_unique_hash(self):
         # Get current timestamp
         current_time = datetime.datetime.now().timestamp()

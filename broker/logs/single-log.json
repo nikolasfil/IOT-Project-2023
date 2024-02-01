@@ -1,68 +1,68 @@
 {
-    "deduplicationId": "e3e89558-48a6-4e80-9e6c-f383e55c12b6",
-    "time": "2023-12-20T15:53:28.924029447+00:00",
-    "deviceInfo": {
-        "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
-        "tenantName": "Smart Campus",
-        "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
-        "applicationName": "Asset tracking",
-        "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
-        "deviceProfileName": "Digital Matter Oyster3",
-        "deviceName": "digital-matter-oyster3:1",
-        "devEui": "70b3d570500134ae",
-        "tags": {
-            "deviceId": "digital-matter-oyster3:1",
-            "apiKey": "4jggokgpesnvfb2uv1s40d73ov"
-        }
-    },
-    "devAddr": "002f2c62",
-    "adr": false,
-    "dr": 2,
-    "fCnt": 715,
-    "fPort": 1,
-    "confirmed": false,
-    "data": "tFLSFjm0/Az7ANI=",
-    "object": {
-        "inactivityAlarm": null,
-        "type": "position",
-        "batCritical": null,
-        "inTrip": true,
-        "cached": {
-            "speedKmph": 0,
-            "latitudeDeg": 38.2882484,
-            "headingDeg": 348.75,
-            "longitudeDeg": 21.7887801
-        },
-        "fixFailed": true,
-        "batV": 5.25
-    },
-    "rxInfo": [
-        {
-            "gatewayId": "1dee04170f93c058",
-            "uplinkId": 47027,
-            "rssi": -81,
-            "snr": 7.2,
-            "channel": 5,
-            "location": {
-                "latitude": 38.288403977154466,
-                "longitude": 21.788731921156614
-            },
-            "context": "1SZf5A==",
-            "metadata": {
-                "region_common_name": "EU868",
-                "region_config_id": "eu868"
-            },
-            "crcStatus": "CRC_OK"
-        }
-    ],
-    "txInfo": {
-        "frequency": 867500000,
-        "modulation": {
-            "lora": {
-                "bandwidth": 125000,
-                "spreadingFactor": 10,
-                "codeRate": "CR_4_5"
-            }
-        }
+  "deduplicationId": "e3e89558-48a6-4e80-9e6c-f383e55c12b6",
+  "time": "2023-12-20T15:53:28.924029447+00:00",
+  "deviceInfo": {
+    "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+    "tenantName": "Smart Campus",
+    "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
+    "applicationName": "Asset tracking",
+    "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
+    "deviceProfileName": "Digital Matter Oyster3",
+    "deviceName": "digital-matter-oyster3:1",
+    "devEui": "70b3d570500134ae",
+    "tags": {
+      "deviceId": "digital-matter-oyster3:1",
+      "apiKey": "4jggokgpesnvfb2uv1s40d73ov"
     }
+  },
+  "devAddr": "002f2c62",
+  "adr": false,
+  "dr": 2,
+  "fCnt": 715,
+  "fPort": 1,
+  "confirmed": false,
+  "data": "tFLSFjm0/Az7ANI=",
+  "object": {
+    "inactivityAlarm": null,
+    "type": "position",
+    "batCritical": null,
+    "inTrip": true,
+    "cached": {
+      "speedKmph": 0,
+      "latitudeDeg": 38.2882484,
+      "headingDeg": 348.75,
+      "longitudeDeg": 21.7887801
+    },
+    "fixFailed": true,
+    "batV": 5.25
+  },
+  "rxInfo": [
+    {
+      "gatewayId": "1dee04170f93c058",
+      "uplinkId": 47027,
+      "rssi": -81,
+      "snr": 7.2,
+      "channel": 5,
+      "location": {
+        "latitude": 38.288403977154466,
+        "longitude": 21.788731921156614
+      },
+      "context": "1SZf5A==",
+      "metadata": {
+        "region_common_name": "EU868",
+        "region_config_id": "eu868"
+      },
+      "crcStatus": "CRC_OK"
+    }
+  ],
+  "txInfo": {
+    "frequency": 867500000,
+    "modulation": {
+      "lora": {
+        "bandwidth": 125000,
+        "spreadingFactor": 10,
+        "codeRate": "CR_4_5"
+      }
+    }
+  }
 }

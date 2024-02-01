@@ -1,11 +1,20 @@
 from virtual_sensor import Sensor
+import json
+
+# This needs to have some functions for updating !
 
 
 class Tracker(Sensor):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__()
+        self.tracker_info = self.kwarging(kwargs, "tracker_info")
+        self.device_info = self.kwarging(kwargs, "device_info")
+        self.object_info = self.kwarging(kwargs, "object_info")
+        self.rxInfo = self.kwarging(kwargs, "rxInfo")
+        self.txInfo = self.kwarging(kwargs, "txInfo")
+        self.update_final_info()
 
-    def create_device_info(self, **kwargs) -> dict:
+    def update_device_info(self, **kwargs) -> dict:
         """
         Parameters :
 
@@ -27,6 +36,7 @@ class Tracker(Sensor):
                 apiKey : str
 
         """
+
         device_info = {
             "tenantId": kwargs.get("tenantId"),
             "tenantName": kwargs.get("tenantName"),
@@ -41,9 +51,13 @@ class Tracker(Sensor):
                 "apiKey": kwargs.get("apiKey"),
             },
         }
+
+        device_info.update(self.device_info)
+        self.device_info = device_info
+
         return device_info
 
-    def create_object_info(self, **kwargs):
+    def update_object_info(self, **kwargs):
         """
         Parameters :
 
@@ -51,17 +65,17 @@ class Tracker(Sensor):
 
         Parameter information:
 
-            inactivityAlarm : For the device
-            type : For the device
-            batCritical : For the device
-            inTrip : For the device
+            inactivityAlarm :
+            type : str
+            batCritical :
+            inTrip : bool
             cached
-                speedKmph : For the device
-                latitudeDeg : For the device
-                headingDeg : For the device
-                longitudeDeg : For the device
-            fixFailed : For the device
-            batV : For the device
+                speedKmph : float
+                latitudeDeg : float
+                headingDeg : float
+                longitudeDeg : float
+            fixFailed : bool
+            batV : float
         """
         object_info = {
             "inactivityAlarm": kwargs.get("inactivityAlarm"),
@@ -77,9 +91,13 @@ class Tracker(Sensor):
             "fixFailed": kwargs.get("fixFailed"),
             "batV": kwargs.get("batV"),
         }
+
+        object_info.update(self.object_info)
+        self.object_info = object_info
+
         return object_info
 
-    def create_rxInfo(self, **kwargs):
+    def update_rxInfo(self, **kwargs):
         """
 
         Parameters :
@@ -88,19 +106,19 @@ class Tracker(Sensor):
 
         Parameter information
 
-            gatewayId : For the device
-            uplinkId : For the device
-            rssi : For the device
-            snr : For the device
-            channel : For the device
+            gatewayId : str
+            uplinkId : float
+            rssi : float
+            snr : float
+            channel : int
             location
-                latitude : For the device
-                longitude : For the device
-            context : For the device
+                latitude : float
+                longitude : float
+            context : str
             metadata
-                region_common_name : For the device
-                region_config_id : For the device
-            crcStatus : For the device
+                region_common_name : str
+                region_config_id : str
+            crcStatus : str
         """
         rxInfo = [
             {
@@ -121,9 +139,11 @@ class Tracker(Sensor):
                 "crcStatus": kwargs.get("crcStatus"),
             }
         ]
+        rxInfo[0].update(self.rxInfo[0])
+        self.rxInfo[0] = rxInfo[0]
         return rxInfo
 
-    def create_txInfo(self, **kwargs):
+    def update_txInfo(self, **kwargs):
         """
 
         Parameters :
@@ -133,12 +153,12 @@ class Tracker(Sensor):
         Parameter information
 
 
-        frequency : For the device
+        frequency : int
         modulation
             lora
-                bandwidth : For the device
-                spreadingFactor : For the device
-                codeRate : For the device
+                bandwidth : int
+                spreadingFactor : int
+                codeRate : str
         """
         txInfo = {
             "frequency": kwargs.get("frequency"),
@@ -150,9 +170,12 @@ class Tracker(Sensor):
                 }
             },
         }
+        txInfo.update(self.txInfo)
+        self.txInfo = txInfo
+
         return txInfo
 
-    def create_tracker_info(self, **kwargs):
+    def update_tracker_info(self, **kwargs):
         """
 
         Parameters :
@@ -161,17 +184,17 @@ class Tracker(Sensor):
 
         Parameter information
 
-            deviceInfo : For the device
-            devAddr : For the device
-            adr : For the device
-            dr : For the device
-            fCnt : For the device
-            fPort : For the device
-            confirmed : For the device
-            data : For the device
-            object : For the device
+            deviceInfo : dict
+            devAddr : str
+            adr : bool
+            dr : int
+            fCnt : int
+            fPort : int
+            confirmed : bool
+            data : str
+            object : dict
             rxInfo : List of dictionaries
-            txInfo : Dictionary
+            txInfo : dict
         """
         tracker_info = {
             "deviceInfo": kwargs.get("deviceInfo"),
@@ -186,9 +209,13 @@ class Tracker(Sensor):
             "rxInfo": kwargs.get("rxInfo"),
             "txInfo": kwargs.get("txInfo"),
         }
+
+        tracker_info.update(self.tracker_info)
+        self.tracker_info = tracker_info
+
         return tracker_info
 
-    def create_dictionary(self):
+    def update_dictionary(self):
         # dedubplcationId = self.generate_unique_hash()
         device_info_dictionary = {
             "tenantId": None,
@@ -267,44 +294,83 @@ class Tracker(Sensor):
 
         self.info.update(tracker_dictionary)
 
-    def updating_dictionary(self):
-        self.info["deviceInfo"]["tenantId"] = "063a0ecb-e8c2-4a13-975a-93d791e8d40c"
-        self.info["deviceInfo"]["tenantName"] = "Smart Campus"
-        self.info["deviceInfo"][
-            "applicationId"
-        ] = "063a0ecb-e8c2-4a13-975a-93d791e8d40c"
-        self.info["deviceInfo"]["applicationName"] = "AdGuard"
-        self.info["deviceInfo"]["tags"]["deviceId"] = "digital-matter-oyster3:1"
-
-    def final_dictionary(self):
-        final_info = {
-            "tenantName": "Smart Campus",
-            "tenantID": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
-            "applicationId": "420",
-            "applicationName": "AdGuard",
-            "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
-            "deviceProfileName": "Digital Matter Oyster3",
-            "deviceName": "digital-matter-oyster3:1",
-            "devEui": "70b3d570500134ae",
+    def update_final_info(self, important_info: dict = None, generic_info: dict = None):
+        important_info = {
+            "type": "position",
             "deviceId": "digital-matter-oyster3:1",
-            "apiKey": "4jggokgpesnvfb2uv1s40d73ov",
+            "latitude": 38.288403977154466,
+            "longitude": 21.788731921156614,
+            # ----- cached geo ------
+            "speedKmph": 0,
+            "latitudeDeg": 38.2882484,
+            "headingDeg": 348.75,
+            "longitudeDeg": 21.7887801,
+            # ----- cached geo ------
         }
-        device_info = self.create_device_info(**final_info)
-        object_info = self.create_object_info()
-        rxInfo_list = self.create_rxInfo()
-        txInfo_dictionary = self.create_txInfo()
-        tracker_info = self.create_tracker_info(
+
+        if generic_info is None:
+            generic_info = {
+                "tenantName": "Smart Campus",
+                "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+                "applicationId": "420",
+                "applicationName": "AdGuard",
+                # Standarized data
+                "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
+                "deviceProfileName": "Digital Matter Oyster3",
+                "deviceName": "digital-matter-oyster3:1",
+                "devEui": "70b3d570500134ae",
+                "apiKey": "4jggokgpesnvfb2uv1s40d73ov",
+                # object
+                "inactivityAlarm": None,
+                "batCritical": None,
+                "inTrip": True,
+                "fixFailed": True,
+                "batV": 5.25,
+                # rxInfo
+                "gatewayId": "1dee04170f93c058",
+                "uplinkId": 47027,
+                "rssi": -81,
+                "snr": 7.2,
+                "channel": 5,
+                "context": "1SZf5A==",
+                "region_common_name": "EU868",
+                "region_config_id": "eu868",
+                "crcStatus": "CRC_OK",
+                # txInfo
+                "frequency": 867500000,
+                "bandwidth": 125000,
+                "spreadingFactor": 10,
+                "codeRate": "CR_4_5",
+                # tracker data
+                "devAddr": "002f2c62",
+                "adr": False,
+                "dr": 2,
+                "fCnt": 715,
+                "fPort": 1,
+                "confirmed": False,
+                "data": "tFLSFjm0/Az7ANI=",
+            }
+
+        generic_info.update(important_info)
+
+        device_info = self.update_device_info(**generic_info)
+        object_info = self.update_object_info(**generic_info)
+        rxInfo_list = self.update_rxInfo(**generic_info)
+        txInfo_dictionary = self.update_txInfo(**generic_info)
+        tracker_info = self.update_tracker_info(
             object=object_info,
             rxInfo=rxInfo_list,
             txInfo=txInfo_dictionary,
             deviceInfo=device_info,
+            **generic_info,
         )
 
         self.info.update(tracker_info)
+        self.info_json = json.dumps(self.info)
+
         # return self.info
 
 
 if __name__ == "__main__":
     sensor = Tracker()
-    sensor.final_dictionary()
     print(sensor.info)
