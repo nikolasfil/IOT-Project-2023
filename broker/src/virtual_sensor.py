@@ -6,27 +6,26 @@ class Sensor:
     def __init__(self):
         pass
 
-    def generate_unique_hash():
+    def generate_unique_hash(self):
         # Get current timestamp
         current_time = datetime.datetime.now().timestamp()
 
         # Convert timestamp to string and hash it using uuid
         hashed_value = uuid.uuid5(uuid.NAMESPACE_DNS, str(current_time))
 
-        # Format the hashed value as per your requirement
-        formatted_hash = str(hashed_value).replace("-", "")
-
+        formatted_hash = str(hashed_value)
         return formatted_hash
 
     def create_dictionary(self):
+        # dedubplcationId = self.generate_unique_hash()
         self.info = {
-            "deduplicationId": "e3e89558-48a6-4e80-9e6c-f383e55c12b6",
+            "deduplicationId": None,
             "time": "2023-12-20T15:53:28.924029447+00:00",
             "deviceInfo": {
-                "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+                "tenantId": None,
                 "tenantName": "Smart Campus",
-                "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
-                "applicationName": "Asset tracking",
+                "applicationId": None,
+                "applicationName": None,
                 "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
                 "deviceProfileName": "Digital Matter Oyster3",
                 "deviceName": "digital-matter-oyster3:1",
@@ -87,3 +86,20 @@ class Sensor:
                 },
             },
         }
+
+    def updating_dictionary(self):
+        self.info["deduplicationId"] = self.generate_unique_hash()
+        self.info["time"] = datetime.datetime.now().isoformat()
+        self.info["deviceInfo"]["tenantId"] = "063a0ecb-e8c2-4a13-975a-93d791e8d40c"
+        self.info["deviceInfo"][
+            "applicationId"
+        ] = "063a0ecb-e8c2-4a13-975a-93d791e8d40c"
+        self.info["deviceInfo"]["applicationName"] = "AdGuard"
+        self.info["deviceInfo"]["tags"]["deviceId"] = "digital-matter-oyster3:1"
+
+
+if __name__ == "__main__":
+    sensor = Sensor()
+    sensor.create_dictionary()
+    sensor.updating_dictionary()
+    print(sensor.info)
