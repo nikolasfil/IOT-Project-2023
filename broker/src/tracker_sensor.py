@@ -10,8 +10,8 @@ class Tracker(Sensor):
         self.tracker_info = self.kwarging(kwargs, "tracker_info")
         self.device_info = self.kwarging(kwargs, "device_info")
         self.object_info = self.kwarging(kwargs, "object_info")
-        self.rxInfo = self.kwarging(kwargs, "rxInfo")
-        self.txInfo = self.kwarging(kwargs, "txInfo")
+        self.rxInfo_info = self.kwarging(kwargs, "rxInfo_info")
+        self.txInfo_info = self.kwarging(kwargs, "txInfo_info")
         self.update_final_info()
 
     def update_device_info(self, **kwargs) -> dict:
@@ -139,8 +139,8 @@ class Tracker(Sensor):
                 "crcStatus": kwargs.get("crcStatus"),
             }
         ]
-        rxInfo[0].update(self.rxInfo[0])
-        self.rxInfo[0] = rxInfo[0]
+        rxInfo[0].update(self.rxInfo_info)
+        self.rxInfo_info = rxInfo[0]
         return rxInfo
 
     def update_txInfo(self, **kwargs):
@@ -170,8 +170,8 @@ class Tracker(Sensor):
                 }
             },
         }
-        txInfo.update(self.txInfo)
-        self.txInfo = txInfo
+        txInfo.update(self.txInfo_info)
+        self.txInfo_info = txInfo
 
         return txInfo
 
@@ -372,5 +372,10 @@ class Tracker(Sensor):
 
 
 if __name__ == "__main__":
-    sensor = Tracker()
-    print(sensor.info)
+    info = {
+        "object_info": {"type": "position", "batV": 600},
+        "rxInfo_info": {"latitude": 38, "longitude": 21},
+        # "device_info": {}
+    }
+    sensor = Tracker(**info)
+    print(sensor.info_json)
