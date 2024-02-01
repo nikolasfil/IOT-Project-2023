@@ -1,5 +1,6 @@
 from broker import Broker
 import json
+import time
 
 
 class Publisher(Broker):
@@ -32,10 +33,12 @@ class Publisher(Broker):
         }
         payload = json.dumps(example)
         client = self.connect_mqtt()
-        # client.loop_start()
-        self.publish(client, payload)
-        # client.loop_stop()
-        client.loop_forever()
+        client.loop_start()
+        for i in range(10):
+            time.sleep(1)
+            self.publish(client, payload)
+        client.loop_stop()
+        # client.loop_forever()
 
     # def on_publish(self, client, userdata, mid):
     #     print(userdata)

@@ -33,9 +33,9 @@ class Broker:
 
     def on_connect(self, client, userdata, flags, rc):
         if rc == 0:
-            print("Connected to MQTT Broker!")
-            print(f"Subscribing to topic: {self.subscribe_topic}")
-            print(f"{userdata=}")
+            print(
+                f"Connected to MQTT Broker as {self.client_id} at {self.broker}:{self.port}"
+            )
         else:
             print("Failed to connect, return code %d\n", rc)
 
@@ -75,7 +75,6 @@ class Broker:
     def on_publish(self, client, userdata, mid):
         print(userdata)
         # json_payload = json.dumps(dict)
-
 
     def path_to_file(self, filename):
         """returns the path to the file"""
