@@ -1,5 +1,4 @@
 from virtual_sensor import Sensor
-import json
 
 
 class Tracker(Sensor):
@@ -9,9 +8,7 @@ class Tracker(Sensor):
         self.default_values()
         important_info = kwargs.get("important_info")
         self.initialize(**important_info, **self.generic_info)
-
-    def info_json(self):
-        return json.dumps(self.info)
+        self.info_json = self.info_to_json()
 
     def initialize(self, **kwargs):
         device_info = {
@@ -109,7 +106,6 @@ class Tracker(Sensor):
                 "batCritical": None,
                 "inTrip": True,
                 "fixFailed": True,
-                "batV": 5.25,
                 # rxInfo
                 "gatewayId": "1dee04170f93c058",
                 "uplinkId": 47027,
@@ -137,17 +133,15 @@ class Tracker(Sensor):
 
 
 if __name__ == "__main__":
-    payload = {
-        "important_info": {
-            "type": "position",
-            "deviceId": "digital-matter-oyster3:1",
-            "latitude": 38.288403977154466,
-            "longitude": 21.788731921156614,
-            "speedKmph": 0,
-            "latitudeDeg": 38.2882484,
-            "headingDeg": 348.75,
-            "longitudeDeg": 21.7887801,
-        }
+    important_info = {
+        "type": "position",
+        "deviceId": "digital-matter-oyster3:1",
+        "latitude": 38.288403977154466,
+        "longitude": 21.788731921156614,
+        "speedKmph": 0,
+        "latitudeDeg": 38.2882484,
+        "headingDeg": 348.75,
+        "longitudeDeg": 21.7887801,
     }
-    tracker = Tracker(**payload)
-    print(tracker.info_json())
+
+    tracker = Tracker(important_info=important_info)

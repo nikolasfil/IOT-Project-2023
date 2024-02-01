@@ -1,7 +1,6 @@
 from paho.mqtt import client as mqtt_client
 import json
 from pathlib import Path
-import datetime
 
 
 class Broker:
@@ -25,6 +24,19 @@ class Broker:
 
         # Connecting client
         # self.client = self.connect_mqtt()
+
+    def json_to_dict(self, payload):
+        try:
+            return json.loads(payload)
+        except:
+            return None
+
+    def dict_to_json(self, payload):
+        """Converts a dict to a json string"""
+        try:
+            return json.dumps(payload)
+        except:
+            return None
 
     def connect_mqtt(self):
         client = mqtt_client.Client(self.client_id)
@@ -51,33 +63,19 @@ class Broker:
 
     def on_message(self, client, userdata, msg):
         # print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-        extra = msg
-        text = str(msg.payload.decode())
-        # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
-        # message = eval(text)
-        try:
-            json_payload = json.loads(msg.payload)
-        except:
-            json_payload = None
-
         # turn msg.payload.decode() into a dict
         # message = dict(text)
 
-        current_datetime = datetime.datetime.now()
-        delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
-
-        final_text = delim + text + delim
-        # final_text = delim + str("") + delim
-
-        print(final_text)
         if self.run_only_once:
             self.client.disconnect()
         # self.logging(final_text)
 
     def on_publish(self, client, userdata, mid):
-        if userdata:
-            print(userdata)
+        # if userdata:
+        # print(userdata)
+        # print(f"{mid=} Published to {self.publish_topic}")
         # json_payload = json.dumps(dict)
+        pass
 
     def path_to_file(self, filename):
         """returns the path to the file"""

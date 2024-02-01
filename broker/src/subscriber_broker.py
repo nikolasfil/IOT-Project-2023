@@ -1,4 +1,6 @@
 from broker import Broker
+import datetime
+import json
 
 
 class Subscriber(Broker):
@@ -15,8 +17,30 @@ class Subscriber(Broker):
     def on_message(self, client, userdata, msg):
         super().on_message(client, userdata, msg)
 
+        # text = str(msg.payload.decode())
+        # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
+        # message = eval(text)
+        # msg.payload
+        payload = self.json_to_dict(msg.payload)
+        # print(payload)
+
+        deviceId = payload.get("deviceInfo").get("tags").get("deviceId")
+        latitude = payload.get("rxInfo")[0].get("location").get("latitude")
+        longitude = payload.get("rxInfo")[0].get("location").get("longitude")
+        batV = payload.get("object").get("batV")
+        time_recorded = payload.get("time")
+
+        text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
+
+        current_datetime = datetime.datetime.now()
+        delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
+        final_text = delim + text + delim
+        # final_text = delim + str("") + delim
+
+        print(final_text)
+
 
 if __name__ == "__main__":
     broker = Subscriber()
-    # broker.run_loop()
-    broker.run_once()
+    broker.run_loop()
+    # broker.run_once()

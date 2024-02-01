@@ -1,5 +1,6 @@
 import datetime
 import uuid
+import json
 
 
 class Sensor:
@@ -29,3 +30,6 @@ class Sensor:
 
     def get_datetime(self):
         return datetime.datetime.now().isoformat()
+
+    def info_to_json(self):
+        return json.dumps(self.info)

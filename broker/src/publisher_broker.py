@@ -13,26 +13,31 @@ class Publisher(Broker):
         self.client = self.connect_mqtt()
 
     def main(self):
-        for i in range(10):
-            info = {
-                "device_info": {
-                    "deviceName": "DPP",
-                    # "deviceName": "digital-matter-oyster3:1",
-                    "deviceId": "DOYO",
-                },
-                "object_info": {
-                    "type": "position",
-                    "batV": 600 - i,
-                },
-                "rxInfo_info": {"latitude": 38 + 0.1 * i, "longitude": 21 + 0.1 * i},
-                # "device_info": {}
+        # for i in range(10):
+        counter = 0
+        while counter < 1000:
+            important_info = {
+                "type": "position",
+                "deviceId": "digital-matter-oyster3:1",
+                "latitude": 38.288403977154466 + counter * 0.00001,
+                "longitude": 21.788731921156614 + counter * 0.00001,
+                # cached
+                "speedKmph": 0,
+                "latitudeDeg": 38.2882484,
+                "headingDeg": 348.75,
+                "longitudeDeg": 21.7887801,
+                "batV": 5 - counter * 0.001,
             }
-            payload = Tracker(**info).info_json
 
-            time.sleep(2)
+            payload = Tracker(important_info=important_info).info_json
             self.publish(self.client, payload)
+            time.sleep(2)
+            counter += 1
+
+    def on_publish(self, client, userdata, mid):
+        print(f"Published {mid:>5} to {self.publish_topic}")
 
 
 if __name__ == "__main__":
     broker = Publisher()
-    broker.run_once()
+    broker.run_loop()
