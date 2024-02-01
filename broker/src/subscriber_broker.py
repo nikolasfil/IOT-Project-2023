@@ -6,6 +6,7 @@ class Subscriber(Broker):
         super().__init__(client_id, topic, broker, port)
         self.subscribe_topic = "team7/custom/trackers"
         self.topic = "team7/custom/trackers"
+        self.client_id = "indi-sub"
 
     def main(self):
         self.subscribe(self.client)

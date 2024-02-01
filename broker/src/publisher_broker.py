@@ -5,6 +5,7 @@ import json
 class Publisher(Broker):
     def __init__(self, client_id=None, topic=None, broker=None, port=None):
         super().__init__(client_id, topic, broker, port)
+        self.client_id = "indi-pub"
         self.publish_topic = "team7/custom/trackers"
         self.subscribe_topic = None
 
@@ -31,7 +32,9 @@ class Publisher(Broker):
         }
         payload = json.dumps(example)
         client = self.connect_mqtt()
-        self.publish(client, "Hello")
+        # client.loop_start()
+        self.publish(client, payload)
+        # client.loop_stop()
         client.loop_forever()
 
     # def on_publish(self, client, userdata, mid):

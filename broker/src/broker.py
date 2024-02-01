@@ -76,21 +76,6 @@ class Broker:
         print(userdata)
         # json_payload = json.dumps(dict)
 
-    # def main(self):
-    #     self.subscribe(self.client)
-
-    # def run_loop(self):
-    #     # client = self.connect_mqtt()
-    #     # self.subscribe(client)
-    #     self.main()
-    #     self.client.loop_forever()
-
-    # def run_once(self):
-    #     # Alternative
-    #     self.client.loop_start()
-    #     self.main()
-    #     # self.publish(self.main_client)
-    #     self.client.loop_stop()
 
     def path_to_file(self, filename):
         """returns the path to the file"""
