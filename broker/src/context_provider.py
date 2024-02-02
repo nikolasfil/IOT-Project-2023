@@ -25,20 +25,45 @@ class ContextProvider:
         self.make_request()
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        Description:
+            Returns the response from the request when the instance is called
+
+        Returns:
+            requests.Response: The response from the request
+        """
         return self.response
 
     def __str__(self) -> str:
+        """
+        Description:
+            It is called when the instanse is called as a string
+
+        Returns:
+            str: The response from the request as a string
+        """
         return self.response.text
 
     def __getitem__(self, key):
+        """
+        Description:
+            Is called when the instance is called with as a dictionary with a key
+        Returns:
+            Python object: value of the dictionary given a key
+        """
         return self.response_python_object.get(key)
 
-    def set_headers(self, **headers):
+    def set_headers(self, **headers) -> None:
+        """
+        Description:
+            Set the headers to the given headers
+        """
         self.headers = headers
 
-    def build_request(self, **kwargs):
+    def build_request(self, **kwargs) -> None:
         """
-        Builds a request to the given url with the given headers and payload
+        Description:
+            Builds a request to the given url with the given headers and payload
 
         Args:
             url (str): The url to send the request to
@@ -61,7 +86,12 @@ class ContextProvider:
             self.payload = kwargs.get("payload")
             self.payload = json.dumps(self.payload)
 
-    def make_request(self):
+    def make_request(self) -> None:
+        """
+        Description:
+            Makes the request to the given url with the given headers, method and payload
+
+        """
         self.response = None
         if self.url:
             self.response = requests.request(
@@ -72,7 +102,12 @@ class ContextProvider:
             )
             self.get_json_response()
 
-    def get_json_response(self):
+    def get_json_response(self) -> None:
+        """
+        Description:
+            Get the json response from the request
+        """
+
         try:
             self.response_json = self.response.json()
             self.response_python_object = json.loads(self.response.text)
