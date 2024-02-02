@@ -217,17 +217,30 @@ class Tracker(ContextProvider):
 
 if __name__ == "__main__":
     entity_data = {
-        "id": "tracker0",
+        "id": "tracker4",
         "type": "Tracker",
-        "location": {"longitude": 0.0, "latitude": 0.0},
+        "location": {
+            "type": "geo:json",
+            "value": {
+                "latitude": 40.7128,
+                "longitude": 90,
+            },
+            "metadata": {},
+        },
+        "temperature": {
+            "type": "Float",
+            "value": 25.5,
+            "metadata": {},
+        },
     }
     tracker = Tracker(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
-        debug=True,
+        # debug=True,
     )
     # tracker.delete_entity()
     # print(tracker)
-    tracker.new_entity()
+    # tracker.new_entity()
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
     print(tracker.get_entity())
+    # print(tracker)

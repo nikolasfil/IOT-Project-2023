@@ -22,11 +22,12 @@ class ContextProvider:
         self.payload = kwargs.get("payload")
         self.method = kwargs.get("method")
         self.debug = kwargs.get("debug")
+        self.response = None
         self.response_json = None
         self.response_python_object = None
-
-        # self.build_request(url=self.url, headers=self.headers, payload=self.payload)
-        # self.make_request()
+        if kwargs.get("automated") is True:
+            self.build_request(url=self.url, headers=self.headers, payload=self.payload)
+            self.make_request()
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         """
@@ -46,7 +47,9 @@ class ContextProvider:
         Returns:
             str: The response from the request as a string
         """
-        return self.response.text
+        if self.response is not None and self.response.text:
+            return self.response.text
+        return "No response"
 
     def __getitem__(self, key):
         """
@@ -136,7 +139,7 @@ class ContextProvider:
 
 if __name__ == "__main__":
     # Get the version of the orion broker
-    version = ContextProvider(url="http://150.140.186.118:1026/version")
+    version = ContextProvider(url="http://150.140.186.118:1026/version", automated=True)
     print(version["orionld version"])
 
     # id?type=
@@ -146,6 +149,7 @@ if __name__ == "__main__":
         url="http://150.140.186.118:1026/v2/entities",
         headers={"Accept": "application/json"},
         method="GET",
+        automated=True,
     )
     # print(cp)
 
@@ -153,8 +157,10 @@ if __name__ == "__main__":
     for item in cp.response_python_object:
         # print(item)
         # print(item.get("id"))
-        if item.get("id") == "tracker":
+        if "location" in item:
             print(item)
+        # if item.get("id") == "tracker":
+        #     print(item)
     # print(cp.response_dict[1])
 
     # cp2 = ContextProvider(
