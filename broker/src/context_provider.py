@@ -57,8 +57,16 @@ class ContextProvider:
                 headers=self.headers,
                 data=self.payload,
             )
+            self.get_json_response()
+
+    def get_json_response(self):
+        try:
             self.response_json = self.response.json()
             self.response_dict = json.loads(self.response.text)
+        except Exception as e:
+            print(e)
+            self.response_json = None
+            self.response_dict = None
 
 
 if __name__ == "__main__":
@@ -66,3 +74,6 @@ if __name__ == "__main__":
 
     print(cp.response.text)
     # print(cp["text"])
+
+    cp2 = ContextProvider(url="http://127.0.0.1:5000/about", method="GET")
+    print(cp2.response.text)
