@@ -5,6 +5,7 @@ import json
 
 class ContextProvider:
     def __init__(self, **kwargs):
+        self.base_url = kwargs.get("base_url")
         self.url = kwargs.get("url")
         self.headers = kwargs.get("headers")
         self.payload = kwargs.get("payload")
@@ -47,6 +48,7 @@ class ContextProvider:
             self.method = "GET"
         if kwargs.get("payload"):
             self.payload = kwargs.get("payload")
+            self.payload = json.dumps(self.payload)
 
     def make_request(self):
         self.response = None
@@ -74,15 +76,20 @@ if __name__ == "__main__":
     version = ContextProvider(url="http://150.140.186.118:1026/version")
     print(version["orionld version"])
 
+    # id?type=
+
     # Get the entities
     cp = ContextProvider(
         url="http://150.140.186.118:1026/v2/entities",
+        headers={"Accept": "application/json"},
         method="GET",
     )
+    # print(cp)
 
     # Context broker get the keys to the dictionaries that the entities use
     for item in cp.response_python_object:
-        # print(item.keys())
+        # print(item)
+        # print(item.get("id"))
         if item.get("id") == "tracker":
             print(item)
     # print(cp.response_dict[1])

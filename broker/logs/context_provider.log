@@ -1,0 +1,5 @@
+{'id': 'your_entity_id', 'type': 'your_entity_type', 'location': {'type': 'geo:json', 'value': {'latitude': 40.7128, 'longitude': -74.006}, 'metadata': {}}, 'temperature': {'type': 'Float', 'value': 25.5, 'metadata': {}}}
+{'id': 'your_entity_id2', 'type': 'your_entity_type', 'location': {'type': 'geo:json', 'value': {'latitude': 40.7128, 'longitude': -74.006}, 'metadata': {}}, 'temperature': {'type': 'Float', 'value': 25.5, 'metadata': {}}}
+{'id': 'your_entity_id8', 'type': 'your_entity_type', 'location': {'type': 'geo:json', 'value': {'latitude': 40.7128, 'longitude': -74.006}, 'metadata': {}}, 'temperature': {'type': 'Float', 'value': 525.5, 'metadata': {}}}
+{'id': 'your_entity_id99', 'type': 'your_entity_type', 'location': {'type': 'geo:json', 'value': {'latitude': 40.7128, 'longitude': -74.006}, 'metadata': {}}, 'temperature': {'type': 'Float', 'value': 9925.5, 'metadata': {}}}
+{'id': 'your_entity_id999', 'type': 'your_entity_type', 'location': {'type': 'geo:json', 'value': {'latitude': 40.7128, 'longitude': -74.006}, 'metadata': {}}, 'temperature': {'type': 'Float', 'value': 9925.5, 'metadata': {}}}
