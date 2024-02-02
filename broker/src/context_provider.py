@@ -22,8 +22,11 @@ class ContextProvider:
         self.payload = kwargs.get("payload")
         self.method = kwargs.get("method")
         self.debug = kwargs.get("debug")
-        self.build_request(url=self.url, headers=self.headers, payload=self.payload)
-        self.make_request()
+        self.response_json = None
+        self.response_python_object = None
+
+        # self.build_request(url=self.url, headers=self.headers, payload=self.payload)
+        # self.make_request()
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         """
@@ -81,10 +84,11 @@ class ContextProvider:
             self.headers = kwargs.get("headers")
         if kwargs.get("method"):
             self.method = kwargs.get("method")
-        elif self.method is None:
+        if self.method is None:
             self.method = "GET"
         if kwargs.get("payload"):
             self.payload = kwargs.get("payload")
+        if self.payload is not None and type(self.payload) is dict:
             self.payload = json.dumps(self.payload)
 
     def make_request(self) -> None:
@@ -104,16 +108,14 @@ class ContextProvider:
 
             # Check if the response status is ok
             if self.response.ok is False:
-                if self.debug:
+                if self.debug is True:
                     print(f"Error: {self.response.status_code}")
                     print(self.response.text)
-                self.response_json = None
-                self.response_python_object = None
-                return self.response.ok
+                return False
 
             self.get_json_response()
             return True
-        
+
         return False
 
     def get_json_response(self) -> None:
@@ -126,7 +128,8 @@ class ContextProvider:
             self.response_json = self.response.json()
             self.response_python_object = json.loads(self.response.text)
         except Exception as e:
-            print(e)
+            if self.debug is True:
+                print(e)
             self.response_json = None
             self.response_python_object = None
 

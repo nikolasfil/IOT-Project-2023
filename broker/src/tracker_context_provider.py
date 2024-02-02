@@ -20,7 +20,7 @@ class Tracker(ContextProvider):
         # Take the entity_data from the arguments if it's given
         self.entity_data = kwargs.get("entity_data")
         # If the entity_data is given, create a new entity
-        self.new_entity(entity_data=self.entity_data)
+        # self.new_entity(entity_data=self.entity_data)
 
     def new_entity(self, entity_data=None):
         """
@@ -219,14 +219,15 @@ if __name__ == "__main__":
     entity_data = {
         "id": "tracker0",
         "type": "Tracker",
-        # "longitude": 0.0,
-        # "latitude": 0.0,
+        "location": {"longitude": 0.0, "latitude": 0.0},
     }
     tracker = Tracker(
-        base_url="http://150.140.186.118:1026", entity_data=entity_data, debug=True
+        base_url="http://150.140.186.118:1026",
+        entity_data=entity_data,
+        debug=True,
     )
     # tracker.delete_entity()
     # print(tracker)
-    # tracker.new_entity()
+    tracker.new_entity()
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    # print(tracker.get_entity())
+    print(tracker.get_entity())
