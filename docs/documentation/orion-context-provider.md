@@ -17,5 +17,9 @@ type: documentation
 - The FIWARE platform makes the gathering and presentation of real-time  context data transparent. Each NGSI request will return the latest context  by combining the data held within its database along with real-time data  readings from any registered external context providers.
 
 
-Δεν τον χρειαζομαστε 
+Δεν τον χρειαζομαστε να τον τρεχουμε εμεις. αλλα στελνουμε και παιρνουμε δεδομενα απο αυτον με python
+
+https://fiware-orion.readthedocs.io/en/master/
+
+
 

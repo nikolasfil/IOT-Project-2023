@@ -35,6 +35,7 @@ Reload την σελιδα στο frontend με το να κανει subscribe �
 
 Ακομα καλυτερα να κοιταει καλυτερα το 
 
+
 ```mermaid
 flowchart LR
 
@@ -82,7 +83,7 @@ O connector μας παιρνει τα δεδομενα απο τον mqtt broke
 
 
 ```mermaid
-graph LR
+graph TB
 sen["sensors"]
 vsen["virtual sensors"]
 mq["mqtt"]

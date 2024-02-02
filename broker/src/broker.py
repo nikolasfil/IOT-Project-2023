@@ -95,8 +95,11 @@ class Broker:
             f.write(message)
 
     def run_loop(self):
-        self.main()
-        self.client.loop_forever()
+        try:
+            self.main()
+            self.client.loop_forever()
+        except KeyboardInterrupt:
+            self.exit()
 
     def run_once(self):
         # self.client.loop_start()
@@ -107,7 +110,7 @@ class Broker:
         pass
 
     def exit(self):
-        print("Exiting")
+        print("\n\nExiting\n\n")
         self.client.disconnect()
         sys.exit(0)
 

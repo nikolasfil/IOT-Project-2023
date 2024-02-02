@@ -1,14 +1,16 @@
 from flask import Flask, request, jsonify
+import requests
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    html = "<p>Hello World!</p>"
-    html = ["testing"]
+    url = "http://150.140.186.118:1026/version"
+    response = requests.get(url)
     data = {"message": "Hello World!"}
     data = jsonify(data)
+    data = response.text
     return data
 
 
