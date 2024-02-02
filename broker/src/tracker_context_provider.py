@@ -3,6 +3,18 @@ from context_provider import ContextProvider
 
 class Tracker(ContextProvider):
     def __init__(self, **kwargs):
+        """
+        Description:
+            Create a new entity with the given entity_data
+
+        Args:
+            entity_data (dict): The data to create the entity with
+            base_url (str): The base url to send the request to
+            url (str): The url to send the request to
+            headers (dict): The headers to send with the request
+            payload (dict): The payload to send with the request
+            method (str): The method to use for the request
+        """
         super().__init__(**kwargs)
 
         # Take the entity_data from the arguments if it's given
@@ -44,7 +56,7 @@ class Tracker(ContextProvider):
                 # This still needs work
                 pass
 
-    def create_entity(self, entity_data):
+    def create_entity(self, entity_data=None):
         """
         Description:
             Create a new entity with the given entity_data
@@ -58,16 +70,26 @@ class Tracker(ContextProvider):
         Assigns the result to self.response
         """
 
+        if entity_data is None:
+            # Case example for this condition is that we have deleted an entity and we want to create it again
+            entity_data = self.entity_data
+
+        if entity_data is None:
+            raise ValueError("The entity_data is not given")
+
         self.url = f"{self.base_url}/v2/entities"
         self.headers = {"Content-Type": "application/json"}
         self.method = "POST"
 
         self.build_request(
-            url=self.url, headers=self.headers, method=self.method, payload=entity_data
+            url=self.url,
+            headers=self.headers,
+            method=self.method,
+            payload=entity_data,
         )
         self.make_request()
 
-    def update_entity(self, **kwargs):
+    def update_entity(self, entity_id=None, entity_data=None):
         """
         Description:
             Update the entity with the given id with the given entity_data
@@ -82,9 +104,6 @@ class Tracker(ContextProvider):
         Assigns the result to self.response
         """
 
-        entity_id = kwargs.get("entity_id")
-        entity_data = kwargs.get("entity_data")
-
         if entity_id is None:
             entity_id = self.entity_data.get("id")
 
@@ -94,9 +113,13 @@ class Tracker(ContextProvider):
         self.url = f"{self.base_url}/v2/entities/{entity_id}/attrs"
         self.headers = {"Content-Type": "application/json"}
         self.method = "PATCH"
+
+        # It raised an error and I tried changing some functions but it didn't work
         if entity_data.get("id"):
             del entity_data["id"]
+
         self.payload = entity_data
+
         self.build_request(
             url=self.url,
             headers=self.headers,
@@ -105,7 +128,7 @@ class Tracker(ContextProvider):
         )
         self.make_request()
 
-    def delete_entity(self, entity_data):
+    def delete_entity(self, entity_id=None):
         """
         Description:
             Delete the entity with the given id

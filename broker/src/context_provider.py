@@ -5,6 +5,17 @@ import json
 
 class ContextProvider:
     def __init__(self, **kwargs):
+        """
+        Description:
+            Create a new ContextProvider object
+
+        Args:
+            base_url (str): The base url to send the request to
+            url (str): The url to send the request to
+            headers (dict): The headers to send with the request
+            payload (dict): The payload to send with the request
+            method (str): The method to use for the request
+        """
         self.base_url = kwargs.get("base_url")
         self.url = kwargs.get("url")
         self.headers = kwargs.get("headers")
