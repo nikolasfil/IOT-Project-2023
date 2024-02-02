@@ -19,6 +19,10 @@ class Tracker(ContextProvider):
 
         # Take the entity_data from the arguments if it's given
         self.entity_data = kwargs.get("entity_data")
+        if self.entity_data is None:
+            self.entity_data = {"id": kwargs.get("entity_id")}
+        if self.entity_data.get("id") is None and kwargs.get("entity_id") is not None:
+            self.entity_data["id"] = kwargs.get("entity_id")
         # If the entity_data is given, create a new entity
         # self.new_entity(entity_data=self.entity_data)
 
@@ -217,7 +221,7 @@ class Tracker(ContextProvider):
 
 if __name__ == "__main__":
     entity_data = {
-        "id": "tracker4",
+        "id": "tracker1",
         "type": "Tracker",
         "location": {
             "type": "geo:json",
@@ -242,5 +246,11 @@ if __name__ == "__main__":
     # print(tracker)
     # tracker.new_entity()
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    print(tracker.get_entity())
+    print(tracker.get_entity(entity_id="tracker1"))
+    # tracker.delete_entity(entity_id="tracker1")
     # print(tracker)
+    track = Tracker(
+        base_url="http://150.140.186.118:1026",
+        entity_id="tracker1",
+    )
+    print(track.get_entity())
