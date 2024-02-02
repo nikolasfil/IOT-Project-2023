@@ -21,6 +21,7 @@ class ContextProvider:
         self.headers = kwargs.get("headers")
         self.payload = kwargs.get("payload")
         self.method = kwargs.get("method")
+        self.debug = kwargs.get("debug")
         self.build_request(url=self.url, headers=self.headers, payload=self.payload)
         self.make_request()
 
@@ -100,7 +101,20 @@ class ContextProvider:
                 headers=self.headers,
                 data=self.payload,
             )
+
+            # Check if the response status is ok
+            if self.response.ok is False:
+                if self.debug:
+                    print(f"Error: {self.response.status_code}")
+                    print(self.response.text)
+                self.response_json = None
+                self.response_python_object = None
+                return self.response.ok
+
             self.get_json_response()
+            return True
+        
+        return False
 
     def get_json_response(self) -> None:
         """

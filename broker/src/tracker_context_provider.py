@@ -37,17 +37,20 @@ class Tracker(ContextProvider):
         """
 
         # If the entity_data is given, assign it as Tracker attribute
-        if entity_data:
-            self.entity_data = entity_data
+        if entity_data is None:
+            entity_data = self.entity_data
+
+        if entity_data is None:
+            raise ValueError("The entity_data is not given")
 
         # If the entity_data is given and there is a valid id, get the entity
-        if self.entity_data and self.entity_data.get("id"):
+        if entity_data.get("id"):
             # Get the entity with the given id and assigining itto the self.response
-            self.get_entity(self.entity_data.get("id"))
+            self.get_entity(entity_data.get("id"))
 
             # If the response status code is 404, then the entity doesn't exist
             if self.response.status_code == 404:
-                self.create_entity(entity_data=self.entity_data)
+                self.create_entity(entity_data=entity_data)
             else:
                 # If the response status code is 200, then the entity exists so update the data
                 # self.update_entity(
@@ -80,13 +83,8 @@ class Tracker(ContextProvider):
         self.url = f"{self.base_url}/v2/entities"
         self.headers = {"Content-Type": "application/json"}
         self.method = "POST"
-
-        self.build_request(
-            url=self.url,
-            headers=self.headers,
-            method=self.method,
-            payload=entity_data,
-        )
+        self.payload = entity_data
+        self.build_request()
         self.make_request()
 
     def update_entity(self, entity_id=None, entity_data=None):
@@ -120,12 +118,7 @@ class Tracker(ContextProvider):
 
         self.payload = entity_data
 
-        self.build_request(
-            url=self.url,
-            headers=self.headers,
-            method=self.method,
-            payload=self.payload,
-        )
+        self.build_request()
         self.make_request()
 
     def delete_entity(self, entity_id=None):
@@ -148,6 +141,13 @@ class Tracker(ContextProvider):
         if entity_id is None:
             raise ValueError("The entity_id is not given")
 
+        # Check if the entity exists
+        self.get_entity(entity_id=entity_id)
+
+        # if self.response.status_code == 404:
+        #     print(f"{entity_id} Not Found")
+        #     return
+
         self.url = f"{self.base_url}/v2/entities/{entity_id}"
         # self.headers = {"Content-Type": "application/json"}
         self.headers = None
@@ -155,11 +155,9 @@ class Tracker(ContextProvider):
         self.payload = None
         self.build_request()
         self.make_request()
-        if self.response.status_code == 204:
+
+        if self.response.ok:
             print(f" {self.entity_data.get('id')} Deleted Successfully")
-        else:
-            print(self.response_python_object)
-            print(f" {self.entity_data.get('id')} Not Deleted")
 
     def get_entity(self, entity_id=None):
         """
@@ -221,11 +219,14 @@ if __name__ == "__main__":
     entity_data = {
         "id": "tracker0",
         "type": "Tracker",
-        "location": {"longitude": 0.0, "latitude": 0.0},
+        # "longitude": 0.0,
+        # "latitude": 0.0,
     }
-    tracker = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    tracker.delete_entity()
+    tracker = Tracker(
+        base_url="http://150.140.186.118:1026", entity_data=entity_data, debug=True
+    )
+    # tracker.delete_entity()
     # print(tracker)
     # tracker.new_entity()
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    print(tracker.get_entity())
+    # print(tracker.get_entity())
