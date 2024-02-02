@@ -1,10 +1,18 @@
 from paho.mqtt import client as mqtt_client
 import json
 from pathlib import Path
+import sys
 
 
 class Broker:
-    def __init__(self, client_id=None, topic=None, broker=None, port=None):
+    def __init__(
+        self,
+        client_id: str = None,
+        topic: str = None,
+        broker: str = None,
+        port: int = None,
+        run_only_once: bool = False,
+    ):
         if client_id is None:
             client_id = "clienting-stuff"
         if topic is None:
@@ -20,7 +28,7 @@ class Broker:
         self.publish_topic = topic
         self.broker = broker
         self.port = port
-        self.run_only_once = False
+        self.run_only_once = run_only_once
 
         # Connecting client
         # self.client = self.connect_mqtt()
@@ -65,17 +73,15 @@ class Broker:
         # print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         # turn msg.payload.decode() into a dict
         # message = dict(text)
-
+        print(f"Received {len(msg.payload.decode())} length message from {msg.topic}")
         if self.run_only_once:
-            self.client.disconnect()
+            self.exit()
         # self.logging(final_text)
 
     def on_publish(self, client, userdata, mid):
-        # if userdata:
-        # print(userdata)
-        # print(f"{mid=} Published to {self.publish_topic}")
-        # json_payload = json.dumps(dict)
-        pass
+        print(f"Published {mid:>5} to {self.publish_topic}")
+        if self.run_only_once:
+            self.exit()
 
     def path_to_file(self, filename):
         """returns the path to the file"""
@@ -99,6 +105,11 @@ class Broker:
 
     def main(self):
         pass
+
+    def exit(self):
+        print("Exiting")
+        self.client.disconnect()
+        sys.exit(0)
 
 
 if __name__ == "__main__":

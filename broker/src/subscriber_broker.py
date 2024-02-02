@@ -3,8 +3,10 @@ import datetime
 
 
 class Subscriber(Broker):
-    def __init__(self, client_id=None, topic=None, broker=None, port=None):
-        super().__init__(client_id, topic, broker, port)
+    def __init__(
+        self, client_id=None, topic=None, broker=None, port=None, run_only_once=False
+    ):
+        super().__init__(client_id, topic, broker, port, run_only_once)
         self.subscribe_topic = "team7/custom/trackers"
         self.topic = "team7/custom/trackers"
         self.client_id = "indi-sub"
@@ -14,8 +16,6 @@ class Subscriber(Broker):
         self.subscribe(self.client)
 
     def on_message(self, client, userdata, msg):
-        super().on_message(client, userdata, msg)
-
         # text = str(msg.payload.decode())
         # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
         # message = eval(text)
@@ -37,6 +37,7 @@ class Subscriber(Broker):
         # final_text = delim + str("") + delim
 
         print(final_text)
+        super().on_message(client, userdata, msg)
 
 
 if __name__ == "__main__":

@@ -5,8 +5,10 @@ from tracker_sensor import Tracker
 
 
 class Publisher(Broker):
-    def __init__(self, client_id=None, topic=None, broker=None, port=None):
-        super().__init__(client_id, topic, broker, port)
+    def __init__(
+        self, client_id=None, topic=None, broker=None, port=None, run_only_once=False
+    ):
+        super().__init__(client_id, topic, broker, port, run_only_once)
         self.client_id = "indi-pub"
         self.publish_topic = "team7/custom/trackers"
         self.subscribe_topic = None
@@ -20,13 +22,11 @@ class Publisher(Broker):
             important_info = {
                 "type": "position",
                 "deviceId": "digital-matter-oyster3:1",
-                "latitude": 38.288403977154466 + counter * 0.00001,
-                "longitude": 21.788731921156614 + counter * 0.00001,
                 # cached
                 "speedKmph": 0,
-                "latitudeDeg": 38.2882484,
+                "latitudeDeg": 38.2882484 + counter * 0.00001,
                 "headingDeg": 348.75,
-                "longitudeDeg": 21.7887801,
+                "longitudeDeg": 21.7887801 + counter * 0.00001,
                 "batV": 5 - counter * 0.001,
             }
 
@@ -36,7 +36,7 @@ class Publisher(Broker):
             counter += 1
 
     def on_publish(self, client, userdata, mid):
-        print(f"Published {mid:>5} to {self.publish_topic}")
+        super().on_publish(client, userdata, mid)
 
 
 if __name__ == "__main__":
