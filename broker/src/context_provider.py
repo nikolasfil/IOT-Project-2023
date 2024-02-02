@@ -19,7 +19,7 @@ class ContextProvider:
         return self.response.text
 
     def __getitem__(self, key):
-        return self.response_dict.get(key)
+        return self.response_python_object.get(key)
 
     def set_headers(self, **headers):
         self.headers = headers
@@ -62,18 +62,35 @@ class ContextProvider:
     def get_json_response(self):
         try:
             self.response_json = self.response.json()
-            self.response_dict = json.loads(self.response.text)
+            self.response_python_object = json.loads(self.response.text)
         except Exception as e:
             print(e)
             self.response_json = None
-            self.response_dict = None
+            self.response_python_object = None
 
 
 if __name__ == "__main__":
-    cp = ContextProvider(url="http://127.0.0.1:5000/", method="GET")
+    # Get the version of the orion broker
+    version = ContextProvider(url="http://150.140.186.118:1026/version")
+    print(version["orionld version"])
 
-    print(cp.response.text)
-    # print(cp["text"])
+    # Get the entities
+    cp = ContextProvider(
+        url="http://150.140.186.118:1026/v2/entities",
+        method="GET",
+    )
 
-    cp2 = ContextProvider(url="http://127.0.0.1:5000/about", method="GET")
-    print(cp2.response.text)
+    # Context broker get the keys to the dictionaries that the entities use
+    for item in cp.response_python_object:
+        # print(item.keys())
+        if item.get("id") == "tracker":
+            print(item)
+    # print(cp.response_dict[1])
+
+    # cp2 = ContextProvider(
+    #     url="http://127.0.0.1:5000/post",
+    #     # headers={"Content-Type": "application/json"},
+    #     method="POST",
+    #     payload={"data": "Dome", "form": "fodmt data"},
+    # )
+    # print(cp2.response.text)

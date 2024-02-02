@@ -22,4 +22,25 @@ type: documentation
 https://fiware-orion.readthedocs.io/en/master/
 
 
+----
+
+Using : 
+
+```python
+# Get the version of the orion broker
+version = ContextProvider(url="http://150.140.186.118:1026/version")
+print(version["orionld version"])
+
+# Get the entities
+cp = ContextProvider(
+	url="http://150.140.186.118:1026/v2/entities",
+	method="GET",
+)
+
+# Context broker get the keys to the dictionaries that the entities use
+for item in cp.response_python_object:
+	print(item)
+```
+
+
 
