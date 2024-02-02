@@ -149,15 +149,17 @@ class Tracker(ContextProvider):
             raise ValueError("The entity_id is not given")
 
         self.url = f"{self.base_url}/v2/entities/{entity_id}"
-        self.headers = {"Content-Type": "application/json"}
+        # self.headers = {"Content-Type": "application/json"}
+        self.headers = None
         self.method = "DELETE"
-        self.build_request(
-            url=self.url,
-            headers=self.headers,
-            method=self.method,
-            payload=None,
-        )
+        self.payload = None
+        self.build_request()
         self.make_request()
+        if self.response.status_code == 204:
+            print(f" {self.entity_data.get('id')} Deleted Successfully")
+        else:
+            print(self.response_python_object)
+            print(f" {self.entity_data.get('id')} Not Deleted")
 
     def get_entity(self, entity_id=None):
         """
@@ -181,9 +183,8 @@ class Tracker(ContextProvider):
         self.url = f"{self.base_url}/v2/entities/{entity_id}"
         self.headers = {"Accept": "application/json"}
         self.method = "GET"
-        self.build_request(
-            url=self.url, headers=self.headers, method=self.method, payload=None
-        )
+        self.payload = None
+        self.build_request()
         self.make_request()
         return self.response_python_object
 
@@ -210,17 +211,21 @@ class Tracker(ContextProvider):
         self.url = f"{self.base_url}/v2/entities/{entity_id}/attrs/{attribute}"
         self.headers = {"Accept": "application/json"}
         self.method = "GET"
-        self.build_request(
-            url=self.url, headers=self.headers, method=self.method, payload=None
-        )
+        self.payload = None
+        self.build_request()
         self.make_request()
         return self.response_python_object
 
 
 if __name__ == "__main__":
-    entity_data = {"id": "tracker1", "type": "Tracker"}
+    entity_data = {
+        "id": "tracker0",
+        "type": "Tracker",
+        "location": {"longitude": 0.0, "latitude": 0.0},
+    }
     tracker = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
+    tracker.delete_entity()
     # print(tracker)
-
-    tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    print(tracked.get_entity())
+    # tracker.new_entity()
+    # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
+    print(tracker.get_entity())
