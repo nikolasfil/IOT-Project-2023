@@ -14,15 +14,17 @@ class Tracker(ContextProvider):
             headers (dict): The headers to send with the request
             payload (dict): The payload to send with the request
             method (str): The method to use for the request
+            entity_id (str): The id of the entity to create
+            debug (bool): If True, print the response from the request
         """
         super().__init__(**kwargs)
 
         # Take the entity_data from the arguments if it's given
         self.entity_data = kwargs.get("entity_data")
+
         if self.entity_data is None:
             self.entity_data = {"id": kwargs.get("entity_id")}
-        if self.entity_data.get("id") is None and kwargs.get("entity_id") is not None:
-            self.entity_data["id"] = kwargs.get("entity_id")
+
         # If the entity_data is given, create a new entity
         # self.new_entity(entity_data=self.entity_data)
 
@@ -254,3 +256,22 @@ if __name__ == "__main__":
         entity_id="tracker1",
     )
     print(track.get_entity())
+
+# Example Data
+# example_data = {
+#     "id": "tracker1",
+#     "type": "Tracker",
+#     "location": {
+#         "type": "geo:json",
+#         "value": {
+#             "latitude": 40.7128,
+#             "longitude": 90,
+#         },
+#         "metadata": {},
+#     },
+#     "temperature": {
+#         "type": "Float",
+#         "value": 25.5,
+#         "metadata": {},
+#     },
+# }
