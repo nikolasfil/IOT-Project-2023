@@ -1,12 +1,9 @@
 from context_provider import ContextProvider
-import json
 
 
 class Tracker(ContextProvider):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-        # self.entity_id = kwargs.get("entity_id")
 
         # Take the entity_data from the arguments if it's given
         self.entity_data = kwargs.get("entity_data")
@@ -14,6 +11,19 @@ class Tracker(ContextProvider):
         self.new_entity(entity_data=self.entity_data)
 
     def new_entity(self, entity_data=None):
+        """
+        Description:
+            Create a new entity with the given entity_data
+
+        Args:
+            entity_data (dict): The data to create the entity with
+
+        Returns:
+            None
+
+        Assigns the result to self.response
+        """
+
         # If the entity_data is given, assign it as Tracker attribute
         if entity_data:
             self.entity_data = entity_data
@@ -35,6 +45,19 @@ class Tracker(ContextProvider):
                 pass
 
     def create_entity(self, entity_data):
+        """
+        Description:
+            Create a new entity with the given entity_data
+
+        Args:
+            entity_data (dict): The data to create the entity with
+
+        Returns:
+            None
+
+        Assigns the result to self.response
+        """
+
         self.url = f"{self.base_url}/v2/entities"
         self.headers = {"Content-Type": "application/json"}
         self.method = "POST"
@@ -44,7 +67,30 @@ class Tracker(ContextProvider):
         )
         self.make_request()
 
-    def update_entity(self, entity_id, entity_data):
+    def update_entity(self, **kwargs):
+        """
+        Description:
+            Update the entity with the given id with the given entity_data
+
+        Args:
+            entity_id (str): The id of the entity to update
+            entity_data (dict): The data to update the entity with
+
+        Returns:
+            None
+
+        Assigns the result to self.response
+        """
+
+        entity_id = kwargs.get("entity_id")
+        entity_data = kwargs.get("entity_data")
+
+        if entity_id is None:
+            entity_id = self.entity_data.get("id")
+
+        if entity_id is None:
+            raise ValueError("The entity_id is not given")
+
         self.url = f"{self.base_url}/v2/entities/{entity_id}/attrs"
         self.headers = {"Content-Type": "application/json"}
         self.method = "PATCH"
@@ -59,8 +105,20 @@ class Tracker(ContextProvider):
         )
         self.make_request()
 
-    def delete_entity(self, **kwargs):
-        entity_id = kwargs.get("entity_id")
+    def delete_entity(self, entity_data):
+        """
+        Description:
+            Delete the entity with the given id
+
+        Args:
+            entity_id (str): The id of the entity to delete
+
+        Returns:
+            None
+
+        Assigns the result to self.response
+        """
+
         if entity_id is None:
             entity_id = self.entity_data.get("id")
 
@@ -78,8 +136,25 @@ class Tracker(ContextProvider):
         )
         self.make_request()
 
-    def get_entity(self, entity_id):
-        """Get the entity with the given id information"""
+    def get_entity(self, entity_id=None):
+        """
+        Description:
+            Get the entity with the given id
+
+        Args:
+            entity_id (str): The id of the entity to get
+
+        Returns:
+            python Object: The response from the request, either a list or dictionary
+
+        """
+
+        if entity_id is None:
+            entity_id = self.entity_data.get("id")
+
+        if entity_id is None:
+            raise ValueError("The entity_id is not given")
+
         self.url = f"{self.base_url}/v2/entities/{entity_id}"
         self.headers = {"Accept": "application/json"}
         self.method = "GET"
@@ -89,7 +164,26 @@ class Tracker(ContextProvider):
         self.make_request()
         return self.response_python_object
 
-    def get_attribute(self, entity_id, attribute):
+    def get_attribute(self, **kwargs):
+        """
+        Description:
+            Get the attribute with the given id
+
+        Args:
+            entity_id (str): The id of the entity to get
+            attribute (str): The attribute to get
+
+        Returns:
+            python Object: The response from the request, either a list or dictionary
+        """
+        entity_id, attribute = kwargs.get("entity_id"), kwargs.get("attribute")
+
+        if entity_id is None:
+            entity_id = self.entity_data.get("id")
+
+        if entity_id is None:
+            raise ValueError("The entity_id is not given")
+
         self.url = f"{self.base_url}/v2/entities/{entity_id}/attrs/{attribute}"
         self.headers = {"Accept": "application/json"}
         self.method = "GET"
@@ -103,7 +197,7 @@ class Tracker(ContextProvider):
 if __name__ == "__main__":
     entity_data = {"id": "tracker1", "type": "Tracker"}
     tracker = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    print(tracker)
+    # print(tracker)
 
-    tracked = Tracker(base_url="http://150.140.186.118:1026")
-    print(tracked.get_entity("tracker1"))
+    tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
+    print(tracked.get_entity())
