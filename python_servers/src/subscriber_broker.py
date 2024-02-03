@@ -35,6 +35,7 @@ class Subscriber(Broker):
         text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
         print(text)
 
+        # Send the information to the connector server
         connector_server = ContextProvider(
             # url="http://localhost:5000/device_info",
             url="http://connector-app:5000/device_info",
@@ -44,7 +45,6 @@ class Subscriber(Broker):
             automated=True,
         )
         print(connector_server.response_json)
-        # Send the information to the connector server
 
     def handling_button(self):
         # Sends the information to the connector server
