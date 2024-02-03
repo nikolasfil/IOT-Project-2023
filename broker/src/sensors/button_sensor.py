@@ -1,5 +1,4 @@
 from virtual_sensor import Sensor
-from pathlib import Path
 
 
 class Button(Sensor):

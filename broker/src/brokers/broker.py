@@ -85,7 +85,8 @@ class Broker:
 
     def path_to_file(self, filename):
         """returns the path to the file"""
-        return Path(__file__).parent / filename
+        parent_folder = Path(__file__).parent
+        return Path(parent_folder, filename)
 
     def logging(self, message, file=None):
         if file is None:
