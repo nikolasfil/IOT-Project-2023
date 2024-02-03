@@ -166,10 +166,11 @@ if __name__ == "__main__":
     for item in cp.response_python_object:
         # print(item)
         # print(item.get("id"))
-        if "location" in item:
-            print(item)
+        # if "location" in item:
+        # print(item)
         # if item.get("id") == "tracker":
         #     print(item)
+        print(list(item.keys()))
     # print(cp.response_dict[1])
 
     # cp2 = ContextProvider(

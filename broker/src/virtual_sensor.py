@@ -1,4 +1,5 @@
 import datetime
+from typing import Any
 import uuid
 import json
 
@@ -33,3 +34,31 @@ class Sensor:
 
     def info_to_json(self):
         return json.dumps(self.info)
+
+
+class SensorCP:
+    def __init__(self, **kwargs):
+        self.entity_data = kwargs.get("entity_data")
+        self.id = kwargs.get("id")
+        self.type = kwargs.get("type")
+        self.info = {"id": self.id, "type": self.type}
+
+    def __str__(self):
+        return str(self.info)
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        return self.info
+
+    def __getitem__(self, key):
+        return self.info.get(key)
+
+    def default_values(self):
+        pass
+
+    def new_entity(self, entity_data=None):
+        if entity_data is None:
+            entity_data = self.entity_data
+
+        if entity_data is None:
+            raise ValueError("The entity_data is not given")
+        return entity_data

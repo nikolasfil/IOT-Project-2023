@@ -1,4 +1,4 @@
-from virtual_sensor import Sensor
+from virtual_sensor import Sensor, SensorCP
 
 
 class Tracker(Sensor):
@@ -134,6 +134,82 @@ class Tracker(Sensor):
             }
 
 
+class TrackerCP(SensorCP):
+    def __init__(self, **kwargs):
+        """
+        Description:
+            Initialize the Tracker Context Provider
+
+        Args:
+
+
+        Kwargs:
+            entity_data (dict): The data of the entity
+                id (str): The id of the entity
+                type (str): The type of the entity
+                location (dict): The location of the entity
+                    type (str): The type of the location
+                    value (dict): The value of the location
+                        latitude (float): The latitude of the entity
+                        longitude (float): The longitude of the entity
+                    location_metadata (dict): The metadata of the location
+                temperature (dict): The temperature of the entity
+                    type (str): The type of the temperature
+                    value (float): The value of the temperature
+                    temperature_metadata (dict): The metadata of the temperature
+        """
+        super().__init__(**kwargs)
+        self.new_entity()
+        self.default_values()
+
+    def new_entity(self, entity_data=None):
+        entity_data = super().new_entity(entity_data)
+
+        self.id = entity_data.get("id")
+        self.type = entity_data.get("type")
+        self.location_dict = entity_data.get("location")
+        self.latitude = entity_data.get("latitude")
+        self.longitude = entity_data.get("longitude")
+        self.location_metadata = entity_data.get("location_metadata")
+        self.temperature_dict = entity_data.get("temperature")
+        self.temperatur_value = entity_data.get("temperature_value")
+        self.temperature_metadata = entity_data.get("temperature_metadata")
+
+    def default_values(self):
+        if self.location_dict is None:
+            location = {
+                "type": "geo:json",
+                "value": {
+                    "latitude": self.latitude,
+                    "longitude": self.longitude,
+                },
+                "metadata": self.location_metadata,
+            }
+        else:
+            location = self.location_dict
+
+        if self.temperature_dict is None:
+            temperature = {
+                "type": "Float",
+                "value": self.temperatur_value,
+                "metadata": {},
+            }
+        else:
+            temperature = self.temperature_dict
+
+        if self.entity_data is None:
+            entity_data = {
+                "location": location,
+                "temparature": temperature,
+            }
+        else:
+            entity_data = self.entity_data
+
+            entity_data.update({"location": location, "temperature": temperature})
+
+        self.info.update(entity_data)
+
+
 if __name__ == "__main__":
     important_info = {
         "type": "position",
@@ -145,3 +221,20 @@ if __name__ == "__main__":
     }
 
     tracker = Tracker(important_info=important_info)
+
+    context_info = {
+        "id": "tracker",
+        "type": "Tracker",
+        "latitude": 80,
+        "longitude": 90,
+        "temperature_value": 25.5,
+        # Not needed
+        "location_metadata": {
+            "region_common_name": "EU868",
+            "region_config_id": "eu868",
+        },
+        # In location we could add the metadata for fires or sth
+    }
+
+    trackerCP = TrackerCP(entity_data=context_info)
+    print(trackerCP.info)
