@@ -15,15 +15,25 @@ def home():
 @app.get("/tracker")
 @app.post("/tracker")
 def get_tracker():
-    # if request.is_json:
-    #     json_data = json.loads(request.data)
+    """
+    Describtion:
+        Get the tracker data from the context broker
+
+    Returns:
+        json data: The data from the context broker
+    """
+
     if request.method == "GET":
         entity_id = request.args.get("id")
-        new = request.args.get("new")
+    elif request.method == "POST":
+        if request.is_json:
+            entity_id = request.json.get("id")
 
-    entity_data = {"id": entity_id, "type": "Tracker"}
+    if entity_id is None:
+        return "No entity_id given"
+
     tracker = SensorCP(
-        base_url="http://150.140.186.118:1026", entity_data=entity_data, debug=True
+        base_url="http://150.140.186.118:1026", entity_id=entity_id, debug=True
     )
     print(tracker.entity_data)
     data = str(tracker.get_entity())
