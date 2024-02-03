@@ -1,40 +1,14 @@
 # version: "3"
 
 services:
-  subscriber-app:
+  python-app:
     build:
       context: .
-      dockerfile: DockerFiles/Dockerfile-Subscriber-Volumes
-
-    image: pythonSubscriber
+      dockerfile: DockerFiles/Dockerfile-Python-Volumes
+    image: pythonbroker
     volumes:
-      - ./python_servers/src/:/app
-    ports:
-      - "3000:5000"
-    networks:
-      - app-network
+      - ./broker:/app
 
-  publisher-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Dockerfile-Publisher-Volumes
-
-    image: pythonPublisher
-    volumes:
-      - ./python_servers/src/:/app
-    ports:
-      - "4000:5000"
-    networks:
-      - app-network
-
-  connector-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Dockerfile-Connector-Volumes
-
-    image: pythonConnector
-    volumes:
-      - ./python_servers/src/:/app
     ports:
       - "5000:5000"
     networks:
@@ -65,3 +39,4 @@ services:
 networks:
   app-network:
     driver: bridge
+# -------

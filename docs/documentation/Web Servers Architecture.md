@@ -10,7 +10,7 @@ type: documentation
 2. Python : Running the mqtt broker that subscribes 
 3. Python : Running the mqtt broker that publishes the virtual sensors 
 4. Python : Connector Server receiving [GET/POST] requests and connects to database storage and Context Provider
-
+5. ? : Server Running Database SQLITE
 
 - broker.py
 	- subscriber_broker.py
