@@ -32,11 +32,12 @@ def get_tracker():
     if entity_id is None:
         return "No entity_id given"
 
-    tracker = SensorCP(
-        base_url="http://150.140.186.118:1026", entity_id=entity_id, debug=True
-    )
-    print(tracker.entity_data)
-    data = str(tracker.get_entity())
+    tracker = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
+    tracker.get_entity()
+    # data = tracker.response.text
+    data = tracker.response_python_object
+    print(data)
+    # data = json.dumps(data)
     return data
 
 
