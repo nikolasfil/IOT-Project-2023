@@ -50,6 +50,8 @@ def device_info():
         Get device info from the mqtt server
 
     """
+    # Send the info to the database
+    # Send the info to the context broker
     data = request.json
     print(data)
     return data
