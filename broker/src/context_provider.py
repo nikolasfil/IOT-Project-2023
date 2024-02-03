@@ -127,6 +127,7 @@ class ContextProvider:
         """
         Description:
             Get the json response from the request
+
         """
 
         try:
@@ -139,6 +140,14 @@ class ContextProvider:
             self.response_python_object = None
 
     def is_json(self, object):
+        """Checks if a given object is a json object    
+
+        Args:
+            object (python Object): The object to check if it is a json object
+
+        Returns:
+            bool: True if the object is a json object, False if it is not 
+        """ """"""
         try:
             json.loads(object)
         except ValueError:

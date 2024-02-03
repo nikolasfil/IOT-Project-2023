@@ -3,6 +3,26 @@ from virtual_sensor import Sensor, SensorCP
 
 class Tracker(Sensor):
     def __init__(self, **kwargs):
+        """ "
+        Description:
+            Initialize the Tracker Sensor
+
+        Args:
+            generic_info (dict): The generic info of the tracker
+            important_info (dict): The important info of the tracker
+                type (str): The type of the tracker
+                deviceId (str): The id of the tracker
+                speedKmph (float): The speed of the tracker
+                latitudeDeg (float): The latitude of the tracker
+                headingDeg (float): The heading of the tracker
+                longitudeDeg (float): The longitude of the tracker
+
+        Kwargs:
+            generic_info (dict): The generic info of the tracker
+            important_info (dict): The important info of the tracker
+
+
+        """
         super().__init__()
         self.generic_info = kwargs.get("generic_info")
         self.default_values()
@@ -89,6 +109,10 @@ class Tracker(Sensor):
         self.info.update(tracker_info)
 
     def default_values(self):
+        """
+        Description:
+            Set the default values for the tracker
+        """
         if self.generic_info is None:
             self.generic_info = {
                 "tenantName": "Smart Campus",
@@ -162,7 +186,17 @@ class TrackerCP(SensorCP):
         self.new_entity()
         self.default_values()
 
-    def new_entity(self, entity_data=None):
+    def new_entity(self, entity_data=None) -> None:
+        """
+        Description:
+            Create a new entity
+
+        Args:
+            entity_data (dict, optional): Contains all the data needed to create a new entity. Defaults to None.
+
+        Returns:
+            None: No return value
+        """
         entity_data = super().new_entity(entity_data)
 
         self.id = entity_data.get("id")
