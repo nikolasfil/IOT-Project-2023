@@ -36,7 +36,8 @@ class Subscriber(Broker):
         print(text)
 
         connector_server = ContextProvider(
-            url="http://localhost:5000/device_info",
+            # url="http://localhost:5000/device_info",
+            url="http://connector-app:5000/device_info",
             headers={"Content-Type": "application/json"},
             method="POST",
             payload=self.py_obj_payload,

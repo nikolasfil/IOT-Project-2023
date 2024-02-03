@@ -6,14 +6,11 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY broker/requirements.txt /app/requirements.txt
+COPY python_servers/requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Make port 80 available to the world outside this container
-
-# EXPOSE 80
 
 EXPOSE 5000
 
@@ -24,4 +21,4 @@ ENV NAME World
 # Run app.py when the container launches
 
 # CMD ["python", "broker.py"]
-CMD ["python", "web_server.py"]
+CMD ["python", "publisher_broker.py"]

@@ -35,8 +35,8 @@ class Publisher(Broker):
             time.sleep(2)
             counter += 1
 
-    def on_publish(self, client, userdata, mid):
-        super().on_publish(client, userdata, mid)
+    # def on_publish(self, client, userdata, mid):
+    #     super().on_publish(client, userdata, mid)
 
 
 if __name__ == "__main__":

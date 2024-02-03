@@ -4,11 +4,13 @@ services:
   subscriber-app:
     build:
       context: .
-      dockerfile: DockerFiles/Dockerfile-Subscriber-Volumes
+      dockerfile: DockerFiles/Volumes/Dockerfile-Subscriber
 
-    image: pythonSubscriber
+    image: pythonsubscriber
     volumes:
       - ./python_servers/src/:/app
+    depends_on:
+      - connector-app
     ports:
       - "3000:5000"
     networks:
@@ -17,11 +19,14 @@ services:
   publisher-app:
     build:
       context: .
-      dockerfile: DockerFiles/Dockerfile-Publisher-Volumes
+      dockerfile: DockerFiles/Volumes/Dockerfile-Publisher
 
-    image: pythonPublisher
+    image: pythonpublisher
+
     volumes:
       - ./python_servers/src/:/app
+    # depends_on:
+    #   - python-app
     ports:
       - "4000:5000"
     networks:
@@ -30,37 +35,39 @@ services:
   connector-app:
     build:
       context: .
-      dockerfile: DockerFiles/Dockerfile-Connector-Volumes
+      dockerfile: DockerFiles/Volumes/Dockerfile-Connector
 
-    image: pythonConnector
+    image: pythonconnector
     volumes:
       - ./python_servers/src/:/app
+    # depends_on:
+    #   - su
     ports:
       - "5000:5000"
     networks:
       - app-network
 
-  node-app:
-    build:
-      context: .
-      # Change the location of the docker file to DockerFiles/Dockerfile-Node
-      dockerfile: DockerFiles/Dockerfile-Node-Volumes
-    image: adguardwebside
-    volumes:
-      # - ./website:/app
-      - ./website/controllers:/app/controllers
-      - ./website/model:/app/model
-      - ./website/public:/app/public
-      - ./website/routes:/app/routes
-      - ./website/views:/app/views
-      - ./website/index.js:/app/index.js
-    depends_on:
-      - python-app
-    ports:
-      - "8080:8080"
-    working_dir: /app
-    networks:
-      - app-network
+  # node-app:
+  #   build:
+  #     context: .
+  #     # Change the location of the docker file to DockerFiles/Dockerfile-Node
+  #     dockerfile: DockerFiles/Volumes/Dockerfile-Node
+  #   image: adguardwebside
+  #   volumes:
+  #     # - ./website:/app
+  #     - ./website/controllers:/app/controllers
+  #     - ./website/model:/app/model
+  #     - ./website/public:/app/public
+  #     - ./website/routes:/app/routes
+  #     - ./website/views:/app/views
+  #     - ./website/index.js:/app/index.js
+  #   # depends_on:
+  #   #   - python-app
+  #   ports:
+  #     - "8080:8080"
+  #   working_dir: /app
+  #   networks:
+  #     - app-network
 
 networks:
   app-network:
