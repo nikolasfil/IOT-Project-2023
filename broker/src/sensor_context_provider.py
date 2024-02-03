@@ -1,7 +1,7 @@
 from context_provider import ContextProvider
 
 
-class Tracker(ContextProvider):
+class SensorCP(ContextProvider):
     def __init__(self, **kwargs):
         """
         Description:
@@ -53,10 +53,11 @@ class Tracker(ContextProvider):
         if entity_data.get("id"):
             # Get the entity with the given id and assigining itto the self.response
             self.get_entity(entity_data.get("id"))
-
             # If the response status code is 404, then the entity doesn't exist
             if self.response.status_code == 404:
                 self.create_entity(entity_data=entity_data)
+            elif self.response.status_code == 500:
+                print("Internal Server Error")
             else:
                 # If the response status code is 200, then the entity exists so update the data
                 # self.update_entity(
@@ -223,15 +224,15 @@ class Tracker(ContextProvider):
 
 if __name__ == "__main__":
     entity_data = {
-        "id": "tracker1",
+        "id": "tracker4",
         "type": "Tracker",
         "location": {
-            "type": "geo:json",
-            "value": {
-                "latitude": 40.7128,
-                "longitude": 90,
-            },
-            "metadata": {},
+            # "type": "geo:json",
+            # "value": {
+            #     "latitude": 40.7128,
+            #     "longitude": 91.0,
+            # },
+            # "metadata": {},
         },
         "temperature": {
             "type": "Float",
@@ -239,21 +240,26 @@ if __name__ == "__main__":
             "metadata": {},
         },
     }
-    tracker = Tracker(
+    tracker = SensorCP(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
         # debug=True,
     )
-    # tracker.delete_entity()
+
     # print(tracker)
+    # Delete the entity
+    # tracker.delete_entity()
+    # Create the entitiy
     # tracker.new_entity()
+
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    print(tracker.get_entity(entity_id="tracker1"))
+    # print(tracker.get_entity(entity_id="tracker1"))
+
     # tracker.delete_entity(entity_id="tracker1")
     # print(tracker)
-    track = Tracker(
+    track = SensorCP(
         base_url="http://150.140.186.118:1026",
-        entity_id="tracker1",
+        entity_id="tracker4",
     )
     print(track.get_entity())
 

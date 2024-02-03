@@ -93,6 +93,8 @@ class ContextProvider:
             self.payload = kwargs.get("payload")
         if self.payload is not None and type(self.payload) is dict:
             self.payload = json.dumps(self.payload)
+        elif self.payload is not None and self.is_json(self.payload) is False:
+            self.payload = json.loads(self.payload)
 
     def make_request(self) -> None:
         """
@@ -135,6 +137,13 @@ class ContextProvider:
                 print(e)
             self.response_json = None
             self.response_python_object = None
+
+    def is_json(self, object):
+        try:
+            json.loads(object)
+        except ValueError:
+            return False
+        return True
 
 
 if __name__ == "__main__":
