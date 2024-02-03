@@ -23,6 +23,7 @@ class Subscriber(Broker):
         final_text = delim + text + delim
         print(final_text)
         super().on_message(client, userdata, msg)
+        self.handling_tracker()
 
     def handling_tracker(self):
         deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
