@@ -43,6 +43,18 @@ def get_tracker():
     return data
 
 
+@app.post("/device_info")
+def device_info():
+    """
+    Description:
+        Get device info from the mqtt server
+
+    """
+    data = request.json
+    print(data)
+    return data
+
+
 # url_for('static', filename='style.css')
 
 if __name__ == "__main__":

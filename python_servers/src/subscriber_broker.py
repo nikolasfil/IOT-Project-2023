@@ -1,5 +1,6 @@
 from broker import Broker
 import datetime
+from context_provider import ContextProvider
 
 
 class Subscriber(Broker):
@@ -16,12 +17,14 @@ class Subscriber(Broker):
         self.subscribe(self.client)
 
     def on_message(self, client, userdata, msg):
-        # text = str(msg.payload.decode())
-        # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
-        # message = eval(text)
-        # msg.payload
-        # print(payload)
+        text = str(msg.payload.decode())
+        current_datetime = datetime.datetime.now()
+        delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
+        final_text = delim + text + delim
+        print(final_text)
+        super().on_message(client, userdata, msg)
 
+    def handling_tracker(self):
         deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
         latitude = self.py_obj_payload.get("object").get("cached").get("latitudeDeg")
         longitude = self.py_obj_payload.get("object").get("cached").get("longitudeDeg")
@@ -29,14 +32,21 @@ class Subscriber(Broker):
         time_recorded = self.py_obj_payload.get("time")
 
         text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
+        print(text)
 
-        current_datetime = datetime.datetime.now()
-        delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
-        final_text = delim + text + delim
-        # final_text = delim + str("") + delim
+        connector_server = ContextProvider(
+            url="http://localhost:5000/device_info",
+            headers={"Content-Type": "application/json"},
+            method="POST",
+            payload=self.py_obj_payload,
+            automated=True,
+        )
+        print(connector_server.response_json)
+        # Send the information to the connector server
 
-        print(final_text)
-        super().on_message(client, userdata, msg)
+    def handling_button(self):
+        # Sends the information to the connector server
+        pass
 
 
 if __name__ == "__main__":
