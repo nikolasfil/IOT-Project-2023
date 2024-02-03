@@ -1,45 +1,30 @@
 from flask import Flask, request, jsonify
 import requests
 import json
+from src.context_providers.sensor_context_provider import SensorCP
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    url = "http://150.140.186.118:1026/version"
-    response = requests.get(url)
-    data = {"message": "Hello World!"}
-    data = jsonify(data)
-    data = response.text
+    data = "<p>Home</p>"
     return data
 
 
-@app.route("/about", methods=["GET", "POST"])
-def about():
-    html = "<p>About</p>"
-    if request.method == "POST":
-        html += "<p>POST</p>"
-    return html
+@app.get("/tracker")
+@app.post("/tracker")
+def get_tracker():
+    # if request.is_json:
+    #     json_data = json.loads(request.data)
+    if request.method == "GET":
+        entity_id = request.args.get("id")
 
-
-@app.get("/get")
-def get():
-    return "<p>GET</p>"
-
-
-@app.post("/post")
-def post():
-    if request.is_json:
-        print(request.json)
-    d = {
-        "message": "POST",
-        "data": "Dome",
-        "form": "fodmt data",
-        "request_data": request.data if request.data else None,
-    }
-    # turn the dict into a json string
-    data = json.dumps(d)
+    entity_data = {"id": entity_id, "type": "Tracker"}
+    tracker = SensorCP(
+        base_url="http://150.140.186.118:1026", entity_data=entity_data, debug=True
+    )
+    data = tracker.response_python_object
     return data
 
 
