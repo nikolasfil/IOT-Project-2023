@@ -73,6 +73,9 @@ class Broker:
         # print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         # turn msg.payload.decode() into a dict
         # message = dict(text)
+        self.py_obj_payload = self.json_to_dict(msg.payload)
+        self.payload = msg.payload
+
         print(f"Received {len(msg.payload.decode())} length message from {msg.topic}")
         if self.run_only_once:
             self.exit()

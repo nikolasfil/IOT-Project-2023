@@ -25,6 +25,8 @@ class SensorCP(ContextProvider):
         if self.entity_data is None:
             self.entity_data = {"id": kwargs.get("entity_id")}
 
+        if self.entity_data.get("id") is not None:
+            self.get_entity()
         # If the entity_data is given, create a new entity
         # self.new_entity(entity_data=self.entity_data)
 

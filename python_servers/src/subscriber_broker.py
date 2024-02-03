@@ -20,14 +20,13 @@ class Subscriber(Broker):
         # .replace("'",'''"''').replace("None",'''"None"''').replace("True",'''"None"'''))
         # message = eval(text)
         # msg.payload
-        payload = self.json_to_dict(msg.payload)
         # print(payload)
 
-        deviceId = payload.get("deviceInfo").get("tags").get("deviceId")
-        latitude = payload.get("object").get("cached").get("latitudeDeg")
-        longitude = payload.get("object").get("cached").get("longitudeDeg")
-        batV = payload.get("object").get("batV")
-        time_recorded = payload.get("time")
+        deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
+        latitude = self.py_obj_payload.get("object").get("cached").get("latitudeDeg")
+        longitude = self.py_obj_payload.get("object").get("cached").get("longitudeDeg")
+        batV = self.py_obj_payload.get("object").get("batV")
+        time_recorded = self.py_obj_payload.get("time")
 
         text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
 
