@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import requests
 import json
-from src.context_providers.sensor_context_provider import SensorCP
+from sensor_context_provider import SensorCP
 
 app = Flask(__name__)
 
@@ -19,12 +19,14 @@ def get_tracker():
     #     json_data = json.loads(request.data)
     if request.method == "GET":
         entity_id = request.args.get("id")
+        new = request.args.get("new")
 
     entity_data = {"id": entity_id, "type": "Tracker"}
     tracker = SensorCP(
         base_url="http://150.140.186.118:1026", entity_data=entity_data, debug=True
     )
-    data = tracker.response_python_object
+    print(tracker.entity_data)
+    data = str(tracker.get_entity())
     return data
 
 

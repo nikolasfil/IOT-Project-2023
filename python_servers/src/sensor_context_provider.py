@@ -240,12 +240,16 @@ if __name__ == "__main__":
             "metadata": {},
         },
     }
+    entity_data = {
+        "id": "tracker4",
+        "type": "Tracker",
+    }
     tracker = SensorCP(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
         # debug=True,
     )
-
+    print(tracker.get_entity())
     # print(tracker)
     # Delete the entity
     # tracker.delete_entity()
@@ -257,11 +261,11 @@ if __name__ == "__main__":
 
     # tracker.delete_entity(entity_id="tracker1")
     # print(tracker)
-    track = SensorCP(
-        base_url="http://150.140.186.118:1026",
-        entity_id="tracker4",
-    )
-    print(track.get_entity())
+    # track = SensorCP(
+    #     base_url="http://150.140.186.118:1026",
+    #     # entity_id="tracker4",
+    # )
+    # print(track.get_entity())
 
 # Example Data
 # example_data = {
