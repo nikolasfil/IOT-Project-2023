@@ -33,7 +33,7 @@ class Subscriber(Broker):
         time_recorded = self.py_obj_payload.get("time")
 
         text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
-        print(text)
+        # print(text)
 
         # Send the information to the connector server
         connector_server = ContextProvider(
@@ -44,7 +44,8 @@ class Subscriber(Broker):
             payload=self.py_obj_payload,
             automated=True,
         )
-        print(connector_server.response_json)
+
+        # print(connector_server.response_json)
 
     def handling_button(self):
         # Sends the information to the connector server
