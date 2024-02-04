@@ -8,7 +8,6 @@ services:
       dockerfile: DockerFiles/Volumes/Dockerfile-Python
       args:
         - PYTHON_FILE="subscriber_broker.py"
-
     image: pythonsubscriber
     volumes:
       - ./python_servers/src/:/app
@@ -18,7 +17,9 @@ services:
       - "3000:5000"
     networks:
       - app-network
- 
+    # environment:
+    #   - PYTHON_FILE=subscriber_broker.py
+
   publisher-app:
     build:
       context: .
@@ -39,9 +40,8 @@ services:
     build:
       context: .
       # dockerfile: DockerFiles/Volumes/Dockerfile-Connector
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
-      args:
-        - PYTHON_FILE="connector_broker.py"
+      dockerfile: DockerFiles/Volumes/Dockerfile-Connector
+
     image: pythonconnector
     volumes:
       - ./python_servers/src/:/app

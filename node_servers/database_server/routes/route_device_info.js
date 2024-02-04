@@ -51,7 +51,7 @@ router.get('/device_general',
     (req,res,next) => {
 
         // link = "http://172.22.0.3:5000/"
-        link = "http://python-app:5000/"
+        link = "http://connector:5000/"
         let link_data = {
             method: "GET",
             credentials: "same-origin",
