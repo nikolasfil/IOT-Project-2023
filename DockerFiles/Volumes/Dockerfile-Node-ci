@@ -10,11 +10,11 @@ WORKDIR /app
 
 # Install app dependencies
 
-COPY node_servers/website/package.json ./
+COPY node_servers/website/package\*.json ./
 
 # Install dependencies
 
-RUN npm i
+RUN npm ci
 
 
 # Expose port 8080 (adjust as needed)

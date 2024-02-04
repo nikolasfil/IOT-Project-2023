@@ -1,56 +1,50 @@
 # version: "3"
 
 services:
-  subscriber-app:
-    build:
-      context: .
-      # dockerfile: DockerFiles/Volumes/Dockerfile-Subscriber
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
-      args:
-        - PYTHON_FILE="subscriber_broker.py"
+  # subscriber-app:
+  #   build:
+  #     context: .
+  #     dockerfile: DockerFiles/Volumes/Dockerfile-Subscriber
 
-    image: pythonsubscriber
-    volumes:
-      - ./python_servers/src/:/app
-    depends_on:
-      - connector-app
-    ports:
-      - "3000:5000"
-    networks:
-      - app-network
+  #   image: pythonsubscriber
+  #   volumes:
+  #     - ./python_servers/src/:/app
+  #   depends_on:
+  #     - connector-app
+  #   ports:
+  #     - "3000:5000"
+  #   networks:
+  #     - app-network
  
-  publisher-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Volumes/Dockerfile-Publisher
+  # publisher-app:
+  #   build:
+  #     context: .
+  #     dockerfile: DockerFiles/Volumes/Dockerfile-Publisher
 
-    image: pythonpublisher
+  #   image: pythonpublisher
 
-    volumes:
-      - ./python_servers/src/:/app
-    depends_on:
-      - subscriber-app
-    ports:
-      - "4000:5000"
-    networks:
-      - app-network
+  #   volumes:
+  #     - ./python_servers/src/:/app
+  #   depends_on:
+  #     - subscriber-app
+  #   ports:
+  #     - "4000:5000"
+  #   networks:
+  #     - app-network
 
-  connector-app:
-    build:
-      context: .
-      # dockerfile: DockerFiles/Volumes/Dockerfile-Connector
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
-      args:
-        - PYTHON_FILE="connector_broker.py"
-    image: pythonconnector
-    volumes:
-      - ./python_servers/src/:/app
-    # depends_on:
-    #   - database-app
-    ports:
-      - "5000:5000"
-    networks:
-      - app-network
+  # connector-app:
+  #   build:
+  #     context: .
+  #     dockerfile: DockerFiles/Volumes/Dockerfile-Connector
+  #   image: pythonconnector
+  #   volumes:
+  #     - ./python_servers/src/:/app
+  #   # depends_on:
+  #   #   - database-app
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - app-network
 
   # node-app:
   #   build:
@@ -74,22 +68,21 @@ services:
   #   networks:
   #     - app-network
 
-  # database-app:
-  #   build:
-  #     context: .
-  #     dockerfile: DockerFiles/Volumes/Dockerfile-Node
-  #   image: nodejsdatabase
-  #   volumes:
-  #     - ./node_servers/database_server/controllers:/app/controllers
-  #     - ./node_servers/database_server/model:/app/model
-  #     - ./node_servers/database_server/public:/app/public
-  #     - ./node_servers/database_server/routes:/app/routes
-  #     - ./node_servers/database_server/index.js:/app/index.js
-
-  #   ports:
-  #     - "27017:8080"
-  #   networks:
-  #     - app-network
+  database-app:
+    build:
+      context: .
+      dockerfile: DockerFiles/Volumes/Dockerfile-Node
+    image: nodejsdatabase
+    volumes:
+      - ./node_servers/database_server/controllers:/app/controllers
+      - ./node_servers/database_server/model:/app/model
+      - ./node_servers/database_server/public:/app/public
+      - ./node_servers/database_server/routes:/app/routes
+      - ./node_servers/database_server/index.js:/app/index.js
+    ports:
+      - "27017:8080"
+    networks:
+      - app-network
 
 networks:
   app-network:
