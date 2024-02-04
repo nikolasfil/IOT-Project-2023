@@ -54,13 +54,13 @@ services:
   #     dockerfile: DockerFiles/Volumes/Dockerfile-Node
   #   image: adguardwebside
   #   volumes:
-  #     # - ./website:/app
-  #     - ./website/controllers:/app/controllers
-  #     - ./website/model:/app/model
-  #     - ./website/public:/app/public
-  #     - ./website/routes:/app/routes
-  #     - ./website/views:/app/views
-  #     - ./website/index.js:/app/index.js
+  #     # - ./node_servers/website:/app
+  #     - ./node_servers/website/controllers:/app/controllers
+  #     - ./node_servers/website/model:/app/model
+  #     - ./node_servers/website/public:/app/public
+  #     - ./node_servers/website/routes:/app/routes
+  #     - ./node_servers/website/views:/app/views
+  #     - ./node_servers/website/index.js:/app/index.js
   #   # depends_on:
   #   #   - python-app
   #   ports:
