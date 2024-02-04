@@ -101,6 +101,36 @@ router.post("/checkUser",
 );
 
 
+router.post("/select",
+    (req, res) => {
+        let command = req.body.data.command;
+
+        database.select(command, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while executing select command")
+            } else {
+                res.send(JSON.stringify(result));
+            }
+        }
+    )}
+);
+
+
+router.post("/insert",
+    (req, res) => {
+        let command = req.body.data.command;
+
+        database.insert(command, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while executing insert command")
+            } else {
+                res.send(JSON.stringify(result));
+            }
+        }
+    )}
+);
 
 
 

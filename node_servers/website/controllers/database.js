@@ -212,38 +212,29 @@ exports.checkUser= (id, password, callback) =>  {
 // --------- Static Selection in the database -----------
 
 exports.select=(command, callback) =>  {
-    let stmt, result;
-    
-    try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.all(command.arguments);
+    let link = '/select'
+    let link_data = {command: command}
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
         }
-        else {
-            result = stmt.all();
-        }
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
+    });
+
 }
 
 
 exports.insert = (command,callback) => {
-    let stmt, result;
-    
-    try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.run(command.arguments);
+    let link = '/insert'
+    let link_data = {command: command}
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
         }
-        else {
-            result = stmt.run();
-        }
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
+    });
 }
 
 
