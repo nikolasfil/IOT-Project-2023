@@ -25,11 +25,8 @@ router.get('/',
     
     
     (req, res) => {
-        res.render('homepage', {
-            style: 'index.css',
-            title: 'Home',
-            signedIn: req.session.signedIn,
-        });
+        res.send(res.locals.active_trackers);
+
     });
 
 
