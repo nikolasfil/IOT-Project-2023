@@ -5,3 +5,4 @@ backup*
 model/sessions/session.sqlite
 
 **/app_venv/*
+

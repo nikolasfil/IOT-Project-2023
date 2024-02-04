@@ -8,13 +8,21 @@ FROM node:18.16-alpine
 
 WORKDIR /app
 
-# Install app dependencies
 
-COPY node_servers/website/package.json ./
+# Install app dependencies
+COPY node_servers/website/package*.json ./
 
 # Install dependencies
+RUN npm ci
 
-RUN npm i
+
+# # Install app dependencies
+
+# COPY node_servers/website/package.json ./
+
+# # Install dependencies
+
+# RUN npm i
 
 
 # Expose port 8080 (adjust as needed)

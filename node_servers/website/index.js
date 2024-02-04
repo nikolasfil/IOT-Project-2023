@@ -6,6 +6,7 @@ const expbs = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
+const doted = require('dotenv').config();   
 
 const login = require('./controllers/login.js');
 

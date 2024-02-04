@@ -7,9 +7,6 @@ WORKDIR /app
 # Install app dependencies
 COPY website/package*.json ./
 
-
-
-
 # Install dependencies
 RUN npm ci
 
