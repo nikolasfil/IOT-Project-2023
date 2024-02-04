@@ -77,13 +77,29 @@ router.post("/userDetails",
         database.userDetails(id, (err, exists) => {
             if (err) {
                 console.log(err);
-                res.status(500).send("Internal Server Error while checking if user exists")
+                res.status(500).send("Internal Server Error while getting user details")
             } else {
                 res.send(JSON.stringify(exists));
             }
         }
     )}
-    );
+);
+
+router.post("/checkUser",
+    (req, res) => {
+        let id = req.body.data.id;
+        let password = req.body.data.password;
+        database.checkUser(id,password, (err, exists) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while checking if user credentials are accurate")
+            } else {
+                res.send(JSON.stringify(exists));
+            }
+        }
+    )}
+);
+
 
 
 

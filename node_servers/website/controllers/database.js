@@ -194,27 +194,18 @@ exports.userDetails= (id, callback) =>  {
 
 exports.checkUser= (id, password, callback) =>  {
 
-    let user, error_message;
-
-    try {
-        const stmt = betterDb.prepare('Select * from USER where u_id = ?')
-        user = stmt.get(id)
-        if (user) {
-            const match = bcrypt.compareSync(password, user.password);
-            if (match) {
-                callback(null, user)
-            }
-            else {
-
-                callback('Wrong Password', null)
-            }
+    let link = '/checkUser'
+    let link_data = {
+        "id": id,
+        "password": password
+    }
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
         } else {
-            callback('User not found', null)
+            callback(null, data)
         }
-    }
-    catch (err) {
-        callback(err, null)
-    }
+    });
 }
 
 
