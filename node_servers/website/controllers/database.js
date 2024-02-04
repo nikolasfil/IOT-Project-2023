@@ -1,53 +1,18 @@
-const sql = require('better-sqlite3')
-const betterDb = new sql('model/database.sqlite')
-
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 
 // --------- Generic Functions ---------
 
-function escapeRegExp(string) {
-    return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
-}
 
 
-function getRegex(searchValue, rows) {
-
-    // let rows;
-    // let query ;
-
-    // try {
-    //     rows = betterDb.prepare().all()
-
-    // } catch (err) {
-    //     throw err;
-    // }
-
-    // const commonWords = [
-    //     'the', 'of', 'and', 'a', 'to', 'in', 'is', 'you', 'that', 'it', 'he', 'was', 'for', 'on', 'are', 'as', 'with', 'his', 'they', 'I']
-
-    searchValue = searchValue.trim();
-    const words = searchValue.split(" ");
-
-    // const partialWords = words.filter(word => !commonWords.includes(word));
-
-    // const partialPattern = partialWords.map(word => `(?:\\b|\\B)${escapeRegExp(word)}\\w*(?:\\b|\\B)`).join('|');
-    const partialPattern = words.map(word => `(?:\\b|\\B)${escapeRegExp(word)}\\w*(?:\\b|\\B)`).join('|');
-
-    const exactPattern = `\\b${escapeRegExp(searchValue)}\\b`;
-
-    const pattern = `(?:${partialPattern}|${exactPattern})`;
-
-    const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.searchValue)).map(row => row.searchValue);
-
-    return matchingPhrases;
-
-}
-
-
-
-
+/**
+ * Connects to the database server that is specified in the .env file. 
+ *  
+ * @param {*} route The link that specifies the request for the database 
+ * @param {*} data A json object that contains the data that is going to be sent to the database
+ * @param {*} callback The function that handles the result
+ * @returns the response of the request from the database
+ */
 async function fetchResponse(route, data, callback){
     
     let link = process.env.DBURL + route
