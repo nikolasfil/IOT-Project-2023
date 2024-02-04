@@ -241,19 +241,15 @@ exports.insert = (command,callback) => {
 // --------- Dynamic Insertion into Database --------
 
 exports.addUser= (user, callback) =>  {
-    let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
-    let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
-    
-    let query = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
-    const stmt = betterDb.prepare(query)
-
-    try {
-        stmt.run(attributes)
-        callback(null, true)
-    }
-    catch (err) {
-        callback(err, null)
-    }
+    let link = '/addUser'
+    let link_data = {"user":user}
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
+        }
+    });
 }
 
 // ----------------------------------------------------

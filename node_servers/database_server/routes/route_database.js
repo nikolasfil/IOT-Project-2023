@@ -132,6 +132,21 @@ router.post("/insert",
     )}
 );
 
+router.post("/addUser",
+    (req, res) => {
+        let user = req.body.data.user;
+        
+        database.addUser(user, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while adding user")
+            } else {
+                res.send(JSON.stringify(result));
+            }
+        }
+    )}
+);
+
 
 
 module.exports = router;
