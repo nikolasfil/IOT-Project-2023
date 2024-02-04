@@ -172,7 +172,6 @@ exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
         "limit": limit,
         "offset": offset
     }
-    console.log(link_data)
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
@@ -182,48 +181,18 @@ exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
     });
 }
 
-exports.getAllAtributes2=(source,attribute, limit, offset, callback) =>  {
-    let stmt, result;
-    let query = `Select distinct`
-
-    let list = []
-
-    query += ` ${attribute} as name from ${source}`
-
-    query += ` where ${attribute} is not null` 
-    query += ` order by ${attribute} asc`
-
-    if (limit) {
-        query += ' LIMIT ?'
-        list.push(limit)
-    }
-
-    // if (offset) {
-    //     query += ' OFFSET ?'
-    //     list.push(offset)
-    // }
-    
-
-    try {
-        stmt = betterDb.prepare(query)
-        result = stmt.all(list);
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
-}
-
-
 exports.checkIfUserExists= (id, callback) =>  {
-    const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
-    let user;
-    try {
-        user = stmt.get(id)
-        callback(null, user)
+    let link = '/checkIfUserExists'
+    let link_data = {
+        "id": id
     }
-    catch (err) {
-        callback(err, null)
-    }
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
+        }
+    });
 }
 
 exports.userDetails= (id, callback) =>  {
