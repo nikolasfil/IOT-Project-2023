@@ -46,27 +46,27 @@ services:
   #   networks:
   #     - app-network
 
-  # node-app:
-  #   build:
-  #     context: .
-  #     # Change the location of the docker file to DockerFiles/Dockerfile-Node
-  #     dockerfile: DockerFiles/Volumes/Dockerfile-Node
-  #   image: adguardwebside
-  #   volumes:
-  #     # - ./node_servers/website:/app
-  #     - ./node_servers/website/controllers:/app/controllers
-  #     - ./node_servers/website/model:/app/model
-  #     - ./node_servers/website/public:/app/public
-  #     - ./node_servers/website/routes:/app/routes
-  #     - ./node_servers/website/views:/app/views
-  #     - ./node_servers/website/index.js:/app/index.js
-  #   # depends_on:
-  #   #   - python-app
-  #   ports:
-  #     - "8080:8080"
-  #   working_dir: /app
-  #   networks:
-  #     - app-network
+  node-app:
+    build:
+      context: .
+      # Change the location of the docker file to DockerFiles/Dockerfile-Node
+      dockerfile: DockerFiles/Volumes/Dockerfile-Node
+    image: adguardwebside
+    volumes:
+      # - ./node_servers/website:/app
+      - ./node_servers/website/controllers:/app/controllers
+      - ./node_servers/website/model:/app/model
+      - ./node_servers/website/public:/app/public
+      - ./node_servers/website/routes:/app/routes
+      - ./node_servers/website/views:/app/views
+      - ./node_servers/website/index.js:/app/index.js
+    depends_on:
+      - database-app
+    ports:
+      - "8080:8080"
+    working_dir: /app
+    networks:
+      - app-network
 
   database-app:
     build:
