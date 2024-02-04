@@ -89,7 +89,7 @@ html_static_path = ["_static"]
 Lastly Run the make command to start the process.
 
 ```bash
-make html
+make clean html
 ```
 
 
@@ -102,4 +102,10 @@ To view it simply run a python server insided the python_documentation
 python -m http.server 8080
 ```
 
-and go to the [url](http://localhost:8080)
+and go to the [url](http://localhost:8080/_build/html/)
+
+
+## Resources 
+
+[yt-tutorial](https://www.youtube.com/watch?v=5s3JvVqwESA)
+

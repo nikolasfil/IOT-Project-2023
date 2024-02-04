@@ -1,1 +1,0 @@
-/home/figaro/Programms/Github_Projects/NikolasProjects/IOT-Project-2023/docs/documentation/python_documentation/
