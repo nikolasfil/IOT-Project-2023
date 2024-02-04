@@ -47,22 +47,6 @@ function getRegex(searchValue, rows) {
 
 
 
-async function fetchResponseCallback(link, link_data, callback){
-    let response =  fetch(link, link_data).then((res) => {
-        return res.text();
-    }).then((data) => {
-        return JSON.parse(data);
-    }).then((data) => {
-        callback(null, data)
-        // return data;
-    }).catch(error => {
-        callback(error, null)
-        console.log(error);
-    });
-
-    return response;
-}
-
 
 async function fetchResponse(route, data, callback){
     
@@ -152,7 +136,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     
     let link = '/getAllDevicesJson'
     let link_data = data
-    console.log(link_data)
 
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
@@ -196,19 +179,17 @@ exports.checkIfUserExists= (id, callback) =>  {
 }
 
 exports.userDetails= (id, callback) =>  {
-    // let query = `Select u_id, first_name, last_name, phone,role from USER where u_id = ? `
-    let query = `Select * from USER where u_id = ? `
-    // const stmt = betterDb.prepare('Select u_id, first_name, last_name, phone,role from USER where u_id = ? ')
-    const stmt = betterDb.prepare(query)
-    let user;
-    try {
-        user = stmt.get(id)
-        // console.log(id)
-        callback(null, user)
+    let link = '/userDetails'
+    let link_data = {
+        "id": id
     }
-    catch (err) {
-        callback(err, null)
-    }
+    fetchResponse(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
+        }
+    });
 }
 
 exports.checkUser= (id, password, callback) =>  {

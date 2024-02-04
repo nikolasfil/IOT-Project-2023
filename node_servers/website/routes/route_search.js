@@ -38,7 +38,6 @@ router.post('/fetchResults/:numOf',
         }
     },
     (req, res) => {
-        console.log(res.locals.devices)
         // res.send(res.locals.devices);
         res.render('partials/devices_grid',
         {

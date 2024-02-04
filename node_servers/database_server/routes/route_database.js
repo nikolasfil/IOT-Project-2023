@@ -43,7 +43,6 @@ router.post('/getAllAttributes',
         let attribute = req.body.data.attribute; 
         let limit = req.body.data.limit;
         let offset = req.body.data.offset;
-        console.log(req.body);
         database.getAllAttributes( source,attribute,limit,offset, (err, attributes) => {
             if (err) {
                 console.log(err);
@@ -71,6 +70,20 @@ router.post("/checkIfUserExists",
     )}
     );
 
+
+router.post("/userDetails",
+    (req, res) => {
+        let id = req.body.data.id;
+        database.userDetails(id, (err, exists) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while checking if user exists")
+            } else {
+                res.send(JSON.stringify(exists));
+            }
+        }
+    )}
+    );
 
 
 
