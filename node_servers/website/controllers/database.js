@@ -45,17 +45,7 @@ function getRegex(searchValue, rows) {
 
 }
 
-async function fetchResponse(link, link_data){
-    let response =  await fetch(link, link_data).then((res) => {
-        return res.text();
-    }).then((data) => {
-        return data;
-    }).catch(error => {
-        console.log(error);
-    });
 
-    return response;
-}
 
 async function fetchResponseCallback(link, link_data, callback){
     let response =  fetch(link, link_data).then((res) => {
@@ -73,18 +63,40 @@ async function fetchResponseCallback(link, link_data, callback){
     return response;
 }
 
-async function fetchResponse(link, link_data, callback){
-    let response =  await fetch(link, link_data).then((res) => {
+
+async function fetchResponse(route, data, callback){
+    
+    let link = process.env.DBURL + route
+
+    let link_data = {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({data:data}),
+        // body: data,
+        
+    }
+    
+    let response =  fetch(link, link_data).then((res) => {
         return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
     }).then((data) => {
         callback(null, data)
         // return data;
     }).catch(error => {
+        callback(error, null)
         console.log(error);
     });
 
     return response;
 }
+
+
 
 /**
  * 
@@ -139,34 +151,16 @@ exports.addingActivated=(activated_name, linker, regex)=> {
 */
 exports.getAllDevicesJson= (data,  callback) =>  {
     
+    let link = '/getAllDevicesJson'
+    let link_data = data
 
-        
-    // ----------- Fetching the results  -----------
-
-    let link = process.env.DBURL + '/getAllDevicesJson'
-    let link_data = {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        // referrerPolicy: "no-referrer",
-        body: JSON.stringify({data:data}),
-        // body: data,
-        
-    }
-
-    fetchResponseCallback(link, link_data,(err, data) => {
+    fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
         } else {
             callback(null, data)
         }
     });
-
-    // callback(null, device);
-
 
 }
 

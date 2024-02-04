@@ -16,7 +16,6 @@ router.get('/',
                 res.status(500).send('Internal Server Error')
             } else {
                 res.locals.active_trackers = devices;
-                console.log(devices);
                 next();
             }
         })
