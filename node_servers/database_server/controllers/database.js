@@ -252,7 +252,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 }
 
 
-exports.getAllAtributes=(source,attribute, limit, offset, callback) =>  {
+exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
     let stmt, result;
     let query = `Select distinct`
 
