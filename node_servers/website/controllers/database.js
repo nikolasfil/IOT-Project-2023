@@ -57,6 +57,34 @@ async function fetchResponse(link, link_data){
     return response;
 }
 
+async function fetchResponseCallback(link, link_data, callback){
+    let response =  fetch(link, link_data).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
+    }).then((data) => {
+        callback(null, data)
+        // return data;
+    }).catch(error => {
+        callback(error, null)
+        console.log(error);
+    });
+
+    return response;
+}
+
+async function fetchResponse(link, link_data, callback){
+    let response =  await fetch(link, link_data).then((res) => {
+        return res.text();
+    }).then((data) => {
+        callback(null, data)
+        // return data;
+    }).catch(error => {
+        console.log(error);
+    });
+
+    return response;
+}
 
 /**
  * 
@@ -123,15 +151,21 @@ exports.getAllDevicesJson= (data,  callback) =>  {
             "Content-Type": "application/json",
         },
         redirect: "follow",
-        referrerPolicy: "no-referrer",
-        // body: JSON.stringify({data:data}),
-        body: data,
+        // referrerPolicy: "no-referrer",
+        body: JSON.stringify({data:data}),
+        // body: data,
         
     }
 
-    let device = fetchResponse(link, link_data)
+    fetchResponseCallback(link, link_data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
+        }
+    });
 
-    callback(null, device);
+    // callback(null, device);
 
 
 }

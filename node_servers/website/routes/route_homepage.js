@@ -10,12 +10,13 @@ const login = require('../controllers/login.js');
 router.get('/',
     (req, res, next) => {
         // this is a static device list displaying 12 active trackers
-            database.getAllDevicesJson(data = {status: 'active', type: 'tracker', limit: 12}, function (err, devices) {
+            database.getAllDevicesJson(data = {status: 'active', type: 'tracker', limit: 12, exclusively:true}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             } else {
                 res.locals.active_trackers = devices;
+                console.log(devices);
                 next();
             }
         })

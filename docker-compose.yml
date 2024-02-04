@@ -61,6 +61,8 @@ services:
       - ./node_servers/website/views:/app/views
       - ./node_servers/website/index.js:/app/index.js
       - ./node_servers/website/.env:/app/.env
+      # - ./node_servers/website/package.json:/app/package.json
+      # - ./node_servers/website/package-lock.json:/app/package-lock.json
 
     depends_on:
       - database-app
@@ -82,6 +84,8 @@ services:
       - ./node_servers/database_server/routes:/app/routes
       - ./node_servers/database_server/index.js:/app/index.js
       - ./node_servers/database_server/.env:/app/.env
+      # - ./node_servers/database_server/package.json:/app/package.json
+      # - ./node_servers/database_server/package-lock.json:/app/package-lock.json
     ports:
       # - "27017:8080"
       - "6000:8080"
