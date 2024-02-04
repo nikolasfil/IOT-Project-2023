@@ -1,0 +1,209 @@
+.card-info{
+display: flex;
+justify-content: space-evenly;
+margin-bottom: 5%;
+flex: 1 1 auto;
+flex-wrap: wrap;
+
+}
+
+.borrowingCardBG{
+    filter: drop-shadow(2px 5px 10px #0000000f);
+}
+
+.profileInfoDetails{
+    margin-top: 3rem;
+    align-content: bottom;
+}
+
+@media (max-width: 688px) {
+    .profileInfoDetails{
+        margin: 1% 0% 1% 0%;
+
+    }
+}
+
+.profile_info{
+    min-width: 200px;
+
+}
+
+.borrowingCard{
+    position: relative;
+}
+
+.borrowingCardInfo1{
+    position: absolute;
+    top: 195px;
+    left: 35px;
+}
+
+.borrowingCardInfo2{
+    position: absolute;
+    top: 215px;
+    left: 35px;
+}
+
+/* borrowing state */
+.borrowing_state{
+    display: flex;
+    flex-direction: column;
+}
+
+/* borrowing each book */
+.borrowingInfo{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-collapse: collapse;
+    justify-content: space-between;
+}
+
+/* borrowing details */
+.borrowedBookDetails{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 3%;
+    min-width: 140px;
+}
+.borrowedBookimg{
+    height: 60px;
+    margin:2%;
+}
+
+/* borrowing timeline */
+
+.timeline{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.timestamp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 100;
+}
+  
+.status1{
+    padding: 15px 5vw 0px 0px;
+    display: flex;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    text-align: left;
+    min-width: 150px;
+    white-space:nowrap;
+}
+.status1::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -8px;
+}
+
+.status2{
+    padding: 15px 5vw 0px 5vw;
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    text-align: center;
+    color: rgba(0, 0, 0, 0);
+    min-width: 150px;
+    white-space:nowrap;
+}
+.status2::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -8px;
+    left: 46.5%;
+}
+
+.status3{
+    padding: 15px 0px 0px 5vw;
+    display: flex;
+    justify-content: right;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    text-align: right;
+    color: rgba(0, 0, 0, 0);
+    min-width: 150px;
+    white-space:nowrap;
+}
+.status3::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -8px;
+}
+    
+.status3.borrowed{
+    color: rgb(0, 0, 0);
+}
+
+.li.complete .status1{
+    border-top: 2px solid #AC8FBF;}
+.li.complete .status1::before{
+    background-color: #AC8FBF;
+    border: none;
+}
+   
+.li.complete .status2{
+    border-top: 2px solid #AC8FBF;
+    color: rgb(0, 0, 0);}
+    
+.li.complete .status2::before{
+    background-color: #AC8FBF;
+    border: none;
+}
+
+.li.complete .status3{
+    border-top: 2px solid #AC8FBF;
+    color: rgb(0, 0, 0);}
+.li.complete .status3::before{
+    background-color: #AC8FBF;
+    border: none;
+}
+  
+.li.overdue .status1{
+    border-top: 2px solid #EC7777;}
+.li.overdue .status1::before{
+    background-color: #EC7777;
+    border: none;
+}
+   
+.li.overdue .status2{
+    border-top: 2px solid #EC7777;
+    color: rgb(0, 0, 0);}
+.li.overdue .status2::before{
+    background-color: #EC7777;
+    border: none;
+}
+
+.li.overdue .status3{
+    border-top: 2px solid #EC7777;
+    color: rgb(0, 0, 0);
+}
+.li.overdue .status3::before{
+    background-color: #EC7777;
+    border: none;
+}
+

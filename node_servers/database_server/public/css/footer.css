@@ -1,0 +1,158 @@
+.div {
+  background-color: #333;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 80px 25px 37px;
+}
+
+@media (max-width: 991px) {
+  .div {
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .div-2 {
+    max-width: 100%;
+  }
+}
+
+.div-3 {
+  gap: 20px;
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  .div-3 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 40%;
+  margin-left: 0px;
+}
+
+@media (max-width: 991px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.div-4 {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .div-4 {
+    margin-top: 40px;
+  }
+}
+
+.div-5 {
+  color: #fff;
+  font: 700 16px Inter, sans-serif;
+}
+
+.div-6 {
+  color: #fff;
+  margin-top: 43px;
+  font: 400 16px Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .div-6 {
+    margin-top: 40px;
+  }
+}
+
+.div-7 {
+  color: #fff;
+  margin-top: 10px;
+  white-space: nowrap;
+  font: 400 10px Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .div-7 {
+    white-space: initial;
+  }
+}
+
+.div-8 {
+  color: #fff;
+  margin-top: 18px;
+  font: 400 10px Inter, sans-serif;
+}
+
+.column-2 {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 61%;
+  margin-left: 20px;
+}
+
+@media (max-width: 991px) {
+  .column-2 {
+    width: 100%;
+  }
+}
+
+.div-9 {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .div-9 {
+    margin-top: 40px;
+  }
+}
+
+.div-10 {
+  color: #fff;
+  font: 700 16px Inter, sans-serif;
+}
+
+.div-11 {
+  justify-content: center;
+  color: #fff;
+  margin-top: 23px;
+  font: 400 10px Inter, sans-serif;
+}
+
+.div-12 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.div-13 {
+  color: #fff;
+  white-space: nowrap;
+  font: 700 32px Inter, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .div-13 {
+    white-space: initial;
+  }
+}
+
+.div-14 {
+  justify-content: center;
+  color: #fff;
+  margin-top: 36px;
+  font: 400 20px Inter, sans-serif;
+}

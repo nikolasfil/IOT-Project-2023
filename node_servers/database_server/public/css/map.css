@@ -1,0 +1,27 @@
+#basicMap {
+  /* height: 336px; */
+  height: 440px;
+  width: 828px;
+  margin: 2%;
+}
+
+#basicMap:hover {
+  cursor: pointer;
+  overflow: hidden;
+  /* position: absolute; */
+}
+
+/* .map-div {
+  margin: 50px;
+} */
+
+.map-hours {
+  margin-left: 206px;
+  margin-right: 160px;
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+  min-width: 290px;
+}

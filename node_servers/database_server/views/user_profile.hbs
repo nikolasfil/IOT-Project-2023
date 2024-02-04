@@ -1,0 +1,42 @@
+<script src="javascript/user_profile.js" defer></script>
+
+{{>header}}
+
+<main>
+
+  {{!-- make it better at a later date --}}
+
+  <div class="pageborder">
+
+    <div class="row align-items-center">
+      <!-- card -->
+      <div class="col justify-self-center align-items-center scale">
+        {{>membershipCard name=profile.first_name surname=profile.last_name id=profile.u_id}}
+      </div>
+
+      <!-- Personal information -->
+      <div class="profile_info col">
+        <div class="d-flex flex-wrap align-items-center">
+          <h2><strong>{{profile.first_name}} {{profile.last_name}}</strong></h2>
+          <form action="/sign_out" method="get">
+            <input class="button-purple justify-self-end" type="submit" value="Sign Out">
+          </form>
+
+        </div>
+        <div class="profileInfoDetails">
+          <h6><strong>ID</strong></h6>
+          <p>{{profile.u_id}}</p>
+          <h6><strong>Role</strong></h6>
+          <p>{{profile.role}}</p>
+          <h6><strong>Phone</strong></h6>
+          <p>{{profile.phone}}</p>
+        </div>
+      </div>
+    </div>
+
+    {{!-- display past trips --}}
+    {{!-- show date and duration --}}
+
+
+
+</main>

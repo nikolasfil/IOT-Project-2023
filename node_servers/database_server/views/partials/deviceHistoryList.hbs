@@ -1,0 +1,21 @@
+<deviceHistoryList class="row">
+  <div class="row">
+    <h4 class="col">User ID</h4>
+    <h4 class="col">Date Received</h4>
+    <h4 class="col">Date Returned</h4>
+
+  </div>
+
+  {{! Make a list to display the history  }}
+  {{#each deviceHistory}}
+
+    <div class="row">
+      <div class="col">{{user_id}}</div>
+      <div class="col">{{date_received}}</div>
+      <div class="col">{{date_returned}}</div>
+
+    </div>
+
+  {{/each}}
+
+</deviceHistoryList>
