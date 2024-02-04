@@ -10,8 +10,8 @@ WORKDIR /app
 
 
 # Install app dependencies
-COPY node_servers/website/package*.json ./
-
+COPY node_servers/database_server/package*.json ./
+# COPY node_servers/database_server/.env ./
 
 # Install dependencies
 RUN npm ci

@@ -15,7 +15,7 @@ services:
   #     - "3000:5000"
   #   networks:
   #     - app-network
- 
+
   # publisher-app:
   #   build:
   #     context: .
@@ -50,7 +50,7 @@ services:
     build:
       context: .
       # Change the location of the docker file to DockerFiles/Dockerfile-Node
-      dockerfile: DockerFiles/Volumes/Dockerfile-Node
+      dockerfile: DockerFiles/Volumes/Dockerfile-Website
     image: adguardwebside
     volumes:
       # - ./node_servers/website:/app
@@ -60,6 +60,8 @@ services:
       - ./node_servers/website/routes:/app/routes
       - ./node_servers/website/views:/app/views
       - ./node_servers/website/index.js:/app/index.js
+      - ./node_servers/website/.env:/app/.env
+
     depends_on:
       - database-app
     ports:
@@ -71,7 +73,7 @@ services:
   database-app:
     build:
       context: .
-      dockerfile: DockerFiles/Volumes/Dockerfile-Node
+      dockerfile: DockerFiles/Volumes/Dockerfile-Database
     image: nodejsdatabase
     volumes:
       - ./node_servers/database_server/controllers:/app/controllers
@@ -79,8 +81,10 @@ services:
       - ./node_servers/database_server/public:/app/public
       - ./node_servers/database_server/routes:/app/routes
       - ./node_servers/database_server/index.js:/app/index.js
+      - ./node_servers/database_server/.env:/app/.env
     ports:
-      - "27017:8080"
+      # - "27017:8080"
+      - "6000:8080"
     networks:
       - app-network
 

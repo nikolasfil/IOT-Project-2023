@@ -2,6 +2,7 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/database.sqlite')
 
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 
 
 // --------- Generic Functions ---------
@@ -44,6 +45,19 @@ function getRegex(searchValue, rows) {
 
 }
 
+async function fetchResponse(link, link_data){
+    let response =  await fetch(link, link_data).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return data;
+    }).catch(error => {
+        console.log(error);
+    });
+
+    return response;
+}
+
+
 /**
  * 
  * 
@@ -78,6 +92,7 @@ exports.addingActivated=(activated_name, linker, regex)=> {
 
 // --------- Dynamic Selection from Database 
 
+
 /**
  * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
  * @param {*} data contains everything in a json format (not optional)
@@ -96,6 +111,56 @@ exports.addingActivated=(activated_name, linker, regex)=> {
 */
 exports.getAllDevicesJson= (data,  callback) =>  {
     
+
+        
+    // ----------- Fetching the results  -----------
+
+    let link = process.env.DBURL + '/getAllDevicesJson'
+    let link_data = {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        // body: JSON.stringify({data:data}),
+        body: data,
+        
+    }
+
+    let device = fetchResponse(link, link_data)
+
+    callback(null, device);
+
+
+}
+
+
+
+/**
+ * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
+ * @param {*} data contains everything in a json format (not optional)
+ * @param {*} id For a specific device (optional)
+ * @param {*} serial For a specific serial (optional)
+ * @param {*} battery For a specific battery (optional)
+ * @param {*} status For a specific status (optional)
+ * @param {*} type For a specific type (optional)
+ * @param {*} limit Limiting the number of results (optional)
+ * @param {*} offset Starting from a specific result (optional)
+ * @param {*} numOf true or null, if we want to focus more on the number of results back (optional)
+ * @param {*} filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
+ * @param {*} callback function that handles the results
+ *  
+ * This function is the same as getAllDevices but it returns the results in a json format
+*/
+exports.getAllDevicesJson2= (data,  callback) =>  {
+    
+
+        
+    // ----------- Fetching the results  -----------
+
+
 
     // Defining the variables
     let stmt, device, query, query_filters, query_activated, linker;
@@ -232,6 +297,8 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     // ----------- Printing the final query -----------
     console.log(query)
+
+    // ----------- Running the query -----------
 
     try {
         stmt = betterDb.prepare(query)

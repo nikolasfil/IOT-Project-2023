@@ -4,7 +4,6 @@ const router = express.Router();
 const database = require('../controllers/database.js');
 const login = require('../controllers/login.js');
 
-
 /**
  * Router for homepage
  */
