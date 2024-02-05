@@ -18,7 +18,7 @@ router.post('/fetchResults/:numOf',
         let data = res.locals.data;
         if (req.params.numOf == 'true'){
             data.numOf = true;
-        }
+        }1
         database.getAllDevicesJson(data = data, function (err, devices) {
             if (err) {
                 console.log(err)

@@ -1,6 +1,7 @@
 from broker import Broker
 import datetime
 from context_provider import ContextProvider
+import os
 
 
 class Subscriber(Broker):
@@ -36,9 +37,15 @@ class Subscriber(Broker):
         # print(text)
 
         # Send the information to the connector server
+        sending_url = (
+            "http://connector-app:5000"
+            if os.environ.get("DOCKER")
+            else "http://localhost:5000"
+        )
+        print(sending_url)
         connector_server = ContextProvider(
             # url="http://localhost:5000/device_info",
-            url="http://connector-app:5000/device_info",
+            url=f"{sending_url}/device_info",
             headers={"Content-Type": "application/json"},
             method="POST",
             payload=self.py_obj_payload,

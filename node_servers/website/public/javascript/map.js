@@ -137,3 +137,5 @@ async function mapMult(isbn) {
         map.getView().fit(extent, { padding: [60, 60, 60, 60] }); // Adjust padding as needed
     }
 }
+
+

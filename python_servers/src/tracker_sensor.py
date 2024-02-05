@@ -255,6 +255,7 @@ if __name__ == "__main__":
     }
 
     tracker = Tracker(important_info=important_info)
+    print(tracker.info)
 
     context_info = {
         "id": "tracker",
