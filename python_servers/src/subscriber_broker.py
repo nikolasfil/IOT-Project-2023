@@ -42,6 +42,7 @@ class Subscriber(Broker):
             if os.environ.get("DOCKER")
             else "http://localhost:5000"
         )
+        print(os.environ)
         print(sending_url)
         connector_server = ContextProvider(
             # url="http://localhost:5000/device_info",
