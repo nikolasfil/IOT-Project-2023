@@ -12,7 +12,6 @@ services:
       - ./python_servers/src/:/app
     depends_on:
       - connector-app
-
     ports:
       - "3000:5000"
     command: ["python", "subscriber_broker.py"]
@@ -50,7 +49,7 @@ services:
     #   - database-app
     ports:
       - "5000:5000"
-    command: ["python", "connector_broker.py"]
+    command: ["python", "connector_server.py"]
     networks:
       - app-network
 
