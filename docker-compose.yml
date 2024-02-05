@@ -16,6 +16,7 @@ services:
     command: ["python", "subscriber_broker.py"]
     networks:
       - app-network
+    restart: unless-stopped
 
   publisher-app:
     build:
@@ -33,6 +34,7 @@ services:
     command: ["python", "publisher_broker.py"]
     networks:
       - app-network
+    restart: unless-stopped
 
   connector-app:
     build:
@@ -48,6 +50,7 @@ services:
     command: ["python", "connector_server.py"]
     networks:
       - app-network
+    restart: unless-stopped
 
   # node-app:
   #   build:
@@ -71,6 +74,7 @@ services:
   #   ports:
   #     - "8080:8080"
   #   working_dir: /app
+  #   command: ["npm", "start"]
   #   networks:
   #     - app-network
 
@@ -91,6 +95,7 @@ services:
   #   ports:
   #     # - "27017:8080"
   #     - "6000:7080"
+  #   command: ["npm", "start"]
   #   networks:
   #     - app-network
 

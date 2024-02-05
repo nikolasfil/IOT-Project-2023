@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify
-import requests
-import json
+from flask import Flask, request
 from sensor_context_provider import SensorCP
+from tracker_sensor import TrackerCP
 
 app = Flask(__name__)
 
@@ -32,10 +31,8 @@ def get_tracker():
     if entity_id is None:
         return "No entity_id given"
 
-    tracker = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
-    # Get the tracker_entity
-    # tracker.get_entity()
-    # data = tracker.response.text
+    # tracker = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
+    tracker = TrackerCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
     if tracker.response_json is None:
         return "No data found"
     data = tracker.response_json
