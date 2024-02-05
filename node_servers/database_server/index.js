@@ -10,7 +10,7 @@ const sqliteStore = require('connect-sqlite3')(session) //store for session
 
 // Either use the port number from the environment or use 8080
 // Careful I may need to change this one 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 7080;
 
 // handle urls 
 app.use(express.urlencoded({ extended: false }));
@@ -41,10 +41,13 @@ app.use(session({
 
 app.use(require('./routes/route_database.js'));
 
+
+
 // final command to have the server running
 app.listen(port,'0.0.0.0' ,() => {
     console.log('Server listening on port ' + port);
 });
+
 
 
 

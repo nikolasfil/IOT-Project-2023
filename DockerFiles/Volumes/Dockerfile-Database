@@ -28,7 +28,7 @@ RUN npm ci
 
 # Expose port 8080 (adjust as needed)
 
-EXPOSE 8080
+EXPOSE 7080
 
 # Run app
 

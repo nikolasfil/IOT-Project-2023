@@ -88,7 +88,7 @@ services:
       # - ./node_servers/database_server/package-lock.json:/app/package-lock.json
     ports:
       # - "27017:8080"
-      - "6000:8080"
+      - "6000:7080"
     networks:
       - app-network
 
