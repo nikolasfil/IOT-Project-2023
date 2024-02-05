@@ -15,6 +15,11 @@ router.get('/search',
     });
 
 
+router.get('/get_dev',
+    (req, res) => {
+        res.send("get_dev");
+    }
+);
 
    
 
@@ -33,7 +38,13 @@ router.post('/getAllDevicesJson',
             }
         }
     )}
-    );
+);
+
+router.post("/postsimple",
+    (req, res) => {
+        res.send("Welcome to the database server");
+    }
+);
 
 
 

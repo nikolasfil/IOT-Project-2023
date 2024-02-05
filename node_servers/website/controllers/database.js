@@ -16,6 +16,7 @@ require('dotenv').config();
 async function fetchResponse(route, data, callback){
     
     let link = process.env.DBURL + route
+    console.log(link)
 
     let link_data = {
         method: "POST",
