@@ -4,7 +4,6 @@ services:
   subscriber-app:
     build:
       context: .
-      # dockerfile: DockerFiles/Volumes/Dockerfile-Subscriber
       dockerfile: DockerFiles/Volumes/Dockerfile-Python
 
     image: pythonsubscriber
@@ -21,7 +20,6 @@ services:
   publisher-app:
     build:
       context: .
-      # dockerfile: DockerFiles/Volumes/Dockerfile-Publisher
       dockerfile: DockerFiles/Volumes/Dockerfile-Python
 
     image: pythonpublisher
@@ -30,7 +28,6 @@ services:
       - ./python_servers/src/:/app
     depends_on:
       - subscriber-app
-      # CMD ["python", "publisher_broker.py"]
     ports:
       - "4000:5000"
     command: ["python", "publisher_broker.py"]
@@ -40,7 +37,6 @@ services:
   connector-app:
     build:
       context: .
-      # dockerfile: DockerFiles/Volumes/Dockerfile-Connector
       dockerfile: DockerFiles/Volumes/Dockerfile-Python
     image: pythonconnector
     volumes:
