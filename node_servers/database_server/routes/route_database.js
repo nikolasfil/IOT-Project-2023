@@ -7,19 +7,9 @@ const database = require('../controllers/database.js');
 router.post('/fetchResults/:numOf',
     (req, res) => {
         res.send('fetchResults');
-    });
-
-router.get('/search',
-    (req, res) => {
-        res.send('search');
-    });
-
-
-router.get('/get_dev',
-    (req, res) => {
-        res.send("get_dev");
     }
 );
+
 
    
 
@@ -40,12 +30,6 @@ router.post('/getAllDevicesJson',
     )}
 );
 
-router.post("/postsimple",
-    (req, res) => {
-        res.send("Welcome to the database server");
-    }
-);
-
 
 
 router.post('/getAllAttributes',
@@ -62,9 +46,9 @@ router.post('/getAllAttributes',
                 // console.log(attributes);
                 res.send(JSON.stringify(attributes));
             }
-        }
-    )}
-    );
+        })
+    }
+);
 
 
 router.post("/checkIfUserExists",
@@ -79,7 +63,7 @@ router.post("/checkIfUserExists",
             }
         }
     )}
-    );
+);
 
 
 router.post("/userDetails",
