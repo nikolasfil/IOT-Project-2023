@@ -1,6 +1,7 @@
 from flask import Flask, request
 from sensor_context_provider import SensorCP
-from tracker_sensor import TrackerCP
+from tracker_sensor import TrackerCP, Tracker
+import json
 
 app = Flask(__name__)
 
@@ -32,12 +33,13 @@ def get_tracker():
         return "No entity_id given"
 
     # tracker = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
-    tracker = TrackerCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
+    tracker = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
     if tracker.response_json is None:
         return "No data found"
-    data = tracker.response_json
+    data_json = tracker.response_json
+    data_python = tracker.response_python_object
 
-    return data
+    return data_json
 
 
 @app.post("/device_info")
@@ -50,7 +52,12 @@ def device_info():
     # Send the info to the database
     # Send the info to the context broker
     data = request.json
+    # print(data)
     print(data)
+    tracker = Tracker(important_info=None, generic_info=data)
+    # print(tracker.info)
+    # tracker = Tracker(important_info=data)
+
     return data
 
 

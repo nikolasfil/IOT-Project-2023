@@ -35,6 +35,19 @@ class Sensor:
     def info_to_json(self):
         return json.dumps(self.info)
 
+    def mqtt_to_cp(self, *args, **kwargs):
+        """
+        Description:
+            Transforms the information to a format that the Context Provider can understand
+
+
+        Raises:
+            ValueError: _description_
+
+        Returns:
+            _type_: _description_
+        """
+
 
 class SensorCP:
     def __init__(self, **kwargs):

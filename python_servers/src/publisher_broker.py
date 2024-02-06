@@ -2,6 +2,7 @@ from broker import Broker
 import json
 import time
 from tracker_sensor import Tracker
+import random
 
 
 class Publisher(Broker):
@@ -21,7 +22,7 @@ class Publisher(Broker):
         while counter < 1000:
             important_info = {
                 "type": "position",
-                "deviceId": "digital-matter-oyster3:1",
+                "deviceId": f"digital-matter-oyster3:{random.randint(1,5)}",
                 # cached
                 "speedKmph": 0,
                 "latitudeDeg": 38.2882484 + counter * 0.00001,

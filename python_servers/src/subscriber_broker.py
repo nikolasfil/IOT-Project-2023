@@ -23,18 +23,18 @@ class Subscriber(Broker):
         current_datetime = datetime.datetime.now()
         delim = f"\n\n {'-'*10} {current_datetime:%Y-%m-%d %H:%M:%S} {'-'*10}\n\n"
         final_text = delim + text + delim
-        print(final_text)
+        # print(final_text)
         super().on_message(client, userdata, msg)
         self.handling_tracker()
 
     def handling_tracker(self):
-        deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
-        latitude = self.py_obj_payload.get("object").get("cached").get("latitudeDeg")
-        longitude = self.py_obj_payload.get("object").get("cached").get("longitudeDeg")
-        batV = self.py_obj_payload.get("object").get("batV")
-        time_recorded = self.py_obj_payload.get("time")
+        # deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
+        # latitude = self.py_obj_payload.get("object").get("cached").get("latitudeDeg")
+        # longitude = self.py_obj_payload.get("object").get("cached").get("longitudeDeg")
+        # batV = self.py_obj_payload.get("object").get("batV")
+        # time_recorded = self.py_obj_payload.get("time")
 
-        text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
+        # text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
         # print(text)
 
         # Send the information to the connector server
@@ -47,6 +47,7 @@ class Subscriber(Broker):
             headers={"Content-Type": "application/json"},
             method="POST",
             payload=self.py_obj_payload,
+            # payload=self.payload,
             automated=True,
         )
 

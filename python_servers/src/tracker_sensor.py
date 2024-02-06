@@ -9,7 +9,7 @@ class Tracker(Sensor):
 
         Args:
             generic_info (dict): The generic info of the tracker
-            important_info (dict): The important info of the tracker
+            important_info (dict): The rtant info of the tracker
                 type (str): The type of the tracker
                 deviceId (str): The id of the tracker
                 speedKmph (float): The speed of the tracker
@@ -27,70 +27,86 @@ class Tracker(Sensor):
         self.generic_info = kwargs.get("generic_info")
         self.default_values()
         important_info = kwargs.get("important_info")
-        self.initialize(**important_info, **self.generic_info)
+        if important_info is not None:
+            self.initialize(**important_info, **self.generic_info)
+        else:
+            self.initialize(**self.generic_info)
         self.info_json = self.info_to_json()
 
     def initialize(self, **kwargs):
-        device_info = {
-            "tenantId": kwargs.get("tenantId"),
-            "tenantName": kwargs.get("tenantName"),
-            "applicationId": kwargs.get("applicationId"),
-            "applicationName": kwargs.get("applicationName"),
-            "deviceProfileId": kwargs.get("deviceProfileId"),
-            "deviceProfileName": kwargs.get("deviceProfileName"),
-            "deviceName": kwargs.get("deviceName"),
-            "devEui": kwargs.get("devEui"),
-            "tags": {
-                "deviceId": kwargs.get("deviceId"),
-                "apiKey": kwargs.get("apiKey"),
-            },
-        }
 
-        object_info = {
-            "inactivityAlarm": kwargs.get("inactivityAlarm"),
-            "type": kwargs.get("type"),
-            "batCritical": kwargs.get("batCritical"),
-            "inTrip": kwargs.get("inTrip"),
-            "cached": {
-                "speedKmph": kwargs.get("speedKmph"),
-                "latitudeDeg": kwargs.get("latitudeDeg"),
-                "headingDeg": kwargs.get("headingDeg"),
-                "longitudeDeg": kwargs.get("longitudeDeg"),
-            },
-            "fixFailed": kwargs.get("fixFailed"),
-            "batV": kwargs.get("batV"),
-        }
-
-        rxInfo = [
-            {
-                "gatewayId": kwargs.get("gatewayId"),
-                "uplinkId": kwargs.get("uplinkId"),
-                "rssi": kwargs.get("rssi"),
-                "snr": kwargs.get("snr"),
-                "channel": kwargs.get("channel"),
-                "location": {
-                    "latitude": kwargs.get("latitude"),
-                    "longitude": kwargs.get("longitude"),
+        if kwargs.get("deviceInfo") is None:
+            device_info = {
+                "tenantId": kwargs.get("tenantId"),
+                "tenantName": kwargs.get("tenantName"),
+                "applicationId": kwargs.get("applicationId"),
+                "applicationName": kwargs.get("applicationName"),
+                "deviceProfileId": kwargs.get("deviceProfileId"),
+                "deviceProfileName": kwargs.get("deviceProfileName"),
+                "deviceName": kwargs.get("deviceName"),
+                "devEui": kwargs.get("devEui"),
+                "tags": {
+                    "deviceId": kwargs.get("deviceId"),
+                    "apiKey": kwargs.get("apiKey"),
                 },
-                "context": kwargs.get("context"),
-                "metadata": {
-                    "region_common_name": kwargs.get("region_common_name"),
-                    "region_config_id": kwargs.get("region_config_id"),
-                },
-                "crcStatus": kwargs.get("crcStatus"),
             }
-        ]
+        else:
+            device_info = kwargs.get("deviceInfo")
 
-        txInfo = {
-            "frequency": kwargs.get("frequency"),
-            "modulation": {
-                "lora": {
-                    "bandwidth": kwargs.get("bandwidth"),
-                    "spreadingFactor": kwargs.get("spreadingFactor"),
-                    "codeRate": kwargs.get("codeRate"),
+        if kwargs.get("object") is None:
+            object_info = {
+                "inactivityAlarm": kwargs.get("inactivityAlarm"),
+                "type": kwargs.get("type"),
+                "batCritical": kwargs.get("batCritical"),
+                "inTrip": kwargs.get("inTrip"),
+                "cached": {
+                    "speedKmph": kwargs.get("speedKmph"),
+                    "latitudeDeg": kwargs.get("latitudeDeg"),
+                    "headingDeg": kwargs.get("headingDeg"),
+                    "longitudeDeg": kwargs.get("longitudeDeg"),
+                },
+                "fixFailed": kwargs.get("fixFailed"),
+                "batV": kwargs.get("batV"),
+            }
+        else:
+            object_info = kwargs.get("object")
+
+        if kwargs.get("rxInfo") is None:
+            rxInfo = [
+                {
+                    "gatewayId": kwargs.get("gatewayId"),
+                    "uplinkId": kwargs.get("uplinkId"),
+                    "rssi": kwargs.get("rssi"),
+                    "snr": kwargs.get("snr"),
+                    "channel": kwargs.get("channel"),
+                    "location": {
+                        "latitude": kwargs.get("latitude"),
+                        "longitude": kwargs.get("longitude"),
+                    },
+                    "context": kwargs.get("context"),
+                    "metadata": {
+                        "region_common_name": kwargs.get("region_common_name"),
+                        "region_config_id": kwargs.get("region_config_id"),
+                    },
+                    "crcStatus": kwargs.get("crcStatus"),
                 }
-            },
-        }
+            ]
+        else:
+            rxInfo = kwargs.get("rxInfo")
+
+        if kwargs.get("txInfo") is None:
+            txInfo = {
+                "frequency": kwargs.get("frequency"),
+                "modulation": {
+                    "lora": {
+                        "bandwidth": kwargs.get("bandwidth"),
+                        "spreadingFactor": kwargs.get("spreadingFactor"),
+                        "codeRate": kwargs.get("codeRate"),
+                    }
+                },
+            }
+        else:
+            txInfo = kwargs.get("txInfo")
 
         tracker_info = {
             "deviceInfo": device_info,
@@ -156,6 +172,23 @@ class Tracker(Sensor):
                 "confirmed": False,
                 "data": "tFLSFjm0/Az7ANI=",
             }
+
+    def mqtt_to_cp(self, *args, **kwargs):
+        """
+        Description:
+            Transforms the information to a format that the Context Provider can understand
+
+        Args:
+            *args: The arguments
+            **kwargs: The keyword arguments
+
+        Raises:
+            ValueError: _description_
+
+        Returns:
+            _type_: _description_
+        """
+        pass
 
 
 class TrackerCP(SensorCP):
@@ -242,6 +275,21 @@ class TrackerCP(SensorCP):
             entity_data.update({"location": location, "temperature": temperature})
 
         self.info.update(entity_data)
+
+        # {
+        #     "id": "tracker4",
+        #     "location": {
+        #         "metadata": {},
+        #         "type": "None",
+        #         "value": null,
+        #     },
+        #     "temperature": {
+        #         "metadata": {},
+        #         "type": "Float",
+        #         "value": 25.5,
+        #     },
+        #     "type": "Tracker",
+        # }
 
 
 if __name__ == "__main__":
