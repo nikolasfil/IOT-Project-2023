@@ -28,21 +28,11 @@ class Subscriber(Broker):
         self.handling_tracker()
 
     def handling_tracker(self):
-        # deviceId = self.py_obj_payload.get("deviceInfo").get("tags").get("deviceId")
-        # latitude = self.py_obj_payload.get("object").get("cached").get("latitudeDeg")
-        # longitude = self.py_obj_payload.get("object").get("cached").get("longitudeDeg")
-        # batV = self.py_obj_payload.get("object").get("batV")
-        # time_recorded = self.py_obj_payload.get("time")
-
-        # text = f"{deviceId=} \n{latitude=} \n{longitude=} \n{batV=} \n{time_recorded=}"
-        # print(text)
-
         # Send the information to the connector server
         load_dotenv()
         network_url = os.getenv("URL")
 
         connector_server = ContextProvider(
-            # url="http://localhost:5000/device_info",
             url=f"http://{network_url}:5000/device_info",
             headers={"Content-Type": "application/json"},
             method="POST",
@@ -50,8 +40,6 @@ class Subscriber(Broker):
             # payload=self.payload,
             automated=True,
         )
-
-        # print(connector_server.response_json)
 
     def handling_button(self):
         # Sends the information to the connector server

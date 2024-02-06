@@ -54,18 +54,14 @@ def device_info():
     # Send the info to the database
     # Send the info to the context broker
 
-    load_dotenv()
-    baseurl = os.getenv("CPURL")
+    # load_dotenv()
+    # baseurl = os.getenv("CPURL")
 
     data = request.json
-    # print(data)
-    # print(data)
     tracker = Tracker(generic_info=data)
     data = tracker.mqtt_to_cp()
 
-    # data["id"] = "test_id"
-
-    trackerCP = TrackerCPF(base_url=baseurl, entity_data=data, debug=True)
+    trackerCP = TrackerCPF(entity_data=data, debug=True)
 
     print(trackerCP["id"])
     # trackerCP.new_entity()

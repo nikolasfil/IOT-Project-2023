@@ -16,7 +16,6 @@ class Publisher(Broker):
         self.client = self.connect_mqtt()
 
     def main(self):
-        # for i in range(10):
         # This needs to be from a folder
         counter = 0
         while counter < 1000:
@@ -35,9 +34,6 @@ class Publisher(Broker):
             self.publish(self.client, payload)
             time.sleep(2)
             counter += 1
-
-    # def on_publish(self, client, userdata, mid):
-    #     super().on_publish(client, userdata, mid)
 
 
 if __name__ == "__main__":
