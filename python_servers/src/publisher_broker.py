@@ -1,7 +1,7 @@
 from broker import Broker
-import json
 import time
 from tracker_sensor import Tracker
+from button_sensor import Button
 import random
 
 
@@ -19,7 +19,8 @@ class Publisher(Broker):
         # This needs to be from a folder
         counter = 0
         while counter < 1000:
-            important_info = {
+
+            tracker_info = {
                 "type": "position",
                 "deviceId": f"digital-matter-oyster3:{random.randint(1,5)}",
                 # cached
@@ -30,9 +31,23 @@ class Publisher(Broker):
                 "batV": 5 - counter * 0.001,
             }
 
-            payload = Tracker(important_info=important_info).info_json
+            payload = Tracker(important_info=tracker_info).info_json
             self.publish(self.client, payload)
             time.sleep(2)
+
+            button_info = {
+                "deviceName": "mclimate-multipurpose-button:1",
+                "deviceId": f"mclimate-multipurpose-button:{random.randint(1,5)}",
+                "batteryVoltage": 3.1,
+                "temperature": 21.7 + (random.choice([1, -1]) * 2),
+                "thermistorProperlyConnected": True,
+                "pressEvent": "00",
+            }
+
+            payload = Button(important_info=button_info).info_json
+            self.publish(self.client, payload)
+            time.sleep(2)
+
             counter += 1
 
 

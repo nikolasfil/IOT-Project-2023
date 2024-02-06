@@ -125,8 +125,8 @@ class Tracker(Sensor):
             self.generic_info = {
                 "tenantName": "Smart Campus",
                 "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
-                "applicationId": "420",
-                "applicationName": "AdGuard",
+                "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
+                "applicationName": "Asset tracking",
                 # Standarized data
                 "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
                 "deviceProfileName": "Digital Matter Oyster3",
@@ -176,6 +176,9 @@ class Tracker(Sensor):
         Returns:
             _type_: _description_
         """
+
+        # Change this into the TrackerCPF Class instance
+
         self.cp_info = {
             "id": self.info.get("deviceInfo").get("tags").get("deviceId"),
             "type": "Tracker",
