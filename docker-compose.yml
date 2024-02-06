@@ -13,6 +13,8 @@ services:
       - connector-app
     ports:
       - "3000:5000"
+    environment:
+      - URL=connector-app
     command: ["python", "subscriber_broker.py"]
     networks:
       - app-network

@@ -46,5 +46,5 @@ class Subscriber(Broker):
 if __name__ == "__main__":
     load_dotenv()
     debug = os.getenv("DEBUG")
-    broker = Subscriber(debug=debug)
+    broker = Subscriber()
     broker.run_loop()
