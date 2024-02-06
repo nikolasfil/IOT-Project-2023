@@ -6,10 +6,11 @@ const expbs = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
-const doted = require('dotenv').config();   
 
 const login = require('./controllers/login.js');
 
+
+require('dotenv').config();   
 // Either use the port number from the environment or use 8080
 const port = process.env.PORT || 8080;
 

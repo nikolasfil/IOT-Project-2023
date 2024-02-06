@@ -21,7 +21,7 @@ class Publisher(Broker):
         while counter < 1000:
             important_info = {
                 "type": "position",
-                "deviceId": f"digital-matter-oyster3_{random.randint(1,5)}",
+                "deviceId": f"digital-matter-oyster3:{random.randint(1,5)}",
                 # cached
                 "speedKmph": 0,
                 "latitudeDeg": 38.2882484 + counter * 0.00001,

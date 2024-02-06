@@ -1,16 +1,17 @@
-from virtual_sensor import Sensor
+from virtual_sensor import Sensor, SensorCPF
 
 
 class Button(Sensor):
     def __init__(self, **kwargs):
-        super().__init__()
-        self.generic_info = kwargs.get("generic_info")
-        self.default_values()
-        important_info = kwargs.get("important_info")
-        self.initialize(**important_info, **self.generic_info)
-        self.info_json = self.info_to_json()
+        super().__init__(**kwargs)
+        # self.generic_info = kwargs.get("generic_info")
+        # self.default_values()
+        # important_info = kwargs.get("important_info")
+        # self.initialize(**important_info, **self.generic_info)
+        # self.info_json = self.info_to_json()
 
     def initialize(self, **kwargs):
+
         device_info = {
             "tenantId": kwargs.get("tenantId"),
             "tenantName": kwargs.get("tenantName"),

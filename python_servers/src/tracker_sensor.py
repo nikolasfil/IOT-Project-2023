@@ -23,15 +23,7 @@ class Tracker(Sensor):
 
 
         """
-        super().__init__()
-        self.generic_info = kwargs.get("generic_info")
-        self.default_values()
-        important_info = kwargs.get("important_info")
-        if important_info is not None:
-            self.initialize(**important_info, **self.generic_info)
-        else:
-            self.initialize(**self.generic_info)
-        self.info_json = self.info_to_json()
+        super().__init__(**kwargs)
 
     def initialize(self, **kwargs):
 
@@ -188,7 +180,7 @@ class Tracker(Sensor):
             "id": self.info.get("deviceInfo").get("tags").get("deviceId"),
             "type": "Tracker",
             "location": {
-                "type": "geo_json",
+                "type": "geo:json",
                 "value": {
                     "latitude": self.info.get("object")
                     .get("cached")
