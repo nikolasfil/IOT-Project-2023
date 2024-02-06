@@ -31,6 +31,8 @@ class Subscriber(Broker):
         # Send the information to the connector server
         load_dotenv()
         network_url = os.getenv("URL")
+        if network_url is None:
+            network_url = "connector-app"
 
         connector_server = ContextProvider(
             url=f"http://{network_url}:5000/device_info",
