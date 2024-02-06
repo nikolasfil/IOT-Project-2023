@@ -49,7 +49,7 @@ class Sensor:
         """
 
 
-class SensorCP:
+class SensorCPF:
     def __init__(self, **kwargs):
         self.entity_data = kwargs.get("entity_data")
         self.id = kwargs.get("id")

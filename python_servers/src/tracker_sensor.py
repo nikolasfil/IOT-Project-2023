@@ -1,4 +1,4 @@
-from virtual_sensor import Sensor, SensorCP
+from virtual_sensor import Sensor, SensorCPF
 
 
 class Tracker(Sensor):
@@ -189,8 +189,14 @@ class Tracker(Sensor):
             "type": "Tracker",
             "location": {
                 "type": "geo_json",
-                "latitude": self.info.get("object").get("cached").get("latitudeDeg"),
-                "longitude": self.info.get("object").get("cached").get("longitudeDeg"),
+                "value": {
+                    "latitude": self.info.get("object")
+                    .get("cached")
+                    .get("latitudeDeg"),
+                    "longitude": self.info.get("object")
+                    .get("cached")
+                    .get("longitudeDeg"),
+                },
                 "metadata": {},
             },
             "temperature": {
@@ -203,7 +209,7 @@ class Tracker(Sensor):
         return self.cp_info
 
 
-class TrackerCP(SensorCP):
+class TrackerCPF(SensorCPF):
     def __init__(self, **kwargs):
         """
         Description:
@@ -331,5 +337,5 @@ if __name__ == "__main__":
         # In location we could add the metadata for fires or sth
     }
 
-    trackerCP = TrackerCP(entity_data=context_info)
+    trackerCP = TrackerCPF(entity_data=context_info)
     print(trackerCP.info)

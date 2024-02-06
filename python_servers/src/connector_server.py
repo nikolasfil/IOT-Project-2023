@@ -1,8 +1,9 @@
 from flask import Flask, request
 from sensor_context_provider import SensorCP
-from tracker_sensor import TrackerCP, Tracker
+from tracker_sensor import TrackerCPF, Tracker
+from dotenv import load_dotenv
+import os
 
-# from
 
 app = Flask(__name__)
 
@@ -52,22 +53,29 @@ def device_info():
     """
     # Send the info to the database
     # Send the info to the context broker
+
+    load_dotenv()
+    baseurl = os.getenv("CPURL")
+
     data = request.json
     # print(data)
     # print(data)
     tracker = Tracker(generic_info=data)
     data = tracker.mqtt_to_cp()
-    # print(tracker.info)
-    # tracker = Tracker(important_info=data)
 
     # data["id"] = "test_id"
-    trackerCP = TrackerCP(entity_data=data, debug=True)
+
+    trackerCP = TrackerCPF(base_url=baseurl, entity_data=data, debug=True)
 
     print(trackerCP["id"])
-    trackerCP.new_entity()
-    # trackerCP
-    # entity = SensorCP(entity_data=trackerCP.info, debug=True)
-    # entity.new_entity()
+    # trackerCP.new_entity()
+    # print(trackerCP.info)
+
+    entity = SensorCP(
+        entity_data=trackerCP.info,
+        debug=True,
+    )
+    entity.new_entity()
 
     return data
 

@@ -249,10 +249,24 @@ if __name__ == "__main__":
     #     "id": "tracker4",
     #     "type": "Tracker",
     # }
+
+    entity_data = {
+        # "id": "digital-matter-oyster3:3",
+        "id": "tracke2",
+        "type": "Tracker",
+        "location": {
+            "type": "geo_json",
+            "latitude": 38.2883084,
+            "longitude": 21.7888401,
+            "metadata": {},
+        },
+        "temperature": {"type": "Float", "value": 0, "metadata": {}},
+    }
+
     tracker = SensorCP(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
-        # debug=True,
+        debug=True,
     )
     # print(tracker.get_entity())
     # print(tracker)
