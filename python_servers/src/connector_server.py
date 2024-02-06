@@ -62,5 +62,9 @@ def device_info():
 
 
 if __name__ == "__main__":
+    from dotenv import load_dotenv
+    import os
 
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    load_dotenv()
+    debug = os.getenv("DEBUG")
+    app.run(host="0.0.0.0", port=5000, debug=debug)

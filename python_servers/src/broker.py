@@ -14,6 +14,7 @@ class Broker:
         broker: str = None,
         port: int = None,
         run_only_once: bool = False,
+        debug: bool = False,
     ):
         if client_id is None:
             client_id = "clienting-stuff"
@@ -31,6 +32,7 @@ class Broker:
         self.broker = broker
         self.port = port
         self.run_only_once = run_only_once
+        self.debug = debug
 
         # Connecting client
         # self.client = self.connect_mqtt()
@@ -77,14 +79,17 @@ class Broker:
         # message = dict(text)
         self.py_obj_payload = self.json_to_dict(msg.payload)
         self.payload = msg.payload
-
-        print(f"Received {len(msg.payload.decode())} length message from {msg.topic}")
+        if self.debug:
+            print(
+                f"Received {len(msg.payload.decode())} length message from {msg.topic}"
+            )
         if self.run_only_once:
             self.exit()
         # self.logging(final_text)
 
     def on_publish(self, client, userdata, mid):
-        print(f"Published {mid:>5} to {self.publish_topic}")
+        if self.debug:
+            print(f"Published {mid:>5} to {self.publish_topic}")
         if self.run_only_once:
             self.exit()
 
