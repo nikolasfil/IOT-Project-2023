@@ -61,7 +61,7 @@ def device_info():
     tracker = Tracker(generic_info=data)
     data = tracker.mqtt_to_cp()
 
-    trackerCP = TrackerCPF(entity_data=data, debug=True)
+    trackerCP = TrackerCPF(entity_data=data)
 
     print(trackerCP["id"])
     # trackerCP.new_entity()
@@ -69,7 +69,7 @@ def device_info():
 
     entity = SensorCP(
         entity_data=trackerCP.info,
-        debug=True,
+        # debug=True,
     )
     entity.new_entity()
 
