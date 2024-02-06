@@ -124,8 +124,6 @@ class ContextProvider:
                     print(self.response.text)
                     # print(self.payload)
                 return False
-            if self.debug is True:
-                print(self.response.text)
             self.get_json_response()
             return True
 
@@ -142,8 +140,6 @@ class ContextProvider:
             self.response_json = self.response.json()
             self.response_python_object = json.loads(self.response.text)
         except Exception as e:
-            # if self.debug is True:
-            #     print(e)
             self.response_json = None
             self.response_python_object = None
 

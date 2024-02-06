@@ -37,7 +37,6 @@ class Subscriber(Broker):
             headers={"Content-Type": "application/json"},
             method="POST",
             payload=self.py_obj_payload,
-            # payload=self.payload,
             automated=True,
         )
 
@@ -49,4 +48,3 @@ class Subscriber(Broker):
 if __name__ == "__main__":
     broker = Subscriber()
     broker.run_loop()
-    # broker.run_once()

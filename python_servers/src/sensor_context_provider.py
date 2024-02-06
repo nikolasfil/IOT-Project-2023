@@ -56,20 +56,16 @@ class SensorCP(ContextProvider):
             # Get the entity with the given id and assigining itto the self.response
             self.get_entity(entity_data.get("id"))
             # If the response status code is 404, then the entity doesn't exist
-            print(self.response.status_code)
+            if self.debug:
+                print(self.response.status_code)
             if self.response.status_code == 404:
                 self.create_entity(entity_data=entity_data)
-            elif self.response.status_code == 500:
+            elif self.response.status_code == 500 and self.debug:
                 print("Internal Server Error")
             elif self.response.status_code == 200:
                 self.delete_entity(entity_id=entity_data.get("id"))
                 self.create_entity(entity_data=entity_data)
-                # If the response status code is 200, then the entity exists so update the data
-                # self.update_entity(
-                #     entity_id=self.entity_data.get("id"), entity_data=self.entity_data
-                # )
-                # This still needs work
-                # pass
+            #    It should be an update function not a delete and create function
 
     def create_entity(self, entity_data=None):
         """
@@ -168,8 +164,10 @@ class SensorCP(ContextProvider):
         self.build_request()
         self.make_request()
 
-        if self.response.ok:
+        if self.response.ok and self.debug:
             print(f" {self.entity_data.get('id')} Deleted Successfully")
+        elif self.debug:
+            print(f" {self.entity_data.get('id')} Not Deleted")
 
     def get_entity(self, entity_id=None):
         """
