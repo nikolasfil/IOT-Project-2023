@@ -143,6 +143,11 @@ router.post("/addUser",
 );
 
 
+router.get("/test",
+    (req, res) => {
+        res.send("Test");
+    }
+);
 
 module.exports = router;
 

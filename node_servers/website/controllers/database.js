@@ -15,7 +15,7 @@ require('dotenv').config();
  */
 async function fetchResponse(route, data, callback){
     
-    let link = process.env.DBURL + route
+    let link = `http://${process.env.DBURL}:7080` + route
     console.log(link)
 
     let link_data = {
