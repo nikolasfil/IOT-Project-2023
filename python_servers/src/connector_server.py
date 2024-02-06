@@ -54,7 +54,7 @@ def device_info():
     data = request.json
     # print(data)
     # print(data)
-    tracker = Tracker(important_info=None, generic_info=data)
+    tracker = Tracker(generic_info=data)
     data = tracker.mqtt_to_cp()
     # print(tracker.info)
     # tracker = Tracker(important_info=data)

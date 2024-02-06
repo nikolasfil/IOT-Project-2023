@@ -10,7 +10,7 @@ class Publisher(Broker):
         self, client_id=None, topic=None, broker=None, port=None, run_only_once=False
     ):
         super().__init__(client_id, topic, broker, port, run_only_once)
-        self.client_id = "indi-pub"
+        self.client_id = f"pub-{self.generate_unique_hash()}"
         self.publish_topic = "team7/custom/trackers"
         self.subscribe_topic = None
         self.client = self.connect_mqtt()

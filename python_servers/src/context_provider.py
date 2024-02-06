@@ -98,6 +98,7 @@ class ContextProvider:
             self.payload = json.dumps(self.payload)
         elif self.payload is not None and self.is_json(self.payload) is False:
             self.payload = json.loads(self.payload)
+        # elif self.payload is not None and self.is_json(self.payload) is True:
 
     def make_request(self) -> None:
         """
@@ -119,6 +120,7 @@ class ContextProvider:
                 if self.debug is True:
                     print(f"Error: {self.response.status_code}")
                     print(self.response.text)
+                    # print(self.payload)
                 return False
 
             self.get_json_response()

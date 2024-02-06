@@ -256,7 +256,8 @@ class TrackerCP(SensorCP):
     def default_values(self):
         if self.location_dict is None:
             location = {
-                "type": "geo:json",
+                # "type": "geo:json",
+                "type": "geo_json",
                 "value": {
                     "latitude": self.latitude,
                     "longitude": self.longitude,

@@ -56,17 +56,20 @@ class SensorCP(ContextProvider):
             # Get the entity with the given id and assigining itto the self.response
             self.get_entity(entity_data.get("id"))
             # If the response status code is 404, then the entity doesn't exist
+            print(self.response.status_code)
             if self.response.status_code == 404:
                 self.create_entity(entity_data=entity_data)
             elif self.response.status_code == 500:
                 print("Internal Server Error")
-            else:
+            elif self.response.status_code == 200:
+                self.delete_entity(entity_id=entity_data.get("id"))
+                self.create_entity(entity_data=entity_data)
                 # If the response status code is 200, then the entity exists so update the data
                 # self.update_entity(
                 #     entity_id=self.entity_data.get("id"), entity_data=self.entity_data
                 # )
                 # This still needs work
-                pass
+                # pass
 
     def create_entity(self, entity_data=None):
         """
@@ -229,34 +232,34 @@ if __name__ == "__main__":
         "id": "tracker4",
         "type": "Tracker",
         "location": {
-            # "type": "geo:json",
-            # "value": {
-            #     "latitude": 40.7128,
-            #     "longitude": 91.0,
-            # },
-            # "metadata": {},
+            "type": "geo-json",
+            "value": {
+                "latitude": 40.7128,
+                "longitude": 91.0,
+            },
+            "metadata": {},
         },
         "temperature": {
             "type": "Float",
-            "value": 25.5,
+            "value": 41,
             "metadata": {},
         },
     }
-    entity_data = {
-        "id": "tracker4",
-        "type": "Tracker",
-    }
+    # entity_data = {
+    #     "id": "tracker4",
+    #     "type": "Tracker",
+    # }
     tracker = SensorCP(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
         # debug=True,
     )
-    print(tracker.get_entity())
+    # print(tracker.get_entity())
     # print(tracker)
     # Delete the entity
     # tracker.delete_entity()
     # Create the entitiy
-    # tracker.new_entity()
+    tracker.new_entity()
 
     # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
     # print(tracker.get_entity(entity_id="tracker1"))

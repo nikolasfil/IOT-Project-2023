@@ -2,6 +2,8 @@ from paho.mqtt import client as mqtt_client
 import json
 from pathlib import Path
 import sys
+import datetime
+import uuid
 
 
 class Broker:
@@ -117,6 +119,16 @@ class Broker:
         print("\n\nExiting\n\n")
         self.client.disconnect()
         sys.exit(0)
+
+    def generate_unique_hash(self):
+        # Get current timestamp
+        current_time = datetime.datetime.now().timestamp()
+
+        # Convert timestamp to string and hash it using uuid
+        hashed_value = uuid.uuid5(uuid.NAMESPACE_DNS, str(current_time))
+
+        formatted_hash = str(hashed_value)
+        return formatted_hash
 
 
 if __name__ == "__main__":
