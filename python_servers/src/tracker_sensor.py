@@ -188,6 +188,7 @@ class Tracker(Sensor):
             "id": self.info.get("deviceInfo").get("tags").get("deviceId"),
             "type": "Tracker",
             "location": {
+                "type": "geo_json",
                 "latitude": self.info.get("object").get("cached").get("latitudeDeg"),
                 "longitude": self.info.get("object").get("cached").get("longitudeDeg"),
                 "metadata": {},
@@ -256,7 +257,6 @@ class TrackerCP(SensorCP):
     def default_values(self):
         if self.location_dict is None:
             location = {
-                # "type": "geo:json",
                 "type": "geo_json",
                 "value": {
                     "latitude": self.latitude,

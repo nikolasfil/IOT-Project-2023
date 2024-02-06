@@ -1,9 +1,8 @@
 from typing import Any
 import requests
 import json
-import ast
-
-# import context_providers
+from dotenv import load_dotenv
+import os
 
 
 class ContextProvider:
@@ -20,6 +19,9 @@ class ContextProvider:
             method (str): The method to use for the request
         """
         self.base_url = kwargs.get("base_url")
+        if self.base_url is None:
+            load_dotenv()
+            self.base_url = os.getenv("CPURL")
         self.url = kwargs.get("url")
         self.headers = kwargs.get("headers")
         self.payload = kwargs.get("payload")

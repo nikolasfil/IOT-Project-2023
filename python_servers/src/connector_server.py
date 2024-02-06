@@ -1,7 +1,8 @@
 from flask import Flask, request
 from sensor_context_provider import SensorCP
 from tracker_sensor import TrackerCP, Tracker
-import json
+
+# from
 
 app = Flask(__name__)
 
@@ -58,13 +59,19 @@ def device_info():
     data = tracker.mqtt_to_cp()
     # print(tracker.info)
     # tracker = Tracker(important_info=data)
-    print(data)
+
+    # data["id"] = "test_id"
+    trackerCP = TrackerCP(entity_data=data, debug=True)
+
+    print(trackerCP["id"])
+    trackerCP.new_entity()
+    # trackerCP
+    # entity = SensorCP(entity_data=trackerCP.info, debug=True)
+    # entity.new_entity()
+
     return data
 
 
-# url_for('static', filename='style.css')
-
 if __name__ == "__main__":
-    # app.run(host="0.0.0.0", port=5000, debug=True)
 
     app.run(host="0.0.0.0", port=5000, debug=True)
