@@ -1,14 +1,21 @@
 version: "3"
 
+x-common-settings: &common-settings
+  build:
+    context: .
+    dockerfile: DockerFiles/Volumes/Dockerfile-Python
+  volumes:
+    - ./python_servers/src/:/app
+  networks:
+    - app-network
+  restart: unless-stopped
+
 services:
   subscriber-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
+    <<: *common-settings
 
     image: pythonsubscriber
-    volumes:
-      - ./python_servers/src/:/app
+
     depends_on:
       - connector-app
     ports:
@@ -16,43 +23,26 @@ services:
     environment:
       - URL=connector-app
     command: ["python", "subscriber_broker.py"]
-    networks:
-      - app-network
-    restart: unless-stopped
 
   publisher-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
-
+    <<: *common-settings
     image: pythonpublisher
 
-    volumes:
-      - ./python_servers/src/:/app
     depends_on:
       - subscriber-app
     ports:
       - "4000:5000"
     command: ["python", "publisher_broker.py"]
-    networks:
-      - app-network
-    restart: unless-stopped
 
   connector-app:
-    build:
-      context: .
-      dockerfile: DockerFiles/Volumes/Dockerfile-Python
+    <<: *common-settings
+
     image: pythonconnector
-    volumes:
-      - ./python_servers/src/:/app
     # depends_on:
     #   - database-app
     ports:
       - "5000:5000"
     command: ["python", "connector_server.py"]
-    networks:
-      - app-network
-    restart: unless-stopped
 
   # node-app:
   #   build:
