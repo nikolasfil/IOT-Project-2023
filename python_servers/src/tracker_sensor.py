@@ -173,14 +173,10 @@ class Tracker(Sensor):
                 "data": "tFLSFjm0/Az7ANI=",
             }
 
-    def mqtt_to_cp(self, *args, **kwargs):
+    def mqtt_to_cp(self):
         """
         Description:
             Transforms the information to a format that the Context Provider can understand
-
-        Args:
-            *args: The arguments
-            **kwargs: The keyword arguments
 
         Raises:
             ValueError: _description_
@@ -188,7 +184,22 @@ class Tracker(Sensor):
         Returns:
             _type_: _description_
         """
-        pass
+        self.cp_info = {
+            "id": self.info.get("deviceInfo").get("tags").get("deviceId"),
+            "type": "Tracker",
+            "location": {
+                "latitude": self.info.get("object").get("cached").get("latitudeDeg"),
+                "longitude": self.info.get("object").get("cached").get("longitudeDeg"),
+                "metadata": {},
+            },
+            "temperature": {
+                "type": "Float",
+                "value": 0,
+                "metadata": {},
+            },
+        }
+
+        return self.cp_info
 
 
 class TrackerCP(SensorCP):
