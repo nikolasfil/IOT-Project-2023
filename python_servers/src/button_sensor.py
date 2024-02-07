@@ -164,9 +164,9 @@ class Button(Sensor):
             "batteryVoltage": battery_voltage,
         }
 
-        self.cp_info = ButtonCPF(entity_data=entity_data)
+        self.cp_info = ButtonCPF(entity_data=entity_data).info
 
-        return self.cp_info.info
+        return self.cp_info
 
 
 class ButtonCPF(SensorCPF):

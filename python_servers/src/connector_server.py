@@ -53,7 +53,6 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
-    print(data)
     return data
 
     # tracker = Tracker(generic_info=data)

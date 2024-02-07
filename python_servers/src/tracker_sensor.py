@@ -219,7 +219,7 @@ class Tracker(Sensor):
         #     },
         # }
 
-        self.cp_info = TrackerCPF(entity_data=entity_data)
+        self.cp_info = TrackerCPF(entity_data=entity_data).info
 
         return self.cp_info
 
