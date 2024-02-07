@@ -1,7 +1,7 @@
 from flask import Flask, request
 from sensor_context_provider import SensorCP
 from tracker_sensor import TrackerCPF, Tracker
-
+from button_sensor import Button
 
 app = Flask(__name__)
 
@@ -52,13 +52,36 @@ def device_info():
     # Send the info to the context broker
 
     data = request.json
-    tracker = Tracker(generic_info=data)
-    data = tracker.mqtt_to_cp()
-    trackerCP = TrackerCPF(entity_data=data)
-    print(f"TrackerID: {trackerCP['id']}")
-    entity = SensorCP(entity_data=trackerCP.info)
+    data = handling_device(data)
+    print(data)
+    return data
+
+    # tracker = Tracker(generic_info=data)
+    # data = tracker.mqtt_to_cp()
+    # trackerCP = TrackerCPF(entity_data=data)
+    # print(f"TrackerID: {trackerCP['id']}")
+    # entity = SensorCP(entity_data=trackerCP.info)
+    # entity.new_entity()
+    # data = entity.entity_data
+    # return data
+
+
+def handling_device(information):
+    asset = None
+    if information.get("deviceInfo").get("applicationName") == "Asset tracking":
+        asset = Tracker(generic_info=information)
+    elif information.get("deviceInfo").get("applicationName") == "Buttons":
+        asset = Button(generic_info=information)
+
+    if asset is None:
+        return None
+
+    asset.mqtt_to_cp()
+
+    entity = SensorCP(entity_data=asset.cp_info)
     entity.new_entity()
     data = entity.entity_data
+
     return data
 
 

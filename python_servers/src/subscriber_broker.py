@@ -24,9 +24,9 @@ class Subscriber(Broker):
         if self.debug:
             print(final_text)
         super().on_message(client, userdata, msg)
-        self.handling_tracker()
+        self.handling_device()
 
-    def handling_tracker(self):
+    def handling_device(self):
         # Send the information to the connector server
         network_url = os.getenv("URL")
 
@@ -37,10 +37,6 @@ class Subscriber(Broker):
             payload=self.py_obj_payload,
             automated=True,
         )
-
-    def handling_button(self):
-        # Sends the information to the connector server
-        pass
 
 
 if __name__ == "__main__":
