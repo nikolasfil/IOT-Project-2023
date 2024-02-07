@@ -82,4 +82,3 @@ Either make it an extra page for admins or make the search page only for admins
 ## Useful links
 
 [OpenLayers](https://openlayers.org/en/latest/apidoc/)
-
