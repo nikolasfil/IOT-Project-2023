@@ -1,7 +1,8 @@
 from flask import Flask, request
 from sensor_context_provider import SensorCP
-from tracker_sensor import TrackerCPF, Tracker
+from tracker_sensor import Tracker
 from button_sensor import Button
+from context_provider import ContextProvider
 
 app = Flask(__name__)
 
@@ -48,21 +49,10 @@ def device_info():
         Get device info from the mqtt server
 
     """
-    # Send the info to the database
-    # Send the info to the context broker
 
     data = request.json
     data = handling_device(data)
     return data
-
-    # tracker = Tracker(generic_info=data)
-    # data = tracker.mqtt_to_cp()
-    # trackerCP = TrackerCPF(entity_data=data)
-    # print(f"TrackerID: {trackerCP['id']}")
-    # entity = SensorCP(entity_data=trackerCP.info)
-    # entity.new_entity()
-    # data = entity.entity_data
-    # return data
 
 
 def handling_device(information):

@@ -106,7 +106,6 @@ class ContextProvider:
         """
         Description:
             Makes the request to the given url with the given headers, method and payload
-
         """
         self.response = None
         if self.url:
@@ -120,7 +119,7 @@ class ContextProvider:
             except Exception as e:
                 if self.debug:
                     print(e)
-                return
+                return False
 
             # Check if the response status is ok
             if self.response.ok is False:
