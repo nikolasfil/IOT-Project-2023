@@ -179,27 +179,47 @@ class Tracker(Sensor):
 
         # Change this into the TrackerCPF Class instance
 
-        self.cp_info = {
-            "id": self.info.get("deviceInfo").get("tags").get("deviceId"),
-            "type": "Tracker",
-            "location": {
-                "type": "geo:json",
-                "value": {
-                    "latitude": self.info.get("object")
-                    .get("cached")
-                    .get("latitudeDeg"),
-                    "longitude": self.info.get("object")
-                    .get("cached")
-                    .get("longitudeDeg"),
-                },
-                "metadata": {},
-            },
-            "temperature": {
-                "type": "Float",
-                "value": 0,
-                "metadata": {},
-            },
+        device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
+        device_type = self.info.get("deviceInfo").get("applicationName")
+        latitude = self.info.get("object").get("cached").get("latitudeDeg")
+        longitude = self.info.get("object").get("cached").get("longitudeDeg")
+        location_metadata = {}
+        temperature_value = 0
+        temperature_metadata = {}
+
+        entity_data = {
+            "id": device_id,
+            "type": device_type,
+            "latitude": latitude,
+            "longitude": longitude,
+            "location_metadata": location_metadata,
+            "temperature_value": temperature_value,
+            "temperature_metadata": temperature_metadata,
         }
+
+        # entity_data = {
+        #     "id": device_id,
+        #     "type": device_type,
+        #     "location": {
+        #         "type": "geo:json",
+        #         "value": {
+        #             "latitude": self.info.get("object")
+        #             .get("cached")
+        #             .get("latitudeDeg"),
+        #             "longitude": self.info.get("object")
+        #             .get("cached")
+        #             .get("longitudeDeg"),
+        #         },
+        #         "metadata": {},
+        #     },
+        #     "temperature": {
+        #         "type": "Float",
+        #         "value": 0,
+        #         "metadata": {},
+        #     },
+        # }
+
+        self.cp_info = TrackerCPF(entity_data=entity_data)
 
         return self.cp_info
 
@@ -277,17 +297,14 @@ class TrackerCPF(SensorCPF):
         else:
             temperature = self.temperature_dict
 
-        if self.entity_data is None:
-            entity_data = {
-                "location": location,
-                "temparature": temperature,
-            }
-        else:
-            entity_data = self.entity_data
+        tracker_info = {
+            "id": self.id,
+            "type": self.type,
+            "location": location,
+            "temperature": temperature,
+        }
 
-            entity_data.update({"location": location, "temperature": temperature})
-
-        self.info.update(entity_data)
+        self.info.update(tracker_info)
 
         # {
         #     "id": "tracker4",
@@ -316,7 +333,7 @@ if __name__ == "__main__":
     }
 
     tracker = Tracker(important_info=important_info)
-    print(tracker.info)
+    # print(tracker.info)
 
     context_info = {
         "id": "tracker",
@@ -333,4 +350,7 @@ if __name__ == "__main__":
     }
 
     trackerCP = TrackerCPF(entity_data=context_info)
-    print(trackerCP.info)
+    # print(trackerCP.info)
+
+    tracker.mqtt_to_cp()
+    print(tracker.cp_info)

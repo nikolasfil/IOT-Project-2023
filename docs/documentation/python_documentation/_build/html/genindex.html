@@ -81,8 +81,7 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
+ <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -103,14 +102,6 @@
  | <a href="#V"><strong>V</strong></a>
  
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="servers.html#servers.flask_server_example.about">about() (in module servers.flask_server_example)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -123,10 +114,10 @@
       </ul></li>
       <li><a href="broker.html#broker.Broker">Broker (class in broker)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="context_provider.html#context_provider.ContextProvider.build_request">build_request() (context_provider.ContextProvider method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="button_sensor.html#button_sensor.Button">Button (class in button_sensor)</a>
 </li>
       <li>
@@ -136,6 +127,8 @@
         <li><a href="button_sensor.html#module-button_sensor">module</a>
 </li>
       </ul></li>
+      <li><a href="button_sensor.html#button_sensor.ButtonCPF">ButtonCPF (class in button_sensor)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -173,11 +166,13 @@
       <li><a href="button_sensor.html#button_sensor.Button.default_values">default_values() (button_sensor.Button method)</a>
 
       <ul>
+        <li><a href="button_sensor.html#button_sensor.ButtonCPF.default_values">(button_sensor.ButtonCPF method)</a>
+</li>
         <li><a href="tracker_sensor.html#tracker_sensor.Tracker.default_values">(tracker_sensor.Tracker method)</a>
 </li>
-        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCP.default_values">(tracker_sensor.TrackerCP method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF.default_values">(tracker_sensor.TrackerCPF method)</a>
 </li>
-        <li><a href="virtual_sensor.html#virtual_sensor.SensorCP.default_values">(virtual_sensor.SensorCP method)</a>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.default_values">(virtual_sensor.SensorCPF method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -202,10 +197,12 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash">generate_unique_hash() (virtual_sensor.Sensor method)</a>
+      <li><a href="broker.html#broker.Broker.generate_unique_hash">generate_unique_hash() (broker.Broker method)</a>
+
+      <ul>
+        <li><a href="virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash">(virtual_sensor.Sensor method)</a>
 </li>
-      <li><a href="servers.html#servers.flask_server_example.get">get() (in module servers.flask_server_example)</a>
-</li>
+      </ul></li>
       <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_attribute">get_attribute() (sensor_context_provider.SensorCP method)</a>
 </li>
   </ul></td>
@@ -226,16 +223,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_button">handling_button() (subscriber_broker.Subscriber method)</a>
 </li>
-      <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_tracker">handling_tracker() (subscriber_broker.Subscriber method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="connector_server.html#connector_server.home">home() (in module connector_server)</a>
-
-      <ul>
-        <li><a href="servers.html#servers.flask_server_example.home">(in module servers.flask_server_example)</a>
+      <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_tracker">handling_tracker() (subscriber_broker.Subscriber method)</a>
 </li>
-      </ul></li>
+      <li><a href="connector_server.html#connector_server.home">home() (in module connector_server)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -312,10 +305,6 @@
 </li>
         <li><a href="sensor_context_provider.html#module-sensor_context_provider">sensor_context_provider</a>
 </li>
-        <li><a href="servers.html#module-servers">servers</a>
-</li>
-        <li><a href="servers.html#module-servers.flask_server_example">servers.flask_server_example</a>
-</li>
         <li><a href="subscriber_broker.html#module-subscriber_broker">subscriber_broker</a>
 </li>
         <li><a href="tracker_sensor.html#module-tracker_sensor">tracker_sensor</a>
@@ -324,17 +313,27 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp">mqtt_to_cp() (tracker_sensor.Tracker method)</a>
+
+      <ul>
+        <li><a href="virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">(virtual_sensor.Sensor method)</a>
+</li>
+      </ul></li>
+  </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.new_entity">new_entity() (sensor_context_provider.SensorCP method)</a>
+      <li><a href="button_sensor.html#button_sensor.ButtonCPF.new_entity">new_entity() (button_sensor.ButtonCPF method)</a>
 
       <ul>
-        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCP.new_entity">(tracker_sensor.TrackerCP method)</a>
+        <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.new_entity">(sensor_context_provider.SensorCP method)</a>
 </li>
-        <li><a href="virtual_sensor.html#virtual_sensor.SensorCP.new_entity">(virtual_sensor.SensorCP method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF.new_entity">(tracker_sensor.TrackerCPF method)</a>
+</li>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.new_entity">(virtual_sensor.SensorCPF method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -362,8 +361,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="broker.html#broker.Broker.path_to_file">path_to_file() (broker.Broker method)</a>
-</li>
-      <li><a href="servers.html#servers.flask_server_example.post">post() (in module servers.flask_server_example)</a>
 </li>
       <li><a href="broker.html#broker.Broker.publish">publish() (broker.Broker method)</a>
 </li>
@@ -406,27 +403,11 @@
 </li>
       </ul></li>
       <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP">SensorCP (class in sensor_context_provider)</a>
-
-      <ul>
-        <li><a href="virtual_sensor.html#virtual_sensor.SensorCP">(class in virtual_sensor)</a>
 </li>
-      </ul></li>
-      <li>
-    servers
-
-      <ul>
-        <li><a href="servers.html#module-servers">module</a>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF">SensorCPF (class in virtual_sensor)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    servers.flask_server_example
-
-      <ul>
-        <li><a href="servers.html#module-servers.flask_server_example">module</a>
-</li>
-      </ul></li>
       <li><a href="context_provider.html#context_provider.ContextProvider.set_headers">set_headers() (context_provider.ContextProvider method)</a>
 </li>
       <li><a href="broker.html#broker.Broker.subscribe">subscribe() (broker.Broker method)</a>
@@ -457,7 +438,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tracker_sensor.html#tracker_sensor.TrackerCP">TrackerCP (class in tracker_sensor)</a>
+      <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF">TrackerCPF (class in tracker_sensor)</a>
 </li>
   </ul></td>
 </tr></table>

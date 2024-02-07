@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.connect_mqtt"><code class="docutils literal notranslate"><span class="pre">Broker.connect_mqtt()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.dict_to_json"><code class="docutils literal notranslate"><span class="pre">Broker.dict_to_json()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.exit"><code class="docutils literal notranslate"><span class="pre">Broker.exit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.generate_unique_hash"><code class="docutils literal notranslate"><span class="pre">Broker.generate_unique_hash()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.json_to_dict"><code class="docutils literal notranslate"><span class="pre">Broker.json_to_dict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.logging"><code class="docutils literal notranslate"><span class="pre">Broker.logging()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="broker.html#broker.Broker.main"><code class="docutils literal notranslate"><span class="pre">Broker.main()</span></code></a></li>
@@ -123,6 +124,11 @@
 <li class="toctree-l3"><a class="reference internal" href="button_sensor.html#button_sensor.Button.default_values"><code class="docutils literal notranslate"><span class="pre">Button.default_values()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="button_sensor.html#button_sensor.Button.initialize"><code class="docutils literal notranslate"><span class="pre">Button.initialize()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="button_sensor.html#button_sensor.Button.main"><code class="docutils literal notranslate"><span class="pre">Button.main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="button_sensor.html#button_sensor.ButtonCPF"><code class="docutils literal notranslate"><span class="pre">ButtonCPF</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="button_sensor.html#button_sensor.ButtonCPF.default_values"><code class="docutils literal notranslate"><span class="pre">ButtonCPF.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="button_sensor.html#button_sensor.ButtonCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">ButtonCPF.new_entity()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -165,14 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="servers.html">servers package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="servers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="servers.html#module-servers.flask_server_example">servers.flask_server_example module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="servers.html#servers.flask_server_example.about"><code class="docutils literal notranslate"><span class="pre">about()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="servers.html#servers.flask_server_example.get"><code class="docutils literal notranslate"><span class="pre">get()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="servers.html#servers.flask_server_example.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="servers.html#servers.flask_server_example.post"><code class="docutils literal notranslate"><span class="pre">post()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="servers.html#module-servers">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servers.html#servers-flask-server-example-module">servers.flask_server_example module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servers.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a><ul>
@@ -189,11 +189,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker"><code class="docutils literal notranslate"><span class="pre">Tracker</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.default_values"><code class="docutils literal notranslate"><span class="pre">Tracker.default_values()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.initialize"><code class="docutils literal notranslate"><span class="pre">Tracker.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Tracker.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCP"><code class="docutils literal notranslate"><span class="pre">TrackerCP</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCP.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCP.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCP.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCP.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF"><code class="docutils literal notranslate"><span class="pre">TrackerCPF</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.new_entity()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -204,11 +205,12 @@
 <li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.get_datetime"><code class="docutils literal notranslate"><span class="pre">Sensor.get_datetime()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.info_to_json"><code class="docutils literal notranslate"><span class="pre">Sensor.info_to_json()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.kwarging"><code class="docutils literal notranslate"><span class="pre">Sensor.kwarging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Sensor.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCP"><code class="docutils literal notranslate"><span class="pre">SensorCP</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCP.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCP.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCP.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF"><code class="docutils literal notranslate"><span class="pre">SensorCPF</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCPF.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPF.new_entity()</span></code></a></li>
 </ul>
 </li>
 </ul>

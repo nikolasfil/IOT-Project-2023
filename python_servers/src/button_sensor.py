@@ -131,8 +131,42 @@ class Button(Sensor):
                 "data": "Ab4A2QA=",
             }
 
-    def main(self):
+    def mqtt_to_cp(self, *args, **kwargs):
+        """
+        Description:
+            Transforms the information to a format that the Context Provider can understand
+
+        Raises:
+            ValueError: _description_
+
+        Returns:
+            _type_: _description_
+        """
         pass
+
+        device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
+        device_type = self.info.get("deviceInfo").get("applicationName")
+        temperature_type = "Float"
+        temperature_value = self.info.get("object").get("temperature")
+        temperature_metadata = {}
+        press_event = self.info.get("object").get("pressEvent")
+        press_event_metadata = {}
+        battery_voltage = self.info.get("object").get("batteryVoltage")
+
+        entity_data = {
+            "id": device_id,
+            "type": device_type,
+            "temperature_type": temperature_type,
+            "temperature_value": temperature_value,
+            "temperature_metadata": temperature_metadata,
+            "press_event": press_event,
+            "press_event_metadata": press_event_metadata,
+            "batteryVoltage": battery_voltage,
+        }
+
+        self.cp_info = ButtonCPF(entity_data=entity_data)
+
+        return self.cp_info.info
 
 
 class ButtonCPF(SensorCPF):
@@ -222,4 +256,6 @@ if __name__ == "__main__":
     }
 
     button = Button(important_info=important_info)
-    print(button.info_json)
+    # print(button.info_json)
+    button.mqtt_to_cp()
+    print(button.cp_info.info)

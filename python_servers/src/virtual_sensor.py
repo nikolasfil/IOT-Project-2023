@@ -20,6 +20,7 @@ class Sensor:
         else:
             self.initialize(**self.generic_info)
         self.info_json = self.info_to_json()
+        self.cp_info = None
 
     def kwarging(self, arguments, item):
         if arguments.get(item):

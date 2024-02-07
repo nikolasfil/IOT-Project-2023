@@ -83,6 +83,8 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
 
 
 <div class="viewcode-block" id="Broker">
@@ -95,6 +97,7 @@
         <span class="n">broker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">run_only_once</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;clienting-stuff&quot;</span>
@@ -112,6 +115,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">broker</span> <span class="o">=</span> <span class="n">broker</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_only_once</span> <span class="o">=</span> <span class="n">run_only_once</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">debug</span>
 
         <span class="c1"># Connecting client</span>
         <span class="c1"># self.client = self.connect_mqtt()</span>
@@ -178,8 +182,10 @@
         <span class="c1"># message = dict(text)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">py_obj_payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_to_dict</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="si">}</span><span class="s2"> length message from </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="si">}</span><span class="s2"> length message from </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_only_once</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
 
@@ -188,7 +194,8 @@
 <div class="viewcode-block" id="Broker.on_publish">
 <a class="viewcode-back" href="../broker.html#broker.Broker.on_publish">[docs]</a>
     <span class="k">def</span> <span class="nf">on_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">mid</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Published </span><span class="si">{</span><span class="n">mid</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">publish_topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Published </span><span class="si">{</span><span class="n">mid</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">publish_topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_only_once</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
 
@@ -241,6 +248,19 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Exiting</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Broker.generate_unique_hash">
+<a class="viewcode-back" href="../broker.html#broker.Broker.generate_unique_hash">[docs]</a>
+    <span class="k">def</span> <span class="nf">generate_unique_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Get current timestamp</span>
+        <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+
+        <span class="c1"># Convert timestamp to string and hash it using uuid</span>
+        <span class="n">hashed_value</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid5</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">NAMESPACE_DNS</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_time</span><span class="p">))</span>
+
+        <span class="n">formatted_hash</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hashed_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">formatted_hash</span></div>
 </div>
 
 

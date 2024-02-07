@@ -59,11 +59,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.Sensor.get_datetime"><code class="docutils literal notranslate"><span class="pre">Sensor.get_datetime()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.Sensor.info_to_json"><code class="docutils literal notranslate"><span class="pre">Sensor.info_to_json()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.Sensor.kwarging"><code class="docutils literal notranslate"><span class="pre">Sensor.kwarging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.Sensor.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Sensor.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#virtual_sensor.SensorCP"><code class="docutils literal notranslate"><span class="pre">SensorCP</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.SensorCP.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCP.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.SensorCP.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual_sensor.SensorCPF"><code class="docutils literal notranslate"><span class="pre">SensorCPF</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.SensorCPF.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCPF.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual_sensor.SensorCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPF.new_entity()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -98,7 +99,7 @@
 <span id="virtual-sensor-module"></span><h1>virtual_sensor module<a class="headerlink" href="#module-virtual_sensor" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="virtual_sensor.Sensor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">virtual_sensor.</span></span><span class="sig-name descname"><span class="pre">Sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#Sensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.Sensor" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">virtual_sensor.</span></span><span class="sig-name descname"><span class="pre">Sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#Sensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.Sensor" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="virtual_sensor.Sensor.generate_unique_hash">
@@ -120,20 +121,40 @@
 <span class="sig-name descname"><span class="pre">kwarging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#Sensor.kwarging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.Sensor.kwarging" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="virtual_sensor.Sensor.mqtt_to_cp">
+<span class="sig-name descname"><span class="pre">mqtt_to_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#Sensor.mqtt_to_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.Sensor.mqtt_to_cp" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Transforms the information to a format that the Context Provider can understand</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – _description_</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="virtual_sensor.SensorCP">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">virtual_sensor.</span></span><span class="sig-name descname"><span class="pre">SensorCP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCP" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="virtual_sensor.SensorCPF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">virtual_sensor.</span></span><span class="sig-name descname"><span class="pre">SensorCPF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCPF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCPF" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="virtual_sensor.SensorCP.default_values">
-<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCP.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCP.default_values" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="virtual_sensor.SensorCPF.default_values">
+<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCPF.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCPF.default_values" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="virtual_sensor.SensorCP.new_entity">
-<span class="sig-name descname"><span class="pre">new_entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCP.new_entity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCP.new_entity" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="virtual_sensor.SensorCPF.new_entity">
+<span class="sig-name descname"><span class="pre">new_entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/virtual_sensor.html#SensorCPF.new_entity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#virtual_sensor.SensorCPF.new_entity" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

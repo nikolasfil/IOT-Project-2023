@@ -88,13 +88,21 @@
 <div class="viewcode-block" id="Sensor">
 <a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor">[docs]</a>
 <span class="k">class</span> <span class="nc">Sensor</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_info</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;deduplicationId&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_unique_hash</span><span class="p">(),</span>
             <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_datetime</span><span class="p">(),</span>
-            <span class="s2">&quot;deviceInfo&quot;</span><span class="p">:</span> <span class="n">device_info</span><span class="p">,</span>
+            <span class="s2">&quot;deviceInfo&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">),</span>
         <span class="p">}</span>
-        <span class="c1"># self.info.update(another_dict)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;generic_info&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_values</span><span class="p">()</span>
+        <span class="n">important_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;important_info&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">important_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="n">important_info</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_to_json</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Sensor.kwarging">
 <a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.kwarging">[docs]</a>
@@ -128,13 +136,29 @@
 <a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.info_to_json">[docs]</a>
     <span class="k">def</span> <span class="nf">info_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sensor.mqtt_to_cp">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">[docs]</a>
+    <span class="k">def</span> <span class="nf">mqtt_to_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Transforms the information to a format that the Context Provider can understand</span>
+
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: _description_</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _type_: _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
 </div>
 
 
 
-<div class="viewcode-block" id="SensorCP">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCP">[docs]</a>
-<span class="k">class</span> <span class="nc">SensorCP</span><span class="p">:</span>
+<div class="viewcode-block" id="SensorCPF">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF">[docs]</a>
+<span class="k">class</span> <span class="nc">SensorCPF</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;entity_data&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
@@ -150,14 +174,14 @@
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SensorCP.default_values">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCP.default_values">[docs]</a>
+<div class="viewcode-block" id="SensorCPF.default_values">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.default_values">[docs]</a>
     <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="SensorCP.new_entity">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCP.new_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPF.new_entity">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.new_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">entity_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span>
