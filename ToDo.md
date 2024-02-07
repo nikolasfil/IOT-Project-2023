@@ -79,3 +79,7 @@ Either make it an extra page for admins or make the search page only for admins
 ## Useful links
 
 [OpenLayers](https://openlayers.org/en/latest/apidoc/)
+
+## Database thoughts
+
+Tracker/Button combo should have a common unique identifier
