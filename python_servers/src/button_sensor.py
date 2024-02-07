@@ -184,7 +184,8 @@ class ButtonCPF(SensorCPF):
         self.temparature_type = entity_data.get("temperature_type")
         self.temperature_value = entity_data.get("temperature_value")
         self.temperature_metadata = entity_data.get("temperature_metadata")
-        self.event = entity_data.get("press_event")
+        self.event = entity_data.get("event")
+        self.press_event = entity_data.get("press_event")
         self.event_metadata = entity_data.get("press_event_metadata")
         self.batteryVoltage = entity_data.get("batteryVoltage")
 
@@ -200,33 +201,21 @@ class ButtonCPF(SensorCPF):
 
         if self.event is None:
             event = {
-                "value": "00",
+                "value": self.press_event,
                 "metadata": self.event_metadata,
             }
         else:
             event = self.event
 
-        if self.entity_data is None:
-            entity_data = {
-                "id": self.id,
-                "type": self.type,
-                "temperature": temperature,
-                "event": event,
-                "batteryVoltage": self.batteryVoltage,
-            }
-        else:
-            entity_data = self.entity_data
-            entity_data.update(
-                {
-                    "id": self.id,
-                    "type": self.type,
-                    "temperature": temperature,
-                    "event": event,
-                    "batteryVoltage": self.batteryVoltage,
-                }
-            )
+        button_info = {
+            "id": self.id,
+            "type": self.type,
+            "temperature": temperature,
+            "event": event,
+            "batteryVoltage": self.batteryVoltage,
+        }
 
-        self.info.update(entity_data)
+        self.info.update(button_info)
 
         # info = {
         #     "id": "70b3d52dd6000065",
