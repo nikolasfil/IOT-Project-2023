@@ -4,13 +4,7 @@ import codecs
 import bcrypt
 from pathlib import Path
 
-
 # https://www.tutorialspoint.com/sqlite/sqlite_python.htm
-
-# database='../dbdesigner/database-data'
-# needs to run in the Program Folder
-
-# https://www.googleapis.com/books/v1/volumes?q=title:python
 
 
 class Database:
