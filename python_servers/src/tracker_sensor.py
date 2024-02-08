@@ -271,11 +271,10 @@ class TrackerCPF(SensorCPF):
         self.latitude = entity_data.get("latitude")
         self.longitude = entity_data.get("longitude")
         self.location_metadata = entity_data.get("location_metadata")
+        
         self.temperature_dict = entity_data.get("temperature")
         self.temperatur_value = entity_data.get("temperature_value")
         self.temperature_metadata = entity_data.get("temperature_metadata")
-        # self.time = entity_data.get("time")
-        # self.date = entity_data.get("date")
 
     def default_values(self):
         if self.location_dict is None:
