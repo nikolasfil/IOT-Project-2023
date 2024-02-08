@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tracker_sensor &mdash; IOT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IOT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../broker.html">broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../button_sensor.html">button_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../connector_server.html">connector_server module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../context_provider.html">context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publisher_broker.html">publisher_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensor_context_provider.html">sensor_context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../servers.html">servers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../subscriber_broker.html">subscriber_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tracker_sensor.html">tracker_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../virtual_sensor.html">virtual_sensor module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tracker_sensor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tracker_sensor</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">virtual_sensor</span> <span class="kn">import</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">SensorCPF</span>
+
+
+<div class="viewcode-block" id="Tracker">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker">[docs]</a>
+<span class="k">class</span> <span class="nc">Tracker</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initialize the Tracker Sensor</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            generic_info (dict): The generic info of the tracker</span>
+<span class="sd">            important_info (dict): The rtant info of the tracker</span>
+<span class="sd">                type (str): The type of the tracker</span>
+<span class="sd">                deviceId (str): The id of the tracker</span>
+<span class="sd">                speedKmph (float): The speed of the tracker</span>
+<span class="sd">                latitudeDeg (float): The latitude of the tracker</span>
+<span class="sd">                headingDeg (float): The heading of the tracker</span>
+<span class="sd">                longitudeDeg (float): The longitude of the tracker</span>
+
+<span class="sd">        Kwargs:</span>
+<span class="sd">            generic_info (dict): The generic info of the tracker</span>
+<span class="sd">            important_info (dict): The important info of the tracker</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Tracker.initialize">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">device_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tenantId&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;tenantName&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tenantName&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;applicationId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;applicationId&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;applicationName&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;applicationName&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;deviceProfileId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceProfileId&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;deviceProfileName&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceProfileName&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceName&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;devEui&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;devEui&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceId&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;apiKey&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;apiKey&quot;</span><span class="p">),</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">device_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">object_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;inactivityAlarm&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inactivityAlarm&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;batCritical&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;batCritical&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;inTrip&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inTrip&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;cached&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;speedKmph&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;speedKmph&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;latitudeDeg&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitudeDeg&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;headingDeg&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headingDeg&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;longitudeDeg&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitudeDeg&quot;</span><span class="p">),</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;fixFailed&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fixFailed&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;batV&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;batV&quot;</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">object_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rxInfo&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rxInfo</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;gatewayId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gatewayId&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;uplinkId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uplinkId&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;rssi&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rssi&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;snr&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;channel&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">),</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;context&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;region_common_name&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;region_common_name&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;region_config_id&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;region_config_id&quot;</span><span class="p">),</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;crcStatus&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;crcStatus&quot;</span><span class="p">),</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rxInfo</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rxInfo&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;txInfo&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">txInfo</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frequency&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;modulation&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;lora&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;bandwidth&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bandwidth&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;spreadingFactor&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;spreadingFactor&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;codeRate&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;codeRate&quot;</span><span class="p">),</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">txInfo</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;txInfo&quot;</span><span class="p">)</span>
+
+        <span class="n">tracker_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;deviceInfo&quot;</span><span class="p">:</span> <span class="n">device_info</span><span class="p">,</span>
+            <span class="s2">&quot;devAddr&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;devAddr&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;adr&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;adr&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;dr&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dr&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;fCnt&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fCnt&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;fPort&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fPort&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;confirmed&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;confirmed&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="n">object_info</span><span class="p">,</span>
+            <span class="s2">&quot;rxInfo&quot;</span><span class="p">:</span> <span class="n">rxInfo</span><span class="p">,</span>
+            <span class="s2">&quot;txInfo&quot;</span><span class="p">:</span> <span class="n">txInfo</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tracker_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Tracker.default_values">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker.default_values">[docs]</a>
+    <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Set the default values for the tracker</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;tenantName&quot;</span><span class="p">:</span> <span class="s2">&quot;Smart Campus&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="s2">&quot;063a0ecb-e8c2-4a13-975a-93d791e8d40c&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;applicationId&quot;</span><span class="p">:</span> <span class="s2">&quot;9be10a72-026f-4e3b-8eac-4a74d0beecb8&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;applicationName&quot;</span><span class="p">:</span> <span class="s2">&quot;Asset tracking&quot;</span><span class="p">,</span>
+                <span class="c1"># Standarized data</span>
+                <span class="s2">&quot;deviceProfileId&quot;</span><span class="p">:</span> <span class="s2">&quot;82ff747e-1de8-4c38-8a8a-9319f3468732&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;deviceProfileName&quot;</span><span class="p">:</span> <span class="s2">&quot;Digital Matter Oyster3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;digital-matter-oyster3:1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;devEui&quot;</span><span class="p">:</span> <span class="s2">&quot;70b3d570500134ae&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;apiKey&quot;</span><span class="p">:</span> <span class="s2">&quot;4jggokgpesnvfb2uv1s40d73ov&quot;</span><span class="p">,</span>
+                <span class="c1"># object</span>
+                <span class="s2">&quot;inactivityAlarm&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;batCritical&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;inTrip&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;fixFailed&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="c1"># rxInfo</span>
+                <span class="s2">&quot;gatewayId&quot;</span><span class="p">:</span> <span class="s2">&quot;1dee04170f93c058&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;uplinkId&quot;</span><span class="p">:</span> <span class="mi">47027</span><span class="p">,</span>
+                <span class="s2">&quot;rssi&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">81</span><span class="p">,</span>
+                <span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="mf">7.2</span><span class="p">,</span>
+                <span class="s2">&quot;channel&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="s2">&quot;1SZf5A==&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">38.288403977154466</span><span class="p">,</span>
+                <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="mf">21.788731921156614</span><span class="p">,</span>
+                <span class="s2">&quot;region_common_name&quot;</span><span class="p">:</span> <span class="s2">&quot;EU868&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;region_config_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eu868&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;crcStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;CRC_OK&quot;</span><span class="p">,</span>
+                <span class="c1"># txInfo</span>
+                <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="mi">867500000</span><span class="p">,</span>
+                <span class="s2">&quot;bandwidth&quot;</span><span class="p">:</span> <span class="mi">125000</span><span class="p">,</span>
+                <span class="s2">&quot;spreadingFactor&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s2">&quot;codeRate&quot;</span><span class="p">:</span> <span class="s2">&quot;CR_4_5&quot;</span><span class="p">,</span>
+                <span class="c1"># tracker data</span>
+                <span class="s2">&quot;devAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;002f2c62&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adr&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;dr&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">&quot;fCnt&quot;</span><span class="p">:</span> <span class="mi">715</span><span class="p">,</span>
+                <span class="s2">&quot;fPort&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;confirmed&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;tFLSFjm0/Az7ANI=&quot;</span><span class="p">,</span>
+            <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Tracker.mqtt_to_cp">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp">[docs]</a>
+    <span class="k">def</span> <span class="nf">mqtt_to_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Transforms the information to a format that the Context Provider can understand</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: _description_</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _type_: _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Change this into the TrackerCPF Class instance</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceId&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Tracker&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo:json&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitudeDeg&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitudeDeg&quot;</span><span class="p">),</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TrackerCPF">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.TrackerCPF">[docs]</a>
+<span class="k">class</span> <span class="nc">TrackerCPF</span><span class="p">(</span><span class="n">SensorCPF</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initialize the Tracker Context Provider</span>
+
+<span class="sd">        Args:</span>
+
+
+<span class="sd">        Kwargs:</span>
+<span class="sd">            entity_data (dict): The data of the entity</span>
+<span class="sd">                id (str): The id of the entity</span>
+<span class="sd">                type (str): The type of the entity</span>
+<span class="sd">                location (dict): The location of the entity</span>
+<span class="sd">                    type (str): The type of the location</span>
+<span class="sd">                    value (dict): The value of the location</span>
+<span class="sd">                        latitude (float): The latitude of the entity</span>
+<span class="sd">                        longitude (float): The longitude of the entity</span>
+<span class="sd">                    location_metadata (dict): The metadata of the location</span>
+<span class="sd">                temperature (dict): The temperature of the entity</span>
+<span class="sd">                    type (str): The type of the temperature</span>
+<span class="sd">                    value (float): The value of the temperature</span>
+<span class="sd">                    temperature_metadata (dict): The metadata of the temperature</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_entity</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_values</span><span class="p">()</span>
+
+<div class="viewcode-block" id="TrackerCPF.new_entity">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.TrackerCPF.new_entity">[docs]</a>
+    <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Create a new entity</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            entity_data (dict, optional): Contains all the data needed to create a new entity. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: No return value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entity_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">new_entity</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location_metadata&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperatur_value</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_metadata&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TrackerCPF.default_values">
+<a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.TrackerCPF.default_values">[docs]</a>
+    <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_json&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+                    <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_metadata</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperatur_value</span><span class="p">,</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+                <span class="s2">&quot;temparature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entity_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span>
+
+            <span class="n">entity_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span> <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span></div>
+</div>
+
+
+        <span class="c1"># {</span>
+        <span class="c1">#     &quot;id&quot;: &quot;tracker4&quot;,</span>
+        <span class="c1">#     &quot;location&quot;: {</span>
+        <span class="c1">#         &quot;metadata&quot;: {},</span>
+        <span class="c1">#         &quot;type&quot;: &quot;None&quot;,</span>
+        <span class="c1">#         &quot;value&quot;: null,</span>
+        <span class="c1">#     },</span>
+        <span class="c1">#     &quot;temperature&quot;: {</span>
+        <span class="c1">#         &quot;metadata&quot;: {},</span>
+        <span class="c1">#         &quot;type&quot;: &quot;Float&quot;,</span>
+        <span class="c1">#         &quot;value&quot;: 25.5,</span>
+        <span class="c1">#     },</span>
+        <span class="c1">#     &quot;type&quot;: &quot;Tracker&quot;,</span>
+        <span class="c1"># }</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">important_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;position&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="s2">&quot;digital-matter-oyster3:1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;speedKmph&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;latitudeDeg&quot;</span><span class="p">:</span> <span class="mf">38.2882484</span><span class="p">,</span>
+        <span class="s2">&quot;headingDeg&quot;</span><span class="p">:</span> <span class="mf">348.75</span><span class="p">,</span>
+        <span class="s2">&quot;longitudeDeg&quot;</span><span class="p">:</span> <span class="mf">21.7887801</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">tracker</span> <span class="o">=</span> <span class="n">Tracker</span><span class="p">(</span><span class="n">important_info</span><span class="o">=</span><span class="n">important_info</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tracker</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="n">context_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;tracker&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Tracker&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="s2">&quot;temperature_value&quot;</span><span class="p">:</span> <span class="mf">25.5</span><span class="p">,</span>
+        <span class="c1"># Not needed</span>
+        <span class="s2">&quot;location_metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;region_common_name&quot;</span><span class="p">:</span> <span class="s2">&quot;EU868&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;region_config_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eu868&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1"># In location we could add the metadata for fires or sth</span>
+    <span class="p">}</span>
+
+    <span class="n">trackerCP</span> <span class="o">=</span> <span class="n">TrackerCPF</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">context_info</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">trackerCP</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, nikolasfil.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
