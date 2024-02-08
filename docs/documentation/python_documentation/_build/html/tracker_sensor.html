@@ -51,7 +51,6 @@
 <li class="toctree-l1"><a class="reference internal" href="context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tracker_sensor module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#tracker_sensor.Tracker"><code class="docutils literal notranslate"><span class="pre">Tracker</span></code></a><ul>
@@ -160,32 +159,24 @@ txInfo (json): The tx information of the tracker</p>
 <dt>Description:</dt><dd><p>Creates the information json in the format that the Context Provider can understand</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
-<dl>
-<dt>{</dt><dd><p>“id”: “tracker4”,
-“type”: “Asset Tracking”,
-“location”: {</p>
-<blockquote>
-<div><p>“metadata”: {},
-“type”: “None”,
-“value”: null,</p>
-</div></blockquote>
-<p>},
-“temperature”: {</p>
-<blockquote>
-<div><p>“metadata”: {},
-“type”: “Float”,
-“value”: 25.5,</p>
-</div></blockquote>
-<p>},
-“timestamp”: {</p>
-<blockquote>
-<div><p>“date”: “2021-08-25”,
-“time”: “12:00:00”,</p>
-</div></blockquote>
-</dd>
-</dl>
-<p>}</p>
+<p># Example:
+#     {
+#         “id”: “tracker4”,
+#         “type”: “Asset Tracking”,
+#         “location”: {
+#             “metadata”: {},
+#             “type”: “None”,
+#             “value”: null,
+#         },
+#         “temperature”: {
+#             “metadata”: {},
+#             “type”: “Float”,
+#             “value”: 25.5,
+#         },
+#         “timestamp”: {
+#             “date”: “2021-08-25”,
+#             “time”: “12:00:00”,
+#     }</p>
 </dd></dl>
 
 <dl class="py method">

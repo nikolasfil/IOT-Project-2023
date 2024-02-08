@@ -1,6 +1,7 @@
 src
 ===
 
+
 .. toctree::
    :maxdepth: 4
 
@@ -10,7 +11,6 @@ src
    context_provider
    publisher_broker
    sensor_context_provider
-   servers
    subscriber_broker
    tracker_sensor
    virtual_sensor

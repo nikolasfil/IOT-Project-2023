@@ -48,7 +48,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracker_sensor.html">tracker_sensor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../virtual_sensor.html">virtual_sensor module</a></li>
@@ -372,24 +371,24 @@
 <span class="sd">        Description:</span>
 <span class="sd">            Creates the information json in the format that the Context Provider can understand</span>
 
-<span class="sd">        Example:</span>
-<span class="sd">            {</span>
-<span class="sd">                &quot;id&quot;: &quot;tracker4&quot;,</span>
-<span class="sd">                &quot;type&quot;: &quot;Asset Tracking&quot;,</span>
-<span class="sd">                &quot;location&quot;: {</span>
-<span class="sd">                    &quot;metadata&quot;: {},</span>
-<span class="sd">                    &quot;type&quot;: &quot;None&quot;,</span>
-<span class="sd">                    &quot;value&quot;: null,</span>
-<span class="sd">                },</span>
-<span class="sd">                &quot;temperature&quot;: {</span>
-<span class="sd">                    &quot;metadata&quot;: {},</span>
-<span class="sd">                    &quot;type&quot;: &quot;Float&quot;,</span>
-<span class="sd">                    &quot;value&quot;: 25.5,</span>
-<span class="sd">                },</span>
-<span class="sd">                &quot;timestamp&quot;: {</span>
-<span class="sd">                    &quot;date&quot;: &quot;2021-08-25&quot;,</span>
-<span class="sd">                    &quot;time&quot;: &quot;12:00:00&quot;,</span>
-<span class="sd">            }</span>
+<span class="sd">        # Example:</span>
+<span class="sd">        #     {</span>
+<span class="sd">        #         &quot;id&quot;: &quot;tracker4&quot;,</span>
+<span class="sd">        #         &quot;type&quot;: &quot;Asset Tracking&quot;,</span>
+<span class="sd">        #         &quot;location&quot;: {</span>
+<span class="sd">        #             &quot;metadata&quot;: {},</span>
+<span class="sd">        #             &quot;type&quot;: &quot;None&quot;,</span>
+<span class="sd">        #             &quot;value&quot;: null,</span>
+<span class="sd">        #         },</span>
+<span class="sd">        #         &quot;temperature&quot;: {</span>
+<span class="sd">        #             &quot;metadata&quot;: {},</span>
+<span class="sd">        #             &quot;type&quot;: &quot;Float&quot;,</span>
+<span class="sd">        #             &quot;value&quot;: 25.5,</span>
+<span class="sd">        #         },</span>
+<span class="sd">        #         &quot;timestamp&quot;: {</span>
+<span class="sd">        #             &quot;date&quot;: &quot;2021-08-25&quot;,</span>
+<span class="sd">        #             &quot;time&quot;: &quot;12:00:00&quot;,</span>
+<span class="sd">        #     }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
