@@ -177,6 +177,42 @@ class Database:
         """
         pass
 
+    def fill_table(
+        self,
+        tableName: str,
+        path_to_file: str,
+        function: function = None,
+        extra_data: dict = {},
+    ):
+
+        self.clearing(tableName)
+
+        file = self.path_to_file(path_to_file)
+
+        headers = []
+        with open(file, "r") as f:
+            for i, line in enumerate(f):
+                line = line.strip("\n").split(",")
+                if i == 0:
+                    headers = line[:]
+                    continue
+                elif i > self.num:
+                    break
+
+                data = {}
+                for i, header in enumerate(headers):
+                    data[header] = line[i]
+
+                if extra_data:
+                    data.update(extra_data)
+
+                if function:
+                    data = function(data)
+
+                self.insert_data(
+                    tableName, [data[col] for col in self.tables[tableName]]
+                )
+
     def path_to_file(self, filename):
         """returns the path to the file"""
         parent_folder = Path(__file__).parent
