@@ -84,10 +84,6 @@ class SensorCPF:
         if entity_data is None:
             raise ValueError("The entity_data is not given")
 
-        self.id = entity_data.get("id")
-        self.type = entity_data.get("type")
-        self.timestamp = entity_data.get("timestamp")
-
         return entity_data
 
     def get_date(self, isoformat):

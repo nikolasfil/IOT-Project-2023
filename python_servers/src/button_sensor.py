@@ -178,25 +178,29 @@ class ButtonCPF(SensorCPF):
     def new_entity(self, entity_data=None):
         entity_data = super().new_entity(entity_data)
 
-        self.temparature_dict = entity_data.get("temperature")
-        self.temparature_type = entity_data.get("temperature_type")
+        self.id = entity_data.get("id")
+        self.type = entity_data.get("type")
+        self.timestamp = entity_data.get("timestamp")
+
+        self.temperature_dict = entity_data.get("temperature")
+        self.temperature_type = entity_data.get("temperature_type")
         self.temperature_value = entity_data.get("temperature_value")
         self.temperature_metadata = entity_data.get("temperature_metadata")
-        
+
         self.event = entity_data.get("event")
         self.press_event = entity_data.get("press_event")
         self.event_metadata = entity_data.get("press_event_metadata")
         self.batteryVoltage = entity_data.get("batteryVoltage")
 
     def default_values(self):
-        if self.temparature_dict is None:
+        if self.temperature_dict is None:
             temperature = {
-                "type": self.temparature_type,
+                "type": self.temperature_type,
                 "value": self.temperature_value,
                 "metadata": self.temperature_metadata,
             }
         else:
-            temperature = self.temparature_dict
+            temperature = self.temperature_dict
 
         if self.event is None:
             event = {
