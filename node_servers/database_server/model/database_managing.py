@@ -42,7 +42,7 @@ class AdventureGuard(Database):
 
         self.clearing(tableName)
 
-        file = self.path_to_file("users.csv")
+        file = self.path_to_file("data/users.csv")
         headers = []
         with open(file, "r") as f:
             for i, line in enumerate(f):
@@ -72,7 +72,7 @@ class AdventureGuard(Database):
 
         self.clearing(tableName)
 
-        file = self.path_to_file("device.csv")
+        file = self.path_to_file("data/device.csv")
         headers = []
         with open(file, "r") as f:
             for i, line in enumerate(f):

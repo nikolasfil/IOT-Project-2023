@@ -9,10 +9,21 @@ from pathlib import Path
 
 class Database:
     def __init__(self, database, sqlfile):
+        """
+        Description:
+            Initializes the database
+        Args:
+            database: str: the path to the database
+            sqlfile: str: the path to the sql file
+
+        """
+
+        # Get the correct path
         database = self.path_to_file(database)
         sqlfile = self.path_to_file(sqlfile)
 
         try:
+            # Connect to the database
             self.conn = sq.connect(database)
             self.sqlfile = sqlfile
             self.salt = bcrypt.gensalt()
@@ -22,20 +33,48 @@ class Database:
             sys.exit()
 
     def create_database(self):
-        """Creates the database from the sql file"""
+        """
+        Description:
+            Creates the database from the sql file. It opens it and exceutes the sql commands
+        """
 
         sql = codecs.open(self.sqlfile, "r", encoding="utf-8-sig").read()
         self.conn.executescript(sql)
 
         # saves the table names
+
+        self.get_table_names()
+
+        # saves the table columns
+        self.get_table_columns()
+
+    def get_table_names(self):
+        """
+        Description:
+            Executes an sql command in the database to retrieve the names of all the tables
+            It saves the names of the tables in the table_names attribute
+
+        Returns:
+            list: the names of the tables in the database
+        """
         self.table_names = [
             table_name[0]
             for table_name in self.conn.execute(
                 'SELECT name FROM sqlite_master WHERE type="table"'
             ).fetchall()
         ]
+        return self.table_names
 
-        # saves the table columns
+    def get_table_columns(self):
+        """
+        Description:
+            Executes an sql command in the database to retrieve the columns of all the tables
+            It saves the columns of the tables in the tables attribute
+
+        Returns:
+            dict: the names of the tables in the database
+        """
+
         self.tables = {
             table_name: [
                 column[1]
@@ -44,21 +83,63 @@ class Database:
             for table_name in self.table_names
         }
 
+        # Alternative way to get the columns
+
+        # self.tables = {}
+        # for table_name in self.table_names:
+        #     self.tables[table_name] = [
+        #         column[1]
+        #         for column in self.conn.execute(
+        #             f"PRAGMA table_info({table_name})"
+        #         ).fetchall()
+        #     ]
+
+        return self.tables
+
     def clearing(self, tablename: str):
-        """clears the specific tablename from the values, but does not delete the columns"""
+        """
+        Description:
+            clears the specific tablename from the values, but does not delete the columns
+
+        Args:
+            tablename: str: the name of the table to be cleared
+        """
+
         self.conn.execute(f"DELETE FROM {tablename}")
         self.conn.commit()
 
     def clear_all(self):
-        """clears all tables"""
+        """
+        Description:
+            clears all tables
+        """
+
         for table in self.table_names:
             self.clearing(table)
 
     def binary_to_string(self, string):
-        """converts binary to string"""
+        """
+        Description:
+            converts binary to string
+        Args:
+            string: str: the binary string
+        Returns:
+            str: the string
+        """
+
         return f"{str(string)[2:-1]}"
 
     def insert_data(self, table_name, data):
+        """
+        Description:
+            inserts data into the table. It uses the table_name and the data to insert the data into the table, and comletes the columns automatically
+            The data must be in the correct order
+
+        Args:
+            table_name: str: the name of the table
+            data: list: the data to be inserted
+        """
+
         command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(['?' for i in range(len(data))])})"""
         try:
             self.conn.execute(command, data)
@@ -70,23 +151,48 @@ class Database:
             print(data)
 
     def hashing_password(self, password):
-        """hashes the password"""
+        """
+        Description:
+            hashes the password using the bcrypt library
+        Args:
+            password: str: the password to be hashed
+        Returns:
+            str: the hashed password
+        """
         return self.binary_to_string(bcrypt.hashpw(password.encode("utf-8"), self.salt))
 
     def main(self):
-        """main function"""
+        """
+        Description:
+            main function. It is responsible for creating the database, filling it with data and closing the connection to the database after that
+        """
         self.create_database()
         self.fill_database()
         self.conn.close()
 
     def fill_database(self):
+        """
+        Description:
+            fills the database with data
+        """
         pass
 
     def path_to_file(self, filename):
         """returns the path to the file"""
-        return Path(__file__).parent / filename
+        parent_folder = Path(__file__).parent
+        return Path(parent_folder, filename)
 
     def select(self, command):
+        """
+        Descrition:
+            Executes a pure sql select command on the database
+
+        Args:
+            command (str): The sql command to be executed
+
+        Returns:
+            list: The result of the sql command
+        """
         try:
             return self.conn.execute(command).fetchall()
         except Exception as e:
