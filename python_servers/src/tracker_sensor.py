@@ -100,6 +100,14 @@ class Tracker(Sensor):
         else:
             txInfo = kwargs.get("txInfo")
 
+        if kwargs.get("timestamp") is None:
+            timestamp = {
+                "date": kwargs.get("date"),
+                "time": kwargs.get("time_value"),
+            }
+        else:
+            timestamp = kwargs.get("timestamp")
+
         tracker_info = {
             "deviceInfo": device_info,
             "devAddr": kwargs.get("devAddr"),
@@ -112,6 +120,7 @@ class Tracker(Sensor):
             "object": object_info,
             "rxInfo": rxInfo,
             "txInfo": txInfo,
+            "timestamp": timestamp,
         }
 
         self.info.update(tracker_info)
@@ -186,6 +195,7 @@ class Tracker(Sensor):
         location_metadata = {}
         temperature_value = 0
         temperature_metadata = {}
+        timestamp = self.info.get("timestamp")
 
         entity_data = {
             "id": device_id,
@@ -195,6 +205,7 @@ class Tracker(Sensor):
             "location_metadata": location_metadata,
             "temperature_value": temperature_value,
             "temperature_metadata": temperature_metadata,
+            "timestamp": timestamp,
         }
 
         # entity_data = {
@@ -274,6 +285,9 @@ class TrackerCPF(SensorCPF):
         self.temperature_dict = entity_data.get("temperature")
         self.temperatur_value = entity_data.get("temperature_value")
         self.temperature_metadata = entity_data.get("temperature_metadata")
+        self.timestamp = entity_data.get("timestamp")
+        self.time = entity_data.get("time")
+        self.date = entity_data.get("date")
 
     def default_values(self):
         if self.location_dict is None:

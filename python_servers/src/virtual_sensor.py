@@ -10,6 +10,9 @@ class Sensor:
             "deduplicationId": self.generate_unique_hash(),
             "time": self.get_datetime(),
             "deviceInfo": kwargs.get("deviceInfo"),
+            "timestamp": kwargs.get("timestamp"),
+            "time": kwargs.get("time"),
+            "date": kwargs.get("date"),
         }
 
         self.generic_info = kwargs.get("generic_info")

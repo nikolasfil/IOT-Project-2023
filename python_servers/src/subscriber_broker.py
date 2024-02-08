@@ -24,12 +24,19 @@ class Subscriber(Broker):
         if self.debug:
             print(final_text)
         super().on_message(client, userdata, msg)
+
         self.handling_device()
 
     def handling_device(self):
         # Send the information to the connector server
         network_url = os.getenv("URL")
 
+        # if self.py_obj_payload:
+        # if self.py_obj_payload
+        self.py_obj_payload["time"] = {
+            "date": f"{datetime.datetime.now():%Y-%m-%d}",
+            "time": f"{datetime.datetime.now():%H:%M:%S}",
+        }
         connector_server = ContextProvider(
             url=f"http://{network_url}:5000/device_info",
             headers={"Content-Type": "application/json"},
