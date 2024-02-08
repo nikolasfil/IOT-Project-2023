@@ -267,18 +267,10 @@ class TrackerCPF(SensorCPF):
         """
         entity_data = super().new_entity(entity_data)
 
-        self.id = entity_data.get("id")
-        self.type = entity_data.get("type")
-        self.timestamp = entity_data.get("timestamp")
-
         self.location_dict = entity_data.get("location")
         self.latitude = entity_data.get("latitude")
         self.longitude = entity_data.get("longitude")
         self.location_metadata = entity_data.get("location_metadata")
-
-        self.temperature_dict = entity_data.get("temperature")
-        self.temperatur_value = entity_data.get("temperature_value")
-        self.temperature_metadata = entity_data.get("temperature_metadata")
 
     def default_values(self):
         if self.location_dict is None:
@@ -296,7 +288,7 @@ class TrackerCPF(SensorCPF):
         if self.temperature_dict is None:
             temperature = {
                 "type": "Float",
-                "value": self.temperatur_value,
+                "value": self.temperature_value,
                 "metadata": {},
             }
         else:
