@@ -112,18 +112,14 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">final_text</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handling_tracker</span><span class="p">()</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">handling_device</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="Subscriber.handling_device">
-<a class="viewcode-back" href="../subscriber_broker.html#subscriber_broker.Subscriber.handling_device">[docs]</a>
-    <span class="k">def</span> <span class="nf">handling_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Subscriber.handling_tracker">
+<a class="viewcode-back" href="../subscriber_broker.html#subscriber_broker.Subscriber.handling_tracker">[docs]</a>
+    <span class="k">def</span> <span class="nf">handling_tracker</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Send the information to the connector server</span>
         <span class="n">network_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;URL&quot;</span><span class="p">)</span>
-
-        <span class="c1"># if self.py_obj_payload:</span>
-        <span class="c1"># if self.py_obj_payload</span>
 
         <span class="n">connector_server</span> <span class="o">=</span> <span class="n">ContextProvider</span><span class="p">(</span>
             <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">network_url</span><span class="si">}</span><span class="s2">:5000/device_info&quot;</span><span class="p">,</span>
@@ -132,6 +128,13 @@
             <span class="n">payload</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_obj_payload</span><span class="p">,</span>
             <span class="n">automated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Subscriber.handling_button">
+<a class="viewcode-back" href="../subscriber_broker.html#subscriber_broker.Subscriber.handling_button">[docs]</a>
+    <span class="k">def</span> <span class="nf">handling_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Sends the information to the connector server</span>
+        <span class="k">pass</span></div>
 </div>
 
 
