@@ -272,24 +272,24 @@ class TrackerCPF(SensorCPF):
         Description:
             Creates the information json in the format that the Context Provider can understand
 
-        Example:
-            {
-                "id": "tracker4",
-                "type": "Asset Tracking",
-                "location": {
-                    "metadata": {},
-                    "type": "None",
-                    "value": null,
-                },
-                "temperature": {
-                    "metadata": {},
-                    "type": "Float",
-                    "value": 25.5,
-                },
-                "timestamp": {
-                    "date": "2021-08-25",
-                    "time": "12:00:00",
-            }
+        # Example:
+        #     {
+        #         "id": "tracker4",
+        #         "type": "Asset Tracking",
+        #         "location": {
+        #             "metadata": {},
+        #             "type": "None",
+        #             "value": null,
+        #         },
+        #         "temperature": {
+        #             "metadata": {},
+        #             "type": "Float",
+        #             "value": 25.5,
+        #         },
+        #         "timestamp": {
+        #             "date": "2021-08-25",
+        #             "time": "12:00:00",
+        #     }
         """
 
         if self.location_dict is None:
