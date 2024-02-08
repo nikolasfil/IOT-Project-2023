@@ -100,14 +100,6 @@ class Tracker(Sensor):
         else:
             txInfo = kwargs.get("txInfo")
 
-        if kwargs.get("timestamp") is None:
-            timestamp = {
-                "date": kwargs.get("date"),
-                "time": kwargs.get("time_value"),
-            }
-        else:
-            timestamp = kwargs.get("timestamp")
-
         tracker_info = {
             "deviceInfo": device_info,
             "devAddr": kwargs.get("devAddr"),
@@ -120,7 +112,6 @@ class Tracker(Sensor):
             "object": object_info,
             "rxInfo": rxInfo,
             "txInfo": txInfo,
-            "timestamp": timestamp,
         }
 
         self.info.update(tracker_info)
@@ -195,7 +186,7 @@ class Tracker(Sensor):
         location_metadata = {}
         temperature_value = 0
         temperature_metadata = {}
-        timestamp = self.info.get("timestamp")
+        timestamp = self.info.get("time")
 
         entity_data = {
             "id": device_id,
@@ -276,8 +267,6 @@ class TrackerCPF(SensorCPF):
         """
         entity_data = super().new_entity(entity_data)
 
-        self.id = entity_data.get("id")
-        self.type = entity_data.get("type")
         self.location_dict = entity_data.get("location")
         self.latitude = entity_data.get("latitude")
         self.longitude = entity_data.get("longitude")
@@ -285,9 +274,8 @@ class TrackerCPF(SensorCPF):
         self.temperature_dict = entity_data.get("temperature")
         self.temperatur_value = entity_data.get("temperature_value")
         self.temperature_metadata = entity_data.get("temperature_metadata")
-        self.timestamp = entity_data.get("timestamp")
-        self.time = entity_data.get("time")
-        self.date = entity_data.get("date")
+        # self.time = entity_data.get("time")
+        # self.date = entity_data.get("date")
 
     def default_values(self):
         if self.location_dict is None:
@@ -311,11 +299,20 @@ class TrackerCPF(SensorCPF):
         else:
             temperature = self.temperature_dict
 
+        if self.timestamp:
+            timestamp = {
+                "date": self.get_date(self.timestamp),
+                "time": self.get_time(self.timestamp),
+            }
+        else:
+            timestamp = None
+
         tracker_info = {
             "id": self.id,
             "type": self.type,
             "location": location,
             "temperature": temperature,
+            "timestamp": timestamp,
         }
 
         self.info.update(tracker_info)

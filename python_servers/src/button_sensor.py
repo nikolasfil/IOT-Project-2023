@@ -188,6 +188,7 @@ class ButtonCPF(SensorCPF):
         self.press_event = entity_data.get("press_event")
         self.event_metadata = entity_data.get("press_event_metadata")
         self.batteryVoltage = entity_data.get("batteryVoltage")
+        self.timestamp = entity_data.get("timestamp")
 
     def default_values(self):
         if self.temparature_dict is None:
@@ -207,12 +208,21 @@ class ButtonCPF(SensorCPF):
         else:
             event = self.event
 
+        if self.timestamp:
+            timestamp = {
+                "date": self.get_date(self.timestamp),
+                "time": self.get_time(self.timestamp),
+            }
+        else:
+            timestamp = None
+
         button_info = {
             "id": self.id,
             "type": self.type,
             "temperature": temperature,
             "event": event,
             "batteryVoltage": self.batteryVoltage,
+            "timestamp": timestamp,
         }
 
         self.info.update(button_info)

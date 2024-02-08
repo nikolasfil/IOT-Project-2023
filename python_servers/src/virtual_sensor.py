@@ -10,9 +10,6 @@ class Sensor:
             "deduplicationId": self.generate_unique_hash(),
             "time": self.get_datetime(),
             "deviceInfo": kwargs.get("deviceInfo"),
-            "timestamp": kwargs.get("timestamp"),
-            "time": kwargs.get("time"),
-            "date": kwargs.get("date"),
         }
 
         self.generic_info = kwargs.get("generic_info")
@@ -86,4 +83,16 @@ class SensorCPF:
 
         if entity_data is None:
             raise ValueError("The entity_data is not given")
+
+        self.id = entity_data.get("id")
+        self.type = entity_data.get("type")
+        self.timestamp = entity_data.get("timestamp")
+
         return entity_data
+
+    def get_date(self, isoformat):
+
+        return datetime.datetime.fromisoformat(isoformat).date().isoformat()
+
+    def get_time(self, isoformat):
+        return datetime.datetime.fromisoformat(isoformat).time().isoformat()

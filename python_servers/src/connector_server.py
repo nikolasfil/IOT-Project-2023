@@ -58,7 +58,9 @@ def device_info():
 def handling_device(information):
     asset = None
     if information.get("deviceInfo").get("applicationName") == "Asset tracking":
+
         asset = Tracker(generic_info=information)
+
     elif information.get("deviceInfo").get("applicationName") == "Buttons":
         asset = Button(generic_info=information)
 
@@ -66,7 +68,7 @@ def handling_device(information):
         return None
 
     asset.mqtt_to_cp()
-
+    print(asset.cp_info)
     entity = SensorCP(entity_data=asset.cp_info)
     entity.new_entity()
     data = entity.entity_data

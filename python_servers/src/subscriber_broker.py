@@ -33,10 +33,7 @@ class Subscriber(Broker):
 
         # if self.py_obj_payload:
         # if self.py_obj_payload
-        self.py_obj_payload["time"] = {
-            "date": f"{datetime.datetime.now():%Y-%m-%d}",
-            "time": f"{datetime.datetime.now():%H:%M:%S}",
-        }
+
         connector_server = ContextProvider(
             url=f"http://{network_url}:5000/device_info",
             headers={"Content-Type": "application/json"},
