@@ -7,35 +7,57 @@ from datetime import datetime, timedelta
 
 class AdventureGuard(Database):
     def __init__(self, database, sqlfile):
+        """
+        Description:
+            Initializes the AdventureGuard class. It inherits the Database class from the file database.py
+
+        Args:
+            database (str): the path to the database file to connect
+            sqlfile (str): the path to the sql file to create the database
+        """
         super().__init__(database, sqlfile)
+
+        # Number of results to add in the database from the csv
         self.num = 100
+
+        # List of users, devices, assigned, pressed and tracked
         self.users = []
         self.devices = []
         self.assigned = []
         self.pressed = []
         self.tracked = []
 
-    def main(self):
-        """main function"""
-        self.create_database()
-        self.fill_database()
-        self.conn.close()
-
     def fill_database(self):
+        """
+        Description:
+            Fills the database with data from the csv files after it clears the datbase.
+        """
+
         self.clear_all()
+
         # self.fill_users()
         print("Filled users table")
+
         # self.fill_device()
         print("Filled device table")
+
         # self.fill_assigned()
         print("Filled assigned table")
+
         self.fill_pressed()
         # print("Filled pressed table")
+
         self.fill_tracked()
         # print("Filled tracked table")
 
     def fill_users(self):
-        """fills the users table with data from the csv file"""
+        """
+        Description :
+            fills the users table with data from the csv file
+
+        """
+
+        # created by mockaroo
         # curl "https://api.mockaroo.com/api/72de52d0?count=1000&key=cf225740" > "users.csv"
 
         tableName = "USER"
@@ -43,6 +65,7 @@ class AdventureGuard(Database):
         self.clearing(tableName)
 
         file = self.path_to_file("data/users.csv")
+
         headers = []
         with open(file, "r") as f:
             for i, line in enumerate(f):
@@ -51,6 +74,7 @@ class AdventureGuard(Database):
                     headers = line[:]
                     continue
                 elif i > self.num:
+                    # it exceeded the number of results we wanted to add
                     break
 
                 data = {}
