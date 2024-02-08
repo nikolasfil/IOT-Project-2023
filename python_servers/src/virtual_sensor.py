@@ -15,10 +15,12 @@ class Sensor:
         self.generic_info = kwargs.get("generic_info")
         self.default_values()
         important_info = kwargs.get("important_info")
+
         if important_info is not None:
             self.initialize(**important_info, **self.generic_info)
         else:
             self.initialize(**self.generic_info)
+
         self.info_json = self.info_to_json()
         self.cp_info = None
 
