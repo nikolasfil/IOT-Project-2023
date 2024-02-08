@@ -104,7 +104,7 @@
 <dt class="sig sig-object py" id="tracker_sensor.Tracker.default_values">
 <span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker.default_values" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Description:</dt><dd><p>Set the default values for the tracker</p>
+<dt>Description:</dt><dd><p>Set the default values for the tracker if no generic values are given</p>
 </dd>
 </dl>
 </dd></dl>
@@ -112,7 +112,20 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tracker_sensor.Tracker.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker.initialize" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Initialize the tracker sensor and updates the info attribute of the class</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – The information that is sent from the mqtt server
+deviceInfo (json): The information about the device
+object (json): The object information of the tracker
+rxInfo (json): The rx information of the tracker
+txInfo (json): The tx information of the tracker</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tracker_sensor.Tracker.mqtt_to_cp">
@@ -123,13 +136,13 @@
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – _description_</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – if no entity data have been given</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>_description_</p>
+<dd class="field-even"><p>The information in the format that the Context Provider can understand</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_type_</p>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -143,7 +156,37 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tracker_sensor.TrackerCPF.default_values">
 <span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPF.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPF.default_values" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Creates the information json in the format that the Context Provider can understand</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<dl>
+<dt>{</dt><dd><p>“id”: “tracker4”,
+“type”: “Asset Tracking”,
+“location”: {</p>
+<blockquote>
+<div><p>“metadata”: {},
+“type”: “None”,
+“value”: null,</p>
+</div></blockquote>
+<p>},
+“temperature”: {</p>
+<blockquote>
+<div><p>“metadata”: {},
+“type”: “Float”,
+“value”: 25.5,</p>
+</div></blockquote>
+<p>},
+“timestamp”: {</p>
+<blockquote>
+<div><p>“date”: “2021-08-25”,
+“time”: “12:00:00”,</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>}</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tracker_sensor.TrackerCPF.new_entity">

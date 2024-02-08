@@ -86,23 +86,22 @@
 <a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker">[docs]</a>
 <span class="k">class</span> <span class="nc">Tracker</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
 <span class="sd">            Initialize the Tracker Sensor</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            generic_info (dict): The generic info of the tracker</span>
-<span class="sd">            important_info (dict): The rtant info of the tracker</span>
-<span class="sd">                type (str): The type of the tracker</span>
-<span class="sd">                deviceId (str): The id of the tracker</span>
-<span class="sd">                speedKmph (float): The speed of the tracker</span>
-<span class="sd">                latitudeDeg (float): The latitude of the tracker</span>
-<span class="sd">                headingDeg (float): The heading of the tracker</span>
-<span class="sd">                longitudeDeg (float): The longitude of the tracker</span>
+<span class="sd">            **kwargs: The information that is sent from the mqtt server</span>
+<span class="sd">                deviceInfo (json): The information about the device</span>
 
-<span class="sd">        Kwargs:</span>
-<span class="sd">            generic_info (dict): The generic info of the tracker</span>
-<span class="sd">            important_info (dict): The important info of the tracker</span>
+<span class="sd">                generic_info (dict): The generic info of the tracker</span>
+<span class="sd">                important_info (dict): The important info of the tracker</span>
+<span class="sd">                    type (str): The type of the tracker</span>
+<span class="sd">                    deviceId (str): The id of the tracker</span>
+<span class="sd">                    speedKmph (float): The speed of the tracker</span>
+<span class="sd">                    latitudeDeg (float): The latitude of the tracker</span>
+<span class="sd">                    headingDeg (float): The heading of the tracker</span>
+<span class="sd">                    longitudeDeg (float): The longitude of the tracker</span>
 
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -111,7 +110,18 @@
 <div class="viewcode-block" id="Tracker.initialize">
 <a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.Tracker.initialize">[docs]</a>
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initialize the tracker sensor and updates the info attribute of the class</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: The information that is sent from the mqtt server</span>
+<span class="sd">                deviceInfo (json): The information about the device</span>
+<span class="sd">                object (json): The object information of the tracker</span>
+<span class="sd">                rxInfo (json): The rx information of the tracker</span>
+<span class="sd">                txInfo (json): The tx information of the tracker</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">device_info</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tenantId&quot;</span><span class="p">),</span>
@@ -207,7 +217,7 @@
     <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
-<span class="sd">            Set the default values for the tracker</span>
+<span class="sd">            Set the default values for the tracker if no generic values are given</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="o">=</span> <span class="p">{</span>
@@ -262,36 +272,42 @@
 <span class="sd">            Transforms the information to a format that the Context Provider can understand</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            ValueError: _description_</span>
+<span class="sd">            ValueError: if no entity data have been given</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            _type_: _description_</span>
+<span class="sd">            dict: The information in the format that the Context Provider can understand</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Change this into the TrackerCPF Class instance</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceId&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Tracker&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo:json&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
-                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span>
-                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitudeDeg&quot;</span><span class="p">),</span>
-                    <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
-                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span>
-                    <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitudeDeg&quot;</span><span class="p">),</span>
-                <span class="p">},</span>
-                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
-            <span class="p">},</span>
+        <span class="n">device_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceId&quot;</span><span class="p">)</span>
+        <span class="n">device_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;applicationName&quot;</span><span class="p">)</span>
+
+        <span class="n">latitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitudeDeg&quot;</span><span class="p">)</span>
+        <span class="n">longitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitudeDeg&quot;</span><span class="p">)</span>
+        <span class="n">location_metadata</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">temperature_value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">temperature_metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+        <span class="c1"># The data that is going to be sent to the Context Provider. This is only the important highlighed data that we need to put in the constructor</span>
+        <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">device_id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">device_type</span><span class="p">,</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+            <span class="s2">&quot;location_metadata&quot;</span><span class="p">:</span> <span class="n">location_metadata</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_value&quot;</span><span class="p">:</span> <span class="n">temperature_value</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_metadata&quot;</span><span class="p">:</span> <span class="n">temperature_metadata</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
         <span class="p">}</span>
 
+        <span class="c1"># Creating the instance of the Context Provider Format of the Tracker and getting back the correct structure of json formated information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="n">TrackerCPF</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">entity_data</span><span class="p">)</span><span class="o">.</span><span class="n">info</span>
+
+        <span class="c1"># Also return it in case the function asks for it</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span></div>
 </div>
 
@@ -322,6 +338,7 @@
 <span class="sd">                    type (str): The type of the temperature</span>
 <span class="sd">                    value (float): The value of the temperature</span>
 <span class="sd">                    temperature_metadata (dict): The metadata of the temperature</span>
+<span class="sd">                timestamp (str): The timestamp of the entity</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">new_entity</span><span class="p">()</span>
@@ -342,20 +359,39 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">entity_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">new_entity</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">location_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location_metadata&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temperatur_value</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_value&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_metadata&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location_metadata&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TrackerCPF.default_values">
 <a class="viewcode-back" href="../tracker_sensor.html#tracker_sensor.TrackerCPF.default_values">[docs]</a>
     <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Creates the information json in the format that the Context Provider can understand</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            {</span>
+<span class="sd">                &quot;id&quot;: &quot;tracker4&quot;,</span>
+<span class="sd">                &quot;type&quot;: &quot;Asset Tracking&quot;,</span>
+<span class="sd">                &quot;location&quot;: {</span>
+<span class="sd">                    &quot;metadata&quot;: {},</span>
+<span class="sd">                    &quot;type&quot;: &quot;None&quot;,</span>
+<span class="sd">                    &quot;value&quot;: null,</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;temperature&quot;: {</span>
+<span class="sd">                    &quot;metadata&quot;: {},</span>
+<span class="sd">                    &quot;type&quot;: &quot;Float&quot;,</span>
+<span class="sd">                    &quot;value&quot;: 25.5,</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;timestamp&quot;: {</span>
+<span class="sd">                    &quot;date&quot;: &quot;2021-08-25&quot;,</span>
+<span class="sd">                    &quot;time&quot;: &quot;12:00:00&quot;,</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">location</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_json&quot;</span><span class="p">,</span>
@@ -371,28 +407,35 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">temperature</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperatur_value</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_value</span><span class="p">,</span>
                 <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
-                <span class="s2">&quot;temparature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">:</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_date</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">),</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">),</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">entity_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="kc">None</span>
 
-            <span class="n">entity_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span> <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">})</span>
+        <span class="n">tracker_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+        <span class="p">}</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tracker_info</span><span class="p">)</span></div>
 </div>
 
 
         <span class="c1"># {</span>
         <span class="c1">#     &quot;id&quot;: &quot;tracker4&quot;,</span>
+        <span class="c1">#     &quot;type&quot;: &quot;Tracker&quot;,</span>
         <span class="c1">#     &quot;location&quot;: {</span>
         <span class="c1">#         &quot;metadata&quot;: {},</span>
         <span class="c1">#         &quot;type&quot;: &quot;None&quot;,</span>
@@ -403,7 +446,10 @@
         <span class="c1">#         &quot;type&quot;: &quot;Float&quot;,</span>
         <span class="c1">#         &quot;value&quot;: 25.5,</span>
         <span class="c1">#     },</span>
-        <span class="c1">#     &quot;type&quot;: &quot;Tracker&quot;,</span>
+        <span class="c1">#     &quot;timestamp&quot;: {</span>
+        <span class="c1">#         &quot;date&quot;: &quot;2021-08-25&quot;,</span>
+        <span class="c1">#         &quot;time&quot;: &quot;12:00:00&quot;,</span>
+        <span class="c1">#     }</span>
         <span class="c1"># }</span>
 
 
@@ -418,7 +464,7 @@
     <span class="p">}</span>
 
     <span class="n">tracker</span> <span class="o">=</span> <span class="n">Tracker</span><span class="p">(</span><span class="n">important_info</span><span class="o">=</span><span class="n">important_info</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">tracker</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+    <span class="c1"># print(tracker.info)</span>
 
     <span class="n">context_info</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;tracker&quot;</span><span class="p">,</span>
@@ -435,7 +481,10 @@
     <span class="p">}</span>
 
     <span class="n">trackerCP</span> <span class="o">=</span> <span class="n">TrackerCPF</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">context_info</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">trackerCP</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+    <span class="c1"># print(trackerCP.info)</span>
+
+    <span class="n">tracker</span><span class="o">.</span><span class="n">mqtt_to_cp</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tracker</span><span class="o">.</span><span class="n">cp_info</span><span class="p">)</span>
 </pre></div>
 
            </div>
