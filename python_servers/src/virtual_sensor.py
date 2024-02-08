@@ -109,6 +109,7 @@ class SensorCPF:
                 entity_data (json): The information about the device
                 id (str): The id of the device
                 type (str): The type of the device
+
         """
         self.entity_data = kwargs.get("entity_data")
         self.id = kwargs.get("id")
