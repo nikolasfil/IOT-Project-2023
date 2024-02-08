@@ -181,7 +181,7 @@ class Database:
         self,
         tableName: str,
         path_to_file: str,
-        function: function = None,
+        function=None,
         extra_data: dict = {},
     ):
 

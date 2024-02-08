@@ -35,19 +35,19 @@ class AdventureGuard(Database):
 
         self.clear_all()
 
-        # self.fill_users()
+        self.fill_users()
         print("Filled users table")
 
-        # self.fill_device()
+        self.fill_device()
         print("Filled device table")
 
         # self.fill_assigned()
-        print("Filled assigned table")
+        # print("Filled assigned table")
 
-        self.fill_pressed()
+        # self.fill_pressed()
         # print("Filled pressed table")
 
-        self.fill_tracked()
+        # self.fill_tracked()
         # print("Filled tracked table")
 
     def fill_users(self):
@@ -61,59 +61,49 @@ class AdventureGuard(Database):
         # curl "https://api.mockaroo.com/api/72de52d0?count=1000&key=cf225740" > "users.csv"
 
         tableName = "USER"
+        file = "data/users.csv"
+        self.fill_table(
+            tableName=tableName, path_to_file=file, function=self.fill_user_password
+        )
 
-        self.clearing(tableName)
+        # self.clearing(tableName)
 
-        file = self.path_to_file("data/users.csv")
+        # file = self.path_to_file("data/users.csv")
 
-        headers = []
-        with open(file, "r") as f:
-            for i, line in enumerate(f):
-                line = line.strip("\n").split(",")
-                if i == 0:
-                    headers = line[:]
-                    continue
-                elif i > self.num:
-                    # it exceeded the number of results we wanted to add
-                    break
+        # headers = []
+        # with open(file, "r") as f:
+        #     for i, line in enumerate(f):
+        #         line = line.strip("\n").split(",")
+        #         if i == 0:
+        #             headers = line[:]
+        #             continue
+        #         elif i > self.num:
+        #             # it exceeded the number of results we wanted to add
+        #             break
 
-                data = {}
-                for i, header in enumerate(headers):
-                    data[header] = line[i]
+        #         data = {}
+        #         for i, header in enumerate(headers):
+        #             data[header] = line[i]
 
-                data["password"] = self.hashing_password(data["password"])
-                data["salt"] = self.binary_to_string(self.salt)
+        #         data["password"] = self.hashing_password(data["password"])
+        #         data["salt"] = self.binary_to_string(self.salt)
 
-                self.insert_data(
-                    tableName, [data[col] for col in self.tables[tableName]]
-                )
+        #         self.insert_data(
+        #             tableName, [data[col] for col in self.tables[tableName]]
+        #         )
+
+    def fill_user_password(self, data):
+        data["password"] = self.hashing_password(data["password"])
+        data["salt"] = self.binary_to_string(self.salt)
+        return data
 
     def fill_device(self):
         """fills the device table with data from the csv file"""
         # curl "https://api.mockaroo.com/api/35a73c80?count=1000&key=cf225740" > "device.csv"
 
         tableName = "DEVICE"
-
-        self.clearing(tableName)
-
-        file = self.path_to_file("data/device.csv")
-        headers = []
-        with open(file, "r") as f:
-            for i, line in enumerate(f):
-                line = line.strip("\n").split(",")
-                if i == 0:
-                    headers = line[:]
-                    continue
-                elif i > self.num:
-                    break
-
-                data = {}
-                for i, header in enumerate(headers):
-                    data[header] = line[i]
-
-                self.insert_data(
-                    tableName, [data[col] for col in self.tables[tableName]]
-                )
+        file = "data/device.csv"
+        self.fill_table(tableName=tableName, path_to_file=file)
 
     def fill_assigned(self):
         tableName = "Assigned"
