@@ -3,7 +3,7 @@ from virtual_sensor import Sensor, SensorCPF
 
 class Tracker(Sensor):
     def __init__(self, **kwargs):
-        """ "
+        """
         Description:
             Initialize the Tracker Sensor
 
