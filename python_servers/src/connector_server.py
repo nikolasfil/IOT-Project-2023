@@ -63,6 +63,9 @@ def device_info():
     return data
 
 
+# -------- Internal functions -------------
+
+
 def handling_device(information):
     """
     Description:
@@ -120,7 +123,98 @@ def save_to_database(data):
     Returns:
         None
     """
-    pass
+
+    # First I got to take the serial of the device and get the id.
+
+    command = {
+        "query": "INSERT",
+        "arguments": data,
+    }
+
+    database_url = f"http://{os.getenv('DBURL')}:7080/insert"
+    headers = {"Content-Type": "application/json"}
+    db = ContextProvider(
+        url=database_url,
+        headers=headers,
+        method="POST",
+        payload=command,
+        automated=True,
+    )
+
+    if not db.response.ok:
+        print(db.response.text)
+
+
+def get_id(serial):
+    """
+    Description:
+        Get the id of the device from the database
+
+    Args:
+        serial (str): The serial number of the device
+
+    Returns:
+        str: The id of the device
+    """
+
+    command = {
+        "query": "SELECT d_id FROM DEVICE WHERE serial = ?",
+        "arguments": {"serial": serial},
+    }
+
+    database_url = f"http://{os.getenv('DBURL')}:7080/select"
+    headers = {"Content-Type": "application/json"}
+    db = ContextProvider(
+        url=database_url,
+        headers=headers,
+        method="POST",
+        payload=command,
+        automated=True,
+    )
+
+    if not db.response.ok:
+        print(db.response.text)
+        return None
+
+    # Check what the response is and return only the id
+    d_id = db.response_json.get("d_id")
+
+    return d_id
+
+
+def build_sql_data(device_data, type):
+    """
+    Description:
+        Build the data for the sql database
+
+    Args:
+        device_data (json): The data from the device
+        type (str): The type of the device
+
+    Returns:
+        json: The data in the format for the sql database
+    """
+
+    # Since the data is coming from the context provider format
+    serial = device_data.get("id")
+
+    # Get the id of the device
+    d_id = get_id(serial)
+
+    # If the id is not found, return None
+    if d_id is None:
+        return None
+
+    # Get the data from the device
+    data = {}
+
+    # Create the data for the sql database
+    sql_data = {
+        "d_id": d_id,
+        "data": data,
+    }
+
+    return sql_data
 
 
 if __name__ == "__main__":
