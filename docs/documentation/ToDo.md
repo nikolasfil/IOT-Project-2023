@@ -32,7 +32,7 @@ Headers:
 | mqtt                       | Context P                | DB Field          | Example                  |
 | -------------------------- | ------------------------ | ----------------- | ------------------------ |
 | deviceInfo.tags.deviceId   | id                       | t_id              | digital-matter-oyster3:1 |
-| deviceInfo.applicationName | type                     | type              | Asset Tracking           |
+| deviceInfo.applicationName | type                     |                   | Asset Tracking           |
 | object.cached.latitudeDeg  | location.value.latitude  | latitude          | 38.2882484               |
 | object.cached.longitudeDeg | location.value.longitude | longitude         | 21.7887801               |
 | time                       | timestamp.time           | time              | 12:00:00                 |
@@ -44,7 +44,7 @@ Headers:
 | mqtt                       | Context P         | DB Field          | Example                  |
 | -------------------------- | ----------------- | ----------------- | ------------------------ |
 | deviceInfo.tags.deviceId   | id                | t_id              | digital-matter-oyster3:1 |
-| deviceInfo.applicationName | type              | type              | Asset Tracking           |
+| deviceInfo.applicationName | type              |                   | Asset Tracking           |
 | object.temperature         | temperature.value | temperature       | 21.7                     |
 | object.pressEvent          | event.value       | event             | 00                       |
 | time                       | timestamp.time    | time              | 12:00:00                 |
