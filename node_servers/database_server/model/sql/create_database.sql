@@ -31,8 +31,10 @@ CREATE TABLE IF NOT EXISTS Assigned (
 
 CREATE TABLE IF NOT EXISTS Pressed ( 
     device_id       INTEGER NOT NULL,
-    time_pressed    TIMESTAMP NOT NULL,
-    battery_level   varchar(100) NOT NULL,
+    time            TIMESTAMP NOT NULL,
+    date            DATE NOT NULL,
+    event           varchar(255) NOT NULL,
+    battery_level   varchar(100) ,
     PRIMARY KEY device_id,
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -42,8 +44,10 @@ CREATE TABLE IF NOT EXISTS Pressed (
 CREATE TABLE IF NOT EXISTS Tracked ( 
     device_id   INTEGER NOT NULL,
     time        TIMESTAMP NOT NULL,
-    location    varchar(255) NOT NULL,
-    battery     varchar(100) NOT NULL,
+    date        DATE NOT NULL,
+    latitude    varchar(255) NOT NULL,
+    longitude   varchar(255) NOT NULL,
+    battery_level     varchar(100) NOT NULL,
     PRIMARY KEY  device_id,
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE
 );
