@@ -124,6 +124,7 @@ class AdventureGuard(Database):
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
+            # CAREFUL The type is changed
             tracker_id = self.select(
                 "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='Asset tracking'",
                 fetchall=False,

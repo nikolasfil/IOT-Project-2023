@@ -90,6 +90,27 @@ user_id=?
 
 --- ----------------------------
 
+Select A.device_id, A.user_id, D.type
+,P.date, P.time
+,P.longitude,P.latitude
+
+from Assigned as A 
+join DEVICE as D on D.d_id=A.device_id
+join Tracked as P on P.device_id=A.device_id
+
+
+---------------------------
+
+
+--- Get all the Pressed events of a tracker that is assigned to a user
+
+Select A.device_id, A.user_id, D.type
+,P.date, P.time
+,P.event
+from Assigned as A 
+join DEVICE as D on D.d_id=A.device_id
+join Pressed as P on P.device_id=A.device_id
 
 
 
+---- ----------------------------
