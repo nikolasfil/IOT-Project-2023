@@ -216,9 +216,17 @@ class Database:
     def path_to_file(self, filename):
         """returns the path to the file"""
         parent_folder = Path(__file__).parent
-        return Path(parent_folder, filename)
+        parent_folder = parent_folder.parent
 
-    def select(self, command):
+        if type(filename) == Path:
+            return filename
+        elif type(filename) == str:
+            finalPath = Path(parent_folder, filename)
+        elif type(filename) == list:
+            finalPath = Path(parent_folder, *filename)
+        return finalPath
+
+    def select(self, command, fetchall=True):
         """
         Descrition:
             Executes a pure sql select command on the database
@@ -230,7 +238,10 @@ class Database:
             list: The result of the sql command
         """
         try:
-            return self.conn.execute(command).fetchall()
+            if fetchall:
+                return self.conn.execute(command).fetchall()
+            else:
+                return self.conn.execute(command).fetchone()
         except Exception as e:
             print(e)
             print(command)
