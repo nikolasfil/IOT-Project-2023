@@ -20,10 +20,7 @@ type:
 
 ## Database
 
-1. Set up the broker for the tables pressed and tracked
-2. fill the tables with dummy data
-3. Review the device fields based on the payloads
-4. Look again the constraints
+1. fill the tables with dummy data
 
 Headers:
 
