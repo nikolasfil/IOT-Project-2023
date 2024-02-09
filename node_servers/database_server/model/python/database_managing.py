@@ -103,6 +103,7 @@ class AdventureGuard(Database):
         elif data["type"] == "Buttons":
             self.button_count += 1
             data["serial"] = f"mclimate-multipurpose-button:{self.button_count}"
+            
 
         return data
 
