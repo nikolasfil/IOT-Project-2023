@@ -99,21 +99,30 @@ class AdventureGuard(Database):
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
-            user_id = self.select(
-                "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
-                False,
-            )
             device_id = self.select(
                 "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active'",
                 False,
             )
 
+            if not device_id:
+                # Added this to avoid useless iterations
+                # This means there are no more devices to assign
+                # break
+                continue
+
+            user_id = self.select(
+                "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
+                False,
+            )
+
+            if not user_id:
+                # break
+                continue
+
             # Creating the random dates
             date_received = self.random_date()
             date_returned = self.random_date(date_received)
 
-            if not user_id or not device_id:
-                continue
             data = [user_id[0], device_id[0], date_received, date_returned]
 
             print(data)
