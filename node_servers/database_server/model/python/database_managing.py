@@ -96,15 +96,13 @@ class AdventureGuard(Database):
         Returns:
             dict: The data that is computed from the line of device.csv file, but with changed serial number
         """
-        # print(data)
-        if data["type"] == "tracker":
+
+        if data["type"] == "Asset tracking":
             self.tracker_count += 1
             data["serial"] = f"digital-matter-oyster3:{self.tracker_count}"
-            data["type"] = "Asset tracking"
-        elif data["type"] == "button":
+        elif data["type"] == "Buttons":
             self.button_count += 1
             data["serial"] = f"mclimate-multipurpose-button:{self.button_count}"
-            data["type"] = "Buttons"
 
         return data
 
