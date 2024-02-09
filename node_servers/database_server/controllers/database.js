@@ -359,7 +359,6 @@ exports.select=(command, callback) =>  {
 
 exports.insert = (command,callback) => {
     let stmt, result;
-    console.log(command)
     try {
         stmt = betterDb.prepare(command.query)
         if (command.arguments.length) {
