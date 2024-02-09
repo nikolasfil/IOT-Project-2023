@@ -38,11 +38,11 @@ class AdventureGuard(Database):
         # self.fill_users()
         # print("Filled users table")
 
-        self.fill_device()
-        print("Filled device table")
+        # self.fill_device()
+        # print("Filled device table")
 
-        # self.fill_assigned()
-        # print("Filled assigned table")
+        self.fill_assigned()
+        print("Filled assigned table")
 
         # self.fill_pressed()
         # print("Filled pressed table")
@@ -99,12 +99,17 @@ class AdventureGuard(Database):
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
-            device_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active'",
+            tracker_id = self.select(
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='tracker'",
                 False,
             )
 
-            if not device_id:
+            button_id = self.select(
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='button'",
+                False,
+            )
+
+            if not tracker_id or not button_id:
                 # Added this to avoid useless iterations
                 # This means there are no more devices to assign
                 # break
@@ -123,11 +128,13 @@ class AdventureGuard(Database):
             date_received = self.random_date()
             date_returned = self.random_date(date_received)
 
-            data = [user_id[0], device_id[0], date_received, date_returned]
+            data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
+            data_button = [user_id[0], button_id[0], date_received, date_returned]
 
-            print(data)
+            print(data_tracker, data_button)
 
-            self.insert_data(tableName, data)
+            self.insert_data(tableName, data_tracker)
+            self.insert_data(tableName, data_button)
 
     def fill_pressed(self):
         pass
