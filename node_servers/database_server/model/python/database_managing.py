@@ -33,22 +33,22 @@ class AdventureGuard(Database):
             Fills the database with data from the csv files after it clears the datbase.
         """
 
-        # self.clear_all()
+        self.clear_all()
 
-        # self.fill_users()
-        # print("Filled users table")
+        self.fill_users()
+        print("Filled users table")
 
-        # self.fill_device()
-        # print("Filled device table")
+        self.fill_device()
+        print("Filled device table")
 
         self.fill_assigned()
         print("Filled assigned table")
 
-        # self.fill_pressed()
-        # print("Filled pressed table")
+        self.fill_pressed()
+        print("Filled pressed table")
 
-        # self.fill_tracked()
-        # print("Filled tracked table")
+        self.fill_tracked()
+        print("Filled tracked table")
 
     def fill_users(self):
         """
