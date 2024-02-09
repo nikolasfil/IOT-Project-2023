@@ -35,8 +35,8 @@ class AdventureGuard(Database):
 
         self.clear_all()
 
-        # self.fill_users()
-        # print("Filled users table")
+        self.fill_users()
+        print("Filled users table")
 
         self.fill_device()
         print("Filled device table")
