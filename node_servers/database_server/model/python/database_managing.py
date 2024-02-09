@@ -100,29 +100,29 @@ class AdventureGuard(Database):
         for i in range(num):
 
             tracker_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='tracker'",
-                False,
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='tracker' LIMIT 1 ",
+                fetchall=False,
             )
 
             button_id = self.select(
                 "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='button'",
-                False,
+                fetchall=False,
             )
 
             if not tracker_id or not button_id:
                 # Added this to avoid useless iterations
                 # This means there are no more devices to assign
-                # break
-                continue
+                break
+                # continue
 
             user_id = self.select(
                 "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
-                False,
+                fetchall=False,
             )
 
             if not user_id:
-                # break
-                continue
+                break
+                # continue
 
             # Creating the random dates
             date_received = self.random_date()
