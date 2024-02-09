@@ -237,6 +237,10 @@ class ButtonCPF(SensorCPF):
         #         "value": "00",
         #         "metadata": {},
         #     },
+        #     "timestamp": {
+        #         "date": "2021-10-14",
+        #         "time": "10:00:00",
+        #     },
         #     "batteryVoltage": 3.1,
         # }
 
