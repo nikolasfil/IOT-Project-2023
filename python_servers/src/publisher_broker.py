@@ -22,7 +22,7 @@ class Publisher(Broker):
 
             tracker_info = {
                 "type": "position",
-                "deviceId": f"digital-matter-oyster3:{random.randint(1,5)}",
+                "deviceId": f"digital-matter-oyster3:{random.randint(1,55)}",
                 # cached
                 "speedKmph": 0,
                 "latitudeDeg": 38.2882484 + counter * 0.00001,
@@ -37,7 +37,7 @@ class Publisher(Broker):
 
             button_info = {
                 "deviceName": "mclimate-multipurpose-button:1",
-                "deviceId": f"mclimate-multipurpose-button:{random.randint(1,5)}",
+                "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
                 "batteryVoltage": 3.1,
                 "temperature": 21.7 + (random.choice([1, -1]) * 2),
                 "thermistorProperlyConnected": True,

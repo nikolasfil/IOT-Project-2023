@@ -60,6 +60,8 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
+    save_to_database(data)
+
     return data
 
 
@@ -98,7 +100,7 @@ def handling_device(information):
     asset.mqtt_to_cp()
 
     # Print the information for debug purposes
-    print(asset.cp_info)
+    # print(asset.cp_info)
 
     # Create the entity in the context broker
     entity = SensorCP(entity_data=asset.cp_info)
@@ -125,11 +127,20 @@ def save_to_database(data):
     """
 
     # First I got to take the serial of the device and get the id.
+    query = "INSERT INTO "
+    data = build_sql_data(data)
 
-    command = {
-        "query": "INSERT",
-        "arguments": data,
-    }
+    if data.get("event") is not None:
+        query += "Pressed "
+    elif data.get("latitude") is not None:
+        query += "Tracked "
+
+    query += f"{','.join(data.keys())} VALUES "
+    query += ",".join([f"{data[key]}" for key in data.keys()])
+
+    command = {"query": query}
+
+    print(command)
 
     database_url = f"http://{os.getenv('DBURL')}:7080/insert"
     headers = {"Content-Type": "application/json"}
@@ -138,11 +149,11 @@ def save_to_database(data):
         headers=headers,
         method="POST",
         payload=command,
-        automated=True,
+        # automated=True,
     )
 
-    if not db.response.ok:
-        print(db.response.text)
+    # if not db.response.ok:
+    #     print(db.response.text)
 
 
 def get_id(serial):
@@ -182,14 +193,13 @@ def get_id(serial):
     return d_id
 
 
-def build_sql_data(device_data, type):
+def build_sql_data(device_data):
     """
     Description:
         Build the data for the sql database
 
     Args:
         device_data (json): The data from the device
-        type (str): The type of the device
 
     Returns:
         json: The data in the format for the sql database
@@ -206,13 +216,22 @@ def build_sql_data(device_data, type):
         return None
 
     # Get the data from the device
-    data = {}
 
     # Create the data for the sql database
     sql_data = {
-        "d_id": d_id,
-        "data": data,
+        "device_id": d_id,
+        "time": device_data.get("timestamp").get("time"),
+        "date": device_data.get("timestamp").get("date"),
+        "temperature": device_data.get("temperature").get("value"),
     }
+
+    if device_data.get("event") is not None:
+        sql_data["event"] = device_data.get("event").get("value")
+    # if device_data.get("batteryVoltage") is not None:
+    # sql_data["battery_voltage"] = device_data.get("batteryVoltage").get("value")
+    elif device_data.get("location") is not None:
+        sql_data["latitude"] = device_data.get("location").get("latitude")
+        sql_data["longitude"] = device_data.get("location").get("longitude")
 
     return sql_data
 
