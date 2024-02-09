@@ -51,15 +51,6 @@ Headers:
 | time                       | timestamp.date    | date              | 2021-08-25               |
 | object.batCritical         |                   | batteryCritical ? | null                     |
 
-- b_id
-- type : Buttons
-- time
-- date
-- event.value
-- event.type
-- batteryVoltage ?
-- temperature
-
 ## Pages
 
 ### 1 Homepage
