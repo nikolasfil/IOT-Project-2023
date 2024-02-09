@@ -33,22 +33,22 @@ class AdventureGuard(Database):
             Fills the database with data from the csv files after it clears the datbase.
         """
 
-        self.clear_all()
+        # self.clear_all()
 
-        self.fill_users()
-        print("Filled users table")
+        # self.fill_users()
+        # print("Filled users table")
 
-        self.fill_device()
-        print("Filled device table")
+        # self.fill_device()
+        # print("Filled device table")
 
         self.fill_assigned()
         print("Filled assigned table")
 
-        self.fill_pressed()
-        print("Filled pressed table")
+        # self.fill_pressed()
+        # print("Filled pressed table")
 
-        self.fill_tracked()
-        print("Filled tracked table")
+        # self.fill_tracked()
+        # print("Filled tracked table")
 
     def fill_users(self):
         """
@@ -125,20 +125,20 @@ class AdventureGuard(Database):
         for i in range(num):
 
             tracker_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='tracker' LIMIT 1 ",
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='Asset tracking'",
                 fetchall=False,
             )
 
             button_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='button'",
+                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='Buttons'",
                 fetchall=False,
             )
 
             if not tracker_id or not button_id:
                 # Added this to avoid useless iterations
                 # This means there are no more devices to assign
-                break
-                # continue
+                # break
+                continue
 
             user_id = self.select(
                 "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
@@ -146,8 +146,8 @@ class AdventureGuard(Database):
             )
 
             if not user_id:
-                break
-                # continue
+                # break
+                continue
 
             # Creating the random dates
             date_received = self.random_date()

@@ -43,7 +43,7 @@ class Publisher(Broker):
                 "batteryVoltage": 3.1,
                 "temperature": 21.7 + (random.choice([1, -1]) * 2),
                 "thermistorProperlyConnected": True,
-                "pressEvent": "00",
+                "pressEvent": f"0{random.randint(0, 2)}",
             }
 
             payload = Button(important_info=button_info).info_json
