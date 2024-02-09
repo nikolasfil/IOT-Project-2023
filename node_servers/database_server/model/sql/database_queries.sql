@@ -90,6 +90,8 @@ user_id=?
 
 --- ----------------------------
 
+-- Get all the dates the user had a Tracker assigned
+
 Select A.device_id, A.user_id, D.type
 ,P.date, P.time
 ,P.longitude,P.latitude
