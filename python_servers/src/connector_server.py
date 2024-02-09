@@ -135,12 +135,28 @@ def save_to_database(data):
     elif data.get("latitude") is not None:
         query += "Tracked "
 
-    query += f"{','.join(data.keys())} VALUES "
-    query += ",".join([f"{data[key]}" for key in data.keys()])
+    query += f"({','.join(data.keys())}) VALUES ("
 
-    command = {"query": query}
+    # for key in data.keys():
+    #     if key == "device_id":
+    #         query += f'"{data[key]}"'
+    #     else:
+    #         query += f', "{data[key]}"'
+    # query += ")"
 
-    print(command)
+    query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"
+    # print(query)
+
+    payload = {
+        "data": {
+            "command": {
+                "query": query,
+                "arguments": [],
+            }
+        }
+    }
+
+    # print(query)
 
     database_url = f"http://{os.getenv('DBURL')}:7080/insert"
     headers = {"Content-Type": "application/json"}
@@ -148,12 +164,12 @@ def save_to_database(data):
         url=database_url,
         headers=headers,
         method="POST",
-        payload=command,
-        # automated=True,
+        payload=payload,
+        automated=True,
     )
 
-    # if not db.response.ok:
-    #     print(db.response.text)
+    if not db.response.ok:
+        print(db.response.text)
 
 
 def get_id(serial):
@@ -168,7 +184,7 @@ def get_id(serial):
         str: The id of the device
     """
 
-    data = {
+    payload = {
         "data": {
             "command": {
                 "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
@@ -183,7 +199,7 @@ def get_id(serial):
         url=database_url,
         headers=headers,
         method="POST",
-        payload=data,
+        payload=payload,
         automated=True,
     )
 
@@ -231,11 +247,14 @@ def build_sql_data(device_data):
 
     if device_data.get("event") is not None:
         sql_data["event"] = device_data.get("event").get("value")
+    elif device_data.get("location") is not None:
+        sql_data["latitude"] = device_data.get("location").get("value").get("latitude")
+        sql_data["longitude"] = (
+            device_data.get("location").get("value").get("longitude")
+        )
+
     # if device_data.get("batteryVoltage") is not None:
     # sql_data["battery_voltage"] = device_data.get("batteryVoltage").get("value")
-    elif device_data.get("location") is not None:
-        sql_data["latitude"] = device_data.get("location").get("latitude")
-        sql_data["longitude"] = device_data.get("location").get("longitude")
 
     return sql_data
 

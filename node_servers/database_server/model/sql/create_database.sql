@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Tracked (
     date        DATE NOT NULL,
     latitude    varchar(255) NOT NULL,
     longitude   varchar(255) NOT NULL,
-    battery_level     varchar(100) NOT NULL,
+    battery_level     varchar(100) ,
     temperature     float, 
     PRIMARY KEY  (device_id),
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE

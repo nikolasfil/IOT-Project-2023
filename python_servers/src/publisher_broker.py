@@ -18,6 +18,7 @@ class Publisher(Broker):
     def main(self):
         # This needs to be from a folder
         counter = 0
+        time_sleeping = 4
         while counter < 1000:
 
             tracker_info = {
@@ -32,8 +33,9 @@ class Publisher(Broker):
             }
 
             payload = Tracker(important_info=tracker_info).info_json
+            time.sleep(time_sleeping)
             self.publish(self.client, payload)
-            time.sleep(2)
+            time.sleep(time_sleeping)
 
             button_info = {
                 "deviceName": "mclimate-multipurpose-button:1",
