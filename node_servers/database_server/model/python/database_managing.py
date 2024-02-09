@@ -95,6 +95,8 @@ class AdventureGuard(Database):
         else:
             count_active = 0
         num = min(self.num, count_active)
+
+        # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
             user_id = self.select(
@@ -105,6 +107,8 @@ class AdventureGuard(Database):
                 "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active'",
                 False,
             )
+
+            # Creating the random dates
             date_received = self.random_date()
             date_returned = self.random_date(date_received)
 
@@ -122,15 +126,16 @@ class AdventureGuard(Database):
     def fill_tracked(self):
         pass
 
-    def random_date(self, start=None):
+    def random_date(self, start=None, num_days=None):
         """Generate a random date, later than the provided start date if given."""
         if start:
             start_date = datetime.strptime(start, "%d/%m/%Y")
         else:
             start_date = datetime.now()
 
-        # Generate a random number of days to add
-        random_days = random.randint(1, 3)  # Adjust the range as needed
+        if num_days is None:
+            # Generate a random number of days to add
+            random_days = random.randint(1, 3)  # Adjust the range as needed
 
         # Calculate the new date
         new_date = start_date + timedelta(days=random_days)
