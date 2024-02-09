@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Assigned (
     device_id       INTEGER NOT NULL,
     date_received   TIMESTAMP NOT NULL,
     date_returned   TIMESTAMP ,
-    PRIMARY KEY (user_id, device_id),
+    PRIMARY KEY (user_id, device_id, date_received),
     FOREIGN KEY (user_id)   REFERENCES USER(u_id)     ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE
 );

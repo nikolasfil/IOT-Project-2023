@@ -79,21 +79,21 @@ USER.u_id=?
 
 -- Get all the dates the user had a Tracker assigned 
 
+-- Just the dates 
 SELECT
-device_id 
+date_received
+-- , user_id -- with the user_id 
 FROM 
 Assigned 
-where 
-date_received
-and 
-user_id=?
+group by user_id
 
 --- ----------------------------
 
 -- Get all the dates the user had a Tracker assigned
 
 Select A.device_id, A.user_id, D.type
-,P.date, P.time, A.date_received, A.date_returned
+,P.date, P.time
+-- , A.date_received, A.date_returned
 ,P.longitude,P.latitude
 
 from Assigned as A 
@@ -113,6 +113,7 @@ Select A.device_id, A.user_id, D.type
 from Assigned as A 
 join DEVICE as D on D.d_id=A.device_id
 join Pressed as P on P.device_id=A.device_id
+where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
 
 
 
