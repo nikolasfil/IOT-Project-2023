@@ -1,21 +1,21 @@
 {
-    "deduplicationId": "4f72b398-acd9-4a90-b505-cf8ec6df2c9c",
-    "time": "2023-12-22T10:50:24.345735135+00:00",
-    "deviceInfo": {
-        "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
-        "tenantName": "Smart Campus",
-        "applicationId": "97865748-6f77-4f37-82f0-d76771651b21",
-        "applicationName": "Buttons",
-        "deviceProfileId": "c707a935-359c-4359-9186-53bccc74bcb5",
-        "deviceProfileName": "MClimate Multipurpose Button",
-        "deviceName": "mclimate-multipurpose-button:1",
-        "devEui": "70b3d52dd6000065",
-        "tags": {
-            "deviceId": "mclimate-multipurpose-button:1"
-        }
-    },
-    "margin": -3,
-    "externalPowerSource": false,
-    "batteryLevelUnavailable": false,
-    "batteryLevel": 74.80315
+  "deduplicationId": "4f72b398-acd9-4a90-b505-cf8ec6df2c9c",
+  "time": "2023-12-22T10:50:24.345735135+00:00",
+  "deviceInfo": {
+    "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
+    "tenantName": "Smart Campus",
+    "applicationId": "97865748-6f77-4f37-82f0-d76771651b21",
+    "applicationName": "Buttons",
+    "deviceProfileId": "c707a935-359c-4359-9186-53bccc74bcb5",
+    "deviceProfileName": "MClimate Multipurpose Button",
+    "deviceName": "mclimate-multipurpose-button:1",
+    "devEui": "70b3d52dd6000065",
+    "tags": {
+      "deviceId": "mclimate-multipurpose-button:1"
+    }
+  },
+  "margin": -3,
+  "externalPowerSource": false,
+  "batteryLevelUnavailable": false,
+  "batteryLevel": 74.80315
 }

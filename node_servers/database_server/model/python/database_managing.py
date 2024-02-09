@@ -35,8 +35,8 @@ class AdventureGuard(Database):
 
         self.clear_all()
 
-        self.fill_users()
-        print("Filled users table")
+        # self.fill_users()
+        # print("Filled users table")
 
         self.fill_device()
         print("Filled device table")
@@ -79,7 +79,34 @@ class AdventureGuard(Database):
 
         tableName = "DEVICE"
         file = ["data", "device.csv"]
-        self.fill_table(tableName=tableName, path_to_file=file)
+        self.tracker_count = 0
+        self.button_count = 0
+        self.fill_table(
+            tableName=tableName, path_to_file=file, function=self.fill_type_device
+        )
+
+    def fill_type_device(self, data):
+        """
+        Description:
+            Will take the data that is computed from the line of device.csv file, but will be chaning the serial number on it
+
+        Args:
+            data (dict): The data that is computed from the line of device.csv file
+
+        Returns:
+            dict: The data that is computed from the line of device.csv file, but with changed serial number
+        """
+        # print(data)
+        if data["type"] == "tracker":
+            self.tracker_count += 1
+            data["serial"] = f"digital-matter-oyster3:{self.tracker_count}"
+            data["type"] = "Asset tracking"
+        elif data["type"] == "button":
+            self.button_count += 1
+            data["serial"] = f"mclimate-multipurpose-button:{self.button_count}"
+            data["type"] = "Buttons"
+
+        return data
 
     def fill_assigned(self):
 
