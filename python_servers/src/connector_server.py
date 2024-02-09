@@ -168,9 +168,13 @@ def get_id(serial):
         str: The id of the device
     """
 
-    command = {
-        "query": "SELECT d_id FROM DEVICE WHERE serial = ?",
-        "arguments": {"serial": serial},
+    data = {
+        "data": {
+            "command": {
+                "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
+                "arguments": [serial],
+            }
+        }
     }
 
     database_url = f"http://{os.getenv('DBURL')}:7080/select"
@@ -179,7 +183,7 @@ def get_id(serial):
         url=database_url,
         headers=headers,
         method="POST",
-        payload=command,
+        payload=data,
         automated=True,
     )
 
@@ -187,9 +191,9 @@ def get_id(serial):
         print(db.response.text)
         return None
 
+    # print(db.response_python_object)
     # Check what the response is and return only the id
-    d_id = db.response_json.get("d_id")
-
+    d_id = db.response_json[0].get("d_id")
     return d_id
 
 
