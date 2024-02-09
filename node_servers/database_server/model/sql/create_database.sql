@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Pressed (
     event           varchar(255) NOT NULL,
     battery_level   varchar(100) ,
     temperature     float, 
-    PRIMARY KEY (device_id),
+    PRIMARY KEY  (device_id,time,date),
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -50,6 +50,6 @@ CREATE TABLE IF NOT EXISTS Tracked (
     longitude   varchar(255) NOT NULL,
     battery_level     varchar(100) ,
     temperature     float, 
-    PRIMARY KEY  (device_id),
+    PRIMARY KEY  (device_id,time,date),
     FOREIGN KEY (device_id) REFERENCES DEVICE(d_id)   ON DELETE CASCADE ON UPDATE CASCADE
 );
