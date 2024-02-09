@@ -109,6 +109,20 @@ def handling_device(information):
     return data
 
 
+def save_to_database(data):
+    """
+    Description:
+        Saves the data to the database
+
+    Args:
+        data (json): The data to be saved to the database
+
+    Returns:
+        None
+    """
+    pass
+
+
 if __name__ == "__main__":
 
     # Import the dotenv to access the environmental variables
