@@ -96,6 +96,7 @@ def handling_device(information):
     if asset is None:
         return None
 
+    print(asset.info.get("time"))
     # Change the information to the context provider format
     asset.mqtt_to_cp()
 
@@ -137,15 +138,7 @@ def save_to_database(data):
 
     query += f"({','.join(data.keys())}) VALUES ("
 
-    # for key in data.keys():
-    #     if key == "device_id":
-    #         query += f'"{data[key]}"'
-    #     else:
-    #         query += f', "{data[key]}"'
-    # query += ")"
-
     query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"
-    # print(query)
 
     payload = {
         "data": {
@@ -155,8 +148,6 @@ def save_to_database(data):
             }
         }
     }
-
-    # print(query)
 
     database_url = f"http://{os.getenv('DBURL')}:7080/insert"
     headers = {"Content-Type": "application/json"}

@@ -151,7 +151,7 @@ class AdventureGuard(Database):
                 continue
 
             # Creating the random dates
-            date_received = self.random_date()
+            date_received = self.random_date(num_days=0)
             date_returned = self.random_date(date_received)
 
             data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
@@ -171,23 +171,27 @@ class AdventureGuard(Database):
     def random_date(self, start=None, num_days=None):
         """Generate a random date, later than the provided start date if given."""
         if start:
-            start_date = datetime.strptime(start, "%d/%m/%Y")
+            # return datetime.datetime.fromisoformat(isoformat).date().isoformat()
+
+            # start_date = datetime.strptime(start, "%d/%m/%Y")
+            start_date = datetime.strptime(start, "%Y-%m-%d")
         else:
+            # start_date = datetime.now()
             start_date = datetime.now()
 
         if num_days is None:
             # Generate a random number of days to add
-            random_days = random.randint(1, 3)  # Adjust the range as needed
+            num_days = random.randint(1, 3)  # Adjust the range as needed
 
         # Calculate the new date
-        new_date = start_date + timedelta(days=random_days)
+        new_date = start_date + timedelta(days=num_days)
 
-        return new_date.strftime("%d/%m/%Y")
+        return new_date.strftime("%Y-%m-%d")
 
 
 if __name__ == "__main__":
     database = "database.sqlite"
     sqlfile = ["sql", "create_database.sql"]
     app = AdventureGuard(database, sqlfile)
-
+    # print(app.random_date(num_days=0))
     app.main()
