@@ -152,6 +152,7 @@ class Button(Sensor):
         press_event = self.info.get("object").get("pressEvent")
         press_event_metadata = {}
         battery_voltage = self.info.get("object").get("batteryVoltage")
+        timestamp = self.info.get("time")
 
         entity_data = {
             "id": device_id,
@@ -162,6 +163,7 @@ class Button(Sensor):
             "press_event": press_event,
             "press_event_metadata": press_event_metadata,
             "batteryVoltage": battery_voltage,
+            "timestamp": timestamp,
         }
 
         self.cp_info = ButtonCPF(entity_data=entity_data).info
@@ -178,26 +180,22 @@ class ButtonCPF(SensorCPF):
     def new_entity(self, entity_data=None):
         entity_data = super().new_entity(entity_data)
 
-        self.id = entity_data.get("id")
-        self.type = entity_data.get("type")
-        self.temparature_dict = entity_data.get("temperature")
-        self.temparature_type = entity_data.get("temperature_type")
-        self.temperature_value = entity_data.get("temperature_value")
-        self.temperature_metadata = entity_data.get("temperature_metadata")
+        self.temperature_type = entity_data.get("temperature_type")
+
         self.event = entity_data.get("event")
         self.press_event = entity_data.get("press_event")
         self.event_metadata = entity_data.get("press_event_metadata")
         self.batteryVoltage = entity_data.get("batteryVoltage")
 
     def default_values(self):
-        if self.temparature_dict is None:
+        if self.temperature_dict is None:
             temperature = {
-                "type": self.temparature_type,
+                "type": self.temperature_type,
                 "value": self.temperature_value,
                 "metadata": self.temperature_metadata,
             }
         else:
-            temperature = self.temparature_dict
+            temperature = self.temperature_dict
 
         if self.event is None:
             event = {
@@ -207,12 +205,21 @@ class ButtonCPF(SensorCPF):
         else:
             event = self.event
 
+        if self.timestamp:
+            timestamp = {
+                "date": self.get_date(self.timestamp),
+                "time": self.get_time(self.timestamp),
+            }
+        else:
+            timestamp = None
+
         button_info = {
             "id": self.id,
             "type": self.type,
             "temperature": temperature,
             "event": event,
             "batteryVoltage": self.batteryVoltage,
+            "timestamp": timestamp,
         }
 
         self.info.update(button_info)
@@ -230,6 +237,10 @@ class ButtonCPF(SensorCPF):
         #         "value": "00",
         #         "metadata": {},
         #     },
+        #     "timestamp": {
+        #         "date": "2021-10-14",
+        #         "time": "10:00:00",
+        #     },
         #     "batteryVoltage": 3.1,
         # }
 
@@ -242,9 +253,11 @@ if __name__ == "__main__":
         "temperature": 21.700000000000003,
         "thermistorProperlyConnected": True,
         "pressEvent": "00",
+        # "timestamp": "2021-10-14T10:00:00.000Z",
     }
 
     button = Button(important_info=important_info)
     # print(button.info_json)
+    # print(button.info)
     button.mqtt_to_cp()
-    print(button.cp_info.info)
+    print(button.cp_info)

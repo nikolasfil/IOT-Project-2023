@@ -48,7 +48,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracker_sensor.html">tracker_sensor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../virtual_sensor.html">virtual_sensor module</a></li>
@@ -220,10 +219,46 @@
             <span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="Button.main">
-<a class="viewcode-back" href="../button_sensor.html#button_sensor.Button.main">[docs]</a>
-    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span></div>
+<div class="viewcode-block" id="Button.mqtt_to_cp">
+<a class="viewcode-back" href="../button_sensor.html#button_sensor.Button.mqtt_to_cp">[docs]</a>
+    <span class="k">def</span> <span class="nf">mqtt_to_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Transforms the information to a format that the Context Provider can understand</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: _description_</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _type_: _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+        <span class="n">device_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceId&quot;</span><span class="p">)</span>
+        <span class="n">device_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;applicationName&quot;</span><span class="p">)</span>
+        <span class="n">temperature_type</span> <span class="o">=</span> <span class="s2">&quot;Float&quot;</span>
+        <span class="n">temperature_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+        <span class="n">temperature_metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">press_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pressEvent&quot;</span><span class="p">)</span>
+        <span class="n">press_event_metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">battery_voltage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;batteryVoltage&quot;</span><span class="p">)</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+        <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">device_id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">device_type</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_type&quot;</span><span class="p">:</span> <span class="n">temperature_type</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_value&quot;</span><span class="p">:</span> <span class="n">temperature_value</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_metadata&quot;</span><span class="p">:</span> <span class="n">temperature_metadata</span><span class="p">,</span>
+            <span class="s2">&quot;press_event&quot;</span><span class="p">:</span> <span class="n">press_event</span><span class="p">,</span>
+            <span class="s2">&quot;press_event_metadata&quot;</span><span class="p">:</span> <span class="n">press_event_metadata</span><span class="p">,</span>
+            <span class="s2">&quot;batteryVoltage&quot;</span><span class="p">:</span> <span class="n">battery_voltage</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="n">ButtonCPF</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">entity_data</span><span class="p">)</span><span class="o">.</span><span class="n">info</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span></div>
 </div>
 
 
@@ -241,13 +276,10 @@
     <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">entity_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">new_entity</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temparature_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temparature_type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_type&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_value</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_value&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_metadata&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;press_event&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_type&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">press_event</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;press_event&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">event_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;press_event_metadata&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">batteryVoltage</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;batteryVoltage&quot;</span><span class="p">)</span></div>
 
@@ -255,44 +287,41 @@
 <div class="viewcode-block" id="ButtonCPF.default_values">
 <a class="viewcode-back" href="../button_sensor.html#button_sensor.ButtonCPF.default_values">[docs]</a>
     <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">temparature_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">temperature</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temparature_type</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_type</span><span class="p">,</span>
                 <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_value</span><span class="p">,</span>
                 <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_metadata</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temparature_dict</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">event</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">press_event</span><span class="p">,</span>
                 <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_metadata</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-                <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
-                <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-                <span class="s2">&quot;batteryVoltage&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">batteryVoltage</span><span class="p">,</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">:</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_date</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">),</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">),</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">entity_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span>
-            <span class="n">entity_data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-                    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
-                    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-                    <span class="s2">&quot;batteryVoltage&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">batteryVoltage</span><span class="p">,</span>
-                <span class="p">}</span>
-            <span class="p">)</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entity_data</span><span class="p">)</span></div>
+        <span class="n">button_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;batteryVoltage&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">batteryVoltage</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">button_info</span><span class="p">)</span></div>
 </div>
 
 
@@ -321,10 +350,14 @@
         <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">21.700000000000003</span><span class="p">,</span>
         <span class="s2">&quot;thermistorProperlyConnected&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s2">&quot;pressEvent&quot;</span><span class="p">:</span> <span class="s2">&quot;00&quot;</span><span class="p">,</span>
+        <span class="c1"># &quot;timestamp&quot;: &quot;2021-10-14T10:00:00.000Z&quot;,</span>
     <span class="p">}</span>
 
     <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">important_info</span><span class="o">=</span><span class="n">important_info</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">info_json</span><span class="p">)</span>
+    <span class="c1"># print(button.info_json)</span>
+    <span class="c1"># print(button.info)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">mqtt_to_cp</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">cp_info</span><span class="p">)</span>
 </pre></div>
 
            </div>

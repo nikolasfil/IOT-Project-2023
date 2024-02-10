@@ -49,14 +49,14 @@
 <li class="toctree-l1"><a class="reference internal" href="button_sensor.html">button_sensor module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">connector_server module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#connector_server.device_info"><code class="docutils literal notranslate"><span class="pre">device_info()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#connector_server.get_tracker"><code class="docutils literal notranslate"><span class="pre">get_tracker()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connector_server.get_device"><code class="docutils literal notranslate"><span class="pre">get_device()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connector_server.handling_device"><code class="docutils literal notranslate"><span class="pre">handling_device()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connector_server.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tracker_sensor.html">tracker_sensor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="virtual_sensor.html">virtual_sensor module</a></li>
@@ -98,10 +98,10 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="connector_server.get_tracker">
-<span class="sig-prename descclassname"><span class="pre">connector_server.</span></span><span class="sig-name descname"><span class="pre">get_tracker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/connector_server.html#get_tracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#connector_server.get_tracker" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="connector_server.get_device">
+<span class="sig-prename descclassname"><span class="pre">connector_server.</span></span><span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/connector_server.html#get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#connector_server.get_device" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Describtion:</dt><dd><p>Get the tracker data from the context broker</p>
+<dt>Description:</dt><dd><p>Get the device data from the context broker</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -115,9 +115,43 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="connector_server.handling_device">
+<span class="sig-prename descclassname"><span class="pre">connector_server.</span></span><span class="sig-name descname"><span class="pre">handling_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">information</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connector_server.html#handling_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#connector_server.handling_device" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Handles the information from the mqtt server and changes it to the context provider format
+It takes in the Sensor like class, differentiates between a Tracker and a Button, and then changes the information to the context provider format</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>information</strong> (<em>json</em>) – The information from the mqtt server in a json format, containing the device information as it is sent from the mqtt server</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>if the device information is not recognized as a Tracker or a Button
+json: The information in the context provider format</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="connector_server.home">
 <span class="sig-prename descclassname"><span class="pre">connector_server.</span></span><span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/connector_server.html#home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#connector_server.home" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>The home page of the server. A simple request to check if the server is running</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Html rendered information</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

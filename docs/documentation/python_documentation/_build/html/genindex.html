@@ -48,7 +48,6 @@
 <li class="toctree-l1"><a class="reference internal" href="context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tracker_sensor.html">tracker_sensor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="virtual_sensor.html">virtual_sensor module</a></li>
@@ -89,7 +88,6 @@
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
- | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -205,15 +203,19 @@
       </ul></li>
       <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_attribute">get_attribute() (sensor_context_provider.SensorCP method)</a>
 </li>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.get_date">get_date() (virtual_sensor.SensorCPF method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="virtual_sensor.html#virtual_sensor.Sensor.get_datetime">get_datetime() (virtual_sensor.Sensor method)</a>
+</li>
+      <li><a href="connector_server.html#connector_server.get_device">get_device() (in module connector_server)</a>
 </li>
       <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_entity">get_entity() (sensor_context_provider.SensorCP method)</a>
 </li>
       <li><a href="context_provider.html#context_provider.ContextProvider.get_json_response">get_json_response() (context_provider.ContextProvider method)</a>
 </li>
-      <li><a href="connector_server.html#connector_server.get_tracker">get_tracker() (in module connector_server)</a>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.get_time">get_time() (virtual_sensor.SensorCPF method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -221,12 +223,14 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_button">handling_button() (subscriber_broker.Subscriber method)</a>
+      <li><a href="connector_server.html#connector_server.handling_device">handling_device() (in module connector_server)</a>
+
+      <ul>
+        <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_device">(subscriber_broker.Subscriber method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.handling_tracker">handling_tracker() (subscriber_broker.Subscriber method)</a>
-</li>
       <li><a href="connector_server.html#connector_server.home">home() (in module connector_server)</a>
 </li>
   </ul></td>
@@ -258,14 +262,6 @@
   </ul></td>
 </tr></table>
 
-<h2 id="K">K</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="virtual_sensor.html#virtual_sensor.Sensor.kwarging">kwarging() (virtual_sensor.Sensor method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -280,8 +276,6 @@
       <li><a href="broker.html#broker.Broker.main">main() (broker.Broker method)</a>
 
       <ul>
-        <li><a href="button_sensor.html#button_sensor.Button.main">(button_sensor.Button method)</a>
-</li>
         <li><a href="publisher_broker.html#publisher_broker.Publisher.main">(publisher_broker.Publisher method)</a>
 </li>
         <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.main">(subscriber_broker.Subscriber method)</a>
@@ -314,9 +308,11 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp">mqtt_to_cp() (tracker_sensor.Tracker method)</a>
+      <li><a href="button_sensor.html#button_sensor.Button.mqtt_to_cp">mqtt_to_cp() (button_sensor.Button method)</a>
 
       <ul>
+        <li><a href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp">(tracker_sensor.Tracker method)</a>
+</li>
         <li><a href="virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">(virtual_sensor.Sensor method)</a>
 </li>
       </ul></li>

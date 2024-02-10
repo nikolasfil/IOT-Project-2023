@@ -3,30 +3,40 @@ from virtual_sensor import Sensor, SensorCPF
 
 class Tracker(Sensor):
     def __init__(self, **kwargs):
-        """ "
+        """
         Description:
             Initialize the Tracker Sensor
 
         Args:
-            generic_info (dict): The generic info of the tracker
-            important_info (dict): The rtant info of the tracker
-                type (str): The type of the tracker
-                deviceId (str): The id of the tracker
-                speedKmph (float): The speed of the tracker
-                latitudeDeg (float): The latitude of the tracker
-                headingDeg (float): The heading of the tracker
-                longitudeDeg (float): The longitude of the tracker
+            **kwargs: The information that is sent from the mqtt server
+                deviceInfo (json): The information about the device
 
-        Kwargs:
-            generic_info (dict): The generic info of the tracker
-            important_info (dict): The important info of the tracker
+                generic_info (dict): The generic info of the tracker
+                important_info (dict): The important info of the tracker
+                    type (str): The type of the tracker
+                    deviceId (str): The id of the tracker
+                    speedKmph (float): The speed of the tracker
+                    latitudeDeg (float): The latitude of the tracker
+                    headingDeg (float): The heading of the tracker
+                    longitudeDeg (float): The longitude of the tracker
 
 
         """
         super().__init__(**kwargs)
 
     def initialize(self, **kwargs):
+        """
+        Description:
+            Initialize the tracker sensor and updates the info attribute of the class
 
+        Args:
+            **kwargs: The information that is sent from the mqtt server
+                deviceInfo (json): The information about the device
+                object (json): The object information of the tracker
+                rxInfo (json): The rx information of the tracker
+                txInfo (json): The tx information of the tracker
+
+        """
         if kwargs.get("deviceInfo") is None:
             device_info = {
                 "tenantId": kwargs.get("tenantId"),
@@ -119,7 +129,7 @@ class Tracker(Sensor):
     def default_values(self):
         """
         Description:
-            Set the default values for the tracker
+            Set the default values for the tracker if no generic values are given
         """
         if self.generic_info is None:
             self.generic_info = {
@@ -171,22 +181,27 @@ class Tracker(Sensor):
             Transforms the information to a format that the Context Provider can understand
 
         Raises:
-            ValueError: _description_
+            ValueError: if no entity data have been given
 
         Returns:
-            _type_: _description_
+            dict: The information in the format that the Context Provider can understand
+
         """
 
         # Change this into the TrackerCPF Class instance
 
         device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
         device_type = self.info.get("deviceInfo").get("applicationName")
+
         latitude = self.info.get("object").get("cached").get("latitudeDeg")
         longitude = self.info.get("object").get("cached").get("longitudeDeg")
         location_metadata = {}
+
         temperature_value = 0
         temperature_metadata = {}
+        timestamp = self.info.get("time")
 
+        # The data that is going to be sent to the Context Provider. This is only the important highlighed data that we need to put in the constructor
         entity_data = {
             "id": device_id,
             "type": device_type,
@@ -195,32 +210,13 @@ class Tracker(Sensor):
             "location_metadata": location_metadata,
             "temperature_value": temperature_value,
             "temperature_metadata": temperature_metadata,
+            "timestamp": timestamp,
         }
 
-        # entity_data = {
-        #     "id": device_id,
-        #     "type": device_type,
-        #     "location": {
-        #         "type": "geo:json",
-        #         "value": {
-        #             "latitude": self.info.get("object")
-        #             .get("cached")
-        #             .get("latitudeDeg"),
-        #             "longitude": self.info.get("object")
-        #             .get("cached")
-        #             .get("longitudeDeg"),
-        #         },
-        #         "metadata": {},
-        #     },
-        #     "temperature": {
-        #         "type": "Float",
-        #         "value": 0,
-        #         "metadata": {},
-        #     },
-        # }
-
+        # Creating the instance of the Context Provider Format of the Tracker and getting back the correct structure of json formated information
         self.cp_info = TrackerCPF(entity_data=entity_data).info
 
+        # Also return it in case the function asks for it
         return self.cp_info
 
 
@@ -247,6 +243,7 @@ class TrackerCPF(SensorCPF):
                     type (str): The type of the temperature
                     value (float): The value of the temperature
                     temperature_metadata (dict): The metadata of the temperature
+                timestamp (str): The timestamp of the entity
         """
         super().__init__(**kwargs)
         self.new_entity()
@@ -265,17 +262,36 @@ class TrackerCPF(SensorCPF):
         """
         entity_data = super().new_entity(entity_data)
 
-        self.id = entity_data.get("id")
-        self.type = entity_data.get("type")
         self.location_dict = entity_data.get("location")
         self.latitude = entity_data.get("latitude")
         self.longitude = entity_data.get("longitude")
         self.location_metadata = entity_data.get("location_metadata")
-        self.temperature_dict = entity_data.get("temperature")
-        self.temperatur_value = entity_data.get("temperature_value")
-        self.temperature_metadata = entity_data.get("temperature_metadata")
 
     def default_values(self):
+        """
+        Description:
+            Creates the information json in the format that the Context Provider can understand
+
+        # Example:
+        #     {
+        #         "id": "tracker4",
+        #         "type": "Asset Tracking",
+        #         "location": {
+        #             "metadata": {},
+        #             "type": "None",
+        #             "value": null,
+        #         },
+        #         "temperature": {
+        #             "metadata": {},
+        #             "type": "Float",
+        #             "value": 25.5,
+        #         },
+        #         "timestamp": {
+        #             "date": "2021-08-25",
+        #             "time": "12:00:00",
+        #     }
+        """
+
         if self.location_dict is None:
             location = {
                 "type": "geo_json",
@@ -291,23 +307,33 @@ class TrackerCPF(SensorCPF):
         if self.temperature_dict is None:
             temperature = {
                 "type": "Float",
-                "value": self.temperatur_value,
+                "value": self.temperature_value,
                 "metadata": {},
             }
         else:
             temperature = self.temperature_dict
+
+        if self.timestamp:
+            timestamp = {
+                "date": self.get_date(self.timestamp),
+                "time": self.get_time(self.timestamp),
+            }
+        else:
+            timestamp = None
 
         tracker_info = {
             "id": self.id,
             "type": self.type,
             "location": location,
             "temperature": temperature,
+            "timestamp": timestamp,
         }
 
         self.info.update(tracker_info)
 
         # {
         #     "id": "tracker4",
+        #     "type": "Tracker",
         #     "location": {
         #         "metadata": {},
         #         "type": "None",
@@ -318,7 +344,10 @@ class TrackerCPF(SensorCPF):
         #         "type": "Float",
         #         "value": 25.5,
         #     },
-        #     "type": "Tracker",
+        #     "timestamp": {
+        #         "date": "2021-08-25",
+        #         "time": "12:00:00",
+        #     }
         # }
 
 

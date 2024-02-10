@@ -48,7 +48,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../context_provider.html">context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../publisher_broker.html">publisher_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sensor_context_provider.html">sensor_context_provider module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../servers.html">servers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracker_sensor.html">tracker_sensor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../virtual_sensor.html">virtual_sensor module</a></li>
@@ -180,8 +179,9 @@
         <span class="c1"># print(f&quot;Received `{msg.payload.decode()}` from `{msg.topic}` topic&quot;)</span>
         <span class="c1"># turn msg.payload.decode() into a dict</span>
         <span class="c1"># message = dict(text)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">py_obj_payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_to_dict</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">py_obj_payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_to_dict</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="si">}</span><span class="s2"> length message from </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span>

@@ -1,0 +1,41 @@
+
+DEVICE {
+	d_id integer pk increments unique
+	battery float
+	status string
+	type string
+}
+
+USER {
+	u_id integer pk increments
+	password binary
+	name string
+	telephone string
+	role string
+}
+
+Tracked {
+	device_id integer pk > DEVICE.d_id
+	time time
+	date date
+	latitude binary
+	longitude binary
+	battery_level float
+}
+
+Assigned {
+	user_id integer pk > USER.u_id
+	device_id integer pk > DEVICE.d_id
+	date_received timestamp
+	date_returned timestamp
+}
+
+Pressed {
+	device_id integer pk > DEVICE.d_id
+	time time
+	date date
+	temperature float
+	event string
+	battery_level float
+}
+

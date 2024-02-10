@@ -106,23 +106,26 @@ class ContextProvider:
         """
         Description:
             Makes the request to the given url with the given headers, method and payload
-
         """
         self.response = None
         if self.url:
-            self.response = requests.request(
-                url=self.url,
-                method=self.method,
-                headers=self.headers,
-                data=self.payload,
-            )
+            try:
+                self.response = requests.request(
+                    url=self.url,
+                    method=self.method,
+                    headers=self.headers,
+                    data=self.payload,
+                )
+            except Exception as e:
+                if self.debug:
+                    print(e)
+                return False
 
             # Check if the response status is ok
             if self.response.ok is False:
-                if self.debug is True:
+                if self.debug:
                     print(f"Error: {self.response.status_code}")
                     print(self.response.text)
-                    # print(self.payload)
                 return False
             self.get_json_response()
             return True
