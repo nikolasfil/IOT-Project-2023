@@ -18,11 +18,13 @@ class Publisher(Broker):
     def main(self):
         # This needs to be from a folder
         counter = 0
+        time_sleeping = 4
+        timestamp = "2024-02-10T01:05:29.934532"
         while counter < 1000:
 
             tracker_info = {
                 "type": "position",
-                "deviceId": f"digital-matter-oyster3:{random.randint(1,5)}",
+                "deviceId": f"digital-matter-oyster3:{random.randint(1,55)}",
                 # cached
                 "speedKmph": 0,
                 "latitudeDeg": 38.2882484 + counter * 0.00001,
@@ -32,21 +34,21 @@ class Publisher(Broker):
             }
 
             payload = Tracker(important_info=tracker_info).info_json
+            time.sleep(time_sleeping)
             self.publish(self.client, payload)
-            time.sleep(2)
+            time.sleep(time_sleeping)
 
             button_info = {
                 "deviceName": "mclimate-multipurpose-button:1",
-                "deviceId": f"mclimate-multipurpose-button:{random.randint(1,5)}",
+                "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
                 "batteryVoltage": 3.1,
                 "temperature": 21.7 + (random.choice([1, -1]) * 2),
                 "thermistorProperlyConnected": True,
-                "pressEvent": "00",
+                "pressEvent": f"0{random.randint(0, 2)}",
             }
 
             payload = Button(important_info=button_info).info_json
             self.publish(self.client, payload)
-            time.sleep(2)
 
             counter += 1
 

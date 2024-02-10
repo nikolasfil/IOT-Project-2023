@@ -19,9 +19,13 @@ class Sensor:
         """
 
         # Initialize the information dictionary that will be used to access the sensor information
+        if kwargs.get("time"):
+            time = kwargs.get("time")
+        else:
+            time = self.get_datetime()
         self.info = {
             "deduplicationId": self.generate_unique_hash(),
-            "time": self.get_datetime(),
+            "time": time,
             "deviceInfo": kwargs.get("deviceInfo"),
         }
 

@@ -342,11 +342,10 @@ exports.checkUser= (id, password, callback) =>  {
 
 exports.select=(command, callback) =>  {
     let stmt, result;
-    
     try {
         stmt = betterDb.prepare(command.query)
         if (command.arguments.length) {
-            result = stmt.all(command.arguments);
+            result = stmt.all(...command.arguments);
         }
         else {
             result = stmt.all();
@@ -360,7 +359,6 @@ exports.select=(command, callback) =>  {
 
 exports.insert = (command,callback) => {
     let stmt, result;
-    
     try {
         stmt = betterDb.prepare(command.query)
         if (command.arguments.length) {

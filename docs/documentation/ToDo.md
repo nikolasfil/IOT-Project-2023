@@ -20,10 +20,7 @@ type:
 
 ## Database
 
-1. Set up the broker for the tables pressed and tracked
-2. fill the tables with dummy data
-3. Review the device fields based on the payloads
-4. Look again the constraints
+1. fill the tables with dummy data
 
 Headers:
 
@@ -31,7 +28,8 @@ Headers:
 
 | mqtt                       | Context P                | DB Field          | Example                  |
 | -------------------------- | ------------------------ | ----------------- | ------------------------ |
-| deviceInfo.tags.deviceId   | id                       | t_id              | digital-matter-oyster3:1 |
+|                            |                          | device_id         | 1                        |
+| deviceInfo.tags.deviceId   | id                       | serial            | digital-matter-oyster3:1 |
 | deviceInfo.applicationName | type                     |                   | Asset Tracking           |
 | object.cached.latitudeDeg  | location.value.latitude  | latitude          | 38.2882484               |
 | object.cached.longitudeDeg | location.value.longitude | longitude         | 21.7887801               |
@@ -43,7 +41,8 @@ Headers:
 
 | mqtt                       | Context P         | DB Field          | Example                  |
 | -------------------------- | ----------------- | ----------------- | ------------------------ |
-| deviceInfo.tags.deviceId   | id                | t_id              | digital-matter-oyster3:1 |
+|                            |                   | device_id         | digital-matter-oyster3:1 |
+| deviceInfo.tags.deviceId   | id                | serial            | digital-matter-oyster3:1 |
 | deviceInfo.applicationName | type              |                   | Asset Tracking           |
 | object.temperature         | temperature.value | temperature       | 21.7                     |
 | object.pressEvent          | event.value       | event             | 00                       |
@@ -133,3 +132,5 @@ Either make it an extra page for admins or make the search page only for admins
 ## Useful links
 
 [OpenLayers](https://openlayers.org/en/latest/apidoc/)
+
+Ανανεωση των γενικων σημειωσεων και οδηγιων για το πως να τρεχει το οικοσυστημα (infrastructure)

@@ -115,6 +115,8 @@ router.post("/select",
 router.post("/insert",
     (req, res) => {
         let command = req.body.data.command;
+        // console.log(req.body);
+        
 
         database.insert(command, (err, result) => {
             if (err) {

@@ -79,60 +79,116 @@ class AdventureGuard(Database):
 
         tableName = "DEVICE"
         file = ["data", "device.csv"]
-        self.fill_table(tableName=tableName, path_to_file=file)
+        self.tracker_count = 0
+        self.button_count = 0
+        self.fill_table(
+            tableName=tableName, path_to_file=file, function=self.fill_type_device
+        )
+
+    def fill_type_device(self, data):
+        """
+        Description:
+            Will take the data that is computed from the line of device.csv file, but will be chaning the serial number on it
+
+        Args:
+            data (dict): The data that is computed from the line of device.csv file
+
+        Returns:
+            dict: The data that is computed from the line of device.csv file, but with changed serial number
+        """
+
+        if data["type"] == "Asset tracking":
+            self.tracker_count += 1
+            data["serial"] = f"digital-matter-oyster3:{self.tracker_count}"
+        elif data["type"] == "Buttons":
+            self.button_count += 1
+            data["serial"] = f"mclimate-multipurpose-button:{self.button_count}"
+
+        return data
 
     def fill_assigned(self):
 
         tableName = "Assigned"
         self.clearing(tableName)
 
-        count_active = self.select(
-            "SELECT COUNT(*) FROM DEVICE WHERE status = 'active'", False
-        )
+        count_active_query = """
+                    SELECT COUNT(*) 
+                    FROM DEVICE 
+                    WHERE status = 'active'
+                    """
+
+        count_active = self.select(count_active_query, False)
 
         if count_active:
             count_active = count_active[0]
         else:
             count_active = 0
-        num = min(self.num, count_active)
+        # num = min(self.num, count_active)
+        num = self.num
+
+        tracker_id_query = """ 
+                SELECT DISTINCT d_id
+                FROM DEVICE
+                WHERE d_id NOT IN
+                (SELECT device_id FROM Assigned
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
+                and status = 'active' and type='Asset tracking'
+                """
+
+        button_id_query = """ 
+                SELECT DISTINCT d_id
+                FROM DEVICE
+                WHERE d_id NOT IN
+                (SELECT device_id FROM Assigned
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
+                and status = 'active' and type='Buttons'
+                """
+
+        user_id_query = """
+                SELECT DISTINCT u_id 
+                FROM USER 
+                WHERE u_id NOT IN (SELECT user_id FROM Assigned
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
+                """
 
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
-            tracker_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='tracker' LIMIT 1 ",
-                fetchall=False,
-            )
+            # CAREFUL The type is changed
+            tracker_id = self.select(tracker_id_query, fetchall=False)
 
-            button_id = self.select(
-                "SELECT DISTINCT d_id FROM DEVICE WHERE d_id NOT IN (SELECT device_id FROM Assigned) and status = 'active' and type='button'",
-                fetchall=False,
-            )
+            button_id = self.select(button_id_query, fetchall=False)
 
             if not tracker_id or not button_id:
                 # Added this to avoid useless iterations
                 # This means there are no more devices to assign
-                break
-                # continue
+                # break
+                continue
 
-            user_id = self.select(
-                "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
-                fetchall=False,
-            )
+            user_id = self.select(user_id_query, fetchall=False)
 
             if not user_id:
-                break
-                # continue
+                # break
+                continue
 
             # Creating the random dates
-            date_received = self.random_date()
-            date_returned = self.random_date(date_received)
+            random_choice = random.randint(1, 4)
+            if random_choice == 1:
+                date_received = self.random_date(num_days=0)
+                date_returned = None
+            elif random_choice == 2:
+                date_received = self.random_date(num_days=0)
+                date_returned = self.random_date(date_received)
+            elif random_choice == 3:
+                random_choice = random.randint(1, 9)
+                date_received = self.random_date(
+                    start=f"2024-02-0{random_choice}", num_days=0
+                )
+                date_returned = self.random_date(date_received, 2)
 
             data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
             data_button = [user_id[0], button_id[0], date_received, date_returned]
 
-            # print(data_tracker, data_button)
-            # Insert the data in the table
             self.insert_data(tableName, data_tracker)
             self.insert_data(tableName, data_button)
 
@@ -145,23 +201,27 @@ class AdventureGuard(Database):
     def random_date(self, start=None, num_days=None):
         """Generate a random date, later than the provided start date if given."""
         if start:
-            start_date = datetime.strptime(start, "%d/%m/%Y")
+            # return datetime.datetime.fromisoformat(isoformat).date().isoformat()
+
+            # start_date = datetime.strptime(start, "%d/%m/%Y")
+            start_date = datetime.strptime(start, "%Y-%m-%d")
         else:
+            # start_date = datetime.now()
             start_date = datetime.now()
 
         if num_days is None:
             # Generate a random number of days to add
-            random_days = random.randint(1, 3)  # Adjust the range as needed
+            num_days = random.randint(1, 3)  # Adjust the range as needed
 
         # Calculate the new date
-        new_date = start_date + timedelta(days=random_days)
+        new_date = start_date + timedelta(days=num_days)
 
-        return new_date.strftime("%d/%m/%Y")
+        return new_date.strftime("%Y-%m-%d")
 
 
 if __name__ == "__main__":
     database = "database.sqlite"
     sqlfile = ["sql", "create_database.sql"]
     app = AdventureGuard(database, sqlfile)
-
+    # print(app.random_date(num_days=0))
     app.main()

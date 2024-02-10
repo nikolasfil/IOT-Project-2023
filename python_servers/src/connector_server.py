@@ -60,7 +60,12 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
+    save_to_database(data)
+
     return data
+
+
+# -------- Internal functions -------------
 
 
 def handling_device(information):
@@ -91,11 +96,12 @@ def handling_device(information):
     if asset is None:
         return None
 
+    print(asset.info.get("time"))
     # Change the information to the context provider format
     asset.mqtt_to_cp()
 
     # Print the information for debug purposes
-    print(asset.cp_info)
+    # print(asset.cp_info)
 
     # Create the entity in the context broker
     entity = SensorCP(entity_data=asset.cp_info)
@@ -107,6 +113,141 @@ def handling_device(information):
 
     # Useless, just as a check if we need to get the information from the context broker
     return data
+
+
+def save_to_database(data):
+    """
+    Description:
+        Saves the data to the database
+
+    Args:
+        data (json): The data to be saved to the database
+
+    Returns:
+        None
+    """
+
+    # First I got to take the serial of the device and get the id.
+    query = "INSERT INTO "
+    data = build_sql_data(data)
+
+    if data.get("event") is not None:
+        query += "Pressed "
+    elif data.get("latitude") is not None:
+        query += "Tracked "
+
+    query += f"({','.join(data.keys())}) VALUES ("
+
+    query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"
+
+    payload = {
+        "data": {
+            "command": {
+                "query": query,
+                "arguments": [],
+            }
+        }
+    }
+
+    database_url = f"http://{os.getenv('DBURL')}:7080/insert"
+    headers = {"Content-Type": "application/json"}
+    db = ContextProvider(
+        url=database_url,
+        headers=headers,
+        method="POST",
+        payload=payload,
+        automated=True,
+    )
+
+    if not db.response.ok:
+        print(db.response.text)
+
+
+def get_id(serial):
+    """
+    Description:
+        Get the id of the device from the database
+
+    Args:
+        serial (str): The serial number of the device
+
+    Returns:
+        str: The id of the device
+    """
+
+    payload = {
+        "data": {
+            "command": {
+                "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
+                "arguments": [serial],
+            }
+        }
+    }
+
+    database_url = f"http://{os.getenv('DBURL')}:7080/select"
+    headers = {"Content-Type": "application/json"}
+    db = ContextProvider(
+        url=database_url,
+        headers=headers,
+        method="POST",
+        payload=payload,
+        automated=True,
+    )
+
+    if not db.response.ok:
+        print(db.response.text)
+        return None
+
+    # print(db.response_python_object)
+    # Check what the response is and return only the id
+    d_id = db.response_json[0].get("d_id")
+    return d_id
+
+
+def build_sql_data(device_data):
+    """
+    Description:
+        Build the data for the sql database
+
+    Args:
+        device_data (json): The data from the device
+
+    Returns:
+        json: The data in the format for the sql database
+    """
+
+    # Since the data is coming from the context provider format
+    serial = device_data.get("id")
+
+    # Get the id of the device
+    d_id = get_id(serial)
+
+    # If the id is not found, return None
+    if d_id is None:
+        return None
+
+    # Get the data from the device
+
+    # Create the data for the sql database
+    sql_data = {
+        "device_id": d_id,
+        "time": device_data.get("timestamp").get("time"),
+        "date": device_data.get("timestamp").get("date"),
+        "temperature": device_data.get("temperature").get("value"),
+    }
+
+    if device_data.get("event") is not None:
+        sql_data["event"] = device_data.get("event").get("value")
+    elif device_data.get("location") is not None:
+        sql_data["latitude"] = device_data.get("location").get("value").get("latitude")
+        sql_data["longitude"] = (
+            device_data.get("location").get("value").get("longitude")
+        )
+
+    # if device_data.get("batteryVoltage") is not None:
+    # sql_data["battery_voltage"] = device_data.get("batteryVoltage").get("value")
+
+    return sql_data
 
 
 if __name__ == "__main__":

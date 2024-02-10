@@ -49,6 +49,8 @@ services:
   #     - database-app
   #   ports:
   #     - "5000:5000"
+  #  environment:
+  #     - DBURL=database-app
   #   command: ["python", "connector_server.py"]
 
   node-app:
