@@ -55,20 +55,28 @@ WHERE status = 'active'
 -- History of the button presses assigned to the user at this moment 
 
 
---- Get all the Pressed events of a tracker that is assigned to a user
+--- Get all the Pressed events of a tracker that is assigned to a userm, that happened the period when the user had the button assigned, and the button is not returned 
 
-Select A.device_id, A.user_id, D.type
-,P.date, P.time
-,P.event
+Select A.device_id, A.user_id,P.event, P.date, P.time
 from Assigned as A 
-join DEVICE as D on D.d_id=A.device_id
 join Pressed as P on P.device_id=A.device_id
-where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
-and user_id = ?
+where 
+P.date >= A.date_received and ( A.date_returned=NULL) 
+and user_id=?
 
--- Assigned the period of time the button had the press event 
--- We want the assignment that is rn 
+-- Get all the Tracked events of a tracker that is assigned to a user, that happened the period when the user had the tracker assigned, and the tracker is not returned
 
+
+Select A.device_id, A.user_id,P.longitude, P.latitude, P.date, P.time
+from Assigned as A 
+join Tracked as P on P.device_id=A.device_id
+where 
+P.date >= A.date_received and ( A.date_returned=NULL) 
+and user_id=?
+
+-- Home Page Admin 
+
+-- All the active devices that are assigned to users  
 
 
 
