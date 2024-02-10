@@ -131,7 +131,7 @@ class AdventureGuard(Database):
                 FROM DEVICE
                 WHERE d_id NOT IN
                 (SELECT device_id FROM Assigned
-                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
                 and status = 'active' and type='Asset tracking'
                 """
 
@@ -140,7 +140,7 @@ class AdventureGuard(Database):
                 FROM DEVICE
                 WHERE d_id NOT IN
                 (SELECT device_id FROM Assigned
-                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
                 and status = 'active' and type='Buttons'
                 """
 
@@ -148,7 +148,7 @@ class AdventureGuard(Database):
                 SELECT DISTINCT u_id 
                 FROM USER 
                 WHERE u_id NOT IN (SELECT user_id FROM Assigned
-                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS Null))
                 """
 
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
