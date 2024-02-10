@@ -88,7 +88,7 @@ and A1.user_id=A2.user_id
 and tracker!=button 
 and (SELECT type from DEVICE where d_id=tracker)="Asset tracking"
 and (SELECT type from DEVICE where d_id=button)="Buttons"
-
+and (A1.date_returned=NULL and A2.date_returned=NULL)
 
 
 

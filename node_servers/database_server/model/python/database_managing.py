@@ -154,15 +154,9 @@ class AdventureGuard(Database):
         for i in range(num):
 
             # CAREFUL The type is changed
-            tracker_id = self.select(
-                tracker_id_query,
-                fetchall=False,
-            )
+            tracker_id = self.select(tracker_id_query, fetchall=False)
 
-            button_id = self.select(
-                button_id_query,
-                fetchall=False,
-            )
+            button_id = self.select(button_id_query, fetchall=False)
 
             if not tracker_id or not button_id:
                 # Added this to avoid useless iterations
@@ -170,18 +164,26 @@ class AdventureGuard(Database):
                 # break
                 continue
 
-            user_id = self.select(
-                user_id_query,
-                fetchall=False,
-            )
+            user_id = self.select(user_id_query, fetchall=False)
 
             if not user_id:
                 # break
                 continue
 
             # Creating the random dates
-            date_received = self.random_date(num_days=0)
-            date_returned = self.random_date(date_received)
+            random_choice = random.randint(1, 4)
+            if random_choice == 1:
+                date_received = self.random_date(num_days=0)
+                date_returned = None
+            elif random_choice == 2:
+                date_received = self.random_date(num_days=0)
+                date_returned = self.random_date(date_received)
+            elif random_choice == 3:
+                random_choice = random.randint(0, 9)
+                date_received = self.random_date(
+                    start=f"2024-02-0{random_choice}", num_days=0
+                )
+                date_returned = self.random_date(date_received, 2)
 
             data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
             data_button = [user_id[0], button_id[0], date_received, date_returned]
