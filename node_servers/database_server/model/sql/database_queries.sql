@@ -76,7 +76,19 @@ and user_id=?
 
 -- Home Page Admin 
 
--- All the active devices that are assigned to users  
+-- All the active devices that are assigned to users as pairs   
+
+
+Select 
+A1.device_id as tracker, A2.device_id as button 
+from Assigned as A1 join Assigned as A2 
+where 
+A1.date_received=A2.date_received 
+and A1.user_id=A2.user_id
+and tracker!=button 
+and (SELECT type from DEVICE where d_id=tracker)="Asset tracking"
+and (SELECT type from DEVICE where d_id=button)="Buttons"
+
 
 
 
