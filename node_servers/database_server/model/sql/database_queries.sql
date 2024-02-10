@@ -10,7 +10,7 @@ SELECT DISTINCT d_id
 FROM DEVICE
 WHERE d_id NOT IN
 (SELECT device_id FROM Assigned
-where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL ))
 and status = 'active' and type='Asset tracking'
 
 
@@ -21,7 +21,7 @@ SELECT DISTINCT d_id
 FROM DEVICE
 WHERE d_id NOT IN
 (SELECT device_id FROM Assigned
-where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL ))
 and status = 'active' and type='Buttons'
 
 
@@ -32,7 +32,7 @@ SELECT DISTINCT u_id
 FROM USER 
 WHERE u_id NOT IN (SELECT user_id FROM Assigned
 where date_received<=DATE("now") 
-and (date_returned > DATE("now") or date_returned=Null))
+and (date_returned > DATE("now") or date_returned IS NULL ))
 
 
 
@@ -61,7 +61,7 @@ Select A.device_id, A.user_id,P.event, P.date, P.time
 from Assigned as A 
 join Pressed as P on P.device_id=A.device_id
 where 
-P.date >= A.date_received and ( A.date_returned=NULL) 
+P.date >= A.date_received and ( A.date_returned IS NULL ) 
 and user_id=?
 
 -- Get all the Tracked events of a tracker that is assigned to a user, that happened the period when the user had the tracker assigned, and the tracker is not returned
@@ -71,7 +71,7 @@ Select A.device_id, A.user_id,P.longitude, P.latitude, P.date, P.time
 from Assigned as A 
 join Tracked as P on P.device_id=A.device_id
 where 
-P.date >= A.date_received and ( A.date_returned=NULL) 
+P.date >= A.date_received and ( A.date_returned IS NULL ) 
 and user_id=?
 
 -- Home Page Admin 
@@ -88,7 +88,7 @@ and A1.user_id=A2.user_id
 and tracker!=button 
 and (SELECT type from DEVICE where d_id=tracker)="Asset tracking"
 and (SELECT type from DEVICE where d_id=button)="Buttons"
-and (A1.date_returned=NULL and A2.date_returned=NULL)
+and (A1.date_returned IS NULL  and A2.date_returned IS NULL )
 
 
 
@@ -205,7 +205,7 @@ Select A.device_id, A.user_id, D.type
 from Assigned as A 
 join DEVICE as D on D.d_id=A.device_id
 join Tracked as P on P.device_id=A.device_id
-where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
+where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned IS NULL )
 
 
 ---------------------------
@@ -219,7 +219,7 @@ Select A.device_id, A.user_id, D.type
 from Assigned as A 
 join DEVICE as D on D.d_id=A.device_id
 join Pressed as P on P.device_id=A.device_id
-where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
+where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned IS NULL )
 and user_id = ?
 
 
@@ -232,5 +232,5 @@ SELECT DISTINCT d_id
 FROM DEVICE
 WHERE d_id NOT IN 
 (SELECT device_id FROM Assigned 
-where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL ))
 and status = 'active' and type='Asset tracking'

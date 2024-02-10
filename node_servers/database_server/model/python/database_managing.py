@@ -123,7 +123,8 @@ class AdventureGuard(Database):
             count_active = count_active[0]
         else:
             count_active = 0
-        num = min(self.num, count_active)
+        # num = min(self.num, count_active)
+        num = self.num
 
         tracker_id_query = """ 
                 SELECT DISTINCT d_id
@@ -179,7 +180,7 @@ class AdventureGuard(Database):
                 date_received = self.random_date(num_days=0)
                 date_returned = self.random_date(date_received)
             elif random_choice == 3:
-                random_choice = random.randint(0, 9)
+                random_choice = random.randint(1, 9)
                 date_received = self.random_date(
                     start=f"2024-02-0{random_choice}", num_days=0
                 )
