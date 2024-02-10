@@ -118,3 +118,13 @@ where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=
 
 
 ---- ----------------------------
+
+-- All the Asset tracking devices that are have not been given to a user or are not returned 
+-- All the asset tracking devices that are available
+
+SELECT DISTINCT d_id
+FROM DEVICE
+WHERE d_id NOT IN 
+(SELECT device_id FROM Assigned 
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+and status = 'active' and type='Asset tracking'
