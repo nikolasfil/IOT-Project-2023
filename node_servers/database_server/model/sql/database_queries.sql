@@ -1,4 +1,8 @@
 
+--- ============================
+
+--- Database Management Creation of Assigned Table
+
 --- Selecting all the active trackers that have not been assigned to a user at this particular day 
 
 
@@ -11,22 +15,75 @@ and status = 'active' and type='Asset tracking'
 
 
 
+--- Selecting all the active buttons that have not been assigned to a user at this particular day
+
+SELECT DISTINCT d_id
+FROM DEVICE
+WHERE d_id NOT IN
+(SELECT device_id FROM Assigned
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+and status = 'active' and type='Buttons'
+
+
+--- Selecting all the users that have no device assigned to them at this particular day
+
+
+SELECT DISTINCT u_id 
+FROM USER 
+WHERE u_id NOT IN (SELECT user_id FROM Assigned
+where date_received<=DATE("now") 
+and (date_returned > DATE("now") or date_returned=Null))
 
 
 
+-- Counting the number of active devices
 
-
-
-
-
-
-
-
-
+SELECT COUNT(*) 
+FROM DEVICE 
+WHERE status = 'active'
 
 
 
 -- ============================
+
+
+-- Home Page User 
+
+-- Tracker info about the active day and all tracked data  
+
+
+-- History of the button presses assigned to the user at this moment 
+
+
+--- Get all the Pressed events of a tracker that is assigned to a user
+
+Select A.device_id, A.user_id, D.type
+,P.date, P.time
+,P.event
+from Assigned as A 
+join DEVICE as D on D.d_id=A.device_id
+join Pressed as P on P.device_id=A.device_id
+where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
+and user_id = ?
+
+-- Assigned the period of time the button had the press event 
+-- We want the assignment that is rn 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--- ============================
+
 
 -- Getting All the devices and their types 
 
@@ -143,7 +200,7 @@ from Assigned as A
 join DEVICE as D on D.d_id=A.device_id
 join Pressed as P on P.device_id=A.device_id
 where P.date >= A.date_received and (P.date< A.date_returned or A.date_returned=NULL)
-
+and user_id = ?
 
 
 ---- ----------------------------

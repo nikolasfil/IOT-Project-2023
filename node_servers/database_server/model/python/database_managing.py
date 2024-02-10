@@ -111,9 +111,13 @@ class AdventureGuard(Database):
         tableName = "Assigned"
         self.clearing(tableName)
 
-        count_active = self.select(
-            "SELECT COUNT(*) FROM DEVICE WHERE status = 'active'", False
-        )
+        count_active_query = """
+                    SELECT COUNT(*) 
+                    FROM DEVICE 
+                    WHERE status = 'active'
+                    """
+
+        count_active = self.select(count_active_query, False)
 
         if count_active:
             count_active = count_active[0]
