@@ -15,6 +15,22 @@ website
 │       └── session.sqlite
 ├── public
 │   ├── css
+│	│   ├── button.css
+│   │   ├── card.css
+│   │   ├── carousel.css
+│   │   ├── filters.css
+│   │   ├── footer.css
+│   │   ├── header.css
+│   │   ├── individual_pages
+│   │   │   ├── about.css
+│   │   │   ├── device_info.css
+│   │   │   ├── index.css
+│   │   │   └── user_profile.css
+│   │   ├── map.css
+│   │   ├── pages.css
+│   │   ├── searchbar.css
+│   │   ├── sign_in.css
+│   │   └── style.css
 │   ├── img
 │   └── javascript
 │       ├── alerting.js
@@ -61,58 +77,6 @@ website
 ```
 
 
-```mermaid
-classDiagram
-
-
-index : route_homepage 
-index : route_device_info
-index : route_homepage
-index : route_search
-index : route_sign
-index : route_user_profile
-
-database: async function fetchResponse(route, data, callback)
-database: addingActivated=(activated_name, linker, regex)
-database: exports.getAllDevicesJson= (data,  callback)     
-database: exports.getAllAttributes=(source,attribute, limit, offset, callback)
-database: exports.checkIfUserExists= (id, callback) 
-database: exports.userDetails= (id, callback) 
-database: exports.checkUser= (id, password, callback) 
-database: exports.select=(command, callback) 
-database: exports.insert = (command,callback) 
-database: exports.addUser= (user, callback) 
-
-
-login: exports.checkAuthentication (req, res, next)
-login: exports.alerting (req, res, next)
-
-index --> route_homepage
-route_homepage -- database : getAllDevicesJson
-route_homepage: homepage.hbs
-route_homepage: index.css
-
-
-index --> search_page 
-
-search_page -- post_fetchresults: "/fetchResults/numOf"
-post_fetchresults -- database : getAllDevicesJson
-post_fetchresults : partials/decices_grid
-
-
-search_page -- get_search: "/search"
-get_search -- database : getAllAttributes('DEVICE','status')
-get_search -- database : getAllAttributes('DEVICE','type')
-
-get_search: search.hbs 
-
-
-index --> user_profile_page 
-
-user_profile_page -- get_user_profile: /user_profile
-get_user_profile -- login : checkAuthentication
-get_user_profile -- database: userDetails
-get_user_profile: user_profile.hbs
-get_user_profile: user_profile.css
-
-```
+%% 
+[[node-website-call-graph]]
+ %%
