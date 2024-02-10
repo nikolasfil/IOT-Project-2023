@@ -139,16 +139,21 @@ class AdventureGuard(Database):
                 and status = 'active' and type='Buttons'
                 """
 
+        user_id_query = """
+                SELECT DISTINCT u_id 
+                FROM USER 
+                WHERE u_id NOT IN (SELECT user_id FROM Assigned
+                where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+                """
+
         # To ensure that the number of assigned devices is less than the number of active devices or our desired number
         for i in range(num):
 
             # CAREFUL The type is changed
             tracker_id = self.select(
                 tracker_id_query,
-                # fetchall=False,
+                fetchall=False,
             )
-
-            print(tracker_id)
 
             button_id = self.select(
                 button_id_query,
@@ -162,7 +167,7 @@ class AdventureGuard(Database):
                 continue
 
             user_id = self.select(
-                "SELECT DISTINCT u_id FROM USER WHERE u_id NOT IN (SELECT user_id FROM Assigned)",
+                user_id_query,
                 fetchall=False,
             )
 
@@ -174,7 +179,7 @@ class AdventureGuard(Database):
             date_received = self.random_date(num_days=0)
             date_returned = self.random_date(date_received)
 
-            data_tracker = [user_id[0], tracker_id[0][0], date_received, date_returned]
+            data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
             data_button = [user_id[0], button_id[0], date_received, date_returned]
 
             # print(data_tracker, data_button)

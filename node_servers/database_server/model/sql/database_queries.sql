@@ -1,4 +1,33 @@
 
+--- Selecting all the active trackers that have not been assigned to a user at this particular day 
+
+
+SELECT DISTINCT d_id
+FROM DEVICE
+WHERE d_id NOT IN
+(SELECT device_id FROM Assigned
+where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned=Null))
+and status = 'active' and type='Asset tracking'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ============================
+
 -- Getting All the devices and their types 
 
 SELECT 
