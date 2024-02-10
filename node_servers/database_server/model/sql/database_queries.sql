@@ -107,6 +107,7 @@ P.event, P.time, A.device_id
 FROM 
 Assigned as A join Pressed as P on A.device_id = P.device_id 
 where A.date_returned IS NULL and date_received >= DATE("now")
+
 -- and A.device_id = 1 
 
 

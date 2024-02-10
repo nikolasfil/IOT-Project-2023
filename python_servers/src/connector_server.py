@@ -136,6 +136,7 @@ def save_to_database(data):
     elif data.get("latitude") is not None:
         query += "Tracked "
 
+    # New lists
     query += f"({','.join(data.keys())}) VALUES ("
 
     query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"

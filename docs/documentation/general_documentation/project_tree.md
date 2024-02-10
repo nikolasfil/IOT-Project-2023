@@ -1,4 +1,4 @@
-../../../
+.
 ├── DockerFiles
 │   ├── Copies
 │   └── Volumes

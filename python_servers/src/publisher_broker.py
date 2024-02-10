@@ -19,7 +19,7 @@ class Publisher(Broker):
         # This needs to be from a folder
         counter = 0
         time_sleeping = 4
-        timestamp = "2024-02-10T01:05:29.934532"
+        # timestamp = "2024-02-10T01:05:29.934532"
         while counter < 1000:
 
             tracker_info = {
