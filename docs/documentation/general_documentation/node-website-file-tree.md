@@ -83,6 +83,10 @@ database: exports.select=(command, callback)
 database: exports.insert = (command,callback) 
 database: exports.addUser= (user, callback) 
 
+
+login: exports.checkAuthentication (req, res, next)
+login: exports.alerting (req, res, next)
+
 index --> route_homepage
 route_homepage -- database : getAllDevicesJson
 route_homepage: homepage.hbs
@@ -95,5 +99,20 @@ search_page -- post_fetchresults: "/fetchResults/numOf"
 post_fetchresults -- database : getAllDevicesJson
 post_fetchresults : partials/decices_grid
 
+
+search_page -- get_search: "/search"
+get_search -- database : getAllAttributes('DEVICE','status')
+get_search -- database : getAllAttributes('DEVICE','type')
+
+get_search: search.hbs 
+
+
+index --> user_profile_page 
+
+user_profile_page -- get_user_profile: /user_profile
+get_user_profile -- login : checkAuthentication
+get_user_profile -- database: userDetails
+get_user_profile: user_profile.hbs
+get_user_profile: user_profile.css
 
 ```
