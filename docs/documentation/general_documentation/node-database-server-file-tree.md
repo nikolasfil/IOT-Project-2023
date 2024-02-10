@@ -13,7 +13,7 @@ database_server
 └── routes
     └── route_database.js
         ├── route_device_info.js
-        └── route_homepage.js
+            └── Contains all the routes used by the connector_server.py 
 ```
 
 
@@ -32,17 +32,14 @@ database : exports.insert = (command,callback)
 database : exports.addUser= (user, callback)
 database : function getRegex(searchValue, rows)
 
+index : calls the route_database.j 
 
+database <-- index
 
-
-Class01 <|-- AveryLongClass : Cool
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
 
 ```
 
-
+	 
 
 
 
