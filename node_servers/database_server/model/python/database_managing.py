@@ -189,8 +189,6 @@ class AdventureGuard(Database):
             data_tracker = [user_id[0], tracker_id[0], date_received, date_returned]
             data_button = [user_id[0], button_id[0], date_received, date_returned]
 
-            # print(data_tracker, data_button)
-            # Insert the data in the table
             self.insert_data(tableName, data_tracker)
             self.insert_data(tableName, data_button)
 

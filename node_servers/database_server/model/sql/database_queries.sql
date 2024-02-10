@@ -91,9 +91,49 @@ and (SELECT type from DEVICE where d_id=button)="Buttons"
 and (A1.date_returned IS NULL  and A2.date_returned IS NULL )
 
 
+--- Traker location information 
+
+SELECT 
+P.latitude, P.longitude, P.time, A.device_id
+FROM 
+Assigned as A join Tracked as P on A.device_id = P.device_id 
+where A.date_returned IS NULL and date_received <= DATE("now")
+and A.device_id = ?
 
 
 
+SELECT 
+P.event, P.time, A.device_id
+FROM 
+Assigned as A join Pressed as P on A.device_id = P.device_id 
+where A.date_returned IS NULL and date_received >= DATE("now")
+-- and A.device_id = 1 
+
+
+--- ============================
+
+--- User page User 
+
+SELECT 
+A1.user_id,
+A1.date_received, A1.device_id as tracker, A2.device_id as button
+FROM Assigned as A1 
+join Assigned as A2 on A1.user_id=A2.user_id 
+join Tracked as P1 on tracker=P1.device_id
+Where 
+A1.date_returned is NOT NULL 
+and 
+A2.date_returned is Not Null
+and 
+(A1.date_returned = A2.date_returned) 
+and 
+tracker!=button
+and (select type FROM DEVICE where d_id=tracker)="Asset tracking"
+and (select type FROM DEVICE where d_id=button)="Buttons"
+
+
+and A1.date_received = ? 
+and A1.user_id = ?
 
 
 
