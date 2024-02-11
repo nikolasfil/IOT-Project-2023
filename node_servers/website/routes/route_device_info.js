@@ -94,7 +94,7 @@ router.get('/device_info',
         // get device info
         let data = {}
         data.serial = req.query['serial'];
-        database.getAllDevicesJson(data = data,(err, device) => {
+        database.databaseRequest(link='/getAllDevicesJson',data = data,(err, device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -113,7 +113,7 @@ router.get('/device_info',
     //     let command = {}
     //     command.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received DESC LIMIT 1"
     //     command.arguments = [req.query['serial']]
-    //     database.select(command,(err,user) => {
+    //     database.databaseRequest(link='/select',command,(err,user) => {
     //         if (err) {
     //             console.log(err)
     //             res.status(500).send('Internal Server Error')
@@ -130,7 +130,7 @@ router.get('/device_info',
         let data = {}
         data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
         data.arguments = [req.query['serial']]
-        database.select(data,(err,device) => {
+        database.databaseRequest(link='/select',data,(err,device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
