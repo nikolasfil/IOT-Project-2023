@@ -40,16 +40,9 @@ router.post('/sign_up',
             if (result) {
                 req.session.alert_message = 'User already exists';
                 res.redirect(req.get('referer'));
+            } else {
+                next();
             }
-            next();
-            // if (err && !result) {
-            //     console.log(err);
-            //     req.session.alert_message = err;
-            //     res.redirect(req.get('referer'));
-            // }
-            // else {
-            //     next();
-            // }
         });
     },
     (req, res) => {
@@ -61,6 +54,7 @@ router.post('/sign_up',
             else {
                 req.session.signedIn = true;
                 req.session.userid = req.body.id;
+                req.session.role = "role";
                 req.session.alert_message = 'You have successfully signed up';
                 res.redirect(req.get('referer'));
             }

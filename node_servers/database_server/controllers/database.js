@@ -294,7 +294,6 @@ exports.checkIfUserExists= (id, callback) =>  {
         } else {
             callback(null, false)
         }
-        callback(null, user)
     }
     catch (err) {
         callback(err, null)
