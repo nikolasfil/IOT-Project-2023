@@ -84,54 +84,100 @@ partials : timeline.hbs
 
 ## Connections HBS 
 
+
+
 ```mermaid
 classDiagram 
 
+homepage: page
+device_info : page
+user_profile: page 
 
-%% javascript : %%
+searchbar: partial hbs
+sign_in_up: partial hbs
+header: partial hbs
+card : partial hbs
+map : partial hbs
+info_grid : partial hbs
+membershipCard : partial hbs
+deviceHistoryList : partial hbs
+profile_picture   : partial hbs
 
-javascript : public javascript files 
+searchbar_js : javascript files 
+map_js  : javascript files 
+sign_in_js : javascript files 
 
+homepage --  header 
+homepage --  map 
+homepage --  card 
 
+device_info --  header 
+device_info --  info_grid 
+device_info --  map 
+device_info --  deviceHistoryList 
 
-%% Partials  %%
+user_profile --  header
+user_profile --  membershipCard
 
-partials : partial hbs files 
-
-%% Connections  %%
-
-homepage: homepage.hbs
-homepage -- partials : header 
-homepage -- partials : map 
-homepage -- partials : card 
-
-device_info -- partials : header 
-device_info -- partials : info_grid 
-device_info -- partials : map 
-device_info -- partials : deviceHistoryList 
-
-user_profile -- partials : header
-user_profile -- partials : membershipCard
-user_profile -- javascript: user_profile.js
-
-partials -- header 
-header -- javascript : searchbar.js
-
-header -- partials: searchbar
-header -- partials : sign_in_up
-header -- partials : profile_picture
+header -- searchbar_js
+header -- searchbar
+header --  sign_in_up
+header --  profile_picture
 
 
-map -- javascript : map.js 
-
-searchbar -- javascript: searchbar.js 
-
-sign_in_up -- javascript : sign_in.js
+map --  map_js 
+searchbar --  searchbar_js 
+sign_in_up --  sign_in_js
 
 
 ```
 
-
 ## Connections JS 
 
+
+
+```mermaid
+classDiagram 
+
+homepage: page
+device_info : page
+user_profile: page 
+
+searchbar: partial hbs
+sign_in_up: partial hbs
+header: partial hbs
+map : partial hbs
+
+user_profile_js : javascript files 
+searchbar_js : javascript files 
+map_js  : javascript files 
+sign_in_js : javascript files 
+
+homepage --  header 
+homepage --  map 
+
+
+device_info --  header 
+device_info --  map 
+
+user_profile --  header
+
+header -- searchbar_js
+header -- searchbar
+header --  sign_in_up
+
+
+searchbar --  searchbar_js 
+sign_in_up --  sign_in_js
+
+
+searchbar_js : searchbarClickPress(event)
+searchbar_js : searchbarClick()
+
+map --  map_js : mapInit,mapMult
+
+map_js : function mapInit(lon, lat)
+map_js : function mapMult(isbn) 
+
+```
 
