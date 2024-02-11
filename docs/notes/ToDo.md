@@ -7,6 +7,7 @@ type:
 ## Table of Contents
 
 [ToDo](#developing-stage)
+
 - [Database](#database)
 - [Pages](#pages)
   - [1 Homepage](#1-homepage)
@@ -19,18 +20,17 @@ type:
 - [Notes](#notes)
 - [Useful links](#useful-links)
 
-
 ## Developing Stage
 
-- [ ] Database:
+- [x] Database:
 - [x] Database ERD
 - [x] Database Schema
 - [x] Database Creating Database
 - [x] Database Automated Script
-- [ ] Database Filling
+- [x] Database Filling
 - [x] Database Filling Users
 - [x] Database Filling Devices
-- [ ] Database Filling Rest of Tables
+- [x] Database Filling Rest of Tables
 - [ ] Website
 - [x] Website Login
 - [x] Website Register
@@ -40,15 +40,15 @@ type:
 - [ ] Website Device Map
 - [ ] Deployment
 - [x] Docker compose file
+- [ ] Linux Image secure deployment
 
 <!-- URL: -->
 
 ## Database
 
-
 1. fill the tables with dummy data
 
-Headers:
+### Headers:
 
 - Tracked
 
@@ -75,6 +75,14 @@ Headers:
 | time                       | timestamp.time    | time              | 12:00:00                 |
 | time                       | timestamp.date    | date              | 2021-08-25               |
 | object.batCritical         |                   | batteryCritical ? | null                     |
+
+### Virtual Sensors
+
+- get all available active devices
+  - trackers get the path that the location data provide
+  - buttons get a random show of events to see that they work. But perhaps they should be in bigger intermediate times
+  - Timestamps on the generators to be both in the past and in the future. Fix it so that it will end on the sat or handle the sql to not show more than that.
+  - Configure two functions. One for live tracking and one for creating the csv file.
 
 ## Pages
 

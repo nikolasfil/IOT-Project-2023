@@ -1,8 +1,11 @@
 import random
 import csv
 
+
 def generate_coordinates(min_x, max_x, min_y, max_y, num_sets):
-    '''Generates a list of random coordinates within the given ranges.
+    """
+    Description :
+        Generates a list of random coordinates within the given ranges.
     Args:
         min_x (float): the minimum x value
         max_x (float): the maximum x value
@@ -11,7 +14,7 @@ def generate_coordinates(min_x, max_x, min_y, max_y, num_sets):
         num_sets (int): the number of coordinates to generate
     Returns:
         list: a list of (x, y) tuples representing the coordinates
-        '''
+    """
     coordinates = []
     for _ in range(num_sets):
         x = random.uniform(min_x, max_x)
@@ -19,23 +22,29 @@ def generate_coordinates(min_x, max_x, min_y, max_y, num_sets):
         coordinates.append((x, y))
     return coordinates
 
+
 def write_to_csv(filename, coordinates):
-    '''Writes the given coordinates to a csv file.
+    """
+    Description:
+        Writes the given coordinates to a csv file.
     Args:
         filename (str): the name of the csv file
         coordinates (list): a list of (x, y) tuples representing the coordinates
-    '''
-    with open(filename, 'w', newline='') as file:
+    """
+    with open(filename, "w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(['Latitude', 'Longitude'])
+        writer.writerow(["Latitude", "Longitude"])
         num = random.randint(40, 50)
         for _ in range(num):
             writer.writerow(coordinates.pop(0))
 
+
 def main():
-    '''Generates 10 csv files with random coordinates within the given ranges.
-    
-    The ranges are:     
+    """
+    Description:
+        Generates 10 csv files with random coordinates within the given ranges.
+
+    The ranges are:
     min_x = 38.20
     max_x = 38.21
     min_y = 21.81
@@ -43,7 +52,7 @@ def main():
     num_sets = 60
 
     The csv files are named Path_1.csv, Path_2.csv, ..., Path_10.csv
-    '''
+    """
     min_x = 38.20
     max_x = 38.21
     min_y = 21.81
@@ -61,9 +70,9 @@ def main():
 
         # Write the coordinates to a csv file
         # Nikola, Change the name of the file to point to whichever directory you want to save the files
-        filename = f'Path_{i+1}.csv'
+        filename = f"Path_{i+1}.csv"
         write_to_csv(filename, coordinates)
-        print(f'Wrote {filename}')
+        print(f"Wrote {filename}")
 
         # Increase the ranges for the next file
         min_x += 0.01
@@ -71,7 +80,6 @@ def main():
         # min_y += 0.01
         # max_y += 0.01
 
-if __name__ == '__main__':
-    main()
 
-    
+if __name__ == "__main__":
+    main()
