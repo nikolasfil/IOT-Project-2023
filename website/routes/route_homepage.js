@@ -28,7 +28,7 @@ router.get('/',
     
     (req, res) => {
         res.render('homepage', {
-            style: 'index.css',
+            style: ['index.css', 'heatmap.css'],
             title: 'Home',
             signedIn: req.session.signedIn,
         });
