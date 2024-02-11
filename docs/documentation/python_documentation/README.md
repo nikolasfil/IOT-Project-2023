@@ -1,8 +1,38 @@
----
-date: 2024-02-04
-subject: IOT
-type: 
----
+
+## tree python_documentation
+
+```
+python_documentation/
+├── command.sh
+├── files_keeping
+│   ├── command.sh
+│   ├── conf.py
+│   ├── conf.py.bak2
+│   ├── index.rst
+│   ├── Makefile
+│   └── README.md
+├── README.md
+└── sphinx_documentation
+    ├── broker.rst
+    ├── button_sensor.rst
+    ├── conf.py
+    ├── connector_server.rst
+    ├── context_provider.rst
+    ├── index.rst
+    ├── Makefile
+    ├── modules.rst
+    ├── publisher_broker.rst
+    ├── sensor_context_provider.rst
+    ├── subscriber_broker.rst
+    ├── tracker_sensor.rst
+    └── virtual_sensor.rst
+
+3 directories, 21 files
+```
+
+
+
+## Sphinx Documentation
 
 After activating the venv 
 
@@ -11,14 +41,14 @@ cd python_servers
 source app_venv/bin/activate
 ```
 
-## Installation
+### Installation
 
 ```bash
 pip install sphinx
 ```
 
 
-## Documentation
+### Documentation
 
 Run the command and fill out the necessary information about the project 
 
@@ -94,7 +124,7 @@ make clean html
 ```
 
 
-## View
+### View
 
 
 To view it simply run a python server insided the python_documentation
@@ -106,7 +136,7 @@ python -m http.server 8080
 and go to the [url](http://localhost:8080/_build/html/)
 
 
-## Resources
+### Resources
 
 [yt-tutorial](https://www.youtube.com/watch?v=5s3JvVqwESA)
 
