@@ -52,7 +52,10 @@ router.post('/sign_up',
         });
     },
     (req, res) => {
-        database.addUser(req.body, (err, result) => {
+        let data = {
+            user: req.body.data
+        }
+        database.addUser(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.redirect(req.get('referer'));
@@ -60,7 +63,7 @@ router.post('/sign_up',
             else {
                 req.session.signedIn = true;
                 req.session.userid = req.body.id;
-                req.session.role = "role";
+                req.session.role = "user";
                 req.session.alert_message = 'You have successfully signed up';
                 res.redirect(req.get('referer'));
             }

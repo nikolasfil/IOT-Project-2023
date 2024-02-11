@@ -6,11 +6,25 @@ const bcrypt = require('bcrypt');
 
 // --------- Generic Functions ---------
 
+/**
+ * 
+ * Replaces the strings to exclude special characters
+ * 
+ * @param {*} string String to trim the special characters 
+ * @returns 
+ */
 function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
 
-
+/**
+ * 
+ * Match the partials of the searchValue 
+ * 
+ * @param {*} searchValue 
+ * @param {*} rows 
+ * @returns 
+ */
 function getRegex(searchValue, rows) {
 
     // let rows;
@@ -47,12 +61,12 @@ function getRegex(searchValue, rows) {
 /**
  * 
  * 
+ * 
  * @param {*} activated_name 
  * @param {*} linker 
  * @param {*} regex 
  * @returns 
  */
-
 exports.addingActivated=(activated_name, linker, regex)=> {
     let query_activated ;
     
@@ -81,15 +95,15 @@ exports.addingActivated=(activated_name, linker, regex)=> {
 /**
  * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
  * @param {*} data contains everything in a json format (not optional)
- * @param {*} id For a specific device (optional)
- * @param {*} serial For a specific serial (optional)
- * @param {*} battery For a specific battery (optional)
- * @param {*} status For a specific status (optional)
- * @param {*} type For a specific type (optional)
- * @param {*} limit Limiting the number of results (optional)
- * @param {*} offset Starting from a specific result (optional)
- * @param {*} numOf true or null, if we want to focus more on the number of results back (optional)
- * @param {*} filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
+ * @param {*} data.id For a specific device (optional)
+ * @param {*} data.serial For a specific serial (optional)
+ * @param {*} data.battery For a specific battery (optional)
+ * @param {*} data.status For a specific status (optional)
+ * @param {*} data.type For a specific type (optional)
+ * @param {*} data.limit Limiting the number of results (optional)
+ * @param {*} data.offset Starting from a specific result (optional)
+ * @param {*} data.numOf true or null, if we want to focus more on the number of results back (optional)
+ * @param {*} data.filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
  * @param {*} callback function that handles the results
  *  
  * This function is the same as getAllDevices but it returns the results in a json format
@@ -254,10 +268,10 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 /**
  * 
  * @param {*} data : Json file that consists of the following parameters  
- * @param {*} source : The table we want to get information out of (not optional)
- * @param {*} attribute : The attribute we want to focus on (not optional)
- * @param {*} limit : The limit of the number of results we want to get (optional)
- * @param {*} offset : The offset of the results we want to get (optional)
+ * @param {*} data.source : The table we want to get information out of (not optional)
+ * @param {*} data.attribute : The attribute we want to focus on (not optional)
+ * @param {*} data.limit : The limit of the number of results we want to get (optional)
+ * @param {*} data.offset : The offset of the results we want to get (optional)
  * 
  * @param {*} callback 
  */
@@ -295,14 +309,15 @@ exports.getAllAttributes= (data, callback) =>  {
 /**
  * 
  * @param {*} data : Json file that consists of the following parameters 
- * @param {*} id : The id of the user we want to check if exists (not optional)
+ * @param {*} data.id : The id of the user we want to check if exists (not optional)
  * @param {*} callback 
  */
 exports.checkIfUserExists= (data, callback) =>  {
     const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
     let user;
+    let id = data.id;
     try {
-        user = stmt.get(data.id)
+        user = stmt.get(id)
         if (user) {
             callback(null, true)
         } else {
@@ -314,6 +329,12 @@ exports.checkIfUserExists= (data, callback) =>  {
     }
 }
 
+/**
+ * 
+ * @param {*} data : Json file that consists of the following parameters
+ * @param {*} data.id : The id of the user we want to get the details of (not optional)
+ * @param {*} callback 
+ */
 exports.userDetails= (data, callback) =>  {
     let id = data.id
     let query = `Select * from USER where u_id = ? `
@@ -322,7 +343,6 @@ exports.userDetails= (data, callback) =>  {
     let user;
     try {
         user = stmt.get(id)
-        // console.log(id)
         callback(null, user)
     }
     catch (err) {
@@ -362,7 +382,13 @@ exports.checkUser= (data, callback) =>  {
     }
 }
 
-
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.device
+ * @param {*} data.id 
+ * @param {*} callback 
+ */
 exports.getDeviceData=(data,callback) => {
     let stmt, result;
     let query = `Select A.device_id, P.date, P.time`
@@ -392,6 +418,13 @@ exports.getDeviceData=(data,callback) => {
 
 // --------- Static Selection in the database -----------
 
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.query (not optional)
+ * @param {*} data.arguments (optional)
+ * @param {*} callback 
+ */
 exports.select=(data, callback) =>  {
     let stmt, result;
     try {
@@ -408,7 +441,13 @@ exports.select=(data, callback) =>  {
     callback(null, result);
 }
 
-
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.query 
+ * @param {*} data.arguments
+ * @param {*} callback 
+ */
 exports.insert = (data,callback) => {
     let stmt, result;
     try {
@@ -428,7 +467,14 @@ exports.insert = (data,callback) => {
 
 // --------- Dynamic Insertion into Database --------
 
-exports.addUser= (user, callback) =>  {
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.user 
+ * @param {*} callback 
+ */
+exports.addUser= (data, callback) =>  {
+    let user = data.user
     let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
     let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
     

@@ -203,9 +203,9 @@ exports.insert = (data,callback) => {
 
 // --------- Dynamic Insertion into Database --------
 
-exports.addUser= (user, callback) =>  {
+exports.addUser= (data, callback) =>  {
     let link = '/addUser'
-    let link_data = {"user":user}
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
