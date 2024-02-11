@@ -219,6 +219,9 @@ class Tracker(Sensor):
         # Also return it in case the function asks for it
         return self.cp_info
 
+    def generator(self):
+        self.info["counter"] = self.step
+
 
 class TrackerCPF(SensorCPF):
     def __init__(self, **kwargs):
@@ -364,22 +367,26 @@ if __name__ == "__main__":
     tracker = Tracker(important_info=important_info)
     # print(tracker.info)
 
-    context_info = {
-        "id": "tracker",
-        "type": "Tracker",
-        "latitude": 80,
-        "longitude": 90,
-        "temperature_value": 25.5,
-        # Not needed
-        "location_metadata": {
-            "region_common_name": "EU868",
-            "region_config_id": "eu868",
-        },
-        # In location we could add the metadata for fires or sth
-    }
+    # context_info = {
+    #     "id": "tracker",
+    #     "type": "Tracker",
+    #     "latitude": 80,
+    #     "longitude": 90,
+    #     "temperature_value": 25.5,
+    #     # Not needed
+    #     "location_metadata": {
+    #         "region_common_name": "EU868",
+    #         "region_config_id": "eu868",
+    #     },
+    #     # In location we could add the metadata for fires or sth
+    # }
 
-    trackerCP = TrackerCPF(entity_data=context_info)
+    # trackerCP = TrackerCPF(entity_data=context_info)
     # print(trackerCP.info)
 
     tracker.mqtt_to_cp()
     print(tracker.cp_info)
+
+    print(next(tracker).get("counter"))
+    print(next(tracker).get("counter"))
+    print(next(tracker).get("counter"))
