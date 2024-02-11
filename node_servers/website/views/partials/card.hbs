@@ -4,15 +4,18 @@
   <div class="card-div" draggable="false">
     {{! fix it so that there is a link for devices/id }}
     <a href={{location}} class="d-flex flex-column align-content-center">
-
-      <div class="p-2">
-        <h6 class="text-truncate--2"><strong>ID: {{id}}</strong></h6>
-        <p class="text-truncate--3"><small>Status: {{status}}</small></p>
-        <p class="text-truncate--3"><small>Serial: {{serial}}</small></p>
-        {{#if battery}}
-          <p><small>Available battery: {{battery}}</small></p>
-        {{/if}}
-      </div>
+        <div class="status-div">
+            <div class="status-circle">{{status}}</div>
+            <img src="img/svg/battery_status.svg" alt="Battery Status">
+        </div>
+        <div class="status-div">
+            <span class="card-text-bold">DEVICE_ID:</span>
+            <span class="card-text-normal">{{id}}</span>
+        </div>
+        <div class="status-div">
+            <span class="card-text-bold">SERIAL:</span>
+            <span class="card-text-normal">{{serial}}</span>
+        </div>
     </a>
   </div>
 </card>

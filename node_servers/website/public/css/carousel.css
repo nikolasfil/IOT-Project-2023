@@ -3,16 +3,17 @@
     flex-direction: column;
     align-items: left;
     /* padding: 10px; */
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin: 2% 5%;
+    border-radius: 18px;
+    background: #583F83;
+    padding: 10px 15px;
   }
 
 .scrolling {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
   overflow-y: hidden;
   overflow-x: auto;
   height: fit-content;

@@ -1,0 +1,57 @@
+.map-filters {
+  display: flex;
+  padding: 10px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  border-radius: 18px;
+  background: #583f83;
+  margin: 1% 5%;
+}
+.filters {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.checkbox-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 10%;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.heatmaps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  border: 5px solid #583f83;
+}
+.on-map-trackers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: #583f83;
+  border-radius: 18px;
+}
+
+.on-map-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
