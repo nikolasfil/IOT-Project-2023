@@ -4,6 +4,9 @@ import uuid
 import json
 
 
+# class ClassFunctionalities:
+
+
 class Sensor:
     def __init__(self, **kwargs) -> None:
         """
@@ -50,6 +53,33 @@ class Sensor:
 
         # Initialize the variable that will be used when transforming the information to a format that the Context Provider can understand
         self.cp_info = None
+
+    def __str__(self):
+        """
+        Description:
+            Returns the information in string format whenever the instance is called as a string
+            E.g. print(self)
+
+        Returns:
+            str: stringify the information dict
+        """
+        return str(self.info)
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        Description :
+            Returns the information as a dict whenever the instance is called
+        Returns:
+            dict: The information dict
+        """
+        return self.info
+
+    def __getitem__(self, key):
+        """
+        Description:
+            Returns the value of the key given. Whenever the instance is used as a dictionary
+        """
+        return self.info.get(key)
 
     def generate_unique_hash(self):
         """
@@ -98,8 +128,9 @@ class Sensor:
             ValueError: _description_
 
         Returns:
-            _type_: _description_
+            dict: information in the format the context provider for the sensor will accept
         """
+        return self.cp_info
 
 
 class SensorCPF:

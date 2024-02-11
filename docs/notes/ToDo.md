@@ -84,6 +84,13 @@ type:
   - Timestamps on the generators to be both in the past and in the future. Fix it so that it will end on the sat or handle the sql to not show more than that.
   - Configure two functions. One for live tracking and one for creating the csv file.
 
+What if I inherit the Tracker format on the CoordsGenerator and just add another function.
+what if instead, I check out double inheritance for python and inherit in the Tracker.
+
+Maybe create another function tracker that inherits them. And make a last one to inherit them all
+
+Create a generator on the Tracker instance that entails all. Which will have the locations pre loaded and will just keep spitting out more every time
+
 ## Pages
 
 ### 1 Homepage
