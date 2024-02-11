@@ -1,5 +1,5 @@
 
-```
+```bash
 database_server
 ├── controllers
 │   └── database.js

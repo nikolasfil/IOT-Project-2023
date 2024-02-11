@@ -1,5 +1,5 @@
 
-```
+```bash
 website
 ├── controllers
 │   ├── c_search.js

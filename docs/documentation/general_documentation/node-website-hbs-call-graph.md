@@ -125,10 +125,17 @@ header --  sign_in_up
 header --  profile_picture
 
 
-map --  map_js 
 searchbar --  searchbar_js 
 sign_in_up --  sign_in_js
 
+
+searchbar_js : searchbarClickPress(event)
+searchbar_js : searchbarClick()
+
+map --  map_js : mapInit,mapMult
+
+map_js : function mapInit(lon, lat)
+map_js : function mapMult(isbn) 
 
 ```
 
