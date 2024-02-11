@@ -1,10 +1,10 @@
-# AdventureGuard
+## AdventureGuard
 
-##### Description
+## Description
 
 Application for managing gps Trackers
 
-#### Developers
+## Developers
 
 <!-- to be fixed later  -->
 
@@ -14,7 +14,7 @@ Application for managing gps Trackers
 
 ---
 
-### Table of Contents
+## Table of Contents
 
 ```toc
 
@@ -24,29 +24,21 @@ Application for managing gps Trackers
 <!-- - [Description](#description) -->
 <!-- - [Table of Contents](#table-of-contents) -->
 
-- [Developers](#developers)
-- [Developing Stage](#developing-stage)
-- [Technologies](#technologies)
-- [Building the application](#building-the-application)
-  - [Running the server locally](#running-the-server-locally)
-
 ---
 
 
 
 ---
 
-## Building the application
+## docker-compose 
 
-### docker-compose 
-
-Building the image
+### Building the services
 
 ```bash
 docker-compose up --build
 ```
 
-Running the image
+### Running the services
 
 ```bash
 docker-compose up 
@@ -57,9 +49,9 @@ Then head over to [localhost:8080](http://localhost:8080)
 
 ----
 
-### Running the services individually
+## Running the services individually
 
-#### Node Servers
+### Node Servers
 
 First of all install the dependencies on the node_servers folder : 
 
@@ -72,7 +64,7 @@ npm install
 
 It gets the dependencies from the package.json file. The dependencies are listed in the dependencies section and are added there everytime we install a new dependency with npm install .
 
-##### Create Database
+#### Create Database
 
 To create the database, run the following program:
 
@@ -85,7 +77,7 @@ It builds the sql database from the file [dbdesigner.sql](/model/dbdesigner.sql)
 
 If there are no errors the database is created successfully .
 
-#### Running Node Services 
+### Running Node Services 
 
 Run the following command in both folders node_servers/database_server and node_servers/website 
 
