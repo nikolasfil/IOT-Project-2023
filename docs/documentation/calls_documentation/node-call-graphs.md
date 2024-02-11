@@ -1,10 +1,4 @@
 
-```toc
-```
-
-## Node Call graphs 
-
-
 
 ### Database 
 
@@ -21,6 +15,3 @@
 ![[UNI/Semester-9/IOT/project/project_doc_l/documentation/calls_documentation/node-website-hbs-call-graph]]
 
 
-## Python Call graphs 
-
-![[python-server-call-graph]]
