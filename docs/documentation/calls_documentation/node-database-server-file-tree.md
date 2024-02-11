@@ -18,7 +18,7 @@ database_server
 
 
 %%
-[[node-database-call-graph]]
+[[UNI/Semester-9/IOT/project/project_doc_l/documentation/calls_documentation/node-database-call-graph]]
 %%
 
 	 
