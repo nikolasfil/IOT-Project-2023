@@ -1,10 +1,6 @@
 require('dotenv').config();
 
 
-// --------- Generic Functions ---------
-
-
-
 /**
  * Connects to the database server that is specified in the .env file. 
  *  

@@ -22,6 +22,10 @@ router.get('/',
         
     },
     
+    // ,
+    // (req, res, next) => {
+    //     // if()
+    // },
     
     (req, res) => {
         res.render('homepage', {
