@@ -45,8 +45,6 @@ async function fetchResponse(route, data, callback){
     return response;
 }
 
-
-
 /**
  * 
  * 

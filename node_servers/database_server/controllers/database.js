@@ -254,15 +254,14 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 /**
  * 
  * @param {*} data : Json file that consists of the following parameters  
- * @param {*} source : The source of the data we want to get the attributes from
- * @param {*} attribute : The attribute we want to get the data from
- * @param {*} limit : The limit of the number of results we want to get
- * @param {*} offset : The offset of the results we want to get
+ * @param {*} source : The table we want to get information out of (not optional)
+ * @param {*} attribute : The attribute we want to focus on (not optional)
+ * @param {*} limit : The limit of the number of results we want to get (optional)
+ * @param {*} offset : The offset of the results we want to get (optional)
  * 
  * @param {*} callback 
  */
-// exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
-exports.getAllAttributes=(data, callback) =>  {
+exports.getAllAttributes= (data, callback) =>  {
     let stmt, result;
     let query = `Select distinct`
 
