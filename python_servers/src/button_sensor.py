@@ -1,7 +1,7 @@
-from virtual_sensor import Sensor, SensorCPF
+from virtual_sensor import SensorMQTTFormat, SensorCPFormat
 
 
-class Button(Sensor):
+class Button(SensorMQTTFormat):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -171,7 +171,7 @@ class Button(Sensor):
         return self.cp_info
 
 
-class ButtonCPF(SensorCPF):
+class ButtonCPF(SensorCPFormat):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.new_entity()

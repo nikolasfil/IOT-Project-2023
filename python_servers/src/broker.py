@@ -79,7 +79,7 @@ class Broker:
         # message = dict(text)
         self.payload = msg.payload
         self.py_obj_payload = self.json_to_dict(msg.payload)
-        
+
         if self.debug:
             print(
                 f"Received {len(msg.payload.decode())} length message from {msg.topic}"

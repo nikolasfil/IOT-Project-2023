@@ -8,10 +8,12 @@
 
 SELECT DISTINCT d_id
 FROM DEVICE
-WHERE d_id NOT IN
+WHERE
+status = 'active' and type='Asset tracking'
+and 
+d_id NOT IN
 (SELECT device_id FROM Assigned
 where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL ))
-and status = 'active' and type='Asset tracking'
 
 
 
@@ -107,6 +109,7 @@ P.event, P.time, A.device_id
 FROM 
 Assigned as A join Pressed as P on A.device_id = P.device_id 
 where A.date_returned IS NULL and date_received >= DATE("now")
+
 -- and A.device_id = 1 
 
 

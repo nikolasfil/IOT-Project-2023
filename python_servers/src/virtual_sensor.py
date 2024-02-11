@@ -4,8 +4,76 @@ import uuid
 import json
 
 
-class Sensor:
-    def __init__(self, **kwargs) -> None:
+class ClassFunctionalities:
+    def __init__(self, *args, **kwargs) -> None:
+        self.info = {}
+        self.limit = 10
+        self.step = 0
+
+    # def __str__(self):
+    #     """
+    #     Description:
+    #         Returns the information in string format whenever the instance is called as a string
+    #         E.g. print(self)
+
+    #     Returns:
+    #         str: stringify the information dict
+    #     """
+    #     return str(self.info)
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        Description :
+            Returns the information as a dict whenever the instance is called
+        Returns:
+            dict: The information dict
+        """
+        return self.info
+
+    def __getitem__(self, key):
+        """
+        Description:
+            Returns the value of the key given. Whenever the instance is used as a dictionary
+        """
+        return self.info.get(key)
+
+    def __setitem__(self, key, value):
+        """
+        Description:
+            Sets the value of the key given. Whenever the instance is used as a dictionary
+        """
+        self.info[key] = value
+
+    def __iter__(self):
+        """
+        Description:
+            Returns the iterator of the information dict
+        """
+        # return iter(self.info)
+        return self
+
+    def __next__(self):
+        """
+        Description:
+            Returns the next value of the information dict
+        """
+        if self.step < self.limit:
+            self.step += 1
+            self.generator()
+            return self.info
+        else:
+            raise StopIteration
+
+    def generator(self):
+        """
+        Description:
+            Will be responsible for the generation of the data that will be provided with every iteration of the instance
+        """
+        pass
+
+
+class SensorMQTTFormat(ClassFunctionalities):
+    def __init__(self, *args, **kwargs) -> None:
         """
         Description:
             Initializes the Sensor class
@@ -19,6 +87,8 @@ class Sensor:
         """
 
         # Initialize the information dictionary that will be used to access the sensor information
+        super().__init__(self, *args, **kwargs)
+
         if kwargs.get("time"):
             time = kwargs.get("time")
         else:
@@ -98,12 +168,13 @@ class Sensor:
             ValueError: _description_
 
         Returns:
-            _type_: _description_
+            dict: information in the format the context provider for the sensor will accept
         """
+        return self.cp_info
 
 
-class SensorCPF:
-    def __init__(self, **kwargs):
+class SensorCPFormat(ClassFunctionalities):
+    def __init__(self, *args, **kwargs):
         """
         Description:
             Initializes the SensorCPF class.
@@ -115,37 +186,11 @@ class SensorCPF:
                 type (str): The type of the device
 
         """
+        super().__init__(self, *args, **kwargs)
         self.entity_data = kwargs.get("entity_data")
         self.id = kwargs.get("id")
         self.type = kwargs.get("type")
         self.info = {"id": self.id, "type": self.type}
-
-    def __str__(self):
-        """
-        Description:
-            Returns the information in string format whenever the instance is called as a string
-            E.g. print(self)
-
-        Returns:
-            str: stringify the information dict
-        """
-        return str(self.info)
-
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
-        """
-        Description :
-            Returns the information as a dict whenever the instance is called
-        Returns:
-            dict: The information dict
-        """
-        return self.info
-
-    def __getitem__(self, key):
-        """
-        Description:
-            Returns the value of the key given. Whenever the instance is used as a dictionary
-        """
-        return self.info.get(key)
 
     def default_values(self):
         """

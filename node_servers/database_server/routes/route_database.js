@@ -16,14 +16,12 @@ router.post('/fetchResults/:numOf',
 
 
 router.post('/getAllDevicesJson',
-    
     (req, res) => {
         database.getAllDevicesJson(data = req.body.data , (err, devices) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting devices")
             } else {
-                // console.log(devices);
                 res.send(JSON.stringify(devices));
             }
         }
@@ -34,11 +32,9 @@ router.post('/getAllDevicesJson',
 
 router.post('/getAllAttributes',
     (req, res) => {
-        let source = req.body.data.source;
-        let attribute = req.body.data.attribute; 
-        let limit = req.body.data.limit;
-        let offset = req.body.data.offset;
-        database.getAllAttributes( source,attribute,limit,offset, (err, attributes) => {
+        let data = req.body.data;
+        
+        database.getAllAttributes( data, (err, attributes) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting attributes")
@@ -53,8 +49,11 @@ router.post('/getAllAttributes',
 
 router.post("/checkIfUserExists",
     (req, res) => {
-        let id = req.body.data.id;
-        database.checkIfUserExists(id, (err, exists) => {
+        let data = {
+            id : req.body.data.id
+        }
+            
+        database.checkIfUserExists(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while checking if user exists")
@@ -65,11 +64,17 @@ router.post("/checkIfUserExists",
     )}
 );
 
-
+/**
+ * @param {*} data JSON object with id 
+ * @param {*} data.id id of the user to get the details of the account
+ * @param {*} callback
+ */
 router.post("/userDetails",
     (req, res) => {
-        let id = req.body.data.id;
-        database.userDetails(id, (err, exists) => {
+        let data = { 
+            id : req.body.data.id
+        };
+        database.userDetails(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting user details")
@@ -82,9 +87,8 @@ router.post("/userDetails",
 
 router.post("/checkUser",
     (req, res) => {
-        let id = req.body.data.id;
-        let password = req.body.data.password;
-        database.checkUser(id,password, (err, exists) => {
+        let data = req.body.data
+        database.checkUser(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while checking if user credentials are accurate")
@@ -98,9 +102,9 @@ router.post("/checkUser",
 
 router.post("/select",
     (req, res) => {
-        let command = req.body.data.command;
+        let data = req.body.data;
 
-        database.select(command, (err, result) => {
+        database.select(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while executing select command")
@@ -114,11 +118,11 @@ router.post("/select",
 
 router.post("/insert",
     (req, res) => {
-        let command = req.body.data.command;
+        let data = req.body.data;
         // console.log(req.body);
         
 
-        database.insert(command, (err, result) => {
+        database.insert(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while executing insert command")
@@ -131,9 +135,9 @@ router.post("/insert",
 
 router.post("/addUser",
     (req, res) => {
-        let user = req.body.data.user;
+        let data ={ user: req.body.data.user};
         
-        database.addUser(user, (err, result) => {
+        database.addUser(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while adding user")

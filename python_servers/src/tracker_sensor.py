@@ -1,7 +1,7 @@
-from virtual_sensor import Sensor, SensorCPF
+from virtual_sensor import SensorMQTTFormat, SensorCPFormat
 
 
-class Tracker(Sensor):
+class TrackerMQTTFormat(SensorMQTTFormat):
     def __init__(self, **kwargs):
         """
         Description:
@@ -214,13 +214,18 @@ class Tracker(Sensor):
         }
 
         # Creating the instance of the Context Provider Format of the Tracker and getting back the correct structure of json formated information
-        self.cp_info = TrackerCPF(entity_data=entity_data).info
+        self.cp_info = TrackerCPFormat(entity_data=entity_data).info
 
         # Also return it in case the function asks for it
         return self.cp_info
 
+    def generator(self):
+        # self.info["counter"] = self.step
+        # Here I should provide the coordinate generator
+        pass
 
-class TrackerCPF(SensorCPF):
+
+class TrackerCPFormat(SensorCPFormat):
     def __init__(self, **kwargs):
         """
         Description:
@@ -361,25 +366,31 @@ if __name__ == "__main__":
         "longitudeDeg": 21.7887801,
     }
 
-    tracker = Tracker(important_info=important_info)
+    tracker = TrackerMQTTFormat(important_info=important_info)
     # print(tracker.info)
 
-    context_info = {
-        "id": "tracker",
-        "type": "Tracker",
-        "latitude": 80,
-        "longitude": 90,
-        "temperature_value": 25.5,
-        # Not needed
-        "location_metadata": {
-            "region_common_name": "EU868",
-            "region_config_id": "eu868",
-        },
-        # In location we could add the metadata for fires or sth
-    }
+    # context_info = {
+    #     "id": "tracker",
+    #     "type": "Tracker",
+    #     "latitude": 80,
+    #     "longitude": 90,
+    #     "temperature_value": 25.5,
+    #     # Not needed
+    #     "location_metadata": {
+    #         "region_common_name": "EU868",
+    #         "region_config_id": "eu868",
+    #     },
+    #     # In location we could add the metadata for fires or sth
+    # }
 
-    trackerCP = TrackerCPF(entity_data=context_info)
+    # trackerCP = TrackerCPF(entity_data=context_info)
     # print(trackerCP.info)
 
     tracker.mqtt_to_cp()
     print(tracker.cp_info)
+
+    print(next(tracker))
+    print(next(tracker))
+    print(next(tracker))
+    for i in tracker:
+        print(i.keys())
