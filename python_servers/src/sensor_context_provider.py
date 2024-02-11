@@ -1,7 +1,7 @@
 from context_provider import ContextProvider
 
 
-class SensorCP(ContextProvider):
+class SensorCPConnector(ContextProvider):
     def __init__(self, **kwargs):
         """
         Description:
@@ -261,7 +261,7 @@ if __name__ == "__main__":
         "temperature": {"type": "Float", "value": 0, "metadata": {}},
     }
 
-    tracker = SensorCP(
+    tracker = SensorCPConnector(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
         debug=True,

@@ -1,7 +1,7 @@
-from virtual_sensor import Sensor, SensorCPF
+from virtual_sensor import SensorMQTTFormat, SensorCPFormat
 
 
-class Tracker(Sensor):
+class TrackerMQTTFormat(SensorMQTTFormat):
     def __init__(self, **kwargs):
         """
         Description:
@@ -214,7 +214,7 @@ class Tracker(Sensor):
         }
 
         # Creating the instance of the Context Provider Format of the Tracker and getting back the correct structure of json formated information
-        self.cp_info = TrackerCPF(entity_data=entity_data).info
+        self.cp_info = TrackerCPFormat(entity_data=entity_data).info
 
         # Also return it in case the function asks for it
         return self.cp_info
@@ -225,7 +225,7 @@ class Tracker(Sensor):
         pass
 
 
-class TrackerCPF(SensorCPF):
+class TrackerCPFormat(SensorCPFormat):
     def __init__(self, **kwargs):
         """
         Description:
@@ -366,7 +366,7 @@ if __name__ == "__main__":
         "longitudeDeg": 21.7887801,
     }
 
-    tracker = Tracker(important_info=important_info)
+    tracker = TrackerMQTTFormat(important_info=important_info)
     # print(tracker.info)
 
     # context_info = {

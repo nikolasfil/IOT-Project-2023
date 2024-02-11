@@ -1,6 +1,6 @@
 from broker import Broker
 import time
-from tracker_sensor import Tracker
+from tracker_sensor import TrackerMQTTFormat
 from button_sensor import Button
 import random
 
@@ -27,7 +27,7 @@ class Publisher(Broker):
             "batV": 5 - counter * 0.001,
         }
 
-        payload = Tracker(important_info=tracker_info).info_json
+        payload = TrackerMQTTFormat(important_info=tracker_info).info_json
 
         return payload
 

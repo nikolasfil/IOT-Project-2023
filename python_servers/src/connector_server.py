@@ -1,6 +1,6 @@
 from flask import Flask, request
-from sensor_context_provider import SensorCP
-from tracker_sensor import Tracker
+from sensor_context_provider import SensorCPConnector
+from tracker_sensor import TrackerMQTTFormat
 from button_sensor import Button
 from context_provider import ContextProvider
 
@@ -40,7 +40,9 @@ def get_device():
     if entity_id is None:
         return "No entity_id given"
 
-    device = SensorCP(base_url="http://150.140.186.118:1026", entity_id=entity_id)
+    device = SensorCPConnector(
+        base_url="http://150.140.186.118:1026", entity_id=entity_id
+    )
 
     if device.response_json is None:
         return "No data found"
@@ -87,7 +89,7 @@ def handling_device(information):
 
     # Check if it is a Tracker or a Button
     if asset == "Asset tracking":
-        asset = Tracker(generic_info=information)
+        asset = TrackerMQTTFormat(generic_info=information)
 
     elif asset == "Buttons":
         asset = Button(generic_info=information)
@@ -104,7 +106,7 @@ def handling_device(information):
     # print(asset.cp_info)
 
     # Create the entity in the context broker
-    entity = SensorCP(entity_data=asset.cp_info)
+    entity = SensorCPConnector(entity_data=asset.cp_info)
     # If the entity with the given id exists in the context provider it, delete it and create a new. If it is not, create a new one
     entity.new_entity()
 

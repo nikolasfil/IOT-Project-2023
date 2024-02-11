@@ -72,7 +72,7 @@ class ClassFunctionalities:
         pass
 
 
-class Sensor(ClassFunctionalities):
+class SensorMQTTFormat(ClassFunctionalities):
     def __init__(self, *args, **kwargs) -> None:
         """
         Description:
@@ -173,7 +173,7 @@ class Sensor(ClassFunctionalities):
         return self.cp_info
 
 
-class SensorCPF(ClassFunctionalities):
+class SensorCPFormat(ClassFunctionalities):
     def __init__(self, *args, **kwargs):
         """
         Description:
