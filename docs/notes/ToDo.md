@@ -6,6 +6,7 @@ type:
 
 ## Table of Contents
 
+[ToDo](#developing-stage)
 - [Database](#database)
 - [Pages](#pages)
   - [1 Homepage](#1-homepage)
@@ -18,7 +19,32 @@ type:
 - [Notes](#notes)
 - [Useful links](#useful-links)
 
+
+## Developing Stage
+
+- [ ] Database:
+- [x] Database ERD
+- [x] Database Schema
+- [x] Database Creating Database
+- [x] Database Automated Script
+- [ ] Database Filling
+- [x] Database Filling Users
+- [x] Database Filling Devices
+- [ ] Database Filling Rest of Tables
+- [ ] Website
+- [x] Website Login
+- [x] Website Register
+- [ ] Website Home
+- [ ] Website Devices
+- [ ] Website User Page
+- [ ] Website Device Map
+- [ ] Deployment
+- [x] Docker compose file
+
+<!-- URL: -->
+
 ## Database
+
 
 1. fill the tables with dummy data
 
