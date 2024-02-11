@@ -148,8 +148,13 @@
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">handling_device</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">save_to_database</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">data</span></div>
 
+
+
+<span class="c1"># -------- Internal functions -------------</span>
 
 
 <div class="viewcode-block" id="handling_device">
@@ -182,11 +187,12 @@
     <span class="k">if</span> <span class="n">asset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
+    <span class="nb">print</span><span class="p">(</span><span class="n">asset</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">))</span>
     <span class="c1"># Change the information to the context provider format</span>
     <span class="n">asset</span><span class="o">.</span><span class="n">mqtt_to_cp</span><span class="p">()</span>
 
     <span class="c1"># Print the information for debug purposes</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">asset</span><span class="o">.</span><span class="n">cp_info</span><span class="p">)</span>
+    <span class="c1"># print(asset.cp_info)</span>
 
     <span class="c1"># Create the entity in the context broker</span>
     <span class="n">entity</span> <span class="o">=</span> <span class="n">SensorCP</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">asset</span><span class="o">.</span><span class="n">cp_info</span><span class="p">)</span>
@@ -198,6 +204,151 @@
 
     <span class="c1"># Useless, just as a check if we need to get the information from the context broker</span>
     <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="save_to_database">
+<a class="viewcode-back" href="../connector_server.html#connector_server.save_to_database">[docs]</a>
+<span class="k">def</span> <span class="nf">save_to_database</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Description:</span>
+<span class="sd">        Saves the data to the database</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (json): The data to be saved to the database</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First I got to take the serial of the device and get the id.</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO &quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">build_sql_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;Pressed &quot;</span>
+    <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;Tracked &quot;</span>
+
+    <span class="c1"># New lists</span>
+    <span class="n">query</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">) VALUES (&quot;</span>
+
+    <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span> <span class="o">+</span> <span class="s2">&quot; )&quot;</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/insert&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">ContextProvider</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">database_url</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+        <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+        <span class="n">automated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_id">
+<a class="viewcode-back" href="../connector_server.html#connector_server.get_id">[docs]</a>
+<span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="n">serial</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Description:</span>
+<span class="sd">        Get the id of the device from the database</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        serial (str): The serial number of the device</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The id of the device</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 &quot;</span><span class="p">,</span>
+                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">serial</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/select&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">ContextProvider</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">database_url</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+        <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+        <span class="n">automated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># print(db.response_python_object)</span>
+    <span class="c1"># Check what the response is and return only the id</span>
+    <span class="n">d_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">response_json</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;d_id&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d_id</span></div>
+
+
+
+<div class="viewcode-block" id="build_sql_data">
+<a class="viewcode-back" href="../connector_server.html#connector_server.build_sql_data">[docs]</a>
+<span class="k">def</span> <span class="nf">build_sql_data</span><span class="p">(</span><span class="n">device_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Description:</span>
+<span class="sd">        Build the data for the sql database</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        device_data (json): The data from the device</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        json: The data in the format for the sql database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Since the data is coming from the context provider format</span>
+    <span class="n">serial</span> <span class="o">=</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get the id of the device</span>
+    <span class="n">d_id</span> <span class="o">=</span> <span class="n">get_id</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>
+
+    <span class="c1"># If the id is not found, return None</span>
+    <span class="k">if</span> <span class="n">d_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Get the data from the device</span>
+
+    <span class="c1"># Create the data for the sql database</span>
+    <span class="n">sql_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="n">d_id</span><span class="p">,</span>
+        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sql_data</span><span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sql_data</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+        <span class="n">sql_data</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># if device_data.get(&quot;batteryVoltage&quot;) is not None:</span>
+    <span class="c1"># sql_data[&quot;battery_voltage&quot;] = device_data.get(&quot;batteryVoltage&quot;).get(&quot;value&quot;)</span>
+
+    <span class="k">return</span> <span class="n">sql_data</span></div>
 
 
 

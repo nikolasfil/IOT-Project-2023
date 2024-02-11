@@ -102,11 +102,13 @@
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># This needs to be from a folder</span>
         <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">time_sleeping</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="c1"># timestamp = &quot;2024-02-10T01:05:29.934532&quot;</span>
         <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
 
             <span class="n">tracker_info</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;position&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;digital-matter-oyster3:</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;digital-matter-oyster3:</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">55</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="c1"># cached</span>
                 <span class="s2">&quot;speedKmph&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
                 <span class="s2">&quot;latitudeDeg&quot;</span><span class="p">:</span> <span class="mf">38.2882484</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">*</span> <span class="mf">0.00001</span><span class="p">,</span>
@@ -116,21 +118,21 @@
             <span class="p">}</span>
 
             <span class="n">payload</span> <span class="o">=</span> <span class="n">Tracker</span><span class="p">(</span><span class="n">important_info</span><span class="o">=</span><span class="n">tracker_info</span><span class="p">)</span><span class="o">.</span><span class="n">info_json</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">time_sleeping</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">time_sleeping</span><span class="p">)</span>
 
             <span class="n">button_info</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;mclimate-multipurpose-button:1&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;mclimate-multipurpose-button:</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;deviceId&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;mclimate-multipurpose-button:</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">45</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;batteryVoltage&quot;</span><span class="p">:</span> <span class="mf">3.1</span><span class="p">,</span>
                 <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">21.7</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span>
                 <span class="s2">&quot;thermistorProperlyConnected&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-                <span class="s2">&quot;pressEvent&quot;</span><span class="p">:</span> <span class="s2">&quot;00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pressEvent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;0</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">}</span>
 
             <span class="n">payload</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">important_info</span><span class="o">=</span><span class="n">button_info</span><span class="p">)</span><span class="o">.</span><span class="n">info_json</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
             <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span></div>
 </div>

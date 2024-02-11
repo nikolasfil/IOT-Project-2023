@@ -11,13 +11,13 @@ import sys
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#path-setup
 
 # sys.path.insert(0, os.path.abspath("../../src"))
-parent_folder = Path(__file__).parent
-parent_folder = Path(parent_folder).parent
-parent_folder = Path(parent_folder).parent
-parent_folder = Path(parent_folder).parent
-parent_folder = Path(parent_folder).parent
-src_folder = Path(parent_folder, "python_servers", "src")
-# sys.path.insert(0, os.path.abspath(str(src_folder)))
+parent = Path(__file__).parent
+parent = parent.parent
+parent = parent.parent
+parent = parent.parent
+parent = parent.parent
+src_folder = Path(parent, "python_servers", "src")
+sys.path.insert(0, os.path.abspath(str(src_folder)))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
