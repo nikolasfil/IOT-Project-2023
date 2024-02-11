@@ -12,8 +12,11 @@ router.get('/sign_in', (req, res) => {
 
 router.post('/sign_in',
     (req, res) => {
-
-        database.checkUser(req.body.id, req.body.psw, (err, result) => {
+        let data = {
+            id: req.body.id,
+            password : req.body.psw
+        }
+        database.checkUser(data, (err, result) => {
             if (err) {
                 console.log(err);
                 req.session.alert_message = err;

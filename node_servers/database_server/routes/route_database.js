@@ -66,7 +66,11 @@ router.post("/checkIfUserExists",
     )}
 );
 
-
+/**
+ * @param {*} data JSON object with id 
+ * @param {*} data.id id of the user to get the details of the account
+ * @param {*} callback
+ */
 router.post("/userDetails",
     (req, res) => {
         let data = { 
@@ -85,9 +89,8 @@ router.post("/userDetails",
 
 router.post("/checkUser",
     (req, res) => {
-        let id = req.body.data.id;
-        let password = req.body.data.password;
-        database.checkUser(id,password, (err, exists) => {
+        let data = req.body.data
+        database.checkUser(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while checking if user credentials are accurate")

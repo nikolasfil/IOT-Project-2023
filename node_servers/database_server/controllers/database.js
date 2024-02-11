@@ -330,9 +330,17 @@ exports.userDetails= (data, callback) =>  {
     }
 }
 
-exports.checkUser= (id, password, callback) =>  {
+/**
+ * @param {*} data : Json file that consists of the following parameters 
+ * @param {*} data.id : The id of the user we want to check if exists (not optional) 
+ * @param {*} data.password : The password of the user we want to check if exists (not optional)
+ * @param {*} callback 
+ */
+exports.checkUser= (data, callback) =>  {
 
-    let user, error_message;
+    let user;
+    let id = data.id;
+    let password = data.password;
 
     try {
         const stmt = betterDb.prepare('Select * from USER where u_id = ?')
@@ -343,7 +351,6 @@ exports.checkUser= (id, password, callback) =>  {
                 callback(null, user)
             }
             else {
-
                 callback('Wrong Password', null)
             }
         } else {

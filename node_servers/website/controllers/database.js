@@ -158,13 +158,10 @@ exports.userDetails = (data, callback) =>  {
     });
 }
 
-exports.checkUser= (id, password, callback) =>  {
+exports.checkUser= (data, callback) =>  {
 
     let link = '/checkUser'
-    let link_data = {
-        "id": id,
-        "password": password
-    }
+    let link_data = data 
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
