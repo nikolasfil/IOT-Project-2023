@@ -10,16 +10,16 @@ class ClassFunctionalities:
         self.limit = 10
         self.step = 0
 
-    def __str__(self):
-        """
-        Description:
-            Returns the information in string format whenever the instance is called as a string
-            E.g. print(self)
+    # def __str__(self):
+    #     """
+    #     Description:
+    #         Returns the information in string format whenever the instance is called as a string
+    #         E.g. print(self)
 
-        Returns:
-            str: stringify the information dict
-        """
-        return str(self.info)
+    #     Returns:
+    #         str: stringify the information dict
+    #     """
+    #     return str(self.info)
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         """
@@ -49,7 +49,8 @@ class ClassFunctionalities:
         Description:
             Returns the iterator of the information dict
         """
-        return iter(self.info)
+        # return iter(self.info)
+        return self
 
     def __next__(self):
         """

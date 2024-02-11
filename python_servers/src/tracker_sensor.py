@@ -390,3 +390,5 @@ if __name__ == "__main__":
     print(next(tracker).get("counter"))
     print(next(tracker).get("counter"))
     print(next(tracker).get("counter"))
+    for i in tracker:
+        print(i.cp_info)
