@@ -34,7 +34,7 @@ class CoordsGenerator:
         """
         with open(filename, "w", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude", "Longitude"])
+            writer.writerow(["latitude", "longitude"])
             num = random.randint(40, 50)
             for _ in range(num):
                 writer.writerow(coordinates.pop(0))
