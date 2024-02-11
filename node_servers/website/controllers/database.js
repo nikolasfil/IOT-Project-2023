@@ -12,7 +12,6 @@ require('dotenv').config();
 async function fetchResponse(route, data, callback){
     
     let link = `http://${process.env.DBURL}:7080` + route
-    console.log(link)
 
     let link_data = {
         method: "POST",
@@ -22,9 +21,7 @@ async function fetchResponse(route, data, callback){
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({data:data}),
-        // body: data,
-        
+        body: JSON.stringify({data:data}),        
     }
     
     let response =  fetch(link, link_data).then((res) => {
