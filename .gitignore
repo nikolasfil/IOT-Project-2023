@@ -7,5 +7,4 @@ node_servers/website/model/sessions/session.sqlite
 **/app_venv/*
 **/tempCodeRunnerFile.py/*
 **/README_link/*
-**/sessions/session.sqlite/*
-
+**/session.sqlite/*
