@@ -45,36 +45,17 @@ async function fetchResponse(route, data, callback){
     return response;
 }
 
-/**
- * 
- * 
- * @param {*} activated_name 
- * @param {*} linker 
- * @param {*} regex 
- * @returns 
- */
 
-exports.addingActivated=(activated_name, linker, regex)=> {
-    let query_activated ;
-    
-    console.log(regex)
-    if (!regex){
-        query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
-    }
-    else {
-        let searchable = [] ;
 
-        this.getAllDevicesJson(data={linker:'or', regex:false}, function(err, rows) {
-            searchable.push(rows.map(row => row.serial));
-            searchable.push(rows.map(row => row.d_id));
-            // searchable.push(rows.map(row => row.user));
-        })
-        
-        query_activated = activated_name.map(
-            (name) => `${name} in (${getRegex(name, searchable).map(word => `'${word}'`).join(',')})`
-            ).join(linker)
-    }    
-    return query_activated
+exports.databaseRequest= (link, data, callback) =>  {
+
+    fetchResponse(link, data,(err, data) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, data)
+        }
+    });
 }
 
 // --------- Dynamic Selection from Database 
