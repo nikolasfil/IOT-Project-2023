@@ -2,9 +2,11 @@
 ##  Index for obsidian
 
 ```dataview 
-LIST
+TABLE
+rows.file.link
 FROM "UNI/Semester-9/IOT/project/project_doc_l/documentation"
 where file.name!=this.file.name
+group by split(file.folder,"UNI/Semester-9/IOT/project/project_doc_l/documentation/")[1] as Folder
 ```
 
 

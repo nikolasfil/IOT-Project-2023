@@ -19,17 +19,11 @@ router.post('/sign_in',
                 req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
-            else {
-                if (!result) {
-                    req.session.alert_message = 'Wrong id or password';
-                    res.redirect('/')
-                }
-                else {
-                    req.session.signedIn = true;
-                    req.session.userid = result.u_id;
-                    req.session.role = result.role;
-                    res.redirect(req.get('referer'));
-                }
+            else {                
+                req.session.signedIn = true;
+                req.session.userid = result.u_id;
+                req.session.role = result.role;
+                res.redirect(req.get('referer'));
             }
         });
     }

@@ -29,3 +29,38 @@ exports.alerting = (req, res,next) => {
     }
     next();
 }
+
+
+/**
+ * Middleware that checks if a user has admin rights
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+exports.checkAdminRights = (req, res, next) => {
+    if (req.session.role === 'admin' ) {
+        next();
+    } 
+    else {
+        req.session.alert_message = 'You have to be an admin to access this function';
+        res.redirect('/');
+    }
+}
+
+
+
+/**
+ * Middleware that checks if a user has admin rights
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+exports.checkAdminRights = (req, res, next) => {
+    if (req.session.signedIn && req.session.role === 'admin') {
+        next();
+    }
+    else {
+        req.session.alert_message = 'You have to be an admin to access this function';
+        res.redirect('/');
+    }
+}

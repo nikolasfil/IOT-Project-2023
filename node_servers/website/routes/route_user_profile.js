@@ -19,7 +19,14 @@ router.get('/user_profile',
             }
         });
     },
-    
+    (req,res,next) => {
+        if (req.session.role == 'admin' || res.locals.profile.u_id == req.session.userid) {
+            next();
+        } else {
+            req.session.alert_message = 'You have to be an admin to access this function';
+            res.redirect('/');
+        }
+    },
     (req, res) => { 
         res.render('user_profile', {
             title: 'User Profile',
