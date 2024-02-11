@@ -57,7 +57,11 @@ router.get('/search',
     // login.checkAuthentication,
 
     (req, res, next) => {
-        database.getAllAttributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
+        let data = {
+            "source": 'DEVICE',
+            "attribute": 'status',
+        }
+        database.getAllAttributes(data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -69,7 +73,11 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttributes('DEVICE','type', limit = null, offset = null, function (err, devices)    {   
+        let data = {
+            "source": 'DEVICE',
+            "attribute": 'type',
+        }
+        database.getAllAttributes(data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

@@ -34,11 +34,9 @@ router.post('/getAllDevicesJson',
 
 router.post('/getAllAttributes',
     (req, res) => {
-        let source = req.body.data.source;
-        let attribute = req.body.data.attribute; 
-        let limit = req.body.data.limit;
-        let offset = req.body.data.offset;
-        database.getAllAttributes( source,attribute,limit,offset, (err, attributes) => {
+        let data = req.body.data;
+        
+        database.getAllAttributes( data, (err, attributes) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting attributes")

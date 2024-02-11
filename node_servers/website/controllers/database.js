@@ -113,14 +113,19 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 }
 
 
-exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
+/**
+ * 
+ * @param {*} data : Json file that consists of the following parameters  
+ * @param {*} source : The source of the data we want to get the attributes from
+ * @param {*} attribute : The attribute we want to get the data from
+ * @param {*} limit : The limit of the number of results we want to get
+ * @param {*} offset : The offset of the results we want to get
+ * 
+ * @param {*} callback 
+ */
+exports.getAllAttributes=(data, callback) =>  {
     let link = '/getAllAttributes'
-    let link_data = {
-        "source": source,
-        "attribute": attribute,
-        "limit": limit,
-        "offset": offset
-    }
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
