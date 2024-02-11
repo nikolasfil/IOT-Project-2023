@@ -31,7 +31,10 @@ router.post('/sign_in',
 
 router.post('/sign_up',
     (req, res, next) => {
-        database.checkIfUserExists(req.body.email, (err, result) => {
+        let data = {
+            id: req.body.email
+        }
+        database.checkIfUserExists(data, (err, result) => {
             if (err){
                 console.log(err);
                 req.session.alert_message = err;

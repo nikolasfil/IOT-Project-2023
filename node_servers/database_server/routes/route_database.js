@@ -51,8 +51,11 @@ router.post('/getAllAttributes',
 
 router.post("/checkIfUserExists",
     (req, res) => {
-        let id = req.body.data.id;
-        database.checkIfUserExists(id, (err, exists) => {
+        let data = {
+            id : req.body.data.id
+        }
+            
+        database.checkIfUserExists(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while checking if user exists")

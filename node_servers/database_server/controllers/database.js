@@ -292,12 +292,17 @@ exports.getAllAttributes= (data, callback) =>  {
     callback(null, result);
 }
 
-
-exports.checkIfUserExists= (id, callback) =>  {
+/**
+ * 
+ * @param {*} data : Json file that consists of the following parameters 
+ * @param {*} id : The id of the user we want to check if exists (not optional)
+ * @param {*} callback 
+ */
+exports.checkIfUserExists= (data, callback) =>  {
     const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
     let user;
     try {
-        user = stmt.get(id)
+        user = stmt.get(data.id)
         if (user) {
             callback(null, true)
         } else {
