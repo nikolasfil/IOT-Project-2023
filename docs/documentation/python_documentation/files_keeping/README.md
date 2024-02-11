@@ -11,7 +11,7 @@ cd python_servers
 source app_venv/bin/activate
 ```
 
-## Installation
+## Installation 
 
 ```bash
 pip install sphinx
@@ -56,7 +56,6 @@ parent = Path(__file__).parent
 parent = parent.parent
 parent = parent.parent
 parent = parent.parent
-parent = parent.parent
 src_folder = Path(parent, "python_servers", "src")
 sys.path.insert(0, os.path.abspath(str(src_folder)))
 
@@ -94,7 +93,7 @@ make clean html
 ```
 
 
-## View
+## View 
 
 
 To view it simply run a python server insided the python_documentation
@@ -106,7 +105,7 @@ python -m http.server 8080
 and go to the [url](http://localhost:8080/_build/html/)
 
 
-## Resources
+## Resources 
 
 [yt-tutorial](https://www.youtube.com/watch?v=5s3JvVqwESA)
 

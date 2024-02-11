@@ -1,44 +1,3 @@
----
-date: 2024-02-04
-subject: IOT
-type: 
----
-
-After activating the venv 
-
-```bash
-cd python_servers
-source app_venv/bin/activate
-```
-
-## Installation
-
-```bash
-pip install sphinx
-```
-
-
-## Documentation
-
-Run the command and fill out the necessary information about the project 
-
-```bash
-sphinx-quickstart
-```
-
-Run the command specifying where the files are for the sphinx to identify
-
-```bash
-sphinx-apidoc -o . /home/figaro/Programms/Github_Projects/NikolasProjects/IOT-Project-2023/python_servers/src/
-```
-
-Edit the conf.py
-
-```bash
-vim conf.py
-```
-
-```python
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -72,6 +31,8 @@ author = "nikolasfil"
 
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
     # "sphinx_rtd_dark_mode",
 ]
 
@@ -82,31 +43,6 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
+# html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
-
-```
-
-Lastly Run the make command to start the process.
-
-```bash
-make clean html
-```
-
-
-## View
-
-
-To view it simply run a python server insided the python_documentation
-
-```bash
-python -m http.server 8080
-```
-
-and go to the [url](http://localhost:8080/_build/html/)
-
-
-## Resources
-
-[yt-tutorial](https://www.youtube.com/watch?v=5s3JvVqwESA)
-

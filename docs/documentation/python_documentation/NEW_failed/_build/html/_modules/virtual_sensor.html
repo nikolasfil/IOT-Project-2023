@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>virtual_sensor &mdash; IOT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IOT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../broker.html">broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../button_sensor.html">button_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../connector_server.html">connector_server module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../context_provider.html">context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publisher_broker.html">publisher_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensor_context_provider.html">sensor_context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../subscriber_broker.html">subscriber_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tracker_sensor.html">tracker_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../virtual_sensor.html">virtual_sensor module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">virtual_sensor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for virtual_sensor</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<div class="viewcode-block" id="Sensor">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor">[docs]</a>
+<span class="k">class</span> <span class="nc">Sensor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initializes the Sensor class</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: The information that is sent from the mqtt server</span>
+<span class="sd">                deviceInfo (json): The information about the device</span>
+<span class="sd">                generic_info (json): The generic information about the device</span>
+<span class="sd">                important_info (json): The important information about the device</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize the information dictionary that will be used to access the sensor information</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">):</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_datetime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;deduplicationId&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_unique_hash</span><span class="p">(),</span>
+            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+            <span class="s2">&quot;deviceInfo&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Initialize the generic information dictionary if it is provided</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;generic_info&quot;</span><span class="p">)</span>
+
+        <span class="c1"># initialize the generic information dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_values</span><span class="p">()</span>
+
+        <span class="c1"># Initialize the important information dictionary if it is provided</span>
+        <span class="n">important_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;important_info&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">important_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Initialize the information dictionary with the important information provided, and the generic won&#39;t matter so much</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="n">important_info</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Initialize the information dictionary with just the generic information, so that it is easier to dump all the data given in a **kwargs format</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">generic_info</span><span class="p">)</span>
+
+        <span class="c1"># Initialize the json format of the information to use in payloads</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_to_json</span><span class="p">()</span>
+
+        <span class="c1"># Initialize the variable that will be used when transforming the information to a format that the Context Provider can understand</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Sensor.generate_unique_hash">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash">[docs]</a>
+    <span class="k">def</span> <span class="nf">generate_unique_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Generates a unique hash for the information using the current timestamp</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str : The unique hash generated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get current timestamp</span>
+        <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+
+        <span class="c1"># Convert timestamp to string and hash it using uuid</span>
+        <span class="n">hashed_value</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid5</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">NAMESPACE_DNS</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_time</span><span class="p">))</span>
+
+        <span class="n">formatted_hash</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hashed_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">formatted_hash</span></div>
+
+
+<div class="viewcode-block" id="Sensor.get_datetime">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.get_datetime">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Get the current datetime in isoformat</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: datetime in isoformat format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Sensor.info_to_json">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.info_to_json">[docs]</a>
+    <span class="k">def</span> <span class="nf">info_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Converts the information to a json format</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            json: The information in json format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sensor.mqtt_to_cp">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">[docs]</a>
+    <span class="k">def</span> <span class="nf">mqtt_to_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Transforms the information to a format that the Context Provider can understand</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: _description_</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _type_: _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SensorCPF">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF">[docs]</a>
+<span class="k">class</span> <span class="nc">SensorCPF</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initializes the SensorCPF class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: The information that is sent from the mqtt server</span>
+<span class="sd">                entity_data (json): The information about the device</span>
+<span class="sd">                id (str): The id of the device</span>
+<span class="sd">                type (str): The type of the device</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;entity_data&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Returns the information in string format whenever the instance is called as a string</span>
+<span class="sd">            E.g. print(self)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: stringify the information dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description :</span>
+<span class="sd">            Returns the information as a dict whenever the instance is called</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The information dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Returns the value of the key given. Whenever the instance is used as a dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SensorCPF.default_values">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.default_values">[docs]</a>
+    <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Initializes the default values of the SensorCPF class to keep as an interface</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SensorCPF.new_entity">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.new_entity">[docs]</a>
+    <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Creates a new entity with the given entity data, given the values adding the default values as well</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            entity_data (dict, optional): information about the device. Defaults to None.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: if the entity data is not initialized when the instance is created or when the method is called</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: completed form of the entity data in dictionary format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entity_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span>
+
+        <span class="k">if</span> <span class="n">entity_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The entity_data is not given&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Assigning the values to the instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_dict</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_value</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature_metadata</span> <span class="o">=</span> <span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_metadata&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">entity_data</span></div>
+
+
+<div class="viewcode-block" id="SensorCPF.get_date">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.get_date">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isoformat</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Get the date from the isoformat given</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            isoformat (str): The isoformat of the date</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The date in isoformat format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">isoformat</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SensorCPF.get_time">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.get_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isoformat</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Get the time from the isoformat given</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            isoformat (str): The isoformat of the time</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The time in isoformat format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">isoformat</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, nikolasfil.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
