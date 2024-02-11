@@ -16,14 +16,12 @@ router.post('/fetchResults/:numOf',
 
 
 router.post('/getAllDevicesJson',
-    
     (req, res) => {
         database.getAllDevicesJson(data = req.body.data , (err, devices) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting devices")
             } else {
-                // console.log(devices);
                 res.send(JSON.stringify(devices));
             }
         }

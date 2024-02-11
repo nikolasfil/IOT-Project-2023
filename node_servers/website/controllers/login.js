@@ -50,8 +50,6 @@ exports.checkAuthentication = (req, res, next) => {
 }
 
 
-
-
 /**
  * Middleware that checks if a user has admin rights
  * @param {*} req 

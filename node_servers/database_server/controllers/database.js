@@ -245,7 +245,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     }
 
     // ----------- Printing the final query -----------
-    console.log(query)
+    // console.log(query)
 
     try {
         stmt = betterDb.prepare(query)
@@ -257,7 +257,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         }
 
     } catch (err) {
-        console.log(query)
+        console.log(query, err)
         callback(err, null)
     }
     callback(null, device);
