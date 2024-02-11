@@ -69,8 +69,10 @@ router.post("/checkIfUserExists",
 
 router.post("/userDetails",
     (req, res) => {
-        let id = req.body.data.id;
-        database.userDetails(id, (err, exists) => {
+        let data = { 
+            id : req.body.data.id
+        };
+        database.userDetails(data, (err, exists) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting user details")

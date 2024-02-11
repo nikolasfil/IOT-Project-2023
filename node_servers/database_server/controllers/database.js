@@ -314,10 +314,10 @@ exports.checkIfUserExists= (data, callback) =>  {
     }
 }
 
-exports.userDetails= (id, callback) =>  {
-    // let query = `Select u_id, first_name, last_name, phone,role from USER where u_id = ? `
+exports.userDetails= (data, callback) =>  {
+    let id = data.id
     let query = `Select * from USER where u_id = ? `
-    // const stmt = betterDb.prepare('Select u_id, first_name, last_name, phone,role from USER where u_id = ? ')
+
     const stmt = betterDb.prepare(query)
     let user;
     try {

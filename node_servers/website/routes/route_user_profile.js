@@ -23,7 +23,10 @@ const idAssignMiddleware = (req, res, next) => {
 }
 
 const userInfoMiddleware = (req, res, next) => {
-    database.userDetails(res.locals.user_id, (err, result) => {
+    let data = {   
+        id: res.locals.user_id
+    }
+    database.userDetails(data, (err, result) => {
         if (err) {
             console.log(err);
         }

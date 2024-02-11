@@ -133,11 +133,10 @@ exports.getAllAttributes=(data, callback) =>  {
     });
 }
 
-exports.checkIfUserExists= (id, callback) =>  {
+
+exports.checkIfUserExists= (data, callback) =>  {
     let link = '/checkIfUserExists'
-    let link_data = {
-        "id": id
-    }
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
@@ -147,11 +146,9 @@ exports.checkIfUserExists= (id, callback) =>  {
     });
 }
 
-exports.userDetails= (id, callback) =>  {
+exports.userDetails = (data, callback) =>  {
     let link = '/userDetails'
-    let link_data = {
-        "id": id
-    }
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
