@@ -220,7 +220,9 @@ class Tracker(Sensor):
         return self.cp_info
 
     def generator(self):
-        self.info["counter"] = self.step
+        # self.info["counter"] = self.step
+        # Here I should provide the coordinate generator
+        pass
 
 
 class TrackerCPF(SensorCPF):
@@ -387,8 +389,8 @@ if __name__ == "__main__":
     tracker.mqtt_to_cp()
     print(tracker.cp_info)
 
-    print(next(tracker).get("counter"))
-    print(next(tracker).get("counter"))
-    print(next(tracker).get("counter"))
+    print(next(tracker))
+    print(next(tracker))
+    print(next(tracker))
     for i in tracker:
-        print(i.cp_info)
+        print(i.keys())
