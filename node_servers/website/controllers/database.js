@@ -174,9 +174,9 @@ exports.checkUser= (data, callback) =>  {
 
 // --------- Static Selection in the database -----------
 
-exports.select=(command, callback) =>  {
+exports.select=(data, callback) =>  {
     let link = '/select'
-    let link_data = {command: command}
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)
@@ -188,9 +188,9 @@ exports.select=(command, callback) =>  {
 }
 
 
-exports.insert = (command,callback) => {
+exports.insert = (data,callback) => {
     let link = '/insert'
-    let link_data = {command: command}
+    let link_data = data
     fetchResponse(link, link_data,(err, data) => {
         if (err) {
             callback(err, null)

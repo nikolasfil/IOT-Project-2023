@@ -104,9 +104,9 @@ router.post("/checkUser",
 
 router.post("/select",
     (req, res) => {
-        let command = req.body.data.command;
+        let data = req.body.data;
 
-        database.select(command, (err, result) => {
+        database.select(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while executing select command")
@@ -120,11 +120,11 @@ router.post("/select",
 
 router.post("/insert",
     (req, res) => {
-        let command = req.body.data.command;
+        let data = req.body.data;
         // console.log(req.body);
         
 
-        database.insert(command, (err, result) => {
+        database.insert(data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while executing insert command")

@@ -127,10 +127,10 @@ router.get('/device_info',
     (req,res,next) => {
         // select d_id,user_id,date_received,date_returned  
         // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
-        let command = {}
-        command.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
-        command.arguments = [req.query['serial']]
-        database.select(command,(err,device) => {
+        let data = {}
+        data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
+        data.arguments = [req.query['serial']]
+        database.select(data,(err,device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

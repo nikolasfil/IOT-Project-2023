@@ -392,12 +392,12 @@ exports.getDeviceData=(data,callback) => {
 
 // --------- Static Selection in the database -----------
 
-exports.select=(command, callback) =>  {
+exports.select=(data, callback) =>  {
     let stmt, result;
     try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.all(...command.arguments);
+        stmt = betterDb.prepare(data.query)
+        if (data.arguments.length) {
+            result = stmt.all(...data.arguments);
         }
         else {
             result = stmt.all();
@@ -409,12 +409,12 @@ exports.select=(command, callback) =>  {
 }
 
 
-exports.insert = (command,callback) => {
+exports.insert = (data,callback) => {
     let stmt, result;
     try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.run(command.arguments);
+        stmt = betterDb.prepare(data.query)
+        if (data.arguments.length) {
+            result = stmt.run(data.arguments);
         }
         else {
             result = stmt.run();
