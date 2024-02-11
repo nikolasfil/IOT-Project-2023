@@ -45,8 +45,12 @@ async function fetchResponse(route, data, callback){
     return response;
 }
 
-
-
+/**
+ * 
+ * @param {*} link 
+ * @param {*} data 
+ * @param {*} callback 
+ */
 exports.databaseRequest= (link, data, callback) =>  {
 
     fetchResponse(link, data,(err, data) => {
@@ -57,143 +61,3 @@ exports.databaseRequest= (link, data, callback) =>  {
         }
     });
 }
-
-// --------- Dynamic Selection from Database 
-
-
-/**
- * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
- * @param {*} data contains everything in a json format (not optional)
- * @param {*} id For a specific device (optional)
- * @param {*} serial For a specific serial (optional)
- * @param {*} battery For a specific battery (optional)
- * @param {*} status For a specific status (optional)
- * @param {*} type For a specific type (optional)
- * @param {*} limit Limiting the number of results (optional)
- * @param {*} offset Starting from a specific result (optional)
- * @param {*} numOf true or null, if we want to focus more on the number of results back (optional)
- * @param {*} filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
- * @param {*} callback function that handles the results
- *  
- * This function is the same as getAllDevices but it returns the results in a json format
-*/
-exports.getAllDevicesJson= (data,  callback) =>  {
-    
-    let link = '/getAllDevicesJson'
-    let link_data = data
-
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-
-/**
- * 
- * @param {*} data : Json file that consists of the following parameters  
- * @param {*} source : The source of the data we want to get the attributes from
- * @param {*} attribute : The attribute we want to get the data from
- * @param {*} limit : The limit of the number of results we want to get
- * @param {*} offset : The offset of the results we want to get
- * 
- * @param {*} callback 
- */
-exports.getAllAttributes=(data, callback) =>  {
-    let link = '/getAllAttributes'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-
-exports.checkIfUserExists= (data, callback) =>  {
-    let link = '/checkIfUserExists'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-exports.userDetails = (data, callback) =>  {
-    let link = '/userDetails'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-exports.checkUser= (data, callback) =>  {
-
-    let link = '/checkUser'
-    let link_data = data 
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-
-// --------- Static Selection in the database -----------
-
-exports.select=(data, callback) =>  {
-    let link = '/select'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-
-}
-
-
-exports.insert = (data,callback) => {
-    let link = '/insert'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-
-// --------- Dynamic Insertion into Database --------
-
-exports.addUser= (data, callback) =>  {
-    let link = '/addUser'
-    let link_data = data
-    fetchResponse(link, link_data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
-}
-
-// ----------------------------------------------------
