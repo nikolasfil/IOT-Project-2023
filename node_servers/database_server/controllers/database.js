@@ -289,6 +289,11 @@ exports.checkIfUserExists= (id, callback) =>  {
     let user;
     try {
         user = stmt.get(id)
+        if (user) {
+            callback(null, true)
+        } else {
+            callback(null, false)
+        }
         callback(null, user)
     }
     catch (err) {

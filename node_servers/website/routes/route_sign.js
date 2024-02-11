@@ -32,21 +32,24 @@ router.post('/sign_in',
 router.post('/sign_up',
     (req, res, next) => {
         database.checkIfUserExists(req.body.email, (err, result) => {
-            if (result && !err) {
-                req.session.alert_message = 'User already exists';
-                res.redirect(req.get('referer'));
-            }
-            else {
-                next();
-            }
-            if (err && !result) {
+            if (err){
                 console.log(err);
                 req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
-            else {
-                next();
+            if (result) {
+                req.session.alert_message = 'User already exists';
+                res.redirect(req.get('referer'));
             }
+            next();
+            // if (err && !result) {
+            //     console.log(err);
+            //     req.session.alert_message = err;
+            //     res.redirect(req.get('referer'));
+            // }
+            // else {
+            //     next();
+            // }
         });
     },
     (req, res) => {
