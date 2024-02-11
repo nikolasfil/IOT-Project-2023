@@ -384,6 +384,8 @@ exports.checkUser= (data, callback) =>  {
 
 /**
  * 
+ * Returns the information of the latest assigned device that the user is still using 
+ * 
  * @param {*} data 
  * @param {*} data.device
  * @param {*} data.id 
@@ -399,13 +401,12 @@ exports.getDeviceData=(data,callback) => {
         device_data.push(` Tracked`)
     } else if (data.device==="Buttons") {
         device_data.push(`, P.event`)
-        device_data.push(` Buttons`)
+        device_data.push(` Pressed`)
     } else {
         callback('Device not Specified', null)
     }
 
     query += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id where P.date >= A.date_received and ( A.date_returned IS NULL ) and user_id=?` 
-    
     try {
         stmt = betterDb.prepare(query)
         result = stmt.all(data.id);

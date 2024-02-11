@@ -149,6 +149,20 @@ router.post("/addUser",
 );
 
 
+router.post("/getAssignedDeviceInfoPerUser",
+    (req, res) => {
+        let data = req.body.data;
+        database.getDeviceData(data, (err, devices) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while getting assigned devices")
+            } else {
+                res.send(JSON.stringify(devices));
+            }
+        }
+    )}
+);
+
 router.get("/test",
     (req, res) => {
         res.send("Test");
