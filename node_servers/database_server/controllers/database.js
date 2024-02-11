@@ -252,26 +252,27 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 }
 
 
-exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
+// exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
+exports.getAllAttributes=(data, callback) =>  {
     let stmt, result;
     let query = `Select distinct`
 
     let list = []
 
-    query += ` ${attribute} as name from ${source}`
+    query += ` ${data.attribute} as name from ${data.source}`
 
-    query += ` where ${attribute} is not null` 
-    query += ` order by ${attribute} asc`
+    query += ` where ${data.attribute} is not null` 
+    query += ` order by ${data.attribute} asc`
 
-    if (limit) {
+    if (data.limit) {
         query += ' LIMIT ?'
-        list.push(limit)
+        list.push(data.limit)
     }
 
-    // if (offset) {
-    //     query += ' OFFSET ?'
-    //     list.push(offset)
-    // }
+    if (data.offset) {
+        query += ' OFFSET ?'
+        list.push(data.offset)
+    }
     
 
     try {
@@ -357,22 +358,11 @@ exports.getDeviceData=(data,callback) => {
         callback('Device not Specified', null)
     }
 
-    query += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id where P.date >= A.date_received and ( A.date_returned IS NULL ) and user_id=?`
-
-    // P.longitude, P.latitude,    
-    // from Assigned as A join 
-    // Tracked 
-    // as P on P.device_id=A.device_id
-    // where 
-    // P.date >= A.date_received and ( A.date_returned IS NULL ) 
-    // and user_id=?`
-    
-    
-
+    query += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id where P.date >= A.date_received and ( A.date_returned IS NULL ) and user_id=?` 
     
     try {
         stmt = betterDb.prepare(query)
-        result = stmt.all(data);
+        result = stmt.all(data.id);
     } catch (err) {
         callback(err, null)
     }
