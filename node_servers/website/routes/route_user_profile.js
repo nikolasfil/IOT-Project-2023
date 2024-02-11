@@ -16,14 +16,17 @@ const userProfilePageMiddleware = (req, res) => {
 const idAssignMiddleware = (req, res, next) => {
     if (req.query.id){
         res.locals.user_id = req.query.id;
-    } else {
+    } else {    
         res.locals.user_id = req.session.userid;
     }
     next();
 }
 
 const userInfoMiddleware = (req, res, next) => {
-    database.userDetails(res.locals.user_id, (err, result) => {
+    let data = {   
+        id: res.locals.user_id
+    }
+    database.databaseRequest(link='/userDetails',data, (err, result) => {
         if (err) {
             console.log(err);
         }
