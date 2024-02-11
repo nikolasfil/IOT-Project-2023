@@ -342,6 +342,44 @@ exports.checkUser= (id, password, callback) =>  {
 }
 
 
+exports.getDeviceData=(data,callback) => {
+    let stmt, result;
+    let query = `Select A.device_id, P.date, P.time`
+    let device_data = []
+
+    if (data.device==="Asset tracking"){
+        device_data.push(`, P.longitude, P.latitude`)
+        device_data.push(` Tracked`)
+    } else if (data.device==="Buttons") {
+        device_data.push(`, P.event`)
+        device_data.push(` Buttons`)
+    } else {
+        callback('Device not Specified', null)
+    }
+
+    query += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id where P.date >= A.date_received and ( A.date_returned IS NULL ) and user_id=?`
+
+    // P.longitude, P.latitude,    
+    // from Assigned as A join 
+    // Tracked 
+    // as P on P.device_id=A.device_id
+    // where 
+    // P.date >= A.date_received and ( A.date_returned IS NULL ) 
+    // and user_id=?`
+    
+    
+
+    
+    try {
+        stmt = betterDb.prepare(query)
+        result = stmt.all(data);
+    } catch (err) {
+        callback(err, null)
+    }
+    callback(null, result);
+
+}
+
 // --------- Static Selection in the database -----------
 
 exports.select=(command, callback) =>  {
