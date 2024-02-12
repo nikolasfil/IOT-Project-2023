@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../controllers/database.js');
-const login = require('../controllers/login.js')
+const authentication = require('../controllers/authentication.js')
 const c_search = require('../controllers/c_search.js')
 
 

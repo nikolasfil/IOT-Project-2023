@@ -1,5 +1,5 @@
 const express = require('express');
-const login = require('../controllers/login.js')
+const authentication = require('../controllers/authentication.js')
 
 const database = require('../controllers/database.js');
 
@@ -46,7 +46,7 @@ const userInfoMiddleware = (req, res, next) => {
 }
 
 router.get('/user_profile', 
-    login.checkAuthentication,
+    authentication.checkAuthentication,
     idAssignMiddleware,
     userInfoMiddleware,
     userProfilePageMiddleware

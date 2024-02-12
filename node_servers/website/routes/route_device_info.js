@@ -1,6 +1,6 @@
 const express = require('express');
 
-const login = require('../controllers/login.js')
+const authentication = require('../controllers/authentication.js')
 const router = express.Router();
 const database = require('../controllers/database.js');
 

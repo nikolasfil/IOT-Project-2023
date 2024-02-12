@@ -2,82 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const database = require('../controllers/database.js');
-const login = require('../controllers/login.js');
+const authentication = require('../controllers/authentication.js');
+const middleware = require('../controllers/middleware.js')
 
-
-/**
- * Middleware to get all active devices if the user is an admin
- */
-getAllDevicesJson= (req, res, next) => {
-    if (res.locals.signedIn && res.locals.is_admin) {
-        database.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.locals.active_trackers = devices;
-                next();
-            }
-        })
-    } else {
-        next();
-    }
-}
-
-
-/**\
- * Middleware to gets the tracker data of the last tracker assigned to the user
- */
-getAssignedTrackerInfoPerUser=(req, res, next) => {
-    if (res.locals.signedIn) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.locals.assigned_tracker = devices;
-                next();
-            }
-        })
-    } else {
-        next();
-    }
-}
-
-/**
- * Middleware to gets the tracker data of the last tracker assigned to the user
- */
-getAssignedButtonInfoPerUser=(req, res, next) => {
-    if (res.locals.signedIn) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')   
-            } else {
-                res.locals.assigned_button = devices;
-                next();
-            }
-        })
-    } else {
-        next();
-    }
-}
-
-getAllActiveUsers = (req, res, next) => {
-    if (res.locals.signedIn && res.locals.is_admin) {
-        database.databaseRequest(link='/user/active',data = {}, function (err, users) {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.locals.active_users = users;
-                next();
-            }
-        })
-    } else {
-        next();
-    }
-}
 
 
 homepage_render = (req, res) => {
@@ -91,12 +18,12 @@ homepage_render = (req, res) => {
 }
 
 const homepage_route_list = [
-    login.checkAuthentication,
-    login.checkAdminRights,
-    getAssignedTrackerInfoPerUser,
-    getAssignedButtonInfoPerUser,
-    getAllActiveUsers,
-    getAllDevicesJson,
+    authentication.checkAuthentication,
+    authentication.checkAdminRights,
+    middleware.getAssignedTrackerInfoPerUser,
+    middleware.getAssignedButtonInfoPerUser,
+    middleware.getAllActiveUsers,
+    middleware.getAllActiveTrackers,
     homepage_render
 ] 
 
