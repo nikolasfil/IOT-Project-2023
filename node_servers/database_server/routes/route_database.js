@@ -34,6 +34,18 @@ router.post('/user/:function',
             dbFunction = database.getAllActiveUsers
         } else if (func === "assigned_dates") {
             dbFunction = database.getAssignedDates;
+        } else if (func === "location_data") {
+            data["device"] = "Asset tracking";
+            if (req.query.date) {
+                data["date"] = req.query.date;
+            }
+            dbFunction = database.getActiveAssignedDeviceData 
+        } else if (func === "button_data") {
+            data["device"] = "Buttons";
+            if (req.query.date) {
+                data["date"] = req.query.date;
+            }
+            dbFunction = database.getActiveAssignedDeviceData 
         } else {
             res.status(404).send("Invalid function");
         }
@@ -80,16 +92,19 @@ router.post("/devices/:function",
     }
 )
 
-router.post("/device/:function/:device",
+router.post("/device/:function/:type",
     (req, res) => {
         let data = req.body.data;
         let func = req.params.function;
-        let device = req.params.device;
+        let type = req.params.type;
         let dbFunction = null;
-        if (func === "attributes") {
-            dbFunction = database.getAttributes;
-        } else if (func === "assigned") {
-            dbFunction = database.getAssignedDeviceData;
+        if (func === "all") {
+            if (type === "buttons") {
+                data["type"] = "Buttons";   
+            } else if (type == "trackers") {
+                data["type"] = "Asset tracking";
+            }
+            dbFunction = database.getAllDevicesJson;
         } else {
             res.status(404).send("Invalid function");
         }

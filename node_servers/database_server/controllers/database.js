@@ -246,22 +246,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     data["arguments"] = activated
 
     this.select(data, callback)
-    // try {
-    //     stmt = betterDb.prepare(query)
-    //     if (activated.length) {
-    //         device = stmt.all(activated);
-    //     }
-    //     else {
-    //         device = stmt.all();
-    //     }
-
-    // } catch (err) {
-    //     console.log(query, err)
-    //     callback(err, null)
-    // }
-    // callback(null, device);
-
-
 }
 
 /**

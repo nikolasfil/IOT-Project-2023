@@ -1,7 +1,6 @@
 
 const database = require('../controllers/database.js');
 
-
 /**
  * Middleware to get all active devices if the user is an admin
  * saves the result of the database to the res.locals.active_trackers
