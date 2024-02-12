@@ -10,7 +10,7 @@ const middleware = require('../controllers/middleware.js')
 homepage_render = (req, res) => {
     console.log(res.locals.assigned_tracker)
     res.render('homepage', {
-        style: 'index.css',
+        style: ['index.css','heatmap.css'],
         title: 'Home',
     });
 }
