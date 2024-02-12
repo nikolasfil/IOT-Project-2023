@@ -11,36 +11,6 @@ router.post('/fetchResults/:numOf',
 );
 
 
-router.post('/getAllDevicesJson',
-    (req, res) => {
-        database.getAllDevicesJson(data = req.body.data , (err, devices) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting devices")
-            } else {
-                res.send(JSON.stringify(devices));
-            }
-        }
-    )}
-);
-
-
-
-router.post('/getAllAttributes',
-    (req, res) => {
-        let data = req.body.data;
-        
-        database.getAllAttributes( data, (err, attributes) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting attributes")
-            } else {
-                // console.log(attributes);
-                res.send(JSON.stringify(attributes));
-            }
-        })
-    }
-);
 
 
 router.post('/user/:function',
@@ -56,6 +26,8 @@ router.post('/user/:function',
             fun = database.checkUser;
         } else if (func === 'details') {
             fun = database.userDetails;
+        } else if (func === 'active') {
+            fun = database.getAllActiveUsers
         } else {
             res.status(404).send("Invalid function");
         }
@@ -102,6 +74,41 @@ router.post("/command/:function",
 
 
 
+
+
+router.post('/getAllDevicesJson',
+    (req, res) => {
+        database.getAllDevicesJson(data = req.body.data , (err, devices) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while getting devices")
+            } else {
+                res.send(JSON.stringify(devices));
+            }
+        }
+    )}
+);
+
+
+
+router.post('/getAllAttributes',
+    (req, res) => {
+        let data = req.body.data;
+        
+        database.getAllAttributes( data, (err, attributes) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while getting attributes")
+            } else {
+                // console.log(attributes);
+                res.send(JSON.stringify(attributes));
+            }
+        })
+    }
+);
+
+
+
 router.post("/getAssignedDeviceInfoPerUser",
     (req, res) => {
         let data = req.body.data;
@@ -117,18 +124,15 @@ router.post("/getAssignedDeviceInfoPerUser",
 );
 
 
-router.post("/getAllActiveUsers",
-    (req, res) => {
-        database.getAllActiveUsers(data=req.body.data,(err, users) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting all active users")
-            } else {
-                res.send(JSON.stringify(users));
-            }
-        }
-    )}
-);
+
+// router.post("/devices/:function",
+//     (req, res) => {
+    
+    
+//     }
+
+// )
+
 
 router.get("/test",
     (req, res) => {

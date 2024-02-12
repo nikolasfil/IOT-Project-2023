@@ -58,7 +58,7 @@ getAssignedButtonInfoPerUser=(req, res, next) => {
 
 getAllActiveUsers = (req, res, next) => {
     if (res.locals.signedIn && res.locals.is_admin) {
-        database.databaseRequest(link='/getAllActiveUsers',data = {}, function (err, users) {
+        database.databaseRequest(link='/user/active',data = {}, function (err, users) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
