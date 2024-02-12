@@ -130,7 +130,7 @@ router.get('/device_info',
         let data = {}
         data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
         data.arguments = [req.query['serial']]
-        database.databaseRequest(link='/select',data,(err,device) => {
+        database.databaseRequest(link='/command/select',data,(err,device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

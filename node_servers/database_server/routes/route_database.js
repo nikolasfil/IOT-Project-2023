@@ -74,69 +74,32 @@ router.post('/user/:function',
 )
 
 
-
-router.post("/checkUser",
-    (req, res) => {
-        let data = req.body.data
-        database.checkUser(data, (err, exists) => {
+router.post("/command/:function",
+(req, res) => {
+    let data = req.body.data;
+    let func = req.params.function;
+    let fun = null;
+    if (func === 'select') {
+        fun = database.select;
+    } else if (func === 'insert') {
+        fun = database.insert;
+    } else {
+        res.status(404).send("Invalid function");
+    }
+    if (fun){
+        fun(data, (err, result) => {
             if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while checking if user credentials are accurate")
-            } else {
-                res.send(JSON.stringify(exists));
-            }
-        }
-    )}
-);
-
-
-router.post("/select",
-    (req, res) => {
-        let data = req.body.data;
-
-        database.select(data, (err, result) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while executing select command")
+                res.status(500).send(err)
             } else {
                 res.send(JSON.stringify(result));
             }
-        }
-    )}
-);
+        })
+    } else {
+        res.status(404).send("Invalid function");
+    }
+})
 
 
-router.post("/insert",
-    (req, res) => {
-        let data = req.body.data;
-        // console.log(req.body);
-        
-
-        database.insert(data, (err, result) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while executing insert command")
-            } else {
-                res.send(JSON.stringify(result));
-            }
-        }
-    )}
-);
-
-router.post("/addUser",
-    (req, res) => {
-        let data ={ user: req.body.data.user};
-        
-        database.addUser(data, (err, result) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while adding user")
-            } else {
-                res.send(JSON.stringify(result));
-            }
-        }
-    )}
-);
 
 
 router.post("/getAssignedDeviceInfoPerUser",
