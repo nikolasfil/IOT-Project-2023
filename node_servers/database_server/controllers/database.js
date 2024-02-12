@@ -327,20 +327,6 @@ exports.checkIfUserExists= (data, callback) =>  {
     }
 
     this.select(data, checker)
-    // const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
-    // let user;
-    // let id = data.id;
-    // try {
-    //     user = stmt.get(id)
-    //     if (user) {
-    //         callback(null, true)
-    //     } else {
-    //         callback(null, false)
-    //     }
-    // }
-    // catch (err) {
-    //     callback(err, null)
-    // }
 }
 
 /**
@@ -378,36 +364,6 @@ exports.checkUser = (data, callback)=> {
 
 }
 
-/**
- * @param {*} data : Json file that consists of the following parameters 
- * @param {*} data.id : The id of the user we want to check if exists (not optional) 
- * @param {*} data.password : The password of the user we want to check if exists (not optional)
- * @param {*} callback 
- */
-exports.checkUserPassword= (data, callback) =>  {
-    let user;
-    let id = data.id;
-    let password = data.password;
-
-    try {
-        const stmt = betterDb.prepare('Select * from USER where u_id = ?')
-        user = stmt.get(id)
-        if (user) {
-            const match = bcrypt.compareSync(password, user.password);
-            if (match) {
-                callback(null, user)
-            }
-            else {
-                callback('Wrong Password', null)
-            }
-        } else {
-            callback('User not found', null)
-        }
-    }
-    catch (err) {
-        callback(err, null)
-    }
-}
 
 /**
  * 
