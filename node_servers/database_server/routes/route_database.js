@@ -3,6 +3,19 @@ const router = express.Router();
 const database = require('../controllers/database.js');
 
 
+function functionChecker (data,dbFunction,res,func) {
+    if (dbFunction){
+        dbFunction(data, (err, result) => {
+            if (err) {
+                res.status(500).send(err)
+            } else {
+                res.send(JSON.stringify(result));
+            }
+        })
+    } else {
+        res.status(404).send(`Invalid function: ${func}`);
+    }
+}
 
 router.post('/user/:function',
     (req,res) => {
@@ -24,17 +37,7 @@ router.post('/user/:function',
         } else {
             res.status(404).send("Invalid function");
         }
-        if (dbFunction){
-            dbFunction(data, (err, result) => {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    res.send(JSON.stringify(result));
-                }
-            })
-        } else {
-            res.status(404).send("Invalid function");
-        }
+        functionChecker(data,dbFunction,res,func);
     }
 )
 
@@ -43,25 +46,16 @@ router.post("/command/:function",
 (req, res) => {
     let data = req.body.data;
     let func = req.params.function;
-    let fun = null;
+    let dbFunction = null;
     if (func === 'select') {
-        fun = database.select;
+        dbFunction = database.select;
     } else if (func === 'insert') {
-        fun = database.insert;
+        dbFunction = database.insert;
     } else {
         res.status(404).send("Invalid function");
     }
-    if (fun){
-        fun(data, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.send(JSON.stringify(result));
-            }
-        })
-    } else {
-        res.status(404).send("Invalid function");
-    }
+    functionChecker(data,dbFunction,res,func);
+
 })
 
 
@@ -70,7 +64,7 @@ router.post("/devices/:function",
     let data = req.body.data;
     let func = req.params.function;
     let dbFunction = null;
-        
+       
     if (func === "all") {
         dbFunction = database.getAllDevicesJson;
     } else if (func === "attributes") {
@@ -82,22 +76,8 @@ router.post("/devices/:function",
         res.status(404).send("Invalid function");
     }
 
-
-    if (dbFunction){
-        dbFunction(data, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.send(JSON.stringify(result));
-            }
-        })
-    } else {
-        res.status(404).send("Invalid function");
+    functionChecker(data,dbFunction,res,func);
     }
-    
-    
-    }
-
 )
 
 

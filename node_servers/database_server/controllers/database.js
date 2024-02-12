@@ -135,9 +135,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     // List of arguments to exclude from iteration
     let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
 
-
-
-
     // ----------- Building the list of activated arguments ----------- 
 
     // Iterate through the data json and add to the activated list the arguments that are activated and to the activated_name the key of that 
@@ -294,14 +291,10 @@ exports.getAllAttributes= (data, callback) =>  {
         list.push(data.offset)
     }
     
+    data["query"] = query
+    data["arguments"] = list
 
-    try {
-        stmt = betterDb.prepare(query)
-        result = stmt.all(list);
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
+    this.select(data, callback)
 }
 
 /**
@@ -375,7 +368,7 @@ exports.checkUser = (data, callback)=> {
  * @param {*} callback 
  */
 exports.getActiveAssignedDeviceData=(data,callback) => {
-    data["query"] = `Select A.device_id, P.date, P.time`
+    data["query"] = `Select A.device_id as d_id, P.date, P.time`
     let device_data = []
 
     if (data.device==="Asset tracking"){
