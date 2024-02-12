@@ -76,52 +76,15 @@ router.post("/command/:function",
 
 
 
-router.post('/getAllDevicesJson',
-    (req, res) => {
-        database.getAllDevicesJson(data = req.body.data , (err, devices) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting devices")
-            } else {
-                res.send(JSON.stringify(devices));
-            }
-        }
-    )}
-);
+router.post('/getAllDevicesJson');
 
 
 
-router.post('/getAllAttributes',
-    (req, res) => {
-        let data = req.body.data;
-        
-        database.getAllAttributes( data, (err, attributes) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting attributes")
-            } else {
-                // console.log(attributes);
-                res.send(JSON.stringify(attributes));
-            }
-        })
-    }
-);
+router.post('/getAllAttributes');
 
 
 
-router.post("/getAssignedDeviceInfoPerUser",
-    (req, res) => {
-        let data = req.body.data;
-        database.getDeviceData(data, (err, devices) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting assigned devices")
-            } else {
-                res.send(JSON.stringify(devices));
-            }
-        }
-    )}
-);
+router.post("/getAssignedDeviceInfoPerUser");
 
 
 
@@ -133,9 +96,12 @@ router.post("/devices/:function",
         
     if (func === "all") {
         dbFunction = database.getAllDevicesJson;
-    } else if (func === "") {
-        dbFunction = database.
-        
+    } else if (func === "attributes") {
+        dbFunction = database.getAllAttributes;
+    } else if (func === "assigned") {
+        // Here I could add one more and adjust the data 
+        dbFunction = database.getDeviceData
+    // } else if (func === "") {
 
     } else {
         res.status(404).send("Invalid function");

@@ -26,7 +26,7 @@ getAllDevicesJson= (req, res, next) => {
 
 getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/getAssignedDeviceInfoPerUser',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
+        database.databaseRequest(link='/device/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -42,7 +42,7 @@ getAssignedTrackerInfoPerUser=(req, res, next) => {
 
 getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/getAssignedDeviceInfoPerUser',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
+        database.databaseRequest(link='/device/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
