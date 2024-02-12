@@ -438,6 +438,39 @@ exports.getAllActiveUsers = (data, callback) => {
     this.select(data, callback)
 }
 
+// ---------- Functions to be optimized later -----------
+
+
+exports.getAssignedDates = (data, callback ) => {
+    
+
+    data["query"] = ` Select  DISTINCT A.date_received from Assigned as A `
+
+    if (data.status){
+        data["query"] += ` where `
+    }
+
+    if (data.status === "current"){
+        data["query"] += ` date_returned IS NULL `
+    } else if (data.status === "past") { 
+        data["query"] = ` date_returned IS NOT NULL`
+    } 
+
+    if (data.status) {
+        data["query"] += ` and `
+    }
+
+    if (data.id){
+        data["query"] += ` user_id = ? `   
+        data["arguments"] = [data.id]
+    }
+
+    this.select(data, callback)
+    }
+
+
+
+
 // --------- Static Selection in the database -----------
 
 /**

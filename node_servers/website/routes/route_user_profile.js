@@ -7,6 +7,7 @@ const middleware = require('../controllers/middleware.js')
 const router = express.Router();
 
 const userProfilePageMiddleware = (req, res) => { 
+    console.log(res.locals.assigned_dates);
     res.render('user_profile', {
         title: 'User Profile',
         style: 'user_profile.css',
@@ -53,6 +54,7 @@ router.get('/user_profile',
     idAssignMiddleware,
     middleware.getAssignedTrackerInfoPerUser,
     middleware.getAssignedButtonInfoPerUser,
+    middleware.getUserAssignedDates,
     userInfoMiddleware,
     userProfilePageMiddleware
 );

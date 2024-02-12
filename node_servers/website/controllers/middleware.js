@@ -77,3 +77,20 @@ exports.getAllActiveUsers = (req, res, next) => {
         next();
     }
 }
+
+
+exports.getUserAssignedDates = (req, res, next) => {
+    if (res.locals.signedIn) {
+        database.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, status:"current"}, function (err, dates) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                res.locals.assigned_dates = dates;
+                next();
+            }
+        })
+    } else {
+        next();
+    }
+}

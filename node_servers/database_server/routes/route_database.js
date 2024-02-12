@@ -19,6 +19,8 @@ router.post('/user/:function',
             dbFunction = database.userDetails;
         } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
+        } else if (func === "assigned_dates") {
+            dbFunction = database.getAssignedDates;
         } else {
             res.status(404).send("Invalid function");
         }
