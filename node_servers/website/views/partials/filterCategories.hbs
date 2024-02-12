@@ -1,12 +1,12 @@
 <div class="filters d-flex flex-column justify-content-start " id="{{categoryFilter}}-filter">
     {{!-- this is for now without listeners --}}
-    <h3>{{category}}</h3>
+    <h3 style="color: #FFFFFF">{{category}}</h3>
 
     {{#each list}}
     <div class="form-check">
 
         <input type="checkbox" class="form-check-input filter-checkbox {{../categoryFilter}} " value="" id="{{name}}">
-        <label for="{{name}}" class="form-check-label">{{name}}</label>
+        <label for="{{name}}" class="form-check-label" style="color: #FFFFFF">{{name}}</label>
     </div>
 
     {{/each}}

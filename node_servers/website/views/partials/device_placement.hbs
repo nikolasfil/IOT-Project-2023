@@ -1,20 +1,37 @@
 {{! This is for the boxes on the search page to be placed }}
-<div class="card-img-top card-space" draggable="false">
-  <a
-    href="/device_info/{{data.serial}}"
-    class="d-flex flex-column align-content-center"
-  >
-    <div class="p-2">
-      <h6 class="text-truncate--2"><strong>ID: {{data.d_id}}</strong></h6>
-      <p class="text-truncate--3"><small>Status: {{data.status}}</small></p>
-      <p class="text-truncate--3"><small>Serial: {{data.serial}}</small></p>
-      <p class="text-truncate--3"><small>Available Battery:
-          {{data.battery}}</small></p>
-      <p class="text-truncate--3"><small>Device Type: {{data.type}}</small></p>
-      {{#if data.u_id}}
-        <p><small>User assigned: {{data.u_id}}</small></p>
-        <p><small>First name: {{data.first_name}}</small></p>
-      {{/if}}
+<div class="card-img-top card-space">
+    <div class="card-div" draggable="false">
+        <a href="/device_info/{{data.serial}}" class="d-flex flex-column align-content-center">
+                <div class="status-div">
+                    <span class="card-text-bold">ID:</span>
+                    <span class="card-text-normal">{{data.d_id}}</span>
+                </div>
+                <div class="status-div">
+                    <span class="card-text-bold">Status:</span>
+                    <span class="card-text-normal"><small>{{data.status}}</small></span>
+                </div>
+                <div class="status-div">
+                    <span class="card-text-bold">Serial:</span>
+                    <span class="card-text-right"><small>{{data.serial}}</small></span>
+                </div>
+                <div class="status-div">
+                    <span class="card-text-bold">Battery:</span>
+                    <span class="card-text-normal"><small>{{data.battery}}</small></span>
+                </div>
+                <div class="status-div">
+                    <span class="card-text-bold">Type:</span>
+                    <span class="card-text-normal"><small>{{data.type}}</small></span>
+                </div>
+                {{#if data.u_id}}
+                    <div class="status-div">
+                        <span class="card-text-bold">User ID:</span>
+                        <span class="card-text-normal"><small>{{data.u_id}}</small></span>
+                    </div>
+                    <div class="status-div">
+                        <span class="card-text-bold">First Name:</span>
+                        <span class="card-text-normal"><small>{{data.first_name}}</small></span>
+                    </div>
+                {{/if}}
+        </a>
     </div>
-  </a>
 </div>
