@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="css/filters.css">
     <link rel="stylesheet" href="css/pages.css">
 
-    {{#if style}}
-    <link rel="stylesheet" href="css/individual_pages/{{style}}">
-    {{/if}}
+    {{#each style}}
+    <link rel="stylesheet" href="css/individual_pages/{{this}}">
+    {{/each}}
 
     {{!-- <link rel="shortcut icon" type="image/ico" href="img/logo_small.svg" /> --}}
     {{!-- <link rel="shortcut icon" type="image/ico" href="img/logo_white_filling.svg" /> --}}
