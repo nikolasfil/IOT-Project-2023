@@ -74,39 +74,6 @@ router.post('/user/:function',
 )
 
 
-router.post("/checkIfUserExists",
-    (req, res) => {
-        let data = req.body.data;
-            
-        database.checkIfUserExists(data, (err, exists) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while checking if user exists")
-            } else {
-                res.send(JSON.stringify(exists));
-            }
-        }
-    )}
-);
-
-/**
- * @param {*} data JSON object with id 
- * @param {*} data.id id of the user to get the details of the account
- * @param {*} callback
- */
-router.post("/userDetails",
-    (req, res) => {
-        let data = req.body.data;
-        database.userDetails(data, (err, exists) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send("Internal Server Error while getting user details")
-            } else {
-                res.send(JSON.stringify(exists));
-            }
-        }
-    )}
-);
 
 router.post("/checkUser",
     (req, res) => {
