@@ -489,7 +489,9 @@ exports.select=(data, callback) =>  {
          else {
             result = stmt.all();
         }
-
+        if (result === undefined) {
+            result = null
+        }
         callback(null, result);
     } catch (err) {
         callback(err, null)
