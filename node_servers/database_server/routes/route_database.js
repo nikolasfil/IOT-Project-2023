@@ -17,7 +17,7 @@ router.post('/user/:function',
             dbFunction = database.checkUser;
         } else if (func === 'details') {
             dbFunction = database.userDetails;
-        } else if (func === 'active') {
+        } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
         } else {
             res.status(404).send("Invalid function");
@@ -74,7 +74,7 @@ router.post("/devices/:function",
     } else if (func === "attributes") {
         dbFunction = database.getAllAttributes;
     } else if (func === "assigned") {
-        dbFunction = database.getDeviceData
+        dbFunction = database.getActiveAssignedDeviceData
     // } else if (func === "") {
     } else {
         res.status(404).send("Invalid function");

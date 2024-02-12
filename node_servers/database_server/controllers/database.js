@@ -390,7 +390,7 @@ exports.checkUser= (data, callback) =>  {
  * @param {*} data.id 
  * @param {*} callback 
  */
-exports.getDeviceData=(data,callback) => {
+exports.getActiveAssignedDeviceData=(data,callback) => {
     let stmt, result;
     let query = `Select A.device_id, P.date, P.time`
     let device_data = []
