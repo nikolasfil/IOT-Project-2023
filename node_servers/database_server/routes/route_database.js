@@ -53,7 +53,7 @@ router.post('/user/:function',
         } else if (func === 'check') {
             fun = database.checkIfUserExists;
         } else if (func === 'login') {
-            fun = database.checkIfUserExists;
+            fun = database.checkUser;
         } else if (func === 'details') {
             fun = database.userDetails;
         } else {

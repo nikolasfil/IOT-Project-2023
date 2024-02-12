@@ -26,7 +26,8 @@ const userInfoMiddleware = (req, res, next) => {
     let data = {   
         id: res.locals.user_id
     }
-    database.databaseRequest(link='/userDetails',data, (err, result) => {
+    // database.databaseRequest(link='/userDetails',data, (err, result) => {
+    database.databaseRequest(link='/user/details',data, (err, result) => {
         if (err) {
             console.log(err);
         }
