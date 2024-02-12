@@ -43,11 +43,40 @@ router.post('/getAllAttributes',
 );
 
 
+router.post('/user/:function',
+    (req,res) => {
+        let data = req.body.data;
+        let func = req.params.function;
+        let fun = null;
+        if (func === 'add') {
+            fun = database.addUser;
+        } else if (func === 'check') {
+            fun = database.checkIfUserExists;
+        } else if (func === 'login') {
+            fun = database.checkIfUserExists;
+        } else if (func === 'details') {
+            fun = database.userDetails;
+        } else {
+            res.status(404).send("Invalid function");
+        }
+        if (fun){
+            fun(data, (err, result) => {
+                if (err) {
+                    res.status(500).send(err)
+                } else {
+                    res.send(JSON.stringify(result));
+                }
+            })
+        } else {
+            res.status(404).send("Invalid function");
+        }
+    }
+)
+
+
 router.post("/checkIfUserExists",
     (req, res) => {
-        let data = {
-            id : req.body.data.id
-        }
+        let data = req.body.data;
             
         database.checkIfUserExists(data, (err, exists) => {
             if (err) {
@@ -67,9 +96,7 @@ router.post("/checkIfUserExists",
  */
 router.post("/userDetails",
     (req, res) => {
-        let data = { 
-            id : req.body.data.id
-        };
+        let data = req.body.data;
         database.userDetails(data, (err, exists) => {
             if (err) {
                 console.log(err);
@@ -162,7 +189,7 @@ router.post("/getAssignedDeviceInfoPerUser",
 
 router.post("/getAllActiveUsers",
     (req, res) => {
-        database.getAllActiveUsers(data={},(err, users) => {
+        database.getAllActiveUsers(data=req.body.data,(err, users) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Internal Server Error while getting all active users")

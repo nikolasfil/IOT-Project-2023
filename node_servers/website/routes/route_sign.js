@@ -17,6 +17,7 @@ router.post('/sign_in',
             password : req.body.psw
         }
         database.databaseRequest(link='/checkUser',data, (err, result) => {
+        // database.databaseRequest(link='/user/login',data, (err, result) => {
             if (err) {
                 console.log(err);
                 req.session.alert_message = err;
@@ -38,6 +39,7 @@ router.post('/sign_up',
             id: req.body.email
         }
         database.databaseRequest(link='/checkIfUserExists',data, (err, result) => {
+        // database.databaseRequest(link='/user/check',data, (err, result) => {
             if (err){
                 console.log(err);
                 req.session.alert_message = err;

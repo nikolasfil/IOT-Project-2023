@@ -357,7 +357,6 @@ exports.userDetails= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.checkUser= (data, callback) =>  {
-
     let user;
     let id = data.id;
     let password = data.password;
