@@ -408,6 +408,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         data["arguments"].push(data.date)
     }
 
+
     this.select(data,callback)
 }
 
@@ -477,19 +478,22 @@ exports.select=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-
         if (data.arguments && data.arguments.length>1) {
             // result = stmt.all(...data.arguments);
             result = stmt.all(data.arguments);
-        } else if (data.arguments && data.arguments.length===1 ) {
+        }
+         else if (data.arguments && data.arguments.length===1 ) {
             result = stmt.get(data.arguments[0]);
-        } else {
+            // result = stmt.all(data.arguments)[0];
+        }
+         else {
             result = stmt.all();
         }
+
+        callback(null, result);
     } catch (err) {
         callback(err, null)
     }
-    callback(null, result);
 }
 
 /**

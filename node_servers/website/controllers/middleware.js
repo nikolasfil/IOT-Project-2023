@@ -11,7 +11,8 @@ exports.getAllActiveTrackers= (req, res, next) => {
         database.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
             if (err) {
                 console.log(err)
-                res.status(500).send('Internal Server Error')
+                console.log('getAllActiveTrackers')
+                res.status(500).send("Internal Server Error")
             } else {
                 res.locals.active_trackers = devices;
                 next();
@@ -30,13 +31,16 @@ exports.getAllActiveTrackers= (req, res, next) => {
  * res.locals.assigned_tracker
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
-    if (res.locals.signedIn) {
+    if (res.locals.signedIn && res.locals.user_id) {
         database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking", status:"current"}, function (err, devices) {
             if (err) {
                 console.log(err)
-                res.status(500).send('Internal Server Error')
+                console.log('getAssignedTrackerInfoPerUser')
+                res.status(500).send("Internal Server Error")
             } else {
-                res.locals.assigned_tracker = devices;
+                if (devices && devices.length > 0) {
+                    res.locals.assigned_tracker = devices;
+                }
                 next();
             }
         })

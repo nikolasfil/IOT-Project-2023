@@ -19,9 +19,9 @@ const homepage_route_list = [
     authentication.checkAuthentication,
     authentication.checkAdminRights,
     middleware.getAssignedTrackerInfoPerUser,
-    middleware.getAssignedButtonInfoPerUser,
-    middleware.getAllActiveUsers,
-    middleware.getAllActiveTrackers,
+    // middleware.getAssignedButtonInfoPerUser,
+    // middleware.getAllActiveUsers,
+    // middleware.getAllActiveTrackers,
     homepage_render
 ] 
 
