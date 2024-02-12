@@ -1,0 +1,16 @@
+<div class="recommend" id="recommended-books">
+    <h2 class="h2" style="color: #ffffff"><strong> Active Trackers </strong></h2>
+    {{!-- Missing button to add them on the heat map to display them, and their path --}}
+    <div class="scrolling">
+        
+        {{#each active_trackers }}
+
+        {{> card battery=100 status="Active" location=(
+        encode
+        (concat
+        'device_info/' serial ))}}                    
+        {{/each}}
+
+
+    </div>
+</div>

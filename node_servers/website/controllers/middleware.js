@@ -38,9 +38,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
                 console.log('getAssignedTrackerInfoPerUser')
                 res.status(500).send("Internal Server Error")
             } else {
-                if (devices && devices.length > 0) {
-                    res.locals.assigned_tracker = devices;
-                }
+                res.locals.assigned_tracker = devices;
                 next();
             }
         })
