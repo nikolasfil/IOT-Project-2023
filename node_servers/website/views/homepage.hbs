@@ -4,10 +4,15 @@
 {{>header}}
 
 <main style="background: #2B1756">
-
     {{#if signedIn}}
-
         {{> heatmap}}
-
+    {{else}}
+    <p>Not signed in</p>
+        {{!-- {{> homepage}} --}}
     {{/if}}
+
+    {{#if isAdmin}}
+        {{> active_users}}
+    {{/if }}
+
 </main>

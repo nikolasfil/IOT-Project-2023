@@ -1,0 +1,13 @@
+<div class="recommend" id="recommended-books">
+    <h2 class="h2" style="color: #ffffff"><strong> Active Users </strong></h2>
+    {{!-- Missing button to add them on the heat map to display them, and their path --}}
+    <div class="scrolling">
+
+        {{#each active_users }}
+
+        {{!-- {{> card photo=photo title=title description="This is a description" copies=copy_num location=( --}}
+        {{!-- {{> card_user location=(encode(concat 'device_info/' serial ))}}                     --}}
+        {{> card_user }}                    
+        {{/each}}
+    </div>
+</div>

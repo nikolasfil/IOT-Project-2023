@@ -4,6 +4,8 @@
 
 /**
  * Middleware that is responsible for all popup messages
+ * Saves the message to res.locals.message 
+ * 
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
@@ -19,6 +21,8 @@ exports.alerting = (req, res,next) => {
 
 /**
  * Middleware that checks if a user is authenticated
+ * saves the result to res.locals.signedIn
+ * 
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
@@ -37,6 +41,8 @@ exports.demandAuthentication = (req, res, next) => {
 
 /**
  * Middleware that checks if a user is authenticated
+ * Saves the result to res.locals.signedIn
+ * 
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
@@ -51,7 +57,8 @@ exports.checkAuthentication = (req, res, next) => {
 
 
 /**
- * Middleware that checks if a user has admin rights
+ * Middleware that demans the user has admin rights before access to the feature 
+ * 
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
@@ -69,13 +76,15 @@ exports.demandAdminRights = (req, res, next) => {
 
 /**
  * Middleware that checks if a user has admin rights
+ * Saves the result to res.locals.isAdmin
+ * 
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
  */
 exports.checkAdminRights = (req, res, next) => {
     if (req.session.role === 'admin' ) {
-        res.locals.is_admin = true;
+        res.locals.isAdmin = true;
     } 
     next();
 

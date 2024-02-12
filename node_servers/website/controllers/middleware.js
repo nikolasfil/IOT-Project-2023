@@ -4,9 +4,10 @@ const database = require('../controllers/database.js');
 
 /**
  * Middleware to get all active devices if the user is an admin
+ * saves the result of the database to the res.locals.active_trackers
  */
 exports.getAllActiveTrackers= (req, res, next) => {
-    if (res.locals.signedIn && res.locals.is_admin) {
+    if (res.locals.signedIn && res.locals.isAdmin) {
         database.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
             if (err) {
                 console.log(err)
@@ -46,7 +47,8 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
 
 
 /**
- * Middleware to gets the tracker data of the last tracker assigned to the user
+ * Middleware to gets the tracker data of the last tracker assigned to the user.
+ * Saves the result of the database to the res.locals.assigned_button
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
@@ -65,8 +67,15 @@ exports.getAssignedButtonInfoPerUser=(req, res, next) => {
 }
 
 
+/**
+ * 
+ * saves the result of the database to the res.locals.active_users
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.getAllActiveUsers = (req, res, next) => {
-    if (res.locals.signedIn && res.locals.is_admin) {
+    if (res.locals.signedIn && res.locals.isAdmin) {
         database.databaseRequest(link='/user/active_users',data = {}, function (err, users) {
             if (err) {
                 console.log(err)
@@ -81,7 +90,14 @@ exports.getAllActiveUsers = (req, res, next) => {
     }
 }
 
-
+/**
+ * 
+ * Saves the result of the database to the res.locals.assigned_dates
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.getUserAssignedDates = (req, res, next) => {
     if (res.locals.signedIn) {
         database.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, status:"current"}, function (err, dates) {
