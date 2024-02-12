@@ -149,8 +149,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         }
     }
 
-
-
     // ----------- Building the query -----------
 
     query = ` Select `
@@ -336,18 +334,22 @@ exports.checkIfUserExists= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.userDetails= (data, callback) =>  {
-    let id = data.id
-    let query = `Select * from USER where u_id = ? `
 
-    const stmt = betterDb.prepare(query)
-    let user;
-    try {
-        user = stmt.get(id)
-        callback(null, user)
-    }
-    catch (err) {
-        callback(err, null)
-    }
+    data["query"] = `Select * from USER where u_id = ?` 
+    data["arguments"] = [data.id]
+    this.select(data, callback)
+    // let id = data.id
+    // let query = `Select * from USER where u_id = ? `
+
+    // const stmt = betterDb.prepare(query)
+    // let user;
+    // try {
+    //     user = stmt.get(id)
+    //     callback(null, user)
+    // }
+    // catch (err) {
+    //     callback(err, null)
+    // }
 }
 
 /**
@@ -397,6 +399,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
     if (data.device==="Asset tracking"){
         device_data.push(`, P.longitude, P.latitude`)
         device_data.push(` Tracked`)
+
     } else if (data.device==="Buttons") {
         device_data.push(`, P.event`)
         device_data.push(` Pressed`)
@@ -404,17 +407,23 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         callback('Device not Specified', null)
     }
 
+
     data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id  where P.date >= A.date_received `
-    
+
     if (data.status === "current"){
         data["query"] += `and ( A.date_returned IS NULL )`
-    } else {
+    } else if (data.status === "past"){
         data["query"] += `and ( A.date_returned <= P.date )`
-    }
+    } 
         
     if (data.id){
         data["query"] += ` and A.user_id = ?`
         data["arguments"] = [data.id]
+    }
+
+    if (data.date) {
+        data["query"] += ` and P.date = ?`
+        data["arguments"].push(data.date)
     }
 
     this.select(data,callback)
@@ -487,10 +496,13 @@ exports.select=(data, callback) =>  {
     try {
         stmt = betterDb.prepare(data.query)
 
-        if (data.arguments && data.arguments.length) {
-            result = stmt.all(...data.arguments);
-        }
-        else {
+        if (data.arguments && data.arguments.length>1) {
+            // result = stmt.all(...data.arguments);
+            result = stmt.all(data.arguments);
+        } else if (data.arguments && data.arguments.length===1) {
+            result = stmt.all(data.arguments);
+            result = result[0]
+        } else {
             result = stmt.all();
         }
     } catch (err) {

@@ -7,7 +7,7 @@ const middleware = require('../controllers/middleware.js')
 const router = express.Router();
 
 const userProfilePageMiddleware = (req, res) => { 
-    console.log(res.locals.assigned_dates);
+    console.log(res.locals.profile);
     res.render('user_profile', {
         title: 'User Profile',
         style: 'user_profile.css',
