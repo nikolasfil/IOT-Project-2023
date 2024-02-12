@@ -1,0 +1,54 @@
+<div class="d-flex flex-column justify-content-center">
+    <div class="map-filters">
+        <h2 class="h2" style="color: #ffffff"><strong> Heatmap </strong></h2>
+        <div class="filters">
+            {{!-- checkbox safe zones --}}
+            <div class="checkbox-container">
+                <input type="checkbox" id="safe-zones" name="safe-zones" value="safe-zones">
+                <label style="color: #FFFFFF; font-size:18px" for="safe-zones">Safe Zones</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="accessible-paths" name="accessible-paths" value="accessible-paths">
+                <label style="color: #FFFFFF; font-size:18px" for="accessible-paths">Accessible Paths</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="dangerous-zones" name="dangerous-zones" value="dangerous-zones">
+                <label style="color: #FFFFFF; font-size:18px" for="dangerous-zones">Dangerous Zones</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="heatmaps">
+        <div class="map">
+            {{!-- 21.732813401979747,38.24507192398973 --}}
+            {{>map lon=21.732813401979747 lat=38.24507192398973 library=true}}
+        </div>
+        <div>
+            <div class="on-map-trackers">
+                <span class="on-map-title">On Map Trackers</span>
+                <div class="trackers-grid">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2" style="color: #ffffff"><strong> Active Trackers </strong></h2>
+        {{!-- Missing button to add them on the heat map to display them, and their path --}}
+        <div class="scrolling">
+
+            {{#each active_trackers }}
+
+            {{!-- {{> card photo=photo title=title description="This is a description" copies=copy_num location=( --}}
+            {{> card battery=100 status="Active" location=(
+            encode
+            (concat
+            'device_info/' serial ))}}                    
+            {{/each}}
+
+
+        </div>
+    </div>
+
+</div>
