@@ -391,8 +391,7 @@ exports.checkUser= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.getActiveAssignedDeviceData=(data,callback) => {
-    let stmt, result;
-    let query = `Select A.device_id, P.date, P.time`
+    data["query"] = `Select A.device_id, P.date, P.time`
     let device_data = []
 
     if (data.device==="Asset tracking"){
@@ -405,15 +404,20 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         callback('Device not Specified', null)
     }
 
-    query += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id where P.date >= A.date_received and ( A.date_returned IS NULL ) and user_id=?` 
-    try {
-        stmt = betterDb.prepare(query)
-        result = stmt.all(data.id);
-    } catch (err) {
-        callback(err, null)
+    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id  where P.date >= A.date_received `
+    
+    if (data.status === "current"){
+        data["query"] += `and ( A.date_returned IS NULL )`
+    } else {
+        data["query"] += `and ( A.date_returned <= P.date )`
     }
-    callback(null, result);
+        
+    if (data.id){
+        data["query"] += ` and A.user_id = ?`
+        data["arguments"] = [data.id]
+    }
 
+    this.select(data,callback)
 }
 
 exports.getAllActiveUsers = (data, callback) => {
@@ -442,8 +446,6 @@ exports.getAllActiveUsers = (data, callback) => {
 
 
 exports.getAssignedDates = (data, callback ) => {
-    
-
     data["query"] = ` Select  DISTINCT A.date_received from Assigned as A `
 
     if (data.status){

@@ -24,10 +24,13 @@ exports.getAllActiveTrackers= (req, res, next) => {
 
 /**\
  * Middleware to gets the tracker data of the last tracker assigned to the user
+ * 
+ * Returns the information and events of the assigned tracker in the 
+ * res.locals.assigned_tracker
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
+        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking", status:"current"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
