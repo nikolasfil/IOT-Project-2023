@@ -417,6 +417,27 @@ exports.getDeviceData=(data,callback) => {
 
 }
 
+exports.getAllActiveUsers = (data, callback) => {
+    data["query"] = `SELECT 
+    u_id, first_name, last_name,A1.device_id as tracker, A2.device_id as button, role 
+    FROM 
+    Assigned as A1 join USER 
+    on A1.user_id=u_id
+    join Assigned as A2 
+    on A2.user_id = A1.user_id 
+    where 
+    A1.user_id = A2.user_id
+    and
+    A1.date_received=A2.date_received
+    and 
+    tracker !=button
+    and 
+    (Select type from DEVICE where d_id=tracker)="Asset tracking"
+    and 
+    A1.date_returned IS NULL `
+    this.select(data, callback)
+}
+
 // --------- Static Selection in the database -----------
 
 /**
