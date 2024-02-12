@@ -64,7 +64,7 @@ router.post("/devices/:function",
     let data = req.body.data;
     let func = req.params.function;
     let dbFunction = null;
-       
+
     if (func === "all") {
         dbFunction = database.getAllDevicesJson;
     } else if (func === "attributes") {
@@ -79,6 +79,22 @@ router.post("/devices/:function",
     functionChecker(data,dbFunction,res,func);
     }
 )
+
+router.post("/device/:function/:device",
+    (req, res) => {
+        let data = req.body.data;
+        let func = req.params.function;
+        let device = req.params.device;
+        let dbFunction = null;
+        if (func === "attributes") {
+            dbFunction = database.getAttributes;
+        } else if (func === "assigned") {
+            dbFunction = database.getAssignedDeviceData;
+        } else {
+            res.status(404).send("Invalid function");
+        }
+        functionChecker(data,dbFunction,res,func);
+    });
 
 
 router.get("/test",

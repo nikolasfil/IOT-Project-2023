@@ -242,20 +242,24 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     // ----------- Printing the final query -----------
     // console.log(query)
 
-    try {
-        stmt = betterDb.prepare(query)
-        if (activated.length) {
-            device = stmt.all(activated);
-        }
-        else {
-            device = stmt.all();
-        }
+    data["query"] = query
+    data["arguments"] = activated
 
-    } catch (err) {
-        console.log(query, err)
-        callback(err, null)
-    }
-    callback(null, device);
+    this.select(data, callback)
+    // try {
+    //     stmt = betterDb.prepare(query)
+    //     if (activated.length) {
+    //         device = stmt.all(activated);
+    //     }
+    //     else {
+    //         device = stmt.all();
+    //     }
+
+    // } catch (err) {
+    //     console.log(query, err)
+    //     callback(err, null)
+    // }
+    // callback(null, device);
 
 
 }
@@ -271,7 +275,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
  * @param {*} callback 
  */
 exports.getAllAttributes= (data, callback) =>  {
-    let stmt, result;
     let query = `Select distinct`
 
     let list = []
