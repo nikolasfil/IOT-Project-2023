@@ -74,10 +74,8 @@ router.post("/devices/:function",
     } else if (func === "attributes") {
         dbFunction = database.getAllAttributes;
     } else if (func === "assigned") {
-        // Here I could add one more and adjust the data 
         dbFunction = database.getDeviceData
     // } else if (func === "") {
-
     } else {
         res.status(404).send("Invalid function");
     }

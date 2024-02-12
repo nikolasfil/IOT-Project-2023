@@ -24,6 +24,10 @@ getAllDevicesJson= (req, res, next) => {
     }
 }
 
+
+/**\
+ * Middleware to gets the tracker data of the last tracker assigned to the user
+ */
 getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
         database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
@@ -40,12 +44,15 @@ getAssignedTrackerInfoPerUser=(req, res, next) => {
     }
 }
 
+/**
+ * Middleware to gets the tracker data of the last tracker assigned to the user
+ */
 getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
         database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
             if (err) {
                 console.log(err)
-                res.status(500).send('Internal Server Error')
+                res.status(500).send('Internal Server Error')   
             } else {
                 res.locals.assigned_button = devices;
                 next();
