@@ -311,20 +311,36 @@ exports.getAllAttributes= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.checkIfUserExists= (data, callback) =>  {
-    const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
-    let user;
-    let id = data.id;
-    try {
-        user = stmt.get(id)
-        if (user) {
-            callback(null, true)
+    data["query"] = `Select * from USER where u_id = ?`
+    data["arguments"] = [data.id]
+
+    const checker = (err, result) => {
+        if (err) {
+            callback(err, null)
         } else {
-            callback(null, false)
+            if (result) {
+                callback(null, true)
+            } else {
+                callback(null, false)
+            }
         }
     }
-    catch (err) {
-        callback(err, null)
-    }
+
+    this.select(data, checker)
+    // const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
+    // let user;
+    // let id = data.id;
+    // try {
+    //     user = stmt.get(id)
+    //     if (user) {
+    //         callback(null, true)
+    //     } else {
+    //         callback(null, false)
+    //     }
+    // }
+    // catch (err) {
+    //     callback(err, null)
+    // }
 }
 
 /**
@@ -334,22 +350,32 @@ exports.checkIfUserExists= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.userDetails= (data, callback) =>  {
-
     data["query"] = `Select * from USER where u_id = ?` 
     data["arguments"] = [data.id]
     this.select(data, callback)
-    // let id = data.id
-    // let query = `Select * from USER where u_id = ? `
+}
 
-    // const stmt = betterDb.prepare(query)
-    // let user;
-    // try {
-    //     user = stmt.get(id)
-    //     callback(null, user)
-    // }
-    // catch (err) {
-    //     callback(err, null)
-    // }
+
+exports.checkUser = (data, callback)=> {
+    const provider = (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            if (result) {
+                const match = bcrypt.compareSync(data.password, result.password);
+                if (match) {
+                    callback(null, result)
+                }
+                else {
+                    callback("Wrong Password", result)
+                }
+            } else {
+                callback("User Not Found", false)
+            }
+        }
+    }
+    this.userDetails(data, provider)
+
 }
 
 /**
@@ -358,7 +384,7 @@ exports.userDetails= (data, callback) =>  {
  * @param {*} data.password : The password of the user we want to check if exists (not optional)
  * @param {*} callback 
  */
-exports.checkUser= (data, callback) =>  {
+exports.checkUserPassword= (data, callback) =>  {
     let user;
     let id = data.id;
     let password = data.password;
@@ -499,9 +525,8 @@ exports.select=(data, callback) =>  {
         if (data.arguments && data.arguments.length>1) {
             // result = stmt.all(...data.arguments);
             result = stmt.all(data.arguments);
-        } else if (data.arguments && data.arguments.length===1) {
-            result = stmt.all(data.arguments);
-            result = result[0]
+        } else if (data.arguments && data.arguments.length===1 ) {
+            result = stmt.get(data.arguments[0]);
         } else {
             result = stmt.all();
         }
