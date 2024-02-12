@@ -19,7 +19,7 @@ router.post('/fetchResults/:numOf',
         if (req.params.numOf == 'true'){
             data.numOf = true;
         }
-        database.databaseRequest(link='/getAllDevicesJson',data = data, function (err, devices) {
+        database.databaseRequest(link='/devices/all',data = data, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error Couldnt fetch number of results')
@@ -61,7 +61,7 @@ router.get('/search',
             "source": 'DEVICE',
             "attribute": 'status',
         }
-        database.databaseRequest(link='/getAllAttributes',data=data, function (err, devices)    {   
+        database.databaseRequest(link='/devices/attributes',data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -77,7 +77,7 @@ router.get('/search',
             "source": 'DEVICE',
             "attribute": 'type',
         }
-        database.databaseRequest(link='/getAllAttributes',data=data, function (err, devices)    {   
+        database.databaseRequest(link='/devices/attributes',data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

@@ -2,15 +2,6 @@ const express = require('express');
 const router = express.Router();
 const database = require('../controllers/database.js');
 
-// Add authentication later on !!!!! 
-
-router.post('/fetchResults/:numOf',
-    (req, res) => {
-        res.send('fetchResults');
-    }
-);
-
-
 
 
 router.post('/user/:function',
@@ -70,22 +61,6 @@ router.post("/command/:function",
         res.status(404).send("Invalid function");
     }
 })
-
-
-
-
-
-
-router.post('/getAllDevicesJson');
-
-
-
-router.post('/getAllAttributes');
-
-
-
-router.post("/getAssignedDeviceInfoPerUser");
-
 
 
 router.post("/devices/:function",

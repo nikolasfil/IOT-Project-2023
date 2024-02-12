@@ -10,7 +10,7 @@ const login = require('../controllers/login.js');
  */
 getAllDevicesJson= (req, res, next) => {
     if (res.locals.signedIn && res.locals.is_admin) {
-        database.databaseRequest(link='/getAllDevicesJson',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
+        database.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -26,7 +26,7 @@ getAllDevicesJson= (req, res, next) => {
 
 getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/device/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
+        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -42,7 +42,7 @@ getAssignedTrackerInfoPerUser=(req, res, next) => {
 
 getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/device/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
+        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

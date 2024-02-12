@@ -94,7 +94,7 @@ router.get('/device_info',
         // get device info
         let data = {}
         data.serial = req.query['serial'];
-        database.databaseRequest(link='/getAllDevicesJson',data = data,(err, device) => {
+        database.databaseRequest(link='/devices/all',data = data,(err, device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
