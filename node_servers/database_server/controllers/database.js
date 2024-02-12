@@ -432,9 +432,10 @@ exports.getAllActiveUsers = (data, callback) => {
     and 
     tracker !=button
     and 
-    (Select type from DEVICE where d_id=tracker)="Asset tracking"
+    (Select type from DEVICE where d_id=tracker)='Asset tracking'
     and 
     A1.date_returned IS NULL `
+    
     this.select(data, callback)
 }
 
@@ -451,7 +452,8 @@ exports.select=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        if (data.arguments.length) {
+        console.log(data.query)
+        if (data.arguments && data.arguments.length) {
             result = stmt.all(...data.arguments);
         }
         else {

@@ -163,6 +163,20 @@ router.post("/getAssignedDeviceInfoPerUser",
     )}
 );
 
+
+router.post("/getAllActiveUsers",
+    (req, res) => {
+        database.getAllActiveUsers(data={},(err, users) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Internal Server Error while getting all active users")
+            } else {
+                res.send(JSON.stringify(users));
+            }
+        }
+    )}
+);
+
 router.get("/test",
     (req, res) => {
         res.send("Test");
