@@ -74,6 +74,8 @@ getAllActiveUsers = (req, res, next) => {
 
 
 homepage_render = (req, res) => {
+    // console.log(res.locals.assigned_tracker)
+    // console.log(res.locals.assigned_button)
     // console.log(res.locals.active_users)
     res.render('homepage', {
         style: 'index.css',
@@ -85,8 +87,8 @@ const homepage_route_list = [
     login.checkAuthentication,
     login.checkAdminRights,
     getAssignedTrackerInfoPerUser,
-    // getAssignedButtonInfoPerUser,
-    // getAllActiveUsers,
+    getAssignedButtonInfoPerUser,
+    getAllActiveUsers,
     getAllDevicesJson,
     homepage_render
 ] 
