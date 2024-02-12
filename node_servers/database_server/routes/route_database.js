@@ -11,10 +11,6 @@ router.post('/fetchResults/:numOf',
 );
 
 
-   
-
-
-
 router.post('/getAllDevicesJson',
     (req, res) => {
         database.getAllDevicesJson(data = req.body.data , (err, devices) => {
