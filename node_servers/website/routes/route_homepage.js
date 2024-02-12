@@ -84,7 +84,7 @@ homepage_render = (req, res) => {
 const homepage_route_list = [
     login.checkAuthentication,
     login.checkAdminRights,
-    // getAssignedTrackerInfoPerUser,
+    getAssignedTrackerInfoPerUser,
     // getAssignedButtonInfoPerUser,
     // getAllActiveUsers,
     getAllDevicesJson,

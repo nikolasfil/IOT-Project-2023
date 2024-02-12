@@ -70,7 +70,7 @@ function getRegex(searchValue, rows) {
 exports.addingActivated=(activated_name, linker, regex)=> {
     let query_activated ;
     
-    console.log(regex)
+    // console.log(regex)
     if (!regex){
         query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
     }
@@ -451,7 +451,7 @@ exports.select=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        console.log(data.query)
+
         if (data.arguments && data.arguments.length) {
             result = stmt.all(...data.arguments);
         }

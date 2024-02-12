@@ -101,7 +101,7 @@ router.get('/device_info',
             } else {
                 // assign the res.locals.device the first device in the list
                 res.locals.device = device[0];
-                console.log(res.locals.device)
+                // console.log(res.locals.device)
                 next();
             }
         });
