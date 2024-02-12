@@ -3,19 +3,22 @@
 <card class="card-img-top card-space">
   <div class="card-div" draggable="false">
     {{! fix it so that there is a link for devices/id }}
-    <a href={{location}} class="d-flex flex-column align-content-center">
-        <div class="status-div">
-            <div class="status-circle">{{status}}</div>
-            <img src="img/svg/battery_status.svg" alt="Battery Status">
-        </div>
-        <div class="status-div">
-            <span class="card-text-bold">DEVICE_ID:</span>
-            <span class="card-text-normal">{{id}}</span>
-        </div>
-        <div class="status-div">
-            <span class="card-text-bold">SERIAL:</span>
-            <span class="card-text-normal">{{serial}}</span>
-        </div>
+    <a
+      href={{encode (concat "device_info/" d_id)}}
+      class="d-flex flex-column align-content-center"
+    >
+      <div class="status-div">
+        <div class="status-circle">{{status}}</div>
+        <img src="img/svg/battery_status.svg" alt="Battery Status" />
+      </div>
+      <div class="status-div">
+        <span class="card-text-bold">DEVICE_ID:</span>
+        <span class="card-text-normal">{{d_id}}</span>
+      </div>
+      <div class="status-div">
+        <span class="card-text-bold">SERIAL:</span>
+        <span class="card-text-normal">{{serial}}</span>
+      </div>
     </a>
   </div>
 </card>

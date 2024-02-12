@@ -4,11 +4,7 @@
     <div class="scrolling">
         
         {{#each active_trackers }}
-
-        {{> card battery=100 status="Active" location=(
-        encode
-        (concat
-        'device_info/' serial ))}}                    
+        {{> card battery=100 status="Active"}}                    
         {{/each}}
 
 
