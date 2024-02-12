@@ -17,22 +17,22 @@ router.post('/user/:function',
     (req,res) => {
         let data = req.body.data;
         let func = req.params.function;
-        let fun = null;
+        let dbFunction = null;
         if (func === 'add') {
-            fun = database.addUser;
+            dbFunction = database.addUser;
         } else if (func === 'check') {
-            fun = database.checkIfUserExists;
+            dbFunction = database.checkIfUserExists;
         } else if (func === 'login') {
-            fun = database.checkUser;
+            dbFunction = database.checkUser;
         } else if (func === 'details') {
-            fun = database.userDetails;
+            dbFunction = database.userDetails;
         } else if (func === 'active') {
-            fun = database.getAllActiveUsers
+            dbFunction = database.getAllActiveUsers
         } else {
             res.status(404).send("Invalid function");
         }
-        if (fun){
-            fun(data, (err, result) => {
+        if (dbFunction){
+            dbFunction(data, (err, result) => {
                 if (err) {
                     res.status(500).send(err)
                 } else {
@@ -125,13 +125,39 @@ router.post("/getAssignedDeviceInfoPerUser",
 
 
 
-// router.post("/devices/:function",
-//     (req, res) => {
-    
-    
-//     }
+router.post("/devices/:function",
+    (req, res) => {
+    let data = req.body.data;
+    let func = req.params.function;
+    let dbFunction = null;
+        
+    if (func === "all") {
+        dbFunction = database.getAllDevicesJson;
+    } else if (func === "") {
+        dbFunction = database.
+        
 
-// )
+    } else {
+        res.status(404).send("Invalid function");
+    }
+
+
+    if (dbFunction){
+        dbFunction(data, (err, result) => {
+            if (err) {
+                res.status(500).send(err)
+            } else {
+                res.send(JSON.stringify(result));
+            }
+        })
+    } else {
+        res.status(404).send("Invalid function");
+    }
+    
+    
+    }
+
+)
 
 
 router.get("/test",
