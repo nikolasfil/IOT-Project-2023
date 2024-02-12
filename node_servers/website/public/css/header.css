@@ -1,7 +1,9 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  border-bottom: 5px solid #000;
+  background: #583F83;
 }
 
 .headerLogo {
