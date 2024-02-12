@@ -2,6 +2,7 @@ const express = require('express');
 const authentication = require('../controllers/authentication.js')
 
 const database = require('../controllers/database.js');
+const middleware = require('../controllers/middleware.js')
 
 const router = express.Router();
 
@@ -45,9 +46,13 @@ const userInfoMiddleware = (req, res, next) => {
     });
 }
 
+// Make a route to ask for history dates 
+
 router.get('/user_profile', 
     authentication.checkAuthentication,
     idAssignMiddleware,
+    middleware.getAssignedTrackerInfoPerUser,
+    middleware.getAssignedButtonInfoPerUser,
     userInfoMiddleware,
     userProfilePageMiddleware
 );

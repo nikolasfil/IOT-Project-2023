@@ -8,9 +8,6 @@ const middleware = require('../controllers/middleware.js')
 
 
 homepage_render = (req, res) => {
-    // console.log(res.locals.assigned_tracker)
-    // console.log(res.locals.assigned_button)
-    // console.log(res.locals.active_users)
     res.render('homepage', {
         style: 'index.css',
         title: 'Home',
