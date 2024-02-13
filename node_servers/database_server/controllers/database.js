@@ -384,7 +384,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
     let device_data = []
 
 
-    if (data.function ){
+    if (data.assigned ){
         if (data.type==="Asset tracking"){
             device_data.push(`, P.longitude, P.latitude`)
             device_data.push(` Tracked`)
@@ -399,12 +399,16 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
     }
     
     // FROM DEVICE join Assigned as A on d_id = device_id 
-    data["query"] += ` from DEVICE join Assigned as A on d_id = device_id `
+    data["query"] += ` from DEVICE `
     
-    data["query"] += `join ${data.type} as P on P.device_id=A.device_id `
+    if (data.assigned){
+        data["query"] += ` join Assigned as A on d_id = A.device_id `
+    }
+    
+    data["query"] += `join ${device_data[1]} as P on P.device_id=d_id `
     // data["query"] += `from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
     
-    data["query"] += `join DEVICE on A.device_id=d_id`
+    // data["query"] += `join DEVICE on A.device_id=d_id`
 
     data["query"]+=` where P.date >= A.date_received `
 
@@ -423,7 +427,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         data["query"] += ` and P.date = ?`
         data["arguments"].push(data.date)
     }
-
+    console.log(data)
     this.execute(data,callback)
 }
 
