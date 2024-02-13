@@ -6,12 +6,6 @@ const database = require('../controllers/database.js');
 function functionChecker (data,dbFunction,res,func) {
     if (dbFunction){
         dbFunction(data, (err, result) => {
-            if (data.debug){
-                console.log("functionChecer Callback")
-                console.log(data);
-                console.log(result)
-                console.log(err);
-            }
             if (err) {
                 res.status(500).send(err)
             } else {

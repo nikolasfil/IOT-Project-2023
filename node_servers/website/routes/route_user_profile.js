@@ -18,7 +18,12 @@ const router = express.Router();
  */
 const idAssignMiddleware = (req, res, next) => {
     if (req.query.id){
-        res.locals.user_id = req.query.id;
+        if (res.locals.isAdmin || req.query.id === req.session.userid){
+            res.locals.user_id = req.query.id;
+        } else { 
+            req.session.alert_message = 'You do not have permission to view this page';
+            res.redirect('/user_profile');
+        }
     } else {    
         res.locals.user_id = req.session.userid;
     }
@@ -41,6 +46,7 @@ const userInfoMiddleware = (req, res, next) => {
 }
 
 
+
 const userProfilePageMiddleware = (req, res) => { 
     res.render('user_profile', {
         title: 'User Profile',
@@ -49,17 +55,18 @@ const userProfilePageMiddleware = (req, res) => {
 }
 
 
+
 // Make a route to ask for history dates 
 
 router.get('/user_profile', 
     authentication.checkAuthentication,
     authentication.checkAdminRights,
     idAssignMiddleware,
-    // middleware.getAssignedTracker,
-    // middleware.getAssignedButton,
-    // middleware.getAssignedTrackerInfoPerUser,
-    // middleware.getAssignedButtonInfoPerUser,
-    // middleware.getUserAssignedDates,
+    middleware.getAssignedTracker,
+    middleware.getAssignedButton,
+    middleware.getAssignedTrackerInfoPerUser,
+    middleware.getAssignedButtonInfoPerUser,
+    middleware.getUserAssignedDates,
     middleware.getAvailableTrackers,
     middleware.getAvailableButtons,
     userInfoMiddleware,

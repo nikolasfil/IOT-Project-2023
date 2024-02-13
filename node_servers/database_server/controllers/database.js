@@ -478,9 +478,6 @@ exports.execute=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        if (data.debug){
-            console.log(data,stmt)
-        }
         if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
             result = stmt.all(data.arguments);
         } else if (data.arguments && data.arguments.length && data.single) {

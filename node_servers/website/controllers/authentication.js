@@ -90,3 +90,12 @@ exports.checkAdminRights = (req, res, next) => {
 
 }
 
+
+exports.checkRequestRights = (req, res, next) => {
+    if (res.locals.isAdmin || res.session.userid === req.query.id) {
+        next();
+    } else {
+        req.session.alert_message = 'You do not have the rights to access this page';
+        res.redirect('/');
+    }
+}
