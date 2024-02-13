@@ -16,13 +16,17 @@ router.post('/sign_in',
             id: req.body.id,
             password : req.body.psw
         }
+        console.log("Inside sign in ")
+        console.log(data);
         remoteDatabase.databaseRequest(link='/user/login',data, (err, result) => {
             if (err) {
                 console.log(err);
                 req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
-            else {                
+            else {      
+                console.log("Inside sign in ")      
+                console.log(result);
                 req.session.signedIn = true;
                 req.session.userid = result.u_id;
                 req.session.role = result.role;

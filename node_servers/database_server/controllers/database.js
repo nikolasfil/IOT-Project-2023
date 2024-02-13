@@ -245,7 +245,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     data["query"] = query
     data["arguments"] = activated
 
-    console.log(data)
     this.execute(data, callback)
 }
 
@@ -298,8 +297,6 @@ exports.getAllAttributes= (data, callback) =>  {
  */
 exports.userFunctions=(data,callback)=> {
     // Keeps the default callback function
-    let callback_function = callback;
-
     // For details login and check we are executing the same query to the database but use a different callback_function
     if (data.function === "details" || data.function === "login" || data.function === "check") { 
         data["query"] = `Select * from USER where u_id = ?` 
@@ -314,9 +311,11 @@ exports.userFunctions=(data,callback)=> {
         data["arguments"] = attributes
     } 
 
+
     if (data.function === "login") {
         // Checks the password provided is the same from the password retrieved from the database 
         const login_checker = (err, result) => {
+
             if (err) {
                 callback(err, null)
             } else {
@@ -334,7 +333,10 @@ exports.userFunctions=(data,callback)=> {
             }
         }
         // Assigns the new callback function 
-        callback_function = login_checker
+        // callback_function = login_checker
+        this.execute(data, login_checker)
+
+
     } else if (data.function === "check"){
         // Checks if the user exists in the database, returns only true of false 
         const existence_checker = (err, result) => {
@@ -348,11 +350,11 @@ exports.userFunctions=(data,callback)=> {
                 }
             }
         }
-        callback_function = existence_checker
-    } 
-
-    // Executes the command to the database 
-    this.execute(data, callback_function)
+        // callback_function = existence_checker
+        this.execute(data, existence_checker)
+    } else {
+        this.execute(data, callback)
+    }
 }
 
 
@@ -406,7 +408,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         data["arguments"].push(data.date)
     }
 
-
+    console.log(data)
     this.execute(data,callback)
 }
 
@@ -470,6 +472,7 @@ exports.getAssignedDates = (data, callback ) => {
  * @param {*} callback 
  */
 exports.execute=(data, callback) =>  {
+
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)

@@ -45,6 +45,7 @@ router.post('/user/:function',
         } else {
             res.status(404).send("Invalid function");
         }
+
         functionChecker(data,dbFunction,res,func);
     }
 )
@@ -65,7 +66,6 @@ router.post("/devices/:function",
     let dbFunction = null;
 
     if (func === "all") {
-        console.log(data);
         dbFunction = database.getAllDevicesJson;
     } else if (func === "attributes") {
         dbFunction = database.getAllAttributes;

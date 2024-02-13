@@ -1,5 +1,5 @@
 
-const database = require('./remoteDatabase.js');
+const remoteDatabase = require('./remoteDatabase.js');
 
 /**
  * Middleware to get all active devices if the user is an admin
@@ -7,7 +7,7 @@ const database = require('./remoteDatabase.js');
  */
 exports.getAllActiveTrackers= (req, res, next) => {
     if (res.locals.signedIn && res.locals.isAdmin) {
-        database.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/all',data = {status: 'active', type: 'Asset tracking', limit: 12, exclusively:true}, function (err, devices) {
             if (err) {
                 console.log(err)
                 console.log('getAllActiveTrackers')
@@ -31,7 +31,7 @@ exports.getAllActiveTrackers= (req, res, next) => {
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn && res.locals.user_id) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 console.log('getAssignedTrackerInfoPerUser')
@@ -53,7 +53,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Buttons"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Buttons"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')   
@@ -77,7 +77,7 @@ exports.getAssignedButtonInfoPerUser=(req, res, next) => {
  */
 exports.getAllActiveUsers = (req, res, next) => {
     if (res.locals.signedIn && res.locals.isAdmin) {
-        database.databaseRequest(link='/user/active_users',data = {}, function (err, users) {
+        remoteDatabase.databaseRequest(link='/user/active_users',data = {}, function (err, users) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -101,7 +101,7 @@ exports.getAllActiveUsers = (req, res, next) => {
  */
 exports.getUserAssignedDates = (req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, time_status:"current"}, function (err, dates) {
+        remoteDatabase.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, time_status:"current"}, function (err, dates) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -118,7 +118,7 @@ exports.getUserAssignedDates = (req, res, next) => {
 
 exports.getAvailableTrackers= (req, res, next) => {
     if (res.locals.signedIn && res.locals.isAdmin) {
-        database.databaseRequest(link='/devices/available/trackers',data = {}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/available/trackers',data = {}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAvailableTrackers')
@@ -135,7 +135,7 @@ exports.getAvailableTrackers= (req, res, next) => {
 
 exports.getAvailableButtons= (req, res, next) => {
     if (res.locals.signedIn && res.locals.isAdmin) {
-        database.databaseRequest(link='/devices/available/buttons',data = {}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/available/buttons',data = {}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAvailableButtons')
