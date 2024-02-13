@@ -71,7 +71,10 @@ router.post("/devices/:function",
         dbFunction = database.getAllAttributes;
     } else if (func === "assigned") {
         dbFunction = database.getActiveAssignedDeviceData
-    // } else if (func === "") {
+    } else if (func ==="available"){
+
+    } else if (func === "assign") {
+        console.log(data);
     } else {
         res.status(404).send("Invalid function");
     }
@@ -80,19 +83,21 @@ router.post("/devices/:function",
     }
 )
 
-router.post("/device/:function/:type",
+router.post("/device/:function/:extra",
     (req, res) => {
         let data = req.body.data;
         let func = req.params.function;
-        let type = req.params.type;
+        let extra = req.params.extra;
         let dbFunction = null;
-        if (func === "all") {
-            if (type === "buttons") {
-                data["type"] = "Buttons";   
-            } else if (type == "trackers") {
-                data["type"] = "Asset tracking";
-            }
+        if (extra === "buttons") {
+            data["type"] = "Buttons";   
+        } else if (extra == "trackers") {
+            data["type"] = "Asset tracking";
+        }
+        if (func === "all") {   
             dbFunction = database.getAllDevicesJson;
+        // } else if (func === "available") {
+        //     data.
         } else {
             res.status(404).send("Invalid function");
         }

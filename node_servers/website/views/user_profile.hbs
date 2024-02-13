@@ -33,13 +33,20 @@
         </div>
       </div>
     </div>
+    
+    {{#if isAdmin}}
 
+    {{> assigning_device availableDevices=["Test","test"]}}
+
+    {{/if}}
 
     {{#if assigned_tracker}}
+        <h6><strong>Assigned Devices </strong></h6>
         {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
     {{/if}}
 
     {{#if assigned_button}}
+    
         {{> card battery=100 status=assigned_button.status d_id=assigned_button.d_id serial=assigned_button.serial type=assigned_button.type }}                    
     {{/if}}
 

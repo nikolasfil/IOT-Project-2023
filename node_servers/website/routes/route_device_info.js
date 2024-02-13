@@ -6,22 +6,14 @@ const database = require('../controllers/database.js');
 
 // All this should first pass by the middleware login to be on the safe side
 
-router.post('/device_info/assigned',
-    (req,res,next) => {
-        // If the variable mode: read is in the body, then it should return jsons of the user information 
-        // If the variable mode: write is in the body then it should update the database with the new information about the device assigned to the user
-        if (req.body.mode === 'read'){
-            next();
-        }
-        else if (req.body.mode === 'write'){
-            next();
-        }
-        else{
-            res.status(400).send('Bad Request')
-        }
-    }
-)
-
+router.post('/assign',(req,res)=>{
+    let data = req.body.data;
+    database.databaseRequest(link='/devives/assign',data,(err, result) => {
+        if (err) {
+            res.status(500).send(err)
+        } 
+    })
+})
 
 // redirects to device_info page with serial as query
 router.get('/device_info/:serial',

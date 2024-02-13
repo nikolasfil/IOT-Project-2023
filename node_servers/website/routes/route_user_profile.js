@@ -53,6 +53,7 @@ const userProfilePageMiddleware = (req, res) => {
 
 router.get('/user_profile', 
     authentication.checkAuthentication,
+    authentication.checkAdminRights,
     idAssignMiddleware,
     middleware.getAssignedTrackerInfoPerUser,
     middleware.getAssignedButtonInfoPerUser,
