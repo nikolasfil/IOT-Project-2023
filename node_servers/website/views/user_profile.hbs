@@ -35,9 +35,14 @@
     </div>
 
 
-    {{#each assigned_tracker}}
-        {{> card battery=100 status="Active"}}                    
-    {{/each}}
+    {{#if assigned_tracker}}
+        {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
+    {{/if}}
+
+    {{#if assigned_button}}
+        {{> card battery=100 status=assigned_button.status d_id=assigned_button.d_id serial=assigned_button.serial type=assigned_button.type }}                    
+    {{/if}}
+
     
     {{!-- display past trips --}}
     {{!-- show date and duration --}}

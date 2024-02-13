@@ -42,7 +42,6 @@ const userInfoMiddleware = (req, res, next) => {
 
 
 const userProfilePageMiddleware = (req, res) => { 
-    console.log(res.locals.assigned_tracker);
     res.render('user_profile', {
         title: 'User Profile',
         style: 'user_profile.css',

@@ -31,7 +31,7 @@ exports.getAllActiveTrackers= (req, res, next) => {
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn && res.locals.user_id) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,device: "Asset tracking", status:"current"}, function (err, devices) {
+        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 console.log('getAssignedTrackerInfoPerUser')
@@ -53,7 +53,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, device: "Buttons"}, function (err, devices) {
+        database.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Buttons"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')   
@@ -101,7 +101,7 @@ exports.getAllActiveUsers = (req, res, next) => {
  */
 exports.getUserAssignedDates = (req, res, next) => {
     if (res.locals.signedIn) {
-        database.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, status:"current"}, function (err, dates) {
+        database.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, time_status:"current"}, function (err, dates) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

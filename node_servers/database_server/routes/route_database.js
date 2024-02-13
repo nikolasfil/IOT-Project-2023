@@ -31,13 +31,13 @@ router.post('/user/:function',
         } else if (func === "assigned_dates") {
             dbFunction = database.getAssignedDates;
         } else if (func === "location_data") {
-            data["device"] = "Asset tracking";
+            data["type"] = "Asset tracking";
             if (req.query.date) {
                 data["date"] = req.query.date;
             }
             dbFunction = database.getActiveAssignedDeviceData 
         } else if (func === "button_data") {
-            data["device"] = "Buttons";
+            data["type"] = "Buttons";
             if (req.query.date) {
                 data["date"] = req.query.date;
             }

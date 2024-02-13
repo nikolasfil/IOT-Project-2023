@@ -285,8 +285,6 @@ exports.getAllAttributes= (data, callback) =>  {
 }
 
 
-
-
 /**
  * 
  * @param {*} data 
@@ -314,7 +312,6 @@ exports.userFunctions=(data,callback)=> {
         data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
         data["arguments"] = attributes
     } 
-
 
     if (data.function === "login") {
         // Checks the password provided is the same from the password retrieved from the database 
@@ -363,19 +360,22 @@ exports.userFunctions=(data,callback)=> {
  * Returns the information of the latest assigned device that the user is still using 
  * 
  * @param {*} data 
- * @param {*} data.device
+ * @param {*} data.type
  * @param {*} data.id 
  * @param {*} callback 
  */
 exports.getActiveAssignedDeviceData=(data,callback) => {
     data["query"] = `Select A.device_id as d_id, P.date, P.time`
+    
+    data["query"] += `, serial, status, battery, type `
+    
     let device_data = []
 
-    if (data.device==="Asset tracking"){
+    if (data.type==="Asset tracking"){
         device_data.push(`, P.longitude, P.latitude`)
         device_data.push(` Tracked`)
 
-    } else if (data.device==="Buttons") {
+    } else if (data.type==="Buttons") {
         device_data.push(`, P.event`)
         device_data.push(` Pressed`)
     } else {
@@ -383,11 +383,15 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
     }
 
 
-    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id  where P.date >= A.date_received `
+    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
+    
+    data["query"] += `join DEVICE on A.device_id=d_id`
 
-    if (data.status === "current"){
+    data["query"]+=` where P.date >= A.date_received `
+
+    if (data.time_status === "current"){
         data["query"] += `and ( A.date_returned IS NULL )`
-    } else if (data.status === "past"){
+    } else if (data.time_status === "past"){
         data["query"] += `and ( A.date_returned <= P.date )`
     } 
         
@@ -433,11 +437,11 @@ exports.getAllActiveUsers = (data, callback) => {
 exports.getAssignedDates = (data, callback ) => {
     data["query"] = ` Select  DISTINCT A.date_received from Assigned as A `
 
-    if (data.status){
+    if (data.time_status){
         data["query"] += ` where `
     }
 
-    if (data.status === "current"){
+    if (data.time_status === "current"){
         data["query"] += ` date_returned IS NULL `
     } else if (data.status === "past") { 
         data["query"] = ` date_returned IS NOT NULL`
