@@ -1,0 +1,25 @@
+<card class="card-img-top card-space">
+  <div class="card-div" draggable="false">
+    {{!-- <a href="{{(encode(concat '/user_profile/' u_id )) }}" class="d-flex flex-column align-content-center"> --}}
+    <a href="/user_profile" class="d-flex flex-column align-content-center">
+    <a href={{encode (concat 'user_profile/' u_id)}} class="d-flex flex-column align-content-center">
+     
+      <div class="status-div">
+        <div class="status-circle">Active</div>
+        {{! <img src="img/svg/battery_status.svg" alt="Battery Status" /> }}
+      </div>
+      <div class="status-div">
+        <span class="card-text-bold">User ID:</span>
+        <span class="card-text-normal">{{u_id}}</span>
+      </div>
+      <div class="status-div">
+        <span class="card-text-bold">First Name:</span>
+        <span class="card-text-normal">{{first_name}}</span>
+      </div>
+      <div class="status-div">
+        <span class="card-text-bold">Last Name:</span>
+        <span class="card-text-normal">{{last_name}}</span>
+      </div>
+    </a>
+  </div>
+</card>

@@ -14,9 +14,10 @@
 {{! change the window on load to a listener }}
 <script type="text/javascript" defer>window.onload = function () {
   {{!-- {{#if device}} --}}
-  mapInit({{lon}},{{lat}});
+  {{!-- mapInit({{lon}},{{lat}}); --}}
   {{!-- {{else}} --}}
-  {{!-- mapMult('{{isbn}}'); --}}
+  {{! mapMult(); }}
+  mapRoute();
   {{!-- {{/if}} --}}
   }
 </script>

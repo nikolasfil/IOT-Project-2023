@@ -2,8 +2,9 @@ backup*
 **/.vscode/*
 **/node_modules/*
 **/__pycache__/*
-model/sessions/session.sqlite
+node_servers/website/model/sessions/session.sqlite
 
 **/app_venv/*
 **/tempCodeRunnerFile.py/*
 **/README_link/*
+**/session.sqlite/*
