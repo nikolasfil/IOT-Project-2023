@@ -10,6 +10,8 @@ function functionChecker (data,dbFunction,res,func) {
             if (err) {
                 res.status(500).send(err)
             } else {
+                // console.log(data)
+                // console.log(result);
                 res.send(JSON.stringify(result));
             }
         })
@@ -46,7 +48,7 @@ router.post('/user/:function',
 
             dbFunction = database.getActiveAssignedDeviceData 
         } else {
-            res.status(404).send("Invalid function");
+            dbFunction = null;
         }
 
         functionChecker(data,dbFunction,res,func);
@@ -72,7 +74,7 @@ router.post("/devices/:function",
     } else if (func === "assign") {
         console.log(data);
     } else {
-        res.status(404).send("Invalid function");
+        dbFunction = null;
     }
 
     functionChecker(data,dbFunction,res,func);
@@ -97,7 +99,14 @@ router.post("/devices/:function/:extra",
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
-            data["limit"] = 1;
+            data["single"] = true
+            dbFunction = database.getAllDevicesJson;
+        } else if (func === "assigned") {
+            data["assigned"] = true;
+            data["status"] = "active";
+            data["exclusively"] = true;
+            data["single"] = true
+            
             dbFunction = database.getAllDevicesJson;
         } else {
             dbFunction = null;

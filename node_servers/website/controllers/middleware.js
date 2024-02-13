@@ -156,7 +156,7 @@ exports.getAvailableButtons= (req, res, next) => {
 
 exports.getAssignedTracker = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Asset tracking", time_status:"current"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned',data = {single:true,id: res.locals.user_id, type: "Asset tracking", time_status:"current"}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAssignedTracker')
@@ -173,7 +173,8 @@ exports.getAssignedTracker = (req, res, next) => {
 
 exports.getAssignedButton = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned/button',data = {}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned',data = {single:true,id: res.locals.user_id, type: "Buttons", time_status:"current"}, function (err, devices) {
+
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAssignedButton')

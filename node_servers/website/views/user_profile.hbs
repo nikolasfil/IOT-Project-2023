@@ -42,7 +42,6 @@
     
 
     {{#if assigned_tracker}}
-    {{log assigned_tracker}}
         <h6><strong>Assigned Devices </strong></h6>
         {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
         {{!-- {{> card battery=100 }}                     --}}
