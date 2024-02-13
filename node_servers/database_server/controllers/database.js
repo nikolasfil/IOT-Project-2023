@@ -298,11 +298,15 @@ exports.getAllAttributes= (data, callback) =>  {
  * @param {*} callback 
  */
 exports.userFunctions=(data,callback)=> {
+    // Keeps the default callback function
     let callback_function = callback;
+
+    // For details login and check we are executing the same query to the database but use a different callback_function
     if (data.function === "details" || data.function === "login" || data.function === "check") { 
         data["query"] = `Select * from USER where u_id = ?` 
         data["arguments"] = [data.id]
     } else if (data.function === "add") { 
+        // We have a different query for the add Function since it is an insert rather than a select 
         let user = data.user
         let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
         let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
@@ -311,8 +315,9 @@ exports.userFunctions=(data,callback)=> {
         data["arguments"] = attributes
     } 
 
+
     if (data.function === "login") {
-        // Checks username and password 
+        // Checks the password provided is the same from the password retrieved from the database 
         const login_checker = (err, result) => {
             if (err) {
                 callback(err, null)
@@ -330,8 +335,10 @@ exports.userFunctions=(data,callback)=> {
                 }
             }
         }
+        // Assigns the new callback function 
         callback_function = login_checker
     } else if (data.function === "check"){
+        // Checks if the user exists in the database, returns only true of false 
         const existence_checker = (err, result) => {
             if (err) {
                 callback(err, null)
@@ -343,11 +350,11 @@ exports.userFunctions=(data,callback)=> {
                 }
             }
         }
-    
-        callback_function=  existence_checker
+        callback_function = existence_checker
     } 
+
+    // Executes the command to the database 
     this.execute(data, callback_function)
-    
 }
 
 
@@ -447,9 +454,6 @@ exports.getAssignedDates = (data, callback ) => {
 
     this.execute(data, callback)
     }
-
-
-
 
 // --------- Static Selection in the database -----------
 
