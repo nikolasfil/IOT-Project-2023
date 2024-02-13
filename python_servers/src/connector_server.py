@@ -152,7 +152,7 @@ def save_to_database(data):
         }
     }
 
-    database_url = f"http://{os.getenv('DBURL')}:7080/insert"
+    database_url = f"http://{os.getenv('DBURL')}:7080/command"
     headers = {"Content-Type": "application/json"}
     db = ContextProvider(
         url=database_url,
@@ -187,7 +187,7 @@ def get_id(serial):
         }
     }
 
-    database_url = f"http://{os.getenv('DBURL')}:7080/select"
+    database_url = f"http://{os.getenv('DBURL')}:7080/command"
     headers = {"Content-Type": "application/json"}
     db = ContextProvider(
         url=database_url,

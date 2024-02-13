@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const database = require('../controllers/database.js');
-const login = require('../controllers/login.js')
+const remoteDatabase = require('../controllers/remoteDatabase.js');
+const authentication = require('../controllers/authentication.js')
 const c_search = require('../controllers/c_search.js')
 
 
@@ -19,11 +19,12 @@ router.post('/fetchResults/:numOf',
         if (req.params.numOf == 'true'){
             data.numOf = true;
         }
-        database.getAllDevicesJson(data = data, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/all',data = data, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error Couldnt fetch number of results')
             } else {
+                console.log(devices);
                 res.locals.devices = devices;
                 next();
             }
@@ -57,7 +58,11 @@ router.get('/search',
     // login.checkAuthentication,
 
     (req, res, next) => {
-        database.getAllAttributes('DEVICE','status', limit = null, offset = null, function (err, devices)    {   
+        let data = {
+            "source": 'DEVICE',
+            "attribute": 'status',
+        }
+        remoteDatabase.databaseRequest(link='/devices/attributes',data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -69,7 +74,11 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttributes('DEVICE','type', limit = null, offset = null, function (err, devices)    {   
+        let data = {
+            "source": 'DEVICE',
+            "attribute": 'type',
+        }
+        remoteDatabase.databaseRequest(link='/devices/attributes',data=data, function (err, devices)    {   
         if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

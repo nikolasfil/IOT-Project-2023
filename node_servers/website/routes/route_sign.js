@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const database = require('../controllers/database.js');
+const remoteDatabase = require('../controllers/remoteDatabase.js');
 
 
 router.get('/sign_in', (req, res) => {
@@ -12,14 +12,18 @@ router.get('/sign_in', (req, res) => {
 
 router.post('/sign_in',
     (req, res) => {
-
-        database.checkUser(req.body.id, req.body.psw, (err, result) => {
+        let data = {
+            id: req.body.id,
+            password : req.body.psw
+        }
+        remoteDatabase.databaseRequest(link='/user/login',data, (err, result) => {
             if (err) {
                 console.log(err);
                 req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
-            else {                
+            else {      
+                console.log(result);
                 req.session.signedIn = true;
                 req.session.userid = result.u_id;
                 req.session.role = result.role;
@@ -31,26 +35,28 @@ router.post('/sign_in',
 
 router.post('/sign_up',
     (req, res, next) => {
-        database.checkIfUserExists(req.body.email, (err, result) => {
-            if (result && !err) {
-                req.session.alert_message = 'User already exists';
-                res.redirect(req.get('referer'));
-            }
-            else {
-                next();
-            }
-            if (err && !result) {
+        let data = {
+            id: req.body.email
+        }
+        remoteDatabase.databaseRequest(link='/user/check',data, (err, result) => {
+            if (err){
                 console.log(err);
                 req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
-            else {
+            if (result) {
+                req.session.alert_message = 'User already exists';
+                res.redirect(req.get('referer'));
+            } else {
                 next();
             }
         });
     },
     (req, res) => {
-        database.addUser(req.body, (err, result) => {
+        let data = {
+            user: req.body.data
+        }
+        remoteDatabase.databaseRequest(link='/user/add',data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.redirect(req.get('referer'));
@@ -58,6 +64,7 @@ router.post('/sign_up',
             else {
                 req.session.signedIn = true;
                 req.session.userid = req.body.id;
+                req.session.role = "user";
                 req.session.alert_message = 'You have successfully signed up';
                 res.redirect(req.get('referer'));
             }

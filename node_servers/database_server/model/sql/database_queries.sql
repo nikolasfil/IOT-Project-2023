@@ -8,10 +8,12 @@
 
 SELECT DISTINCT d_id
 FROM DEVICE
-WHERE d_id NOT IN
+WHERE
+status = 'active' and type='Asset tracking'
+and 
+d_id NOT IN
 (SELECT device_id FROM Assigned
 where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL ))
-and status = 'active' and type='Asset tracking'
 
 
 
@@ -55,14 +57,27 @@ WHERE status = 'active'
 -- History of the button presses assigned to the user at this moment 
 
 
---- Get all the Pressed events of a tracker that is assigned to a userm, that happened the period when the user had the button assigned, and the button is not returned 
+--- Get all the Pressed events of a button that is assigned to a userm, that happened the period when the user had the button assigned, and the button is not returned 
 
+
+-- Takes all the events of the active trackers 
 Select A.device_id, A.user_id,P.event, P.date, P.time
 from Assigned as A 
 join Pressed as P on P.device_id=A.device_id
 where 
 P.date >= A.date_received and ( A.date_returned IS NULL ) 
 and user_id=?
+
+
+-- Returns the history of all the presses / specific date
+
+Select A.device_id, A.user_id,P.event, P.date, P.time
+from Assigned as A 
+join Pressed as P on P.device_id=A.device_id
+where 
+P.date >= A.date_received and ( A.date_returned < P.date)
+and 
+A.date_received = ? 
 
 -- Get all the Tracked events of a tracker that is assigned to a user, that happened the period when the user had the tracker assigned, and the tracker is not returned
 
@@ -138,7 +153,19 @@ and A1.user_id = ?
 
 
 
+--- Dates the user had assigned devices 
 
+
+Select  DISTINCT A.date_received
+from Assigned as A 
+where user_id = ?
+
+Select  DISTINCT A.date_received
+from Assigned as A 
+where
+date_returned IS NULL 
+and
+user_id = ?
 
 
 

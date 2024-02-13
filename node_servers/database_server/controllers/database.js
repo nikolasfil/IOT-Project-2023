@@ -6,11 +6,25 @@ const bcrypt = require('bcrypt');
 
 // --------- Generic Functions ---------
 
+/**
+ * 
+ * Replaces the strings to exclude special characters
+ * 
+ * @param {*} string String to trim the special characters 
+ * @returns 
+ */
 function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
 
-
+/**
+ * 
+ * Match the partials of the searchValue 
+ * 
+ * @param {*} searchValue 
+ * @param {*} rows 
+ * @returns 
+ */
 function getRegex(searchValue, rows) {
 
     // let rows;
@@ -47,16 +61,16 @@ function getRegex(searchValue, rows) {
 /**
  * 
  * 
+ * 
  * @param {*} activated_name 
  * @param {*} linker 
  * @param {*} regex 
  * @returns 
  */
-
 exports.addingActivated=(activated_name, linker, regex)=> {
     let query_activated ;
     
-    console.log(regex)
+    // console.log(regex)
     if (!regex){
         query_activated = activated_name.map((name) => `${name} = ?`).join(linker)
     }
@@ -81,15 +95,15 @@ exports.addingActivated=(activated_name, linker, regex)=> {
 /**
  * Returns information about the device . Every option other than callback is optional , if no option is given it will return all the devices
  * @param {*} data contains everything in a json format (not optional)
- * @param {*} id For a specific device (optional)
- * @param {*} serial For a specific serial (optional)
- * @param {*} battery For a specific battery (optional)
- * @param {*} status For a specific status (optional)
- * @param {*} type For a specific type (optional)
- * @param {*} limit Limiting the number of results (optional)
- * @param {*} offset Starting from a specific result (optional)
- * @param {*} numOf true or null, if we want to focus more on the number of results back (optional)
- * @param {*} filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
+ * @param {*} data.id For a specific device (optional)
+ * @param {*} data.serial For a specific serial (optional)
+ * @param {*} data.battery For a specific battery (optional)
+ * @param {*} data.status For a specific status (optional)
+ * @param {*} data.type For a specific type (optional)
+ * @param {*} data.limit Limiting the number of results (optional)
+ * @param {*} data.offset Starting from a specific result (optional)
+ * @param {*} data.numOf true or null, if we want to focus more on the number of results back (optional)
+ * @param {*} data.filters Filters that are applied (optional), json of the form {key: [value1, value2, ...]}
  * @param {*} callback function that handles the results
  *  
  * This function is the same as getAllDevices but it returns the results in a json format
@@ -98,7 +112,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     
 
     // Defining the variables
-    let stmt, device, query, query_filters, query_activated, linker;
+    let query, query_filters, query_activated, linker;
     
     // initializing some variables
     query_filters = "";
@@ -119,10 +133,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     let activated_name = [];
 
     // List of arguments to exclude from iteration
-    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
-
-
-
+    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned','debug','single','query','arguments']
 
     // ----------- Building the list of activated arguments ----------- 
 
@@ -134,8 +145,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
             activated_name.push(key)
         }
     }
-
-
 
     // ----------- Building the query -----------
 
@@ -149,7 +158,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     if (data.numOf && data.assigned) {
         // If the request if for both the number of results data fields and information on assigned
         query += ` , `
-    } else if (!data.numOf && !data.assigned) {
+    } else if (!data.numOf && (data.assigned === undefined || data.assigned === null )) {
         // If the request is not for the number or results and it does not include fields, then return everything
         query += ` * `
     } 
@@ -158,7 +167,9 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         // We want specific fields to be reutrned if the request is for the assigned devices
         // Else it will return all the fields of the Assigned table so that they are joined
         query += ` d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
-    } 
+    } else if (data.assigned ===false) {
+        query += ` distinct d_id, serial, battery, status, type`
+    }
 
 
     // Add the table name
@@ -169,9 +180,12 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
     } else if (data.assigned === false ){ 
         // If the request is for the unassigned devices then we want to exclude the assigned devices
-        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned) `
+        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned where date_received<=? and (date_returned > ? or date_returned IS NULL )) `
+        activated.push(`DATE("now")`)
+        activated.push(`DATE("now")`)
     }
 
+    
 
     // ----------- Building the activated arguments -----------
 
@@ -231,166 +245,259 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     }
 
     // ----------- Printing the final query -----------
-    console.log(query)
+    // console.log(query)
 
-    try {
-        stmt = betterDb.prepare(query)
-        if (activated.length) {
-            device = stmt.all(activated);
-        }
-        else {
-            device = stmt.all();
-        }
-
-    } catch (err) {
-        console.log(query)
-        callback(err, null)
-    }
-    callback(null, device);
-
-
+    data["query"] = query
+    data["arguments"] = activated
+    // console.log(data)
+    this.execute(data, callback)
 }
 
-
-exports.getAllAttributes=(source,attribute, limit, offset, callback) =>  {
-    let stmt, result;
+/**
+ * 
+ * @param {*} data : Json file that consists of the following parameters  
+ * @param {*} data.source : The table we want to get information out of (not optional)
+ * @param {*} data.attribute : The attribute we want to focus on (not optional)
+ * @param {*} data.limit : The limit of the number of results we want to get (optional)
+ * @param {*} data.offset : The offset of the results we want to get (optional)
+ * 
+ * @param {*} callback 
+ */
+exports.getAllAttributes= (data, callback) =>  {
     let query = `Select distinct`
 
     let list = []
 
-    query += ` ${attribute} as name from ${source}`
+    query += ` ${data.attribute} as name from ${data.source}`
 
-    query += ` where ${attribute} is not null` 
-    query += ` order by ${attribute} asc`
+    query += ` where ${data.attribute} is not null` 
+    query += ` order by ${data.attribute} asc`
 
-    if (limit) {
+    if (data.limit) {
         query += ' LIMIT ?'
-        list.push(limit)
+        list.push(data.limit)
     }
 
-    // if (offset) {
-    //     query += ' OFFSET ?'
-    //     list.push(offset)
-    // }
+    if (data.offset) {
+        query += ' OFFSET ?'
+        list.push(data.offset)
+    }
     
+    data["query"] = query
+    data["arguments"] = list
 
-    try {
-        stmt = betterDb.prepare(query)
-        result = stmt.all(list);
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
+    this.execute(data, callback)
 }
 
 
-exports.checkIfUserExists= (id, callback) =>  {
-    const stmt = betterDb.prepare('Select * from USER where u_id = ? ')
-    let user;
-    try {
-        user = stmt.get(id)
-        callback(null, user)
-    }
-    catch (err) {
-        callback(err, null)
-    }
-}
-
-exports.userDetails= (id, callback) =>  {
-    // let query = `Select u_id, first_name, last_name, phone,role from USER where u_id = ? `
-    let query = `Select * from USER where u_id = ? `
-    // const stmt = betterDb.prepare('Select u_id, first_name, last_name, phone,role from USER where u_id = ? ')
-    const stmt = betterDb.prepare(query)
-    let user;
-    try {
-        user = stmt.get(id)
-        // console.log(id)
-        callback(null, user)
-    }
-    catch (err) {
-        callback(err, null)
-    }
-}
-
-exports.checkUser= (id, password, callback) =>  {
-
-    let user, error_message;
-
-    try {
-        const stmt = betterDb.prepare('Select * from USER where u_id = ?')
-        user = stmt.get(id)
-        if (user) {
-            const match = bcrypt.compareSync(password, user.password);
-            if (match) {
-                callback(null, user)
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.function The user function we want to execute (not optional) (details, login, check, add) 
+ * @param {*} data.id The id of the user (not optional)
+ * @param {*} data.user The user information (optional) for adding a user 
+ * @param {*} data.password The password of the user (optional) for login
+ * @param {*} data.status The status of the user (optional) (current, past)
+ * @param {*} callback 
+ */
+exports.userFunctions=(data,callback)=> {
+    // Keeps the default callback function
+    // For details login and check we are executing the same query to the database but use a different callback_function
+    if (data.function === "details" || data.function === "login" || data.function === "check") { 
+        data["single"] = true
+        data["query"] = `Select * from USER where u_id = ?` 
+        data["arguments"] = [data.id]
+    } else if (data.function === "add") { 
+        // We have a different query for the add Function since it is an insert rather than a select 
+        let user = data.user
+        let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
+        let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
+        
+        data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
+        data["arguments"] = attributes
+    } 
+    if (data.function === "login") {
+        // Checks the password provided is the same from the password retrieved from the database 
+        const login_checker = (err, result) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                if (result) {
+                    const match = bcrypt.compareSync(data.password, result.password);
+                    if (match) {
+                        callback(null, result)
+                    }
+                    else {
+                        callback("Wrong Password", result)
+                    }
+                } else {
+                    callback("User Not Found", false)
+                }
             }
-            else {
-
-                callback('Wrong Password', null)
-            }
-        } else {
-            callback('User not found', null)
         }
-    }
-    catch (err) {
-        callback(err, null)
+        // Assigns the new callback function 
+        // callback_function = login_checker
+        this.execute(data, login_checker)
+
+
+    } else if (data.function === "check"){
+        // Checks if the user exists in the database, returns only true of false 
+        const existence_checker = (err, result) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                if (result) {
+                    callback(null, true)
+                } else {
+                    callback(null, false)
+                }
+            }
+        }
+        // callback_function = existence_checker
+        this.execute(data, existence_checker)
+    } else {
+        this.execute(data, callback)
     }
 }
 
+
+/**
+ * 
+ * Returns the information of the latest assigned device that the user is still using 
+ * 
+ * @param {*} data 
+ * @param {*} data.type
+ * @param {*} data.id 
+ * @param {*} callback 
+ */
+exports.getActiveAssignedDeviceData=(data,callback) => {
+    data["query"] = `Select A.device_id as d_id, P.date, P.time`
+    
+    data["query"] += `, serial, status, battery, type `
+    
+    let device_data = []
+
+    if (data.type==="Asset tracking"){
+        device_data.push(`, P.longitude, P.latitude`)
+        device_data.push(` Tracked`)
+
+    } else if (data.type==="Buttons") {
+        device_data.push(`, P.event`)
+        device_data.push(` Pressed`)
+    } else {
+        callback('Device not Specified', null)
+    }
+
+
+    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
+    
+    data["query"] += `join DEVICE on A.device_id=d_id`
+
+    data["query"]+=` where P.date >= A.date_received `
+
+    if (data.time_status === "current"){
+        data["query"] += `and ( A.date_returned IS NULL )`
+    } else if (data.time_status === "past"){
+        data["query"] += `and ( A.date_returned <= P.date )`
+    } 
+        
+    if (data.id){
+        data["query"] += ` and A.user_id = ?`
+        data["arguments"] = [data.id]
+    }
+
+    if (data.date) {
+        data["query"] += ` and P.date = ?`
+        data["arguments"].push(data.date)
+    }
+
+    this.execute(data,callback)
+}
+
+exports.getAllActiveUsers = (data, callback) => {
+    data["query"] = `SELECT 
+    u_id, first_name, last_name,A1.device_id as tracker, A2.device_id as button, role 
+    FROM 
+    Assigned as A1 join USER 
+    on A1.user_id=u_id
+    join Assigned as A2 
+    on A2.user_id = A1.user_id 
+    where 
+    A1.user_id = A2.user_id
+    and
+    A1.date_received=A2.date_received
+    and 
+    tracker !=button
+    and 
+    (Select type from DEVICE where d_id=tracker)='Asset tracking'
+    and 
+    A1.date_returned IS NULL `
+    
+    this.execute(data, callback)
+}
+
+// ---------- Functions to be optimized later -----------
+
+
+exports.getAssignedDates = (data, callback ) => {
+    data["query"] = ` Select  DISTINCT A.date_received from Assigned as A `
+
+    if (data.time_status){
+        data["query"] += ` where `
+    }
+
+    if (data.time_status === "current"){
+        data["query"] += ` date_returned IS NULL `
+    } else if (data.status === "past") { 
+        data["query"] = ` date_returned IS NOT NULL`
+    } 
+
+    if (data.status) {
+        data["query"] += ` and `
+    }
+
+    if (data.id){
+        data["query"] += ` user_id = ? `   
+        data["arguments"] = [data.id]
+    }
+
+    this.execute(data, callback)
+    }
 
 // --------- Static Selection in the database -----------
 
-exports.select=(command, callback) =>  {
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.query (not optional)
+ * @param {*} data.arguments (optional)
+ * @param {*} callback 
+ */
+exports.execute=(data, callback) =>  {
+
     let stmt, result;
     try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.all(...command.arguments);
-        }
-        else {
+        stmt = betterDb.prepare(data.query)
+        if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
+            result = stmt.all(data.arguments);
+        } else if (data.arguments && data.arguments.length && data.single) {
+            result = stmt.get(data.arguments);
+        } else {
             result = stmt.all();
         }
+        if (result === undefined) {
+            result = null
+        }
+        callback(null, result);
     } catch (err) {
         callback(err, null)
     }
-    callback(null, result);
 }
 
-
-exports.insert = (command,callback) => {
-    let stmt, result;
-    try {
-        stmt = betterDb.prepare(command.query)
-        if (command.arguments.length) {
-            result = stmt.run(command.arguments);
-        }
-        else {
-            result = stmt.run();
-        }
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
-}
 
 
 // --------- Dynamic Insertion into Database --------
 
-exports.addUser= (user, callback) =>  {
-    let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
-    let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
-    
-    let query = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
-    const stmt = betterDb.prepare(query)
-
-    try {
-        stmt.run(attributes)
-        callback(null, true)
-    }
-    catch (err) {
-        callback(err, null)
-    }
-}
 
 // ----------------------------------------------------
 

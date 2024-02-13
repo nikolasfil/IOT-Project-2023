@@ -7,7 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
 
-const login = require('./controllers/login.js');
+const authentication = require('./controllers/authentication.js');
 
 
 require('dotenv').config();   
@@ -56,7 +56,7 @@ const hbs = expbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-app.use(login.alerting);
+app.use(authentication.alerting);
 
 // specifying the routes that the user can access
 app.use(require('./routes/route_about.js'));

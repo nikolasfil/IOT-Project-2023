@@ -1,0 +1,27 @@
+<div>
+  <h1>Device Form</h1>
+  <form action="/assign/tracker" method="post">
+    <label for="deviceSelect">Select a device:</label>
+    <select id="trackerSelect" name="selectedDevice">
+      {{#each available_trackers}}
+        <option value="{{serial}}">{{serial}}</option>
+      {{/each}}
+    </select>
+    <br />
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+<div>
+  <h1>Device Form</h1>
+  <form action="/assign/button" method="post">
+    <label for="deviceSelect">Select a device:</label>
+    <select id="buttonSelect" name="selectedDevice">
+      {{#each available_buttons}}
+        <option value="{{serial}}">{{serial}}</option>
+      {{/each}}
+    </select>
+    <br />
+    <input type="submit" value="Submit" />
+  </form>
+</div>
