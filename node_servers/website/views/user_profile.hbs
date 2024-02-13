@@ -2,7 +2,7 @@
 
 {{>header}}
 
-<main>
+<main style="background: #2B1756">
 
   {{!-- make it better at a later date --}}
 
@@ -17,9 +17,9 @@
       <!-- Personal information -->
       <div class="profile_info col">
         <div class="d-flex flex-wrap align-items-center">
-          <h2><strong>{{profile.first_name}} {{profile.last_name}}</strong></h2>
+          <h2 style="color: #FFFFFF"><strong>{{profile.first_name}} {{profile.last_name}}</strong></h2>
           <form action="/sign_out" method="get">
-            <input class="button-purple justify-self-end" type="submit" value="Sign Out">
+            <input class="button-white justify-self-end" type="submit" value="Sign Out">
           </form>
 
         </div>
