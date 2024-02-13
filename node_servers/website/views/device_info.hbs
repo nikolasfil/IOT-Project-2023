@@ -40,29 +40,28 @@
         </div>
 
     </div>
+    <br>
+    <div class="map-divider">
+        <h2 style="color: #FFFFFF;align-self: start"><strong>Map And History</strong></h2>
+        {{!-- This is where the Map is going to go  --}}
+        <div class="row justify-content-start " id="device-location">
 
-    <h2 style="color: #FFFFFF"><strong>Map And History</strong></h2>
-    {{!-- This is where the Map is going to go  --}}
-    <div class="row justify-content-start " id="device-location">
+            <div class="col">
+                {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
+                {{!-- {{>map locations=libraryLocations }} --}}
+                {{!-- {{>map isbn=device.isbn library=false}} --}}
+                {{!-- This is temporary  --}}
+                {{>map lon=21.732813401979747 lat=38.24507192398973 library=true}}
+                {{!--  --}}
+            </div>
+            <div class="col resLibraries">
 
-        <div class="col m-1">
-            {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
-            {{!-- {{>map locations=libraryLocations }} --}}
-            {{!-- {{>map isbn=device.isbn library=false}} --}}
-            {{!-- This is temporary  --}}
-            {{>map lon=21.732813401979747 lat=38.24507192398973 library=true}}
+                {{> deviceHistoryList device=deviceHistory}}
 
-            {{!--  --}}
+            </div>
+
         </div>
-
-
-        <div class="col resLibraries">
-
-            {{> deviceHistoryList device=deviceHistory}}
-
-        </div>
-
-
     </div>
+
 
 </main>

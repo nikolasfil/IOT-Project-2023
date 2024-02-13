@@ -68,3 +68,12 @@
   border-radius: 15px;
   width: 400px;
 }
+.map-divider{
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 10px;
+  background: #6F518C;
+  border-radius: 15px;
+
+}
