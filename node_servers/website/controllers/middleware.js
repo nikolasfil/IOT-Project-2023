@@ -114,3 +114,37 @@ exports.getUserAssignedDates = (req, res, next) => {
         next();
     }
 }
+
+
+exports.getAvailableTrackers= (req, res, next) => {
+    if (res.locals.signedIn && res.locals.isAdmin) {
+        database.databaseRequest(link='/devices/available/trackers',data = {}, function (err, devices) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error getAvailableTrackers')
+            } else {
+                res.locals.available_trackers = devices;
+                next();
+            }
+        })
+    } else {
+        next();
+    }
+}
+
+
+exports.getAvailableButtons= (req, res, next) => {
+    if (res.locals.signedIn && res.locals.isAdmin) {
+        database.databaseRequest(link='/devices/available/buttons',data = {}, function (err, devices) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error getAvailableButtons')
+            } else {
+                res.locals.available_buttons = devices;
+                next();
+            }
+        })
+    } else {
+        next();
+    }
+}

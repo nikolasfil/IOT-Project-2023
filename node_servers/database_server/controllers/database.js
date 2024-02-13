@@ -178,7 +178,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
     } else if (data.assigned === false ){ 
         // If the request is for the unassigned devices then we want to exclude the assigned devices
-        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned) `
+        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL )) `
     }
 
 
@@ -245,6 +245,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     data["query"] = query
     data["arguments"] = activated
 
+    console.log(data)
     this.execute(data, callback)
 }
 

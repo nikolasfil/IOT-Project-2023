@@ -58,6 +58,8 @@ router.get('/user_profile',
     middleware.getAssignedTrackerInfoPerUser,
     middleware.getAssignedButtonInfoPerUser,
     middleware.getUserAssignedDates,
+    middleware.getAvailableTrackers,
+    middleware.getAvailableButtons,
     userInfoMiddleware,
     userProfilePageMiddleware
 );

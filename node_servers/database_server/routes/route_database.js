@@ -71,7 +71,7 @@ router.post("/devices/:function",
         dbFunction = database.getAllAttributes;
     } else if (func === "assigned") {
         dbFunction = database.getActiveAssignedDeviceData
-    } else if (func ==="available"){
+    // } else if (func ==="available"){
 
     } else if (func === "assign") {
         console.log(data);
@@ -83,7 +83,7 @@ router.post("/devices/:function",
     }
 )
 
-router.post("/device/:function/:extra",
+router.post("/devices/:function/:extra",
     (req, res) => {
         let data = req.body.data;
         let func = req.params.function;
@@ -96,8 +96,11 @@ router.post("/device/:function/:extra",
         }
         if (func === "all") {   
             dbFunction = database.getAllDevicesJson;
-        // } else if (func === "available") {
-        //     data.
+        } else if (func === "available") {
+            data["assigned"] = false;
+            data["status"] = "active";
+            data["exclusively"] = true;
+            dbFunction = database.getAllDevicesJson;
         } else {
             res.status(404).send("Invalid function");
         }
