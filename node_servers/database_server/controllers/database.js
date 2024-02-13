@@ -488,8 +488,6 @@ exports.execute=(data, callback) =>  {
         if (result === undefined) {
             result = null
         }
-
-
         callback(null, result);
     } catch (err) {
         callback(err, null)
