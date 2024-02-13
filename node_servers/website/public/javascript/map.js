@@ -418,6 +418,9 @@ function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
         source: vectorSource,
     });
 
+    let extent = markersLayer.getSource().getExtent();
+    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+
     // Add the vector layer to the map
     map.addLayer(markersLayer);
 }
@@ -427,5 +430,7 @@ function removeMarkers(map) {
     if (markersLayer) {
         map.removeLayer(markersLayer);
         markersLayer = null;
+        let extent = map.getLayers().getArray()[1].getSource().getExtent();
+        map.getView().fit(extent, { padding: [60, 60, 60, 60] });
     }
 }
