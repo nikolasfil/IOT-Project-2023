@@ -37,7 +37,7 @@ router.get('/map/',
             if (err) {
                 res.status(500).send(err)
             } else {
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })
@@ -63,7 +63,7 @@ router.get('/device_general',
         fetch(link, link_data).then((res) => {
             return res.json();
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
             // Because it is async you have to let the next function know that it is done
             res.locals.info = data;
             next();

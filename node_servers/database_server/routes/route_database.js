@@ -101,7 +101,8 @@ router.post("/devices/:function/:extra",
         } else if (func === "assigned") {
             data["assigned"] = true;
             data["time_status"]="current"
-            dbFunction = database.getActiveAssignedDeviceData;
+            dbFunction = database.getDeviceData;
+            // dbFunction = database.getActiveAssignedDeviceData;
         } else if (func === "map") {
             // data[""]
         } 

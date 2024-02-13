@@ -2,6 +2,7 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/database.sqlite')
 
 const bcrypt = require('bcrypt');
+const { query } = require('express');
 
 
 // --------- Generic Functions ---------
@@ -516,16 +517,110 @@ exports.execute=(data, callback) =>  {
 
 // ----------------------------------------------------
 
-
+/**
+ * 
+ * Can return information about a device, assignment information and event information (Track or Presses )
+ * Created the data.query and data.arguments for the insert function
+ * 
+ * @param {*} data 
+ * @param {*} data.u_id (not optional)
+ * @param {*} data.d_id (optional)
+ * @param {*} data.date_received (optional)
+ * @param {*} data.linker (optional)
+ * @param {*} data.assigned
+ * @param {*} callback 
+ */
 exports.getDeviceData= (data, callback)=>{
     // get the device data 
     // get assigned data of the device 
     // get event data of the device 
+    let query_activated = [] 
+    let fields_activated = []
+    
 
-    data["query"] = `SELECT * FROM DEVICE ` 
+    // Initialize the query
+    data["query"] = `SELECT `
+    fields_activated.push(`DEVICE.*`)
 
-    if (data.id ){
-        data ["query"] += `WHERE `;
-        data["query"] +=` d_id = ?`
+    
+    if (data.assigned) {
+        fields_activated.push(`A.*`)
+    } 
+
+    if (data.event){
+        fields_activated.push(`P.*`)
     }
+
+    if (data.event && data.type === "Asset tracking") {
+        fields_activated.push([`P.date`,`P.time`,`P.longitude`,`P.latitude`])
+        let event_table = ` Tracked as P ` 
+    } else if (data.event && data.type === "Buttons") {
+        fields_activated.push([`P.date`,`P.time`,`P.event`])
+        let event_table = ` Pressed as P `
+    }
+
+    // if (fields_activated.length){
+    data["query"] += fields_activated.join(',')
+    
+
+    // Add the basic table name
+    data["query"] += ` FROM DEVICE ` 
+
+    // Add extra table names 
+    if (data.assigned) {
+        data["query"]+= ` JOIN Assigned as A on d_id = A.device_id `
+    }
+
+    if (data.event && event_table) {
+        data["query"]+= ` JOIN ${event_table} on P.device_id=d_id `
+    }
+
+    // Check the arguments provided and add them to the query
+
+    data["arguments"] = []
+
+    if (data.assigned){
+
+        if (data.time_status === "past") {
+            query_activated.push(`A.date_returned IS NOT NULL `)
+        } else if (data.time_status === "current") {
+            query_activated.push(`A.date_returned IS NULL `)
+        }
+        
+        if (data.user_id ){
+            query_activated.push("A.user_id = ? ")
+            data["arguments"].push(data.user_id)
+        }
+
+        if (data.date_received) {
+            query_activated.push("A.date_received = ? ")
+            data["arguments"].push(data.date_received)
+        }
+    }
+
+    if (data.event && event_table) {
+        query_activated.push(`P.date >= A.date_received `)
+        if (data.time_status === "past") {
+            query_activated.push(`A.date_returned <= P.date `)
+        }
+    }
+
+    if (data.d_id){
+        query_activated.push("d_id = ? ")
+        data["arguments"].push(data.d_id)
+    }
+    
+
+    if (data.linker === undefined || data.linker === null) {
+        data.linker = ' and '
+    }
+    
+    if (query_activated.length){
+        data ["query"] += ` WHERE `;
+        data["query"] += query_activated.join(data.linker)
+    }
+
+    console.log(data)
+    this.execute(data, callback)
+
 }
