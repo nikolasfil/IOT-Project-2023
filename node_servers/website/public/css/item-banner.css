@@ -1,0 +1,488 @@
+.team-banner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 1920px;
+    height: 418px;
+
+    padding: 0;}
+.team-banner{
+    position: relative;
+}
+.team-logo{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 1200px;
+    height: 375px;
+    left: 0px;
+    top: 0px;
+
+
+    border-radius: 0px 150px 0px 0px;
+}
+.team-name{
+    position: absolute;
+    /*width: 361px;*/
+    /*height: 55px;*/
+    left: 458px;
+    top: 160px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 55px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+.team-stad{
+
+    /*width: 781px;*/
+    /*height: 375px;*/
+
+
+}
+.stad-img{
+    box-sizing: border-box;
+
+
+    width: 781px;
+    height: 375px;
+    left: 1139px;
+    top: 0px;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: #000000;
+}
+.stad-name{
+    position: absolute;
+    width: 266px;
+    height: 46px;
+    right: 23px;
+    top: calc(50% - 46px/2 + 164.5px);
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+.team-navs{}
+
+.logo-icon{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: calc(50% - 250px/2 - 305.5px);
+    top: calc(50% - 250px/2 - 0.5px);
+
+}
+
+.team-info-container{
+    /*position: absolute;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 27px;
+    gap: 10px;
+
+}
+.team-info-img{
+    box-sizing: border-box;
+
+    width: 944px;
+    height: 628px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+.team-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 80px;
+
+    width: 369px;
+    height: 628px;
+}
+
+.player-card{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    /*gap: 25px;*/
+
+    width: 450px;
+    height: 70px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.player-number{
+    /*width: 29px;*/
+    /*height: 39px;*/
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.player-name{
+    /* Name */
+
+
+    /*width: 54px;*/
+    /*height: 23px;*/
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;}
+
+.player-surname{
+    /* Surname */
+
+
+    /*width: 84px;*/
+    /*height: 23px;*/
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+}
+
+.team-comp{
+    /* team-comp */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    /*width: 1440px;*/
+    /*height: 1248px;*/
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.comp-title {
+
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.position-div{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+
+    /*width: 1410px;*/
+    /*height: 248px;*/
+
+    border-top: 1px solid #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+}
+
+.players-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 0px;
+    gap: 20px;
+
+    /*width: 1390px;*/
+    /*height: 80px;*/
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.players-grid-title {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.team-stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.stats-dets{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.stats-title {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 1436px;
+    /*gap: 10px;*/
+    border-bottom: 1px solid #000000;
+
+    /* Inside auto layout */
+
+    align-self: center;}
+.stats-title-text {
+
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.stats-grid{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 100px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;}
+.stats-frame{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+    gap: 20px;
+    width: 330px;
+    height: 165px;
+
+    border: 1px solid #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.stats-frame-title {
+
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 37px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: center;
+    flex-grow: 0;}
+
+.stats-frame-text {
+
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;}

@@ -11,7 +11,7 @@
   width: 300px
 }
 
-.status-circle{
+.status-circle-active{
   display: flex;
   width: 70px;
   padding: 5px 15px;
@@ -19,6 +19,24 @@
   align-items: center;
   border-radius: 17px;
   background: #48833F;
+}
+.status-circle-deact{
+  display: flex;
+  width: 100px;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17px;
+  background: #68717A;
+}
+.status-circle-broken{
+  display: flex;
+  width: 70px;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17px;
+  background: #867C23;
 }
 .status-div{
   display: flex;

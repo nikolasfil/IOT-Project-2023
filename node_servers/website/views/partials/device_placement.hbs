@@ -2,21 +2,30 @@
 <div class="card-img-top card-space">
     <div class="card-div" draggable="false">
         <a href="/device_info/{{data.serial}}" class="d-flex flex-column align-content-center">
+
+                <div class="status-div">
+                {{#if (eq data.status "active")}}
+                    <div class="status-circle-active">{{data.status}}</div>
+                {{/if}}
+                {{#if (eq data.status "deactivated")}}
+                    <div class="status-circle-deact">{{data.status}}</div>
+                {{/if}}
+                {{#if (eq data.status "broken")}}
+                    <div class="status-circle-broken">{{data.status}}</div>
+                {{/if}}
+                    <div style="text-align: center; position: relative;">
+                        <img src="img/svg/battery_status.svg" alt="Battery Status">
+                        <span style="position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); font-weight: 600">{{data.battery}}</span>
+                    </div>
+
+                </div>
                 <div class="status-div">
                     <span class="card-text-bold">ID:</span>
                     <span class="card-text-normal">{{data.d_id}}</span>
                 </div>
                 <div class="status-div">
-                    <span class="card-text-bold">Status:</span>
-                    <span class="card-text-normal"><small>{{data.status}}</small></span>
-                </div>
-                <div class="status-div">
                     <span class="card-text-bold">Serial:</span>
                     <span class="card-text-right"><small>{{data.serial}}</small></span>
-                </div>
-                <div class="status-div">
-                    <span class="card-text-bold">Battery:</span>
-                    <span class="card-text-normal"><small>{{data.battery}}</small></span>
                 </div>
                 <div class="status-div">
                     <span class="card-text-bold">Type:</span>
