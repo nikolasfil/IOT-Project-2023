@@ -375,16 +375,12 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
 
     data["query"] = `Select d_id`
     data["query"] += `, serial, status, battery, type `
-    
-    if (data.function ){
-        data["query"] += `, P.date, P.time`
-    }
-    
-
+        
     let device_data = []
-
-
+    
+    
     if (data.assigned ){
+        data["query"] += `, P.date, P.time`
         if (data.type==="Asset tracking"){
             device_data.push(`, P.longitude, P.latitude`)
             device_data.push(` Tracked`)
