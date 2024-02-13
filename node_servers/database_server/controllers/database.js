@@ -284,98 +284,21 @@ exports.getAllAttributes= (data, callback) =>  {
     this.execute(data, callback)
 }
 
-/**
- * 
- * @param {*} data : Json file that consists of the following parameters 
- * @param {*} data.id : The id of the user we want to check if exists (not optional)
- * @param {*} callback 
- */
-exports.checkIfUserExists= (data, callback) =>  {
-    data["query"] = `Select * from USER where u_id = ?`
-    data["arguments"] = [data.id]
 
-    const checker = (err, result) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            if (result) {
-                callback(null, true)
-            } else {
-                callback(null, false)
-            }
-        }
-    }
-
-    this.execute(data, checker)
-}
-
-/**
- * 
- * @param {*} data : Json file that consists of the following parameters
- * @param {*} data.id : The id of the user we want to get the details of (not optional)
- * @param {*} callback 
- */
-exports.userDetails= (data, callback) =>  {
-    data["query"] = `Select * from USER where u_id = ?` 
-    data["arguments"] = [data.id]
-    this.execute(data, callback)
-}
-
-
-exports.checkUser = (data, callback)=> {
-    const provider = (err, result) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            if (result) {
-                const match = bcrypt.compareSync(data.password, result.password);
-                if (match) {
-                    callback(null, result)
-                }
-                else {
-                    callback("Wrong Password", result)
-                }
-            } else {
-                callback("User Not Found", false)
-            }
-        }
-    }
-    this.userDetails(data, provider)
-
-}
 
 
 /**
  * 
  * @param {*} data 
- * @param {*} data.user 
+ * @param {*} data.function The user function we want to execute (not optional) (details, login, check, add) 
+ * @param {*} data.id The id of the user (not optional)
+ * @param {*} data.user The user information (optional) for adding a user 
+ * @param {*} data.password The password of the user (optional) for login
+ * @param {*} data.status The status of the user (optional) (current, past)
  * @param {*} callback 
  */
-exports.addUser= (data, callback) =>  {
-    let user = data.user
-    let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
-    let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
-    
-    data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
-    
-    data["arguments"] = attributes
-
-    this.execute(data, callback)
-    
-    // const stmt = betterDb.prepare(query)
-
-    // try {
-    //     stmt.run(attributes)
-    //     callback(null, true)
-    // }
-    // catch (err) {
-    //     callback(err, null)
-    // }
-}
-
-
-
 exports.userFunctions=(data,callback)=> {
+    let callback_function = callback;
     if (data.function === "details" || data.function === "login" || data.function === "check") { 
         data["query"] = `Select * from USER where u_id = ?` 
         data["arguments"] = [data.id]
@@ -407,8 +330,7 @@ exports.userFunctions=(data,callback)=> {
                 }
             }
         }
-
-        this.execute(data, login_checker)
+        callback_function = login_checker
     } else if (data.function === "check"){
         const existence_checker = (err, result) => {
             if (err) {
@@ -422,11 +344,10 @@ exports.userFunctions=(data,callback)=> {
             }
         }
     
-        this.execute(data, existence_checker)
-    } else {
-        this.execute(data, callback)
-
-    }
+        callback_function=  existence_checker
+    } 
+    this.execute(data, callback_function)
+    
 }
 
 
