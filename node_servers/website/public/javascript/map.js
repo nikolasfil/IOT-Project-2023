@@ -111,33 +111,9 @@ async function mapRoute() {
         }),
     });
 
-    // // If #safe-zones in heatmap_filters is checked, call addMarkers
-    // if (document.getElementById("safe-zones").checked) {
-    //     addMarkers(map, [[21.822057501641, 38.216649297601], [21.822787062493, 38.221099885448], [21.823559538689, 38.222920502012], [21.824804083672, 38.222886787304], [21.825662390557, 38.223493649649], [21.826391951409, 38.223426220749], [21.827636496392, 38.22362850726], [21.828709379998, 38.224741073015], [21.829696432915, 38.225314206308], [21.830898062554, 38.224437647678]]);
-    // }
-
-    console.log(document.getElementById("safe-zones"));
-    // Get the checkbox
-    let checkbox = document.getElementById('safe-zones');
-
-    // Add an event listener to the checkbox
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            // If the checkbox is checked, call the addMarkers function
-            // Replace 'map' and 'coordinates' with your actual map and coordinates
-            addMarkers(map, [[21.822057501641, 38.216649297601], [21.822787062493, 38.221099885448], [21.823559538689, 38.222920502012], [21.824804083672, 38.222886787304], [21.825662390557, 38.223493649649], [21.826391951409, 38.223426220749], [21.827636496392, 38.22362850726], [21.828709379998, 38.224741073015], [21.829696432915, 38.225314206308], [21.830898062554, 38.224437647678]], 'img/location-heart-filled.svg');
-        } else {
-            // If the checkbox is unchecked, you might want to remove the markers
-            // This depends on your specific requirements
-            removeMarkers(map);
-        }
-    });
-
-    // // If #trackers in heatmap_filters is checked, call drawPaths
-    // if (document.getElementById().checked) {
-    //     drawPaths(map, '/map');
-    // }  
-
+    // console.log(document.getElementById("safe-zones"));
+    
+    checkSafeZonesCheckboxExists(map);
 
     // Fit the view to the extent of the vector layer
     let extent = vectorLayer.getSource().getExtent();
@@ -432,5 +408,30 @@ function removeMarkers(map) {
         markersLayer = null;
         let extent = map.getLayers().getArray()[1].getSource().getExtent();
         map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+    }
+}
+
+function checkSafeZonesCheckboxExists(map) {
+    // Get the 'safe-zones' checkbox
+    let safeZonesCheckbox = document.getElementById('safe-zones');
+
+    // Check if the checkbox exists
+    if (safeZonesCheckbox) {
+        // 'safe-zones' checkbox exists
+        // Add an event listener to the checkbox
+        safeZonesCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // If the checkbox is checked, call the addMarkers function
+                // Replace 'map' and 'coordinates' with your actual map and coordinates
+                addMarkers(map, [[21.822057501641, 38.216649297601], [21.822787062493, 38.221099885448], [21.823559538689, 38.222920502012], [21.824804083672, 38.222886787304], [21.825662390557, 38.223493649649], [21.826391951409, 38.223426220749], [21.827636496392, 38.22362850726], [21.828709379998, 38.224741073015], [21.829696432915, 38.225314206308], [21.830898062554, 38.224437647678]], 'img/location-heart-filled.svg');
+            } else {
+                // If the checkbox is unchecked, you might want to remove the markers
+                // This depends on your specific requirements
+                removeMarkers(map);
+            }
+        });
+    } else {
+        // 'safe-zones' checkbox does not exist
+        return false;
     }
 }
