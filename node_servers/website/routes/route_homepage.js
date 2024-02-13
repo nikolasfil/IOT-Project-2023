@@ -8,7 +8,6 @@ const middleware = require('../controllers/middleware.js')
 
 
 homepage_render = (req, res) => {
-    console.log(res.locals);
     res.render('homepage', {
         style: ['index.css','heatmap.css'],
         title: 'Home',

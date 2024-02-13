@@ -158,7 +158,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     if (data.numOf && data.assigned) {
         // If the request if for both the number of results data fields and information on assigned
         query += ` , `
-    } else if (!data.numOf && !data.assigned) {
+    } else if (!data.numOf && (data.assigned === undefined || data.assigned === null )) {
         // If the request is not for the number or results and it does not include fields, then return everything
         query += ` * `
     } 
@@ -167,7 +167,9 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         // We want specific fields to be reutrned if the request is for the assigned devices
         // Else it will return all the fields of the Assigned table so that they are joined
         query += ` d_id , serial, battery, status, type, u_id, first_name, last_name, phone, date_received, date_returned `
-    } 
+    } else if (data.assigned ===false) {
+        query += ` distinct d_id, serial, battery, status, type`
+    }
 
 
     // Add the table name
@@ -244,8 +246,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     data["query"] = query
     data["arguments"] = activated
-    console.log("inside getAllDevicesJson")
-    console.log(data)
+    
     this.execute(data, callback)
 }
 
@@ -300,6 +301,7 @@ exports.userFunctions=(data,callback)=> {
     // Keeps the default callback function
     // For details login and check we are executing the same query to the database but use a different callback_function
     if (data.function === "details" || data.function === "login" || data.function === "check") { 
+        data["single"] = true
         data["query"] = `Select * from USER where u_id = ?` 
         data["arguments"] = [data.id]
     } else if (data.function === "add") { 
@@ -311,12 +313,9 @@ exports.userFunctions=(data,callback)=> {
         data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
         data["arguments"] = attributes
     } 
-
-
     if (data.function === "login") {
         // Checks the password provided is the same from the password retrieved from the database 
         const login_checker = (err, result) => {
-
             if (err) {
                 callback(err, null)
             } else {
@@ -477,16 +476,11 @@ exports.execute=(data, callback) =>  {
     try {
         stmt = betterDb.prepare(data.query)
         
-        // if (data.arguments && data.arguments.length>1) {
-        if (data.arguments && data.arguments.length) {
-            // result = stmt.all(...data.arguments);
+        if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
             result = stmt.all(data.arguments);
-        }
-        //  else if (data.arguments && data.arguments.length===1 ) {
-        //     result = stmt.get(data.arguments[0]);
-        //     // result = stmt.all(data.arguments)[0];
-        // }
-         else {
+        } else if (data.arguments && data.arguments.length && data.single) {
+            result = stmt.get(data.arguments);
+        } else {
             result = stmt.all();
         }
         if (result === undefined) {

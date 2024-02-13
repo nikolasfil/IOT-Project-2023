@@ -35,12 +35,15 @@ router.post('/user/:function',
             if (req.query.date) {
                 data["date"] = req.query.date;
             }
+            data["limit"] = 1;
             dbFunction = database.getActiveAssignedDeviceData 
         } else if (func === "button_data") {
             data["type"] = "Buttons";
             if (req.query.date) {
                 data["date"] = req.query.date;
             }
+            data["limit"] = 1;
+
             dbFunction = database.getActiveAssignedDeviceData 
         } else {
             res.status(404).send("Invalid function");
@@ -50,13 +53,6 @@ router.post('/user/:function',
     }
 )
 
-
-router.post("/command",
-(req, res) => {
-    let data = req.body.data;
-    functionChecker(data,database.execute,res,"command");
-
-})
 
 
 router.post("/devices/:function",
@@ -101,13 +97,22 @@ router.post("/devices/:function/:extra",
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
-
+            data["limit"] = 1;
             dbFunction = database.getAllDevicesJson;
         } else {
-            res.status(404).send("Invalid function");
+            dbFunction = null;
         }
         functionChecker(data,dbFunction,res,func);
     });
+
+
+
+router.post("/command",
+(req, res) => {
+    let data = req.body.data;
+    functionChecker(data,database.execute,res,"command");
+
+})
 
 
 router.get("/test",

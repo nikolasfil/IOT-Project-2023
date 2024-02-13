@@ -37,7 +37,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
                 console.log('getAssignedTrackerInfoPerUser')
                 res.status(500).send("Internal Server Error")
             } else {
-                res.locals.assigned_tracker = devices;
+                res.locals.assigned_tracker_info = devices;
                 next();
             }
         })
@@ -58,7 +58,7 @@ exports.getAssignedButtonInfoPerUser=(req, res, next) => {
                 console.log(err)
                 res.status(500).send('Internal Server Error')   
             } else {
-                res.locals.assigned_button = devices;
+                res.locals.assigned_button_info = devices;
                 next();
             }
         })
@@ -66,6 +66,9 @@ exports.getAssignedButtonInfoPerUser=(req, res, next) => {
         next();
     }
 }
+
+
+
 
 
 /**
@@ -141,6 +144,41 @@ exports.getAvailableButtons= (req, res, next) => {
                 res.status(500).send('Internal Server Error getAvailableButtons')
             } else {
                 res.locals.available_buttons = devices;
+                next();
+            }
+        })
+    } else {
+        next();
+    }
+}
+
+
+
+exports.getAssignedTracker = (req, res, next) => {
+    if (res.locals.signedIn) {
+        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Asset tracking", time_status:"current"}, function (err, devices) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error getAssignedTracker')
+            } else {
+                res.locals.assigned_tracker = devices;
+                next();
+            }
+        })
+    } else {
+        next();
+    }
+}
+
+
+exports.getAssignedButton = (req, res, next) => {
+    if (res.locals.signedIn) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/button',data = {}, function (err, devices) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error getAssignedButton')
+            } else {
+                res.locals.assigned_button = devices;
                 next();
             }
         })

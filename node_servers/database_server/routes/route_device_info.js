@@ -76,7 +76,6 @@ router.get('/device_general',
         });
     },      
     (req, res) => {
-        console.log(res.locals.info);   
         res.send(res.locals.info);
     });
 

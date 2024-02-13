@@ -4,7 +4,7 @@
     <label for="deviceSelect">Select a device:</label>
     <select id="trackerSelect" name="selectedDevice">
       {{#each available_trackers}}
-        <option value="{{this}}">{{this}}</option>
+        <option value="{{serial}}">{{serial}}</option>
       {{/each}}
     </select>
     <br />
@@ -18,7 +18,7 @@
     <label for="deviceSelect">Select a device:</label>
     <select id="buttonSelect" name="selectedDevice">
       {{#each available_buttons}}
-        <option value="{{this}}">{{this}}</option>
+        <option value="{{serial}}">{{serial}}</option>
       {{/each}}
     </select>
     <br />
