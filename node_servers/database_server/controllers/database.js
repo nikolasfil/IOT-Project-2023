@@ -373,11 +373,9 @@ exports.userFunctions=(data,callback)=> {
 exports.getActiveAssignedDeviceData=(data,callback) => {
 
 
-    data["query"] = `Select d_id`
-    data["query"] += `, serial, status, battery, type `
+    data["query"] = `Select d_id, serial, status, battery, type `
         
     let device_data = []
-    
     
     if (data.assigned ){
         data["query"] += `, P.date, P.time`
@@ -391,15 +389,11 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         } else {
             callback('Device not Specified', null)
         }
-        data["query"] += device_data[0]
+        data["query"] += `${device_data[0]} from DEVICE join Assigned as A on d_id = A.device_id `
+    } else {
+        data["query"] += ` from DEVICE `
     }
     
-    // FROM DEVICE join Assigned as A on d_id = device_id 
-    data["query"] += ` from DEVICE `
-    
-    if (data.assigned){
-        data["query"] += ` join Assigned as A on d_id = A.device_id `
-    }
     
     data["query"] += `join ${device_data[1]} as P on P.device_id=d_id `
     // data["query"] += `from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
