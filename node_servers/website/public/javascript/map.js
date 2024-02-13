@@ -245,3 +245,71 @@ async function mapMult() {
     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 }
 
+// Can be used to add markers to the map for sage zones or other points of interest
+function addMarkers(map, coordinates) {
+    // Get the vector source from the map's vector layer
+    let vectorSource = map.getLayers().getArray()[1].getSource();
+
+    // For each set of coordinates, create a feature and add it to the vector source
+    for (let coordinate of coordinates) {
+        let pointFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate)),
+        });
+
+        pointFeature.setStyle(
+            new ol.style.Style({
+                image: new ol.style.Icon({
+                    src: 'path/to/icon.png', // Replace with the path to your icon
+                }),
+            })
+        );
+
+        vectorSource.addFeature(pointFeature);
+    }
+}
+
+function hashCode(str) {
+    // Simple hash function to generate a number from a string
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+}
+
+function intToRGB(i) {
+    // Convert a number to a RGB color
+    var c = (i & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase();
+    return "00000".substring(0, 6 - c.length) + c;
+}
+
+async function drawPaths(map, route) {
+    // Fetch the coordinates from the server-side route
+    let response = await fetch(route);
+    let trackers = await response.json();
+
+    // Get the vector source from the map's vector layer
+    let vectorSource = map.getLayers().getArray()[1].getSource();
+
+    // For each tracker, create a line string using the coordinates and add it to the vector source
+    for (let tracker of trackers) {
+        let lineFeature = new ol.Feature({
+            geometry: new ol.geom.LineString(tracker.coordinates.map(coordinate => ol.proj.fromLonLat(coordinate))),
+        });
+
+        let color = intToRGB(hashCode(tracker.trackerId));
+
+        lineFeature.setStyle(
+            new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: '#' + color,
+                    width: 3,
+                }),
+            })
+        );
+
+        vectorSource.addFeature(lineFeature);
+    }
+}
