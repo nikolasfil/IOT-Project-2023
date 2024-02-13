@@ -43,71 +43,72 @@ function mapInit(lon, lat) {
     });
 }
 
-// /**
-//  * 
-//  * @param {*} coords 
-//  */
-// async function mapRoute(coords) {
+/**
+ * 
+ * @param {*} coords 
+ */
+async function mapRoute() {
 
-//     // Fetch the data from the database
-//     let response = await fetch(`/map/${coords}`);
-//     let data = await response.json();
+    // Fetch the data from the database
+    let response = await fetch(`/map`);
+    let data = await response.json();
 
-//     // Create an array to hold the coordinates
-//     let coordinates = [];
+    // Create an array to hold the coordinates
+    let coordinates = [];
 
-//     // Create a vector source
-//     let vectorSource = new ol.source.Vector();
+    // Create a vector source
+    let vectorSource = new ol.source.Vector();
 
-//     // For each object in the data, create a point and add it to the vector source
-//     for (let item of data) {
-//         let coordinate = ol.proj.fromLonLat([item[0], item[1]]);
-//         coordinates.push(coordinate);
+    // For each object in the data, create a point and add it to the vector source
+    
+    for (let item of data) {
+        let coordinate = ol.proj.fromLonLat([item.latitude, item.longitude]);
+        coordinates.push(coordinate);
 
-//         let pointFeature = new ol.Feature({
-//             geometry: new ol.geom.Point(coordinate),
-//         });
+        let pointFeature = new ol.Feature({
+            geometry: new ol.geom.Point(coordinate),
+        });
 
-//         vectorSource.addFeature(pointFeature);
-//     }
+        vectorSource.addFeature(pointFeature);
+    }
 
-//     // Create a line string using the coordinates and add it to the vector source
-//     // Make the color of the line red
-//     let lineFeature = new ol.Feature({
-//         geometry: new ol.geom.LineString(coordinates),
-//     });
+    // Create a line string using the coordinates and add it to the vector source
+    // Make the color of the line red
+    let lineFeature = new ol.Feature({
+        geometry: new ol.geom.LineString(coordinates),
+    });
 
-//     vectorSource.addFeature(lineFeature);
+    vectorSource.addFeature(lineFeature);
 
-//     // Create a vector layer using the vector source
-//     let vectorLayer = new ol.layer.Vector({
-//         source: vectorSource,
-//         style: new ol.style.Style({
-//             stroke: new ol.style.Stroke({
-//                 color: 'red',
-//                 width: 3,
-//             }),
-//         }),
-//     });
-//     // Create the map
-//     let map = new ol.Map({
-//         target: 'map',
-//         layers: [
-//             new ol.layer.Tile({
-//                 source: new ol.source.OSM(),
-//             }),
-//             vectorLayer,
-//         ],
-//         view: new ol.View({
-//             center: ol.proj.fromLonLat([0, 0]),
-//             zoom: 2,
-//         }),
-//     });
+    // Create a vector layer using the vector source
+    let vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 3,
+            }),
+        }),
+    });
+    // Create the map
+    let map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM(),
+            }),
+            vectorLayer,
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([0, 0]),
+            zoom: 2,
+        }),
+    });
 
-//     // Fit the view to the extent of the vector layer
-//     let extent = vectorLayer.getSource().getExtent();
-//     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
-// }
+    // Fit the view to the extent of the vector layer
+    let extent = vectorLayer.getSource().getExtent();
+    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+}
 
 async function mapMult() {
     // Fetch the data from the database
