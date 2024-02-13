@@ -66,9 +66,7 @@ router.post("/devices/:function",
         dbFunction = database.getAllDevicesJson;
     } else if (func === "attributes") {
         dbFunction = database.getAllAttributes;
-    } else if (func === "assigned") {
-        dbFunction = database.getActiveAssignedDeviceData
-    } else if (func === "assign") {
+    }  else if (func === "assign") {
         console.log(data);
     } else {
         dbFunction = null;
@@ -96,7 +94,6 @@ router.post("/devices/:function/:extra",
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
-
             dbFunction = database.getAllDevicesJson;
         } else if (func === "assigned") {
             data["assigned"] = true;

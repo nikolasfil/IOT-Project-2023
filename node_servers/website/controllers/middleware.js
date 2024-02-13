@@ -54,7 +54,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id, type: "Buttons"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')   
@@ -157,7 +157,7 @@ exports.getAvailableButtons= (req, res, next) => {
 
 exports.getAssignedTracker = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned',data = {single:true,id: res.locals.user_id, type: "Asset tracking", time_status:"current"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {single:true,id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAssignedTracker')
@@ -174,7 +174,7 @@ exports.getAssignedTracker = (req, res, next) => {
 
 exports.getAssignedButton = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned',data = {single:true,id: res.locals.user_id, type: "Buttons", time_status:"current"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {single:true,id: res.locals.user_id}, function (err, devices) {
 
             if (err) {
                 console.log(err)

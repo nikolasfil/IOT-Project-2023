@@ -83,8 +83,11 @@ router.get('/device_info',
     },
     (req, res, next) => {
         // get device info
-        let data = {}
-        data.serial = req.query['serial'];
+        let data = {
+            serial: req.query['serial'],
+            single: true
+        }
+
         database.databaseRequest(link='/devices/all',data = data,(err, device) => {
             if (err) {
                 console.log(err)
@@ -92,7 +95,6 @@ router.get('/device_info',
             } else {
                 // assign the res.locals.device the first device in the list
                 res.locals.device = device;
-                // console.log(res.locals.device)
                 next();
             }
         });

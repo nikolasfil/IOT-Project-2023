@@ -133,7 +133,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     let activated_name = [];
 
     // List of arguments to exclude from iteration
-    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned','debug']
+    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned','debug','single','query','arguments']
 
     // ----------- Building the list of activated arguments ----------- 
 
