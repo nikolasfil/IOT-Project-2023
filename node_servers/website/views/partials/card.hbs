@@ -4,7 +4,8 @@
   <div class="card-div" draggable="false">
     {{! fix it so that there is a link for devices/id }}
     <a
-      href={{encode (concat "device_info/" d_id)}}
+      {{!-- href={{encode (concat "device_info/" d_id)}} --}}
+      href={{encode (concat "device_info/" serial)}}
       class="d-flex flex-column align-content-center"
     >
       <div class="status-div">

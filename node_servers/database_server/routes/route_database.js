@@ -4,6 +4,7 @@ const database = require('../controllers/database.js');
 
 
 function functionChecker (data,dbFunction,res,func) {
+
     if (dbFunction){
         dbFunction(data, (err, result) => {
             if (err) {
@@ -54,19 +55,10 @@ router.post('/user/:function',
 )
 
 
-router.post("/command/:function",
+router.post("/command",
 (req, res) => {
     let data = req.body.data;
-    let func = req.params.function;
-    let dbFunction = null;
-    if (func === 'select') {
-        dbFunction = database.select;
-    } else if (func === 'insert') {
-        dbFunction = database.insert;
-    } else {
-        res.status(404).send("Invalid function");
-    }
-    functionChecker(data,dbFunction,res,func);
+    functionChecker(data,database.execute,res,"command");
 
 })
 
@@ -78,6 +70,7 @@ router.post("/devices/:function",
     let dbFunction = null;
 
     if (func === "all") {
+        console.log(data);
         dbFunction = database.getAllDevicesJson;
     } else if (func === "attributes") {
         dbFunction = database.getAllAttributes;

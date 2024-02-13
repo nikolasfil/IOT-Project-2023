@@ -112,7 +112,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     
 
     // Defining the variables
-    let stmt, device, query, query_filters, query_activated, linker;
+    let query, query_filters, query_activated, linker;
     
     // initializing some variables
     query_filters = "";
@@ -245,7 +245,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     data["query"] = query
     data["arguments"] = activated
 
-    this.select(data, callback)
+    this.execute(data, callback)
 }
 
 /**
@@ -281,7 +281,7 @@ exports.getAllAttributes= (data, callback) =>  {
     data["query"] = query
     data["arguments"] = list
 
-    this.select(data, callback)
+    this.execute(data, callback)
 }
 
 /**
@@ -306,7 +306,7 @@ exports.checkIfUserExists= (data, callback) =>  {
         }
     }
 
-    this.select(data, checker)
+    this.execute(data, checker)
 }
 
 /**
@@ -318,7 +318,7 @@ exports.checkIfUserExists= (data, callback) =>  {
 exports.userDetails= (data, callback) =>  {
     data["query"] = `Select * from USER where u_id = ?` 
     data["arguments"] = [data.id]
-    this.select(data, callback)
+    this.execute(data, callback)
 }
 
 
@@ -389,7 +389,7 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
     }
 
 
-    this.select(data,callback)
+    this.execute(data,callback)
 }
 
 exports.getAllActiveUsers = (data, callback) => {
@@ -411,7 +411,7 @@ exports.getAllActiveUsers = (data, callback) => {
     and 
     A1.date_returned IS NULL `
     
-    this.select(data, callback)
+    this.execute(data, callback)
 }
 
 // ---------- Functions to be optimized later -----------
@@ -439,7 +439,7 @@ exports.getAssignedDates = (data, callback ) => {
         data["arguments"] = [data.id]
     }
 
-    this.select(data, callback)
+    this.execute(data, callback)
     }
 
 
@@ -454,7 +454,7 @@ exports.getAssignedDates = (data, callback ) => {
  * @param {*} data.arguments (optional)
  * @param {*} callback 
  */
-exports.select=(data, callback) =>  {
+exports.execute=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
@@ -478,28 +478,6 @@ exports.select=(data, callback) =>  {
     }
 }
 
-/**
- * 
- * @param {*} data 
- * @param {*} data.query 
- * @param {*} data.arguments
- * @param {*} callback 
- */
-exports.insert = (data,callback) => {
-    let stmt, result;
-    try {
-        stmt = betterDb.prepare(data.query)
-        if (data.arguments.length) {
-            result = stmt.run(data.arguments);
-        }
-        else {
-            result = stmt.run();
-        }
-    } catch (err) {
-        callback(err, null)
-    }
-    callback(null, result);
-}
 
 
 // --------- Dynamic Insertion into Database --------

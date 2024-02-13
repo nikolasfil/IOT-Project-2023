@@ -97,10 +97,10 @@ router.get('/device_info',
         database.databaseRequest(link='/devices/all',data = data,(err, device) => {
             if (err) {
                 console.log(err)
-                res.status(500).send('Internal Server Error')
+                res.status(500).send('Internal Server Error 1 ')
             } else {
                 // assign the res.locals.device the first device in the list
-                res.locals.device = device[0];
+                res.locals.device = device;
                 // console.log(res.locals.device)
                 next();
             }
@@ -130,7 +130,7 @@ router.get('/device_info',
         let data = {}
         data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
         data.arguments = [req.query['serial']]
-        database.databaseRequest(link='/command/select',data,(err,device) => {
+        database.databaseRequest(link='/command',data,(err,device) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
