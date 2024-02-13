@@ -23,4 +23,48 @@
     min-height: 150px;
   }
 }
-
+.general-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background: #6F518C;
+  border-radius: 15px;
+  padding: 5px;
+}
+.id-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.info-grid{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+}
+.gen-info-assigned{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.assigned-user{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  background: #6F518C;
+  border-radius: 15px;
+  width: 400px;
+}

@@ -1,48 +1,49 @@
 {{>header}}
 
 <main class="d-flex flex-column align-content-center pageborder" style="background: #2B1756">
+    {{!-- Den kserw giati thelei extra div gia na mpoun mazi alla doulevei  --}}
+    <div class="gen-info-assigned">
+        <div>
+            <div class="general-info" id="device">
 
-    <div class="row justify-content-between" id="device">
-        <h2 style="color: #FFFFFF"><strong>General Info</strong></h2>
-        {{!-- <h1 id="title"><strong>device Title</strong></h1> --}}
-        {{!-- <img src=".card_device_default.jpg" alt="device cover" class="device-img m-3"> --}}
-        {{#if (eq device.type "button")}}
-        <div class="col">
-            <img src="/img/button.png" alt="device cover" class="device-img m-3" width="200px">
+                <h2 style="color: #FFFFFF; align-self: center"><strong>General Info</strong></h2>
+                {{!-- <h1 id="title"><strong>device Title</strong></h1> --}}
+                {{!-- <img src=".card_device_default.jpg" alt="device cover" class="device-img m-3"> --}}
+                <div class="info-container">
+                    <div class="id-title" id="device-title-summary">
+                        <h1 id="title" style="color: #FFFFFF"><strong>ID: {{ device.d_id }}</strong></h1>
+                        {{#if (eq device.type "button")}}
+                            <div class="col">
+                                <img src="/img/button.png" alt="device cover" class="device-img m-3" width="200px">
+                            </div>
+                        {{else}}
+                            <div class="col">
+                                <img src="/img/gps-over.png" alt="device cover" class="device-img m-3" width="200px"
+                                     style="background: #6F518C; border-radius: 15px">
+                            </div>
+
+                        {{/if}}
+                    </div>
+                    <div class="info-grid" id="device-info">
+                        {{!-- These attributes need changing --}}
+                        {{> info_grid device=device}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="assigned-user" id="device-assigned-user">
+                {{!-- Make a divider that will be able to fetch user info --}}
+                {{!-- And be able to update them  --}}
+                <h2 style="color: #FFFFFF"><strong>Assigned User</strong></h2>
+                <div class="info-container"></div>
+            </div>
         </div>
-        {{else}}
-        <div class="col">
-            <img src="/img/gps-over.png" alt="device cover" class="device-img m-3" width="200px" style="background: #6F518C; border-radius: 15px">
-        </div>
-
-        {{/if}}
-
-        <div class="col col-md-6 justify-content-start" id="device-title-summary">
-            <h1 id="title" style="color: #FFFFFF"><strong>ID: {{ device.d_id }}</strong></h1>
-            
-
-        </div>
-
-        <div id="device-assigned-user">
-            {{!-- Make a divider that will be able to fetch user info --}}
-            {{!-- And be able to update them  --}}
-            
-        </div>
-
-        <div class="col justify-content-end " id="device-info">
-            {{!-- These attributes need changing --}}
-            {{> info_grid device=device}}
-        </div>
-
-        
 
     </div>
 
-
-
     <h2 style="color: #FFFFFF"><strong>Map And History</strong></h2>
     {{!-- This is where the Map is going to go  --}}
-    <div class="row justify-content-start" id="device-location">
+    <div class="row justify-content-start " id="device-location">
 
         <div class="col m-1">
             {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
@@ -51,7 +52,7 @@
             {{!-- This is temporary  --}}
             {{>map lon=21.732813401979747 lat=38.24507192398973 library=true}}
 
-{{!--  --}}
+            {{!--  --}}
         </div>
 
 
