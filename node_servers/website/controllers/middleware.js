@@ -1,5 +1,5 @@
 
-const database = require('../controllers/database.js');
+const database = require('./remoteDatabase.js');
 
 /**
  * Middleware to get all active devices if the user is an admin

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const database = require('../controllers/database.js');
+const remoteDatabase = require('../controllers/remoteDatabase.js');
 const authentication = require('../controllers/authentication.js');
 const middleware = require('../controllers/middleware.js')
 

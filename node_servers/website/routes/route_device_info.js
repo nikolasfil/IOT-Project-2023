@@ -2,7 +2,7 @@ const express = require('express');
 
 const authentication = require('../controllers/authentication.js')
 const router = express.Router();
-const database = require('../controllers/database.js');
+const database = require('../controllers/remoteDatabase.js');
 
 // All this should first pass by the middleware login to be on the safe side
 

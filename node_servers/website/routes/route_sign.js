@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const database = require('../controllers/database.js');
+const remoteDatabase = require('../controllers/remoteDatabase.js');
 
 
 router.get('/sign_in', (req, res) => {
@@ -16,7 +16,7 @@ router.post('/sign_in',
             id: req.body.id,
             password : req.body.psw
         }
-        database.databaseRequest(link='/user/login',data, (err, result) => {
+        remoteDatabase.databaseRequest(link='/user/login',data, (err, result) => {
             if (err) {
                 console.log(err);
                 req.session.alert_message = err;
@@ -37,7 +37,7 @@ router.post('/sign_up',
         let data = {
             id: req.body.email
         }
-        database.databaseRequest(link='/user/check',data, (err, result) => {
+        remoteDatabase.databaseRequest(link='/user/check',data, (err, result) => {
             if (err){
                 console.log(err);
                 req.session.alert_message = err;
@@ -55,7 +55,7 @@ router.post('/sign_up',
         let data = {
             user: req.body.data
         }
-        database.databaseRequest(link='/user/add',data, (err, result) => {
+        remoteDatabase.databaseRequest(link='/user/add',data, (err, result) => {
             if (err) {
                 console.log(err);
                 res.redirect(req.get('referer'));
