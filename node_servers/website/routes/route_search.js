@@ -24,7 +24,7 @@ router.post('/fetchResults/:numOf',
                 console.log(err)
                 res.status(500).send('Internal Server Error Couldnt fetch number of results')
             } else {
-                console.log(devices);
+                // console.log(devices);
                 res.locals.devices = devices;
                 next();
             }

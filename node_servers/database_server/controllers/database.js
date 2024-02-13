@@ -552,17 +552,14 @@ exports.getDeviceData= (data, callback)=>{
     }
 
     if (data.event && data.type === "Asset tracking") {
-        fields_activated.push([`P.date`,`P.time`,`P.longitude`,`P.latitude`])
         let event_table = ` Tracked as P ` 
     } else if (data.event && data.type === "Buttons") {
-        fields_activated.push([`P.date`,`P.time`,`P.event`])
         let event_table = ` Pressed as P `
     }
 
     // if (fields_activated.length){
-    data["query"] += fields_activated.join(',')
+    data["query"] += fields_activated.join(' , ')
     
-
     // Add the basic table name
     data["query"] += ` FROM DEVICE ` 
 
