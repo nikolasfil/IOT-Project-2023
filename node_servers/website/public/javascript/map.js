@@ -43,10 +43,6 @@
 //     });
 // }
 
-/**
- * 
- * @param {*} coords 
- */
 async function mapRoute() {
 
     // Fetch the data from the database
@@ -258,60 +254,6 @@ async function mapMult() {
     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 }
 
-// Can be used to add markers to the map for sage zones or other points of interest
-// function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
-
-//     // Get the vector source from the map's vector layer
-//     let vectorSource = map.getLayers().getArray()[1].getSource();
-
-//     // For each set of coordinates, create a feature and add it to the vector source
-//     for (let coordinate of coordinates) {
-//         let pointFeature = new ol.Feature({
-//             geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate)),
-//         });
-
-//         pointFeature.setStyle(
-//             new ol.style.Style({
-//                 image: new ol.style.Icon({
-//                     src: iconPath, // Replace with the path to your icon
-//                 }),
-//             })
-//         );
-
-//         vectorSource.addFeature(pointFeature);
-//     }
-// }
-
-// function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
-//     // Create a vector source
-//     let vectorSource = new ol.source.Vector();
-
-//     // For each set of coordinates, create a feature and add it to the vector source
-//     for (let coordinate of coordinates) {
-//         let pointFeature = new ol.Feature({
-//             geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate)),
-//         });
-
-//         pointFeature.setStyle(
-//             new ol.style.Style({
-//                 image: new ol.style.Icon({
-//                     src: iconPath, // Replace with the path to your icon
-//                 }),
-//             })
-//         );
-
-//         vectorSource.addFeature(pointFeature);
-//     }
-
-//     // Create a vector layer using the vector source
-//     let vectorLayer = new ol.layer.Vector({
-//         source: vectorSource,
-//     });
-
-//     // Add the vector layer to the map
-//     map.addLayer(vectorLayer);
-// }
-
 function hashCode(str) {
     // Simple hash function to generate a number from a string
     var hash = 0;
@@ -357,14 +299,6 @@ async function drawPaths(map, route) {
         vectorSource.addFeature(lineFeature);
     }
 }
-
-// function removeMarkers(map) {
-//     // Get the vector source from the map's vector layer
-//     let vectorSource = map.getLayers().getArray()[1].getSource();
-
-//     // Clear the vector source
-//     vectorSource.clear();
-// }
 
 let markersLayer;
 
