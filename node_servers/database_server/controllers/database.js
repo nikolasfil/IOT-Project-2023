@@ -347,6 +347,91 @@ exports.checkUser = (data, callback)=> {
 
 /**
  * 
+ * @param {*} data 
+ * @param {*} data.user 
+ * @param {*} callback 
+ */
+exports.addUser= (data, callback) =>  {
+    let user = data.user
+    let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
+    let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
+    
+    data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
+    
+    data["arguments"] = attributes
+
+    this.execute(data, callback)
+    
+    // const stmt = betterDb.prepare(query)
+
+    // try {
+    //     stmt.run(attributes)
+    //     callback(null, true)
+    // }
+    // catch (err) {
+    //     callback(err, null)
+    // }
+}
+
+
+
+exports.userFunctions=(data,callback)=> {
+    if (data.function === "details" || data.function === "login" || data.function === "check") { 
+        data["query"] = `Select * from USER where u_id = ?` 
+        data["arguments"] = [data.id]
+    } else if (data.function === "add") { 
+        let user = data.user
+        let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
+        let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
+        
+        data["query"] = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
+        data["arguments"] = attributes
+    } 
+
+    if (data.function === "login") {
+        // Checks username and password 
+        const login_checker = (err, result) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                if (result) {
+                    const match = bcrypt.compareSync(data.password, result.password);
+                    if (match) {
+                        callback(null, result)
+                    }
+                    else {
+                        callback("Wrong Password", result)
+                    }
+                } else {
+                    callback("User Not Found", false)
+                }
+            }
+        }
+
+        this.execute(data, login_checker)
+    } else if (data.function === "check"){
+        const existence_checker = (err, result) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                if (result) {
+                    callback(null, true)
+                } else {
+                    callback(null, false)
+                }
+            }
+        }
+    
+        this.execute(data, existence_checker)
+    } else {
+        this.execute(data, callback)
+
+    }
+}
+
+
+/**
+ * 
  * Returns the information of the latest assigned device that the user is still using 
  * 
  * @param {*} data 
@@ -482,28 +567,6 @@ exports.execute=(data, callback) =>  {
 
 // --------- Dynamic Insertion into Database --------
 
-/**
- * 
- * @param {*} data 
- * @param {*} data.user 
- * @param {*} callback 
- */
-exports.addUser= (data, callback) =>  {
-    let user = data.user
-    let attributes = [user.first_name, user.last_name, user.phone, user.role, bcrypt.hashSync(user.psw, 10)]
-    let attibutes_name = ['first_name', 'last_name', 'phone', 'role', 'password']
-    
-    let query = `Insert into USER (${attibutes_name.join(',')}) values (${attibutes_name.map(() => '?').join(', ')})`
-    const stmt = betterDb.prepare(query)
-
-    try {
-        stmt.run(attributes)
-        callback(null, true)
-    }
-    catch (err) {
-        callback(err, null)
-    }
-}
 
 // ----------------------------------------------------
 

@@ -25,12 +25,15 @@ router.post('/user/:function',
         let dbFunction = null;
         if (func === 'add') {
             dbFunction = database.addUser;
-        } else if (func === 'check') {
-            dbFunction = database.checkIfUserExists;
-        } else if (func === 'login') {
-            dbFunction = database.checkUser;
-        } else if (func === 'details') {
+        } else if (func === "check" || func === "login" || func === "details") {
+            data.function = func;
             dbFunction = database.userDetails;
+        // } else if (func === 'check') {
+        //     dbFunction = database.checkIfUserExists;
+        // } else if (func === 'login') {
+        //     dbFunction = database.checkUser;
+        // } else if (func === 'details') {
+        //     dbFunction = database.userDetails;
         } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
         } else if (func === "assigned_dates") {
