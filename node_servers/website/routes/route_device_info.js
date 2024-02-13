@@ -25,14 +25,11 @@ router.get('/device_info/:serial',
 /**
  * Returns a list of the locations where the device is located, data needed for the embedded map
  */
-router.get('/map/',
+router.post('/map/:extra',
     authentication.demandAdminRights,
     // request the map/:device_id only if it is assigned to you or you are admin 
     (req, res) => {
-        let data = {
-            user_id: req.session.userid 
-        }
-        database.databaseRequest(link='/devices/assigned/trackers',data,(err, result) => {
+        database.databaseRequest(link=`/devices/map/${req.params.extra}`,data={data:{}} ,(err, result) => {
             if (err) {
                 res.status(500).send(err)
             } else {
@@ -79,6 +76,7 @@ router.get('/device_general',
 router.get('/device_info',
     (req, res, next) => {
         if (req.query['serial']) {
+            res.locals.serial = req.query['serial'];
             next();
         }
         else {

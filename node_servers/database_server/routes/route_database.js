@@ -78,6 +78,16 @@ router.post("/devices/:function",
     }
 )
 
+
+/**
+ * /devices/all/buttons
+ * /devices/all/trackers
+ * /devices/available/buttons
+ * /devices/available/trackers
+ * /devices/assigned/buttons
+ * /devices/assigned/trackers
+ * /devices/map/:d_id
+ */
 router.post("/devices/:function/:extra",
     (req, res) => {
         let data = req.body.data;
@@ -105,7 +115,8 @@ router.post("/devices/:function/:extra",
         } else if (func === "map") {
             data["event"] = true;
             data["type"] = "Asset tracking";
-            data["d_id"] = extra;
+            data["serial"] = extra;
+            // data["time_status"] = "current";
             dbFunction = database.getDeviceData
         } 
         else {

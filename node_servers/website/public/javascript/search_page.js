@@ -55,7 +55,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify(body_data),
+        body: {},
 
     }
 

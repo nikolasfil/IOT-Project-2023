@@ -536,7 +536,7 @@ exports.getDeviceData= (data, callback)=>{
     // get event data of the device 
     let query_activated = [] 
     let fields_activated = []
-    
+    let event_table;
 
     // Initialize the query
     data["query"] = `SELECT `
@@ -552,9 +552,9 @@ exports.getDeviceData= (data, callback)=>{
     }
 
     if (data.event && data.type === "Asset tracking") {
-        let event_table = ` Tracked as P ` 
+        event_table = ` Tracked as P ` 
     } else if (data.event && data.type === "Buttons") {
-        let event_table = ` Pressed as P `
+        event_table = ` Pressed as P `
     }
 
     // if (fields_activated.length){
@@ -593,14 +593,21 @@ exports.getDeviceData= (data, callback)=>{
             query_activated.push("A.date_received = ? ")
             data["arguments"].push(data.date_received)
         }
-    }
 
-    if (data.event && event_table) {
-        query_activated.push(`P.date >= A.date_received `)
-        if (data.time_status === "past") {
-            query_activated.push(`A.date_returned <= P.date `)
+        if (data.event && event_table) {
+            query_activated.push(`P.date >= A.date_received `)
+            if (data.time_status === "past") {
+                query_activated.push(`A.date_returned <= P.date `)
+            }
         }
     }
+
+
+    if (data.serial){
+        query_activated.push("serial = ? ")
+        data["arguments"].push(data.serial)
+    }
+
 
     if (data.d_id){
         query_activated.push("d_id = ? ")
