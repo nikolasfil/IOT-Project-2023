@@ -244,7 +244,8 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     data["query"] = query
     data["arguments"] = activated
-
+    console.log("inside getAllDevicesJson")
+    console.log(data)
     this.execute(data, callback)
 }
 
@@ -408,7 +409,6 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         data["arguments"].push(data.date)
     }
 
-    console.log(data)
     this.execute(data,callback)
 }
 
@@ -476,14 +476,16 @@ exports.execute=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        if (data.arguments && data.arguments.length>1) {
+        
+        // if (data.arguments && data.arguments.length>1) {
+        if (data.arguments && data.arguments.length) {
             // result = stmt.all(...data.arguments);
             result = stmt.all(data.arguments);
         }
-         else if (data.arguments && data.arguments.length===1 ) {
-            result = stmt.get(data.arguments[0]);
-            // result = stmt.all(data.arguments)[0];
-        }
+        //  else if (data.arguments && data.arguments.length===1 ) {
+        //     result = stmt.get(data.arguments[0]);
+        //     // result = stmt.all(data.arguments)[0];
+        // }
          else {
             result = stmt.all();
         }

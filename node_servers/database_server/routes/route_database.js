@@ -94,12 +94,14 @@ router.post("/devices/:function/:extra",
         } else if (extra == "trackers") {
             data["type"] = "Asset tracking";
         }
+
         if (func === "all") {   
             dbFunction = database.getAllDevicesJson;
         } else if (func === "available") {
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
+
             dbFunction = database.getAllDevicesJson;
         } else {
             res.status(404).send("Invalid function");
