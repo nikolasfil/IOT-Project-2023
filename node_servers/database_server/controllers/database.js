@@ -371,25 +371,38 @@ exports.userFunctions=(data,callback)=> {
  * @param {*} callback 
  */
 exports.getActiveAssignedDeviceData=(data,callback) => {
-    data["query"] = `Select A.device_id as d_id, P.date, P.time`
-    
+
+
+    data["query"] = `Select d_id`
     data["query"] += `, serial, status, battery, type `
     
+    if (data.function ){
+        data["query"] += `, P.date, P.time`
+    }
+    
+
     let device_data = []
 
-    if (data.type==="Asset tracking"){
-        device_data.push(`, P.longitude, P.latitude`)
-        device_data.push(` Tracked`)
 
-    } else if (data.type==="Buttons") {
-        device_data.push(`, P.event`)
-        device_data.push(` Pressed`)
-    } else {
-        callback('Device not Specified', null)
+    if (data.function ){
+        if (data.type==="Asset tracking"){
+            device_data.push(`, P.longitude, P.latitude`)
+            device_data.push(` Tracked`)
+            
+        } else if (data.type==="Buttons") {
+            device_data.push(`, P.event`)
+            device_data.push(` Pressed`)
+        } else {
+            callback('Device not Specified', null)
+        }
+        data["query"] += device_data[0]
     }
-
-
-    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
+    
+    // FROM DEVICE join Assigned as A on d_id = device_id 
+    data["query"] += ` from DEVICE join Assigned as A on d_id = device_id `
+    
+    data["query"] += `join ${data.type} as P on P.device_id=A.device_id `
+    // data["query"] += `from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
     
     data["query"] += `join DEVICE on A.device_id=d_id`
 

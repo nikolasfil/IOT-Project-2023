@@ -32,6 +32,7 @@ router.post('/user/:function',
         } else if (func === "assigned_dates") {
             dbFunction = database.getAssignedDates;
         } else if (func === "location_data") {
+            data["assigned"] = true;
             data["type"] = "Asset tracking";
             if (req.query.date) {
                 data["date"] = req.query.date;
@@ -39,6 +40,7 @@ router.post('/user/:function',
             data["limit"] = 1;
             dbFunction = database.getActiveAssignedDeviceData 
         } else if (func === "button_data") {
+            data["assigned"] = true;
             data["type"] = "Buttons";
             if (req.query.date) {
                 data["date"] = req.query.date;
