@@ -31,8 +31,7 @@ exports.getAllActiveTrackers= (req, res, next) => {
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn && res.locals.user_id) {
-        // remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
-        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {id: res.locals.user_id}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {user_id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
                 console.log('getAssignedTrackerInfoPerUser')
@@ -54,7 +53,6 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
-        // remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {id: res.locals.user_id}, function (err, devices) {
         remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {user_id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
@@ -158,7 +156,7 @@ exports.getAvailableButtons= (req, res, next) => {
 
 exports.getAssignedTracker = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {single:true,id: res.locals.user_id}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {single:true,user_id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAssignedTracker')
@@ -175,7 +173,6 @@ exports.getAssignedTracker = (req, res, next) => {
 
 exports.getAssignedButton = (req, res, next) => {
     if (res.locals.signedIn) {
-        // remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {single:true,id: res.locals.user_id}, function (err, devices) {
         remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {single:true,user_id: res.locals.user_id}, function (err, devices) {
 
             if (err) {

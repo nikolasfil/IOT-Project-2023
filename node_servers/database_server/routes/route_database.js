@@ -102,9 +102,11 @@ router.post("/devices/:function/:extra",
             data["assigned"] = true;
             data["time_status"]="current"
             dbFunction = database.getDeviceData;
-            // dbFunction = database.getActiveAssignedDeviceData;
         } else if (func === "map") {
-            // data[""]
+            data["event"] = true;
+            data["type"] = "Asset tracking";
+            data["d_id"] = extra;
+            dbFunction = database.getDeviceData
         } 
         else {
             dbFunction = null;

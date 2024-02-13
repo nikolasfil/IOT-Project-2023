@@ -616,7 +616,6 @@ exports.getDeviceData= (data, callback)=>{
         data ["query"] += ` WHERE `;
         data["query"] += query_activated.join(data.linker)
     }
-
     console.log(data)
     this.execute(data, callback)
 

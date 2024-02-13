@@ -30,14 +30,12 @@ router.get('/map/',
     // request the map/:device_id only if it is assigned to you or you are admin 
     (req, res) => {
         let data = {
-            // id: req.params.id 
-            id: req.session.userid 
+            user_id: req.session.userid 
         }
         database.databaseRequest(link='/devices/assigned/trackers',data,(err, result) => {
             if (err) {
                 res.status(500).send(err)
             } else {
-                // console.log(result);
                 res.send(result);
             }
         })
