@@ -4,9 +4,14 @@ const database = require('../controllers/database.js');
 
 
 function functionChecker (data,dbFunction,res,func) {
-
     if (dbFunction){
         dbFunction(data, (err, result) => {
+            if (data.debug){
+                console.log("functionChecer Callback")
+                console.log(data);
+                console.log(result)
+                console.log(err);
+            }
             if (err) {
                 res.status(500).send(err)
             } else {
@@ -99,13 +104,15 @@ router.post("/devices/:function/:extra",
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
-            data["single"] = true
+            data["debug"] = "devices/available/trackers";
             dbFunction = database.getAllDevicesJson;
+            
+
         } else if (func === "assigned") {
             data["assigned"] = true;
             data["status"] = "active";
             data["exclusively"] = true;
-            data["single"] = true
+            data["debug"] = "devices/available/buttons";
             
             dbFunction = database.getAllDevicesJson;
         } else {

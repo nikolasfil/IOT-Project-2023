@@ -133,7 +133,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
     let activated_name = [];
 
     // List of arguments to exclude from iteration
-    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned']
+    let non_iterated = ['filters', 'limit', 'offset', 'numOf','exclusively', 'linker','regex','assigned','debug']
 
     // ----------- Building the list of activated arguments ----------- 
 
@@ -180,9 +180,12 @@ exports.getAllDevicesJson= (data,  callback) =>  {
         query += ` JOIN Assigned on d_id = device_id JOIN USER on user_id = u_id`
     } else if (data.assigned === false ){ 
         // If the request is for the unassigned devices then we want to exclude the assigned devices
-        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned where date_received<=DATE("now") and (date_returned > DATE("now") or date_returned IS NULL )) `
+        query_unassigned = `  d_id NOT IN (SELECT device_id FROM Assigned where date_received<=? and (date_returned > ? or date_returned IS NULL )) `
+        activated.push(`DATE("now")`)
+        activated.push(`DATE("now")`)
     }
 
+    
 
     // ----------- Building the activated arguments -----------
 
@@ -246,7 +249,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     data["query"] = query
     data["arguments"] = activated
-    
+    // console.log(data)
     this.execute(data, callback)
 }
 
@@ -475,7 +478,9 @@ exports.execute=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        
+        if (data.debug){
+            console.log(data,stmt)
+        }
         if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
             result = stmt.all(data.arguments);
         } else if (data.arguments && data.arguments.length && data.single) {
@@ -486,6 +491,8 @@ exports.execute=(data, callback) =>  {
         if (result === undefined) {
             result = null
         }
+
+
         callback(null, result);
     } catch (err) {
         callback(err, null)
