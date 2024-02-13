@@ -100,23 +100,6 @@ router.get('/device_info',
         });
     },
 
-    // (req,res,next) => {
-    //     // select d_id,user_id,date_received,date_returned  
-    //     // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
-    //     let command = {}
-    //     command.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received DESC LIMIT 1"
-    //     command.arguments = [req.query['serial']]
-    //     database.databaseRequest(link='/select',command,(err,user) => {
-    //         if (err) {
-    //             console.log(err)
-    //             res.status(500).send('Internal Server Error')
-    //         } else {
-    //             res.locals.deviceUser = user;
-    //             console.log(res.locals.deviceUser)
-    //             next();
-    //         }
-    //     })
-    // },
     (req,res,next) => {
         // select d_id,user_id,date_received,date_returned  
         // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
