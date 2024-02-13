@@ -377,47 +377,55 @@ exports.getActiveAssignedDeviceData=(data,callback) => {
         
     let device_data = []
     
+    data["query"] += `, P.date, P.time`
+    if (data.type==="Asset tracking"){
+        device_data.push(`, P.longitude, P.latitude`)
+        device_data.push(` Tracked`)
+        
+    } else if (data.type==="Buttons") {
+        device_data.push(`, P.event`)
+        device_data.push(` Pressed`)
+    } else {
+        callback('Device not Specified', null)
+    }
+    data["query"] += `${device_data[0]} `
+    
     if (data.assigned ){
-        data["query"] += `, P.date, P.time`
-        if (data.type==="Asset tracking"){
-            device_data.push(`, P.longitude, P.latitude`)
-            device_data.push(` Tracked`)
-            
-        } else if (data.type==="Buttons") {
-            device_data.push(`, P.event`)
-            device_data.push(` Pressed`)
-        } else {
-            callback('Device not Specified', null)
-        }
-        data["query"] += `${device_data[0]} from DEVICE join Assigned as A on d_id = A.device_id `
+    data["query"] += ` from DEVICE join Assigned as A on d_id = A.device_id `
     } else {
         data["query"] += ` from DEVICE `
     }
     
-    
+    // if (data.) // check for extra data 
     data["query"] += `join ${device_data[1]} as P on P.device_id=d_id `
-    // data["query"] += `from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
     
-    // data["query"] += `join DEVICE on A.device_id=d_id`
-
-    data["query"]+=` where P.date >= A.date_received `
-
+    data["query"]+=` where `
+    
+    data["query"]+=`P.date >= A.date_received `
+    
     if (data.time_status === "current"){
         data["query"] += `and ( A.date_returned IS NULL )`
     } else if (data.time_status === "past"){
         data["query"] += `and ( A.date_returned <= P.date )`
     } 
-        
-    if (data.id){
+    
+    data["arguments"] = [] 
+
+
+    if (data.id || data.assigned){
         data["query"] += ` and A.user_id = ?`
-        data["arguments"] = [data.id]
+        data["arguments"].push(data.id)
+    }
+
+    if (data.d_id) {
+        data["query"] += ` and d_id = ?`
+        data["arguments"].push(data.d_id)
     }
 
     if (data.date) {
         data["query"] += ` and P.date = ?`
         data["arguments"].push(data.date)
     }
-    console.log(data)
     this.execute(data,callback)
 }
 
@@ -509,3 +517,15 @@ exports.execute=(data, callback) =>  {
 // ----------------------------------------------------
 
 
+exports.getDeviceData= (data, callback)=>{
+    // get the device data 
+    // get assigned data of the device 
+    // get event data of the device 
+
+    data["query"] = `SELECT * FROM DEVICE ` 
+
+    if (data.id ){
+        data ["query"] += `WHERE `;
+        data["query"] +=` d_id = ?`
+    }
+}

@@ -84,6 +84,7 @@ router.post("/devices/:function/:extra",
         let func = req.params.function;
         let extra = req.params.extra;
         let dbFunction = null;
+
         if (extra === "buttons") {
             data["type"] = "Buttons";   
         } else if (extra == "trackers") {
@@ -101,7 +102,10 @@ router.post("/devices/:function/:extra",
             data["assigned"] = true;
             data["time_status"]="current"
             dbFunction = database.getActiveAssignedDeviceData;
-        } else {
+        } else if (func === "map") {
+            // data[""]
+        } 
+        else {
             dbFunction = null;
         }
         functionChecker(data,dbFunction,res,func);
