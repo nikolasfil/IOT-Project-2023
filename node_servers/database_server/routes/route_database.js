@@ -68,8 +68,6 @@ router.post("/devices/:function",
         dbFunction = database.getAllAttributes;
     } else if (func === "assigned") {
         dbFunction = database.getActiveAssignedDeviceData
-    // } else if (func ==="available"){
-
     } else if (func === "assign") {
         console.log(data);
     } else {
@@ -98,17 +96,12 @@ router.post("/devices/:function/:extra",
             data["assigned"] = false;
             data["status"] = "active";
             data["exclusively"] = true;
-            data["debug"] = "devices/available/trackers";
-            dbFunction = database.getAllDevicesJson;
-            
 
+            dbFunction = database.getAllDevicesJson;
         } else if (func === "assigned") {
             data["assigned"] = true;
-            data["status"] = "active";
-            data["exclusively"] = true;
-            data["debug"] = "devices/available/buttons";
-            
-            dbFunction = database.getAllDevicesJson;
+            data["time_status"]="current"
+            dbFunction = database.getActiveAssignedDeviceData;
         } else {
             dbFunction = null;
         }

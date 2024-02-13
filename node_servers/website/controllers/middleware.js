@@ -31,7 +31,8 @@ exports.getAllActiveTrackers= (req, res, next) => {
  */
 exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn && res.locals.user_id) {
-        remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
+        // remoteDatabase.databaseRequest(link='/devices/assigned',data = {id: res.locals.user_id,type: "Asset tracking", time_status:"current"}, function (err, devices) {
+        remoteDatabase.databaseRequest(link='/devices/assigned/trackers',data = {id: res.locals.user_id}, function (err, devices) {
             if (err) {
                 console.log(err)
                 console.log('getAssignedTrackerInfoPerUser')

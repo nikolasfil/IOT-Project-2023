@@ -41,6 +41,10 @@
     {{/if}}
     
 
+    {{#if assigned_tracker_info }}
+    {{log assigned_tracker_info}}
+    {{/if}}
+
     {{#if assigned_tracker}}
         <h6><strong>Assigned Devices </strong></h6>
         {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
