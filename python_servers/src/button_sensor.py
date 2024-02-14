@@ -270,11 +270,9 @@ if __name__ == "__main__":
         "temperature": 21.700000000000003,
         "thermistorProperlyConnected": True,
         "pressEvent": "00",
-        # "timestamp": "2021-10-14T10:00:00.000Z",
+        "timestamp": "2021-10-14T10:00:00.000Z",
     }
 
     button = Button(important_info=important_info)
-    # print(button.info_json)
-    # print(button.info)
     button.mqtt_to_cp()
     print(button.cp_info)
