@@ -137,6 +137,9 @@ def save_to_database(data):
     query = "INSERT INTO "
     data = build_sql_data(data)
 
+    print(data)
+    return None
+
     if data.get("event") is not None:
         query += "Pressed "
     elif data.get("latitude") is not None:
@@ -238,8 +241,8 @@ def build_sql_data(device_data):
     # Create the data for the sql database
     sql_data = {
         "device_id": d_id,
-        "time": device_data.get("timestamp").get("time"),
-        "date": device_data.get("timestamp").get("date"),
+        "time": device_data.get("timestamp").get("value").get("time"),
+        "date": device_data.get("timestamp").get("value").get("date"),
         "temperature": device_data.get("temperature").get("value"),
     }
 

@@ -292,9 +292,13 @@ class TrackerCPFormat(SensorCPFormat):
         #             "type": "Float",
         #             "value": 25.5,
         #         },
-        #         "timestamp": {
-        #             "date": "2021-08-25",
-        #             "time": "12:00:00",
+        #        "timestamp": {
+        #            "type": "datetime",
+        #            "value": {
+        #                "date": "2024-02-14",
+        #                "time": "04:00:58.609486",
+        #            },
+        #        },
         #     }
         """
 
@@ -321,8 +325,11 @@ class TrackerCPFormat(SensorCPFormat):
 
         if self.timestamp:
             timestamp = {
-                "date": self.get_date(self.timestamp),
-                "time": self.get_time(self.timestamp),
+                "type": "datetime",
+                "value": {
+                    "date": self.get_date(self.timestamp),
+                    "time": self.get_time(self.timestamp),
+                },
             }
         else:
             timestamp = None
@@ -390,8 +397,8 @@ if __name__ == "__main__":
     tracker.mqtt_to_cp()
     print(tracker.cp_info)
 
-    print(next(tracker))
-    print(next(tracker))
-    print(next(tracker))
-    for i in tracker:
-        print(i.keys())
+    # print(next(tracker))
+    # print(next(tracker))
+    # print(next(tracker))
+    # for i in tracker:
+    #     print(i.keys())
