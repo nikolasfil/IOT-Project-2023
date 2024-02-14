@@ -29,9 +29,12 @@ router.post('/user/:function',
             dbFunction = database.userFunctions;
         } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
+        } else if (func === "unassigned_users") {
+            dbFunction = database.getAllUnassignedUsers;
         } else if (func === "assigned_dates") {
-            dbFunction = database.getAssignedDates;
+            dbFunction = database.getDeviceData;
         } else if (func === "location_data") {
+            data["assigned"] = true;
             data["type"] = "Asset tracking";
             if (req.query.date) {
                 data["date"] = req.query.date;
@@ -39,6 +42,7 @@ router.post('/user/:function',
             data["limit"] = 1;
             dbFunction = database.getActiveAssignedDeviceData 
         } else if (func === "button_data") {
+            data["assigned"] = true;
             data["type"] = "Buttons";
             if (req.query.date) {
                 data["date"] = req.query.date;
@@ -68,7 +72,10 @@ router.post("/devices/:function",
         dbFunction = database.getAllAttributes;
     }  else if (func === "assign") {
         console.log(data);
-    } else {
+    } else if (func === "assigned" ) {
+        data["assigned"] = true;
+        dbFunction = database.getDeviceData;
+    }else {
         dbFunction = null;
     }
 
@@ -76,12 +83,23 @@ router.post("/devices/:function",
     }
 )
 
+
+/**
+ * /devices/all/buttons
+ * /devices/all/trackers
+ * /devices/available/buttons
+ * /devices/available/trackers
+ * /devices/assigned/buttons
+ * /devices/assigned/trackers
+ * /devices/map/:d_id
+ */
 router.post("/devices/:function/:extra",
     (req, res) => {
         let data = req.body.data;
         let func = req.params.function;
         let extra = req.params.extra;
         let dbFunction = null;
+
         if (extra === "buttons") {
             data["type"] = "Buttons";   
         } else if (extra == "trackers") {
@@ -98,7 +116,17 @@ router.post("/devices/:function/:extra",
         } else if (func === "assigned") {
             data["assigned"] = true;
             data["time_status"]="current"
-            dbFunction = database.getActiveAssignedDeviceData;
+            dbFunction = database.getDeviceData;
+        } else if (func === "map") {
+            data["event"] = true;
+            data["type"] = "Asset tracking";
+            data["serial"] = extra;
+            // data["time_status"] = "current";
+            dbFunction = database.getDeviceData
+        } else if (func === "presses") {
+            data["event"] = true;
+            // data["serial"] = extra;
+            dbFunction = database.getDeviceData;
         } else {
             dbFunction = null;
         }
@@ -107,10 +135,17 @@ router.post("/devices/:function/:extra",
 
 
 
-router.post("/command",
+router.post("/command/:function",
 (req, res) => {
     let data = req.body.data;
-    functionChecker(data,database.execute,res,"command");
+    let dbFunction = null;
+    let func = req.params.function;
+    if (func === "select"){
+        dbFunction = database.execute;
+    } else if (func === "insert") {
+        dbFunction = database.insert;
+    }
+    functionChecker(data,dbFunction,res,func);
 
 })
 

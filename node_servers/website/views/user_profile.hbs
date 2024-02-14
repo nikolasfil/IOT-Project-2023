@@ -23,36 +23,26 @@
           </form>
 
         </div>
-        <div class="profileInfoDetails">
-          <h6><strong>ID</strong></h6>
-          <p>{{profile.u_id}}</p>
-          <h6><strong>Role</strong></h6>
-          <p>{{profile.role}}</p>
-          <h6><strong>Phone</strong></h6>
-          <p>{{profile.phone}}</p>
-        </div>
+        {{> user_profile_info id=profile.u_id role=profile.role phone=profile.phone}}
       </div>
     </div>
-    
+     
+
+
+    {{!-- This should only be displayed when the user does not have a device assigned --}}
+
     {{#if isAdmin}}
-
-    {{> assigning_device }}
-
-    {{/if}}
-    
-
-    {{#if assigned_tracker_info }}
-    {{log assigned_tracker_info}}
+      {{> assigning_device }}
     {{/if}}
 
     {{#if assigned_tracker}}
         <h6><strong>Assigned Devices </strong></h6>
         {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
         {{!-- {{> card battery=100 }}                     --}}
+
     {{/if}}
 
     {{#if assigned_button}}
-    
         {{> card battery=100 status=assigned_button.status d_id=assigned_button.d_id serial=assigned_button.serial type=assigned_button.type }}                    
     {{/if}}
 

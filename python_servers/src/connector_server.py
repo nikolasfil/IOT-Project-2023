@@ -20,6 +20,22 @@ def home():
     return data
 
 
+@app.route("/fire", methods=["GET", "POST"])
+def fire():
+    """
+    Description:
+        A simple request to check if the server is running
+
+    Returns:
+        str: Html rendered information
+    """
+    data = "<p>Fire</p>"
+
+    # ?type=FireForestStatus
+
+    return data
+
+
 @app.get("/device")
 @app.post("/device")
 def get_device():
@@ -62,6 +78,7 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
+    print("============== ===========")
     save_to_database(data)
 
     return data
@@ -88,7 +105,7 @@ def handling_device(information):
     asset = information.get("deviceInfo").get("applicationName")
 
     # Check if it is a Tracker or a Button
-    if asset == "Asset tracking":
+    if asset == "Asset tracking" or asset == "tracker":
         asset = TrackerMQTTFormat(generic_info=information)
 
     elif asset == "Buttons":
@@ -98,7 +115,7 @@ def handling_device(information):
     if asset is None:
         return None
 
-    print(asset.info.get("time"))
+    # print(asset.info.get("time"))
     # Change the information to the context provider format
     asset.mqtt_to_cp()
 
@@ -106,7 +123,10 @@ def handling_device(information):
     # print(asset.cp_info)
 
     # Create the entity in the context broker
-    entity = SensorCPConnector(entity_data=asset.cp_info)
+    entity = SensorCPConnector(
+        entity_data=asset.cp_info,
+        # debug=True,
+    )
     # If the entity with the given id exists in the context provider it, delete it and create a new. If it is not, create a new one
     entity.new_entity()
 
@@ -133,26 +153,35 @@ def save_to_database(data):
     query = "INSERT INTO "
     data = build_sql_data(data)
 
+    if data is None:
+        print("Something went wrong with the sql building")
+        return None
+
     if data.get("event") is not None:
         query += "Pressed "
     elif data.get("latitude") is not None:
+        # elif data.get("location") is not None:
         query += "Tracked "
+    else:
+        print("No event or location")
+        return None
+
+    columns = list(data.keys())
+    values = [data[key] for key in columns]
 
     # New lists
-    query += f"({','.join(data.keys())}) VALUES ("
-
-    query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"
+    query += f"({','.join(columns)}) VALUES ("
+    query += ",".join(["?" for _ in columns]) + ")"
 
     payload = {
         "data": {
-            "command": {
-                "query": query,
-                "arguments": [],
-            }
+            "query": query,
+            "arguments": values,
         }
     }
+    print(query, values)
 
-    database_url = f"http://{os.getenv('DBURL')}:7080/command"
+    database_url = f"http://{os.getenv('DBURL')}:7080/command/insert"
     headers = {"Content-Type": "application/json"}
     db = ContextProvider(
         url=database_url,
@@ -160,9 +189,10 @@ def save_to_database(data):
         method="POST",
         payload=payload,
         automated=True,
+        debug=True,
     )
 
-    if not db.response.ok:
+    if db and not db.response.ok:
         print(db.response.text)
 
 
@@ -180,14 +210,12 @@ def get_id(serial):
 
     payload = {
         "data": {
-            "command": {
-                "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
-                "arguments": [serial],
-            }
+            "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
+            "arguments": [serial],
         }
     }
 
-    database_url = f"http://{os.getenv('DBURL')}:7080/command"
+    database_url = f"http://{os.getenv('DBURL')}:7080/command/select"
     headers = {"Content-Type": "application/json"}
     db = ContextProvider(
         url=database_url,
@@ -201,7 +229,6 @@ def get_id(serial):
         print(db.response.text)
         return None
 
-    # print(db.response_python_object)
     # Check what the response is and return only the id
     d_id = db.response_json[0].get("d_id")
     return d_id
@@ -234,8 +261,8 @@ def build_sql_data(device_data):
     # Create the data for the sql database
     sql_data = {
         "device_id": d_id,
-        "time": device_data.get("timestamp").get("time"),
-        "date": device_data.get("timestamp").get("date"),
+        "time": device_data.get("timestamp").get("value").get("time"),
+        "date": device_data.get("timestamp").get("value").get("date"),
         "temperature": device_data.get("temperature").get("value"),
     }
 

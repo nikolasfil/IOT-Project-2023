@@ -65,7 +65,7 @@ router.get('/device_general',
         fetch(link, link_data).then((res) => {
             return res.json();
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
             // Because it is async you have to let the next function know that it is done
             res.locals.info = data;
             next();
@@ -100,7 +100,7 @@ router.get('/device_info',
             } else {
                 // assign the res.locals.device the first device in the list
                 res.locals.device = device[0];
-                console.log(res.locals.device)
+                // console.log(res.locals.device)
                 next();
             }
         });

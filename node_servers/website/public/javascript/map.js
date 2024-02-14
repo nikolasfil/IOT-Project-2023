@@ -73,9 +73,31 @@ let map = new ol.Map({
 async function mapRoute() {
 
     // Fetch the data from the database
-    let response = await fetch(`/map`);
-    let data = await response.json();
+    // let response = await fetch(`/map/${serial}`);
+    let link = `/map/${serial}`;    
+    let link_data = {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({data:{}}),
 
+    }
+
+    let data =  await fetch(link, link_data).then((res) => {
+        // It checks if it should be returning a json or text (which in this case is html code )
+        return res.json();
+    }).then((data) => {        // Return the html code
+        return data;
+    }).catch(error => {
+        console.log(error);
+    });
+    
+    // let data = await response.json();
+    console.log(data);
     // Create an array to hold the coordinates
     let coordinates = [];
 
