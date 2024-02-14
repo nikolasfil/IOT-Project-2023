@@ -265,7 +265,7 @@ router.get('/device_info',
     (req, res) => {
         res.render('device_info', {
             title: 'device Info',
-            style: ['device_info.css'],
+            style: ['device_info.css','heatmap.css'],
         });
     });
 

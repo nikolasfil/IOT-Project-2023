@@ -207,3 +207,18 @@ flex-wrap: wrap;
     border: none;
 }
 
+.admin-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+margin: 0 10% 0 10%;
+}
+
+.admin-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5% 0 5%;
+}
