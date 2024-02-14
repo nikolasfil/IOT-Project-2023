@@ -454,6 +454,17 @@ exports.getAllActiveUsers = (data, callback) => {
     this.execute(data, callback)
 }
 
+exports.getAllUnassignedUsers = (data, callback) => {
+    data["query"] = `SELECT  USER   .*
+    FROM 
+    USER 
+    where 
+    u_id not in (Select user_id from Assigned where date_returned IS NULL)`
+    
+    this.execute(data, callback)
+}
+
+
 // ---------- Functions to be optimized later -----------
 
 
@@ -578,6 +589,9 @@ exports.getDeviceData= (data, callback)=>{
     
     if (data.assigned) {
         fields_activated.push(`A.*`)
+        if (data.user){
+            fields_activated.push(`U.*`)
+        }
     } 
 
     if (data.event){
@@ -599,6 +613,9 @@ exports.getDeviceData= (data, callback)=>{
     // Add extra table names 
     if (data.assigned) {
         data["query"]+= ` JOIN Assigned as A on d_id = A.device_id `
+        if (data.user){
+            data["query"]+= ` JOIN USER as U on A.user_id = U.u_id `
+        }
     }
 
     if (data.event && event_table) {

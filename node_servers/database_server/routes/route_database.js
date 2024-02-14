@@ -29,6 +29,8 @@ router.post('/user/:function',
             dbFunction = database.userFunctions;
         } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
+        } else if (func === "unassigned_users") {
+            dbFunction = database.getAllUnassignedUsers;
         } else if (func === "assigned_dates") {
             dbFunction = database.getDeviceData;
         } else if (func === "location_data") {

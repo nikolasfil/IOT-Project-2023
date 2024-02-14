@@ -139,13 +139,50 @@ getDevicePresses = (req,res,next) => {
 }
 
 
+getAssignedUser = (req, res,next) => {
+    let data = {
+        serial: req.query['serial'],
+        user: true,
+        time_status: "current"
+    }
+    database.databaseRequest(link='/devices/assigned',data,(err,device) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        } else {
+            if(device.length===1){
+                device = device[0];
+            }
+            res.locals.assignedUser = device;
+            next();
+        }
+    })
+
+}
+
+
+getUnassignedUsers = (req,res,next) => {
+    database.databaseRequest(link='/user/unassigned_users',data={},(err,result) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        } else {
+            res.locals.unassignedUsers = result;
+            next();
+        }
+    })
+}
+
 let deviceInfoList = [
     authentication.demandAuthentication,
+    authentication.checkAdminRights,
     getSerialParameter,
     getDeviceInformationDB,
     middleware.getContextProvider,
     getDevicePresses,
-    getDeviceHistory
+    getDeviceHistory,
+    getAssignedUser,
+    getUnassignedUsers,
 ]
 
 
