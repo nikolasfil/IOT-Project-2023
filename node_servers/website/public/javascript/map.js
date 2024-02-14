@@ -70,7 +70,7 @@ let map = new ol.Map({
     }),
 });
 
-async function mapRoute() {
+async function mapRoute(serial) {
 
     // Fetch the data from the database
     // let response = await fetch(`/map/${serial}`);
