@@ -207,8 +207,11 @@ class ButtonCPF(SensorCPFormat):
 
         if self.timestamp:
             timestamp = {
-                "date": self.get_date(self.timestamp),
-                "time": self.get_time(self.timestamp),
+                "type": "datetime",
+                "value": {
+                    "date": self.get_date(self.timestamp),
+                    "time": self.get_time(self.timestamp),
+                },
             }
         else:
             timestamp = None

@@ -63,7 +63,7 @@ def device_info():
     data = request.json
     data = handling_device(data)
     print(data)
-    # save_to_database(data)
+    save_to_database(data)
 
     return data
 
@@ -89,7 +89,7 @@ def handling_device(information):
     asset = information.get("deviceInfo").get("applicationName")
 
     # Check if it is a Tracker or a Button
-    if asset == "Asset tracking":
+    if asset == "Asset tracking" or asset == "tracker":
         asset = TrackerMQTTFormat(generic_info=information)
 
     elif asset == "Buttons":
@@ -99,7 +99,7 @@ def handling_device(information):
     if asset is None:
         return None
 
-    print(asset.info.get("time"))
+    # print(asset.info.get("time"))
     # Change the information to the context provider format
     asset.mqtt_to_cp()
 
