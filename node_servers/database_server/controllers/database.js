@@ -636,6 +636,11 @@ exports.getDeviceData= (data, callback)=>{
     }
 
 
+    if (data.type){
+        query_activated.push(`type = ? `)
+        data["arguments"].push(data.type)
+    }
+
     if (data.serial){
         query_activated.push("serial = ? ")
         data["arguments"].push(data.serial)

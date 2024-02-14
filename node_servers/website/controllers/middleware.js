@@ -49,7 +49,7 @@ exports.getAssignedTrackerInfoPerUser=(req, res, next) => {
 
 /**
  * Middleware to gets the tracker data of the last tracker assigned to the user.
- * Saves the result of the database to the res.locals.assigned_button
+ * Saves the result of the database to the res.locals.assigned_button_info
  */
 exports.getAssignedButtonInfoPerUser=(req, res, next) => {
     if (res.locals.signedIn) {
