@@ -62,9 +62,16 @@ exports.databaseRequest= (link, data, callback) =>  {
 
 
 exports.contextProvider = ( data, callback) => {
-    let link = `http://150.140.186.118:1026/v2/entities`
+    let link = `http://${process.env.CPURL}/v2/entities/${data.id}`
     let link_data = { 
-        
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        // body: JSON.stringify({}),
     }
     fetchResponse(link, link_data, callback)
 }

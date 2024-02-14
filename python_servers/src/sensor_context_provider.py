@@ -250,7 +250,7 @@ if __name__ == "__main__":
 
     entity_data = {
         # "id": "digital-matter-oyster3:3",
-        "id": "tracke2",
+        "id": "1",
         "type": "Tracker",
         "location": {
             "type": "geo_json",
@@ -258,7 +258,11 @@ if __name__ == "__main__":
             "longitude": 21.7888401,
             "metadata": {},
         },
-        "temperature": {"type": "Float", "value": 0, "metadata": {}},
+        "temperature": {
+            "type": "Float",
+            "value": 0,
+            "metadata": {},
+        },
     }
 
     tracker = SensorCPConnector(
@@ -272,17 +276,8 @@ if __name__ == "__main__":
     # tracker.delete_entity()
     # Create the entitiy
     tracker.new_entity()
+    # print(tracker.get_entity())
 
-    # tracked = Tracker(base_url="http://150.140.186.118:1026", entity_data=entity_data)
-    # print(tracker.get_entity(entity_id="tracker1"))
-
-    # tracker.delete_entity(entity_id="tracker1")
-    # print(tracker)
-    # track = SensorCP(
-    #     base_url="http://150.140.186.118:1026",
-    #     # entity_id="tracker4",
-    # )
-    # print(track.get_entity())
 
 # Example Data
 # example_data = {
