@@ -61,9 +61,6 @@ exports.contextProvider = ( data, callback) => {
     let link_data = { 
         method: "GET",
         credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
         redirect: "follow",
         referrerPolicy: "no-referrer",
     }
