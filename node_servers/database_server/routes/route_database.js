@@ -30,7 +30,8 @@ router.post('/user/:function',
         } else if (func === 'active_users') {
             dbFunction = database.getAllActiveUsers
         } else if (func === "assigned_dates") {
-            dbFunction = database.getAssignedDates;
+
+            dbFunction = database.getDeviceData;
         } else if (func === "location_data") {
             data["assigned"] = true;
             data["type"] = "Asset tracking";

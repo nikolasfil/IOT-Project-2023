@@ -101,7 +101,8 @@ exports.getAllActiveUsers = (req, res, next) => {
  */
 exports.getUserAssignedDates = (req, res, next) => {
     if (res.locals.signedIn) {
-        remoteDatabase.databaseRequest(link='/user/assigned_dates',data = {id: res.locals.user_id, time_status:"current"}, function (err, dates) {
+        let data = {user_id: res.locals.user_id, time_status:"current"}
+        remoteDatabase.databaseRequest(link='/user/assigned_dates',data = data, function (err, dates) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

@@ -463,11 +463,10 @@ exports.getAssignedDates = (data, callback ) => {
     if (data.time_status){
         data["query"] += ` where `
     }
-
     if (data.time_status === "current"){
-        data["query"] += ` date_returned IS NULL `
+        data["query"] += ` A.date_returned IS NULL `
     } else if (data.status === "past") { 
-        data["query"] = ` date_returned IS NOT NULL`
+        data["query"] = ` A.date_returned IS NOT NULL`
     } 
 
     if (data.status) {
@@ -508,6 +507,7 @@ exports.execute=(data, callback) =>  {
         }
         callback(null, result);
     } catch (err) {
+        console.log(data)
         console.log(err)
         callback(err, null)
     }
