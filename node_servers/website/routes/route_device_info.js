@@ -127,6 +127,8 @@ router.get('/device_info',
     });
 
 
+// router.get('')
+
 
 module.exports = router;
 

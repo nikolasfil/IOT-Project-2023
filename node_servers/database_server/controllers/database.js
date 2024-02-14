@@ -250,7 +250,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     data["query"] = query
     data["arguments"] = activated
-    // console.log(data)
     this.execute(data, callback)
 }
 
@@ -265,6 +264,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
  * @param {*} callback 
  */
 exports.getAllAttributes= (data, callback) =>  {
+    
     let query = `Select distinct`
 
     let list = []
@@ -286,7 +286,6 @@ exports.getAllAttributes= (data, callback) =>  {
     
     data["query"] = query
     data["arguments"] = list
-
     this.execute(data, callback)
 }
 
