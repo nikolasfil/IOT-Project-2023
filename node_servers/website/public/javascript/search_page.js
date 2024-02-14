@@ -34,7 +34,6 @@ function getSearchBarValue(){
  * @returns 
  */
 async function fetchResults(limit = null, offset = null, numbering = false){
-    
     let link,body_data = {} ;
 
     link = `/fetchResults/${numbering}`
@@ -58,7 +57,6 @@ async function fetchResults(limit = null, offset = null, numbering = false){
         body: JSON.stringify(body_data),
 
     }
-
     let response =  await fetch(link, link_data).then((res) => {
         // It checks if it should be returning a json or text (which in this case is html code )
         if (numbering){
@@ -89,7 +87,7 @@ async function fetchResults(limit = null, offset = null, numbering = false){
  */
 async function placeAllDevicesByID(limit = -1, offset = 0) {
     let data = await fetchResults(limit=limit, offset=offset, numbering=false);
-
+    
     let container = document.getElementById("results");
     container.innerHTML = data;
 }

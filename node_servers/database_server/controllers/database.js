@@ -2,6 +2,7 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/database.sqlite')
 
 const bcrypt = require('bcrypt');
+const { query } = require('express');
 
 
 // --------- Generic Functions ---------
@@ -249,7 +250,6 @@ exports.getAllDevicesJson= (data,  callback) =>  {
 
     data["query"] = query
     data["arguments"] = activated
-    // console.log(data)
     this.execute(data, callback)
 }
 
@@ -264,6 +264,7 @@ exports.getAllDevicesJson= (data,  callback) =>  {
  * @param {*} callback 
  */
 exports.getAllAttributes= (data, callback) =>  {
+    
     let query = `Select distinct`
 
     let list = []
@@ -285,7 +286,6 @@ exports.getAllAttributes= (data, callback) =>  {
     
     data["query"] = query
     data["arguments"] = list
-
     this.execute(data, callback)
 }
 
@@ -355,6 +355,9 @@ exports.userFunctions=(data,callback)=> {
         }
         // callback_function = existence_checker
         this.execute(data, existence_checker)
+    } else if (data.function === "add"){
+        // Adds the user to the database
+        this.insert(data, callback)
     } else {
         this.execute(data, callback)
     }
@@ -371,46 +374,61 @@ exports.userFunctions=(data,callback)=> {
  * @param {*} callback 
  */
 exports.getActiveAssignedDeviceData=(data,callback) => {
-    data["query"] = `Select A.device_id as d_id, P.date, P.time`
-    
-    data["query"] += `, serial, status, battery, type `
-    
-    let device_data = []
 
+
+    data["query"] = `Select d_id, serial, status, battery, type `
+        
+    let device_data = []
+    
+    data["query"] += `, P.date, P.time`
     if (data.type==="Asset tracking"){
         device_data.push(`, P.longitude, P.latitude`)
         device_data.push(` Tracked`)
-
+        
     } else if (data.type==="Buttons") {
         device_data.push(`, P.event`)
         device_data.push(` Pressed`)
     } else {
         callback('Device not Specified', null)
     }
-
-
-    data["query"] += `${device_data[0]} from Assigned as A join ${device_data[1]} as P on P.device_id=A.device_id `
+    data["query"] += `${device_data[0]} `
     
-    data["query"] += `join DEVICE on A.device_id=d_id`
-
-    data["query"]+=` where P.date >= A.date_received `
-
+    if (data.assigned ){
+    data["query"] += ` from DEVICE join Assigned as A on d_id = A.device_id `
+    } else {
+        data["query"] += ` from DEVICE `
+    }
+    
+    // if (data.) // check for extra data 
+    data["query"] += `join ${device_data[1]} as P on P.device_id=d_id `
+    
+    data["query"]+=` where `
+    
+    data["query"]+=`P.date >= A.date_received `
+    
     if (data.time_status === "current"){
         data["query"] += `and ( A.date_returned IS NULL )`
     } else if (data.time_status === "past"){
         data["query"] += `and ( A.date_returned <= P.date )`
     } 
-        
-    if (data.id){
+    
+    data["arguments"] = [] 
+
+
+    if (data.id || data.assigned){
         data["query"] += ` and A.user_id = ?`
-        data["arguments"] = [data.id]
+        data["arguments"].push(data.id)
+    }
+
+    if (data.d_id) {
+        data["query"] += ` and d_id = ?`
+        data["arguments"].push(data.d_id)
     }
 
     if (data.date) {
         data["query"] += ` and P.date = ?`
         data["arguments"].push(data.date)
     }
-
     this.execute(data,callback)
 }
 
@@ -436,6 +454,17 @@ exports.getAllActiveUsers = (data, callback) => {
     this.execute(data, callback)
 }
 
+exports.getAllUnassignedUsers = (data, callback) => {
+    data["query"] = `SELECT  USER   .*
+    FROM 
+    USER 
+    where 
+    u_id not in (Select user_id from Assigned where date_returned IS NULL)`
+    
+    this.execute(data, callback)
+}
+
+
 // ---------- Functions to be optimized later -----------
 
 
@@ -445,11 +474,10 @@ exports.getAssignedDates = (data, callback ) => {
     if (data.time_status){
         data["query"] += ` where `
     }
-
     if (data.time_status === "current"){
-        data["query"] += ` date_returned IS NULL `
+        data["query"] += ` A.date_returned IS NULL `
     } else if (data.status === "past") { 
-        data["query"] = ` date_returned IS NOT NULL`
+        data["query"] = ` A.date_returned IS NOT NULL`
     } 
 
     if (data.status) {
@@ -490,10 +518,42 @@ exports.execute=(data, callback) =>  {
         }
         callback(null, result);
     } catch (err) {
+        console.log(data)
+        console.log(err)
         callback(err, null)
     }
 }
 
+
+
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.query (not optional)
+ * @param {*} data.arguments (optional)
+ * @param {*} callback 
+ */
+exports.insert=(data, callback) =>  {
+
+    let stmt, result;
+    try {
+        stmt = betterDb.prepare(data.query)
+        if (data.arguments && data.arguments.length ) {
+            result = stmt.run(data.arguments);
+        // } else if (data.arguments && data.arguments.length && data.single) {
+        //     result = stmt.get(data.arguments);
+        } else {
+            result = stmt.run();
+        }
+        if (result === undefined) {
+            result = null
+        }
+        callback(null, result);
+    } catch (err) {
+        console.log(err)
+        callback(err, null)
+    }
+}
 
 
 // --------- Dynamic Insertion into Database --------
@@ -501,4 +561,124 @@ exports.execute=(data, callback) =>  {
 
 // ----------------------------------------------------
 
+/**
+ * 
+ * Can return information about a device, assignment information and event information (Track or Presses )
+ * Created the data.query and data.arguments for the insert function
+ * 
+ * @param {*} data 
+ * @param {*} data.u_id (not optional)
+ * @param {*} data.d_id (optional)
+ * @param {*} data.date_received (optional)
+ * @param {*} data.linker (optional)
+ * @param {*} data.assigned
+ * @param {*} callback 
+ */
+exports.getDeviceData= (data, callback)=>{
+    // get the device data 
+    // get assigned data of the device 
+    // get event data of the device 
+    let query_activated = [] 
+    let fields_activated = []
+    let event_table;
 
+    // Initialize the query
+    data["query"] = `SELECT `
+    fields_activated.push(`DEVICE.*`)
+
+    
+    if (data.assigned) {
+        fields_activated.push(`A.*`)
+        if (data.user){
+            fields_activated.push(`U.*`)
+        }
+    } 
+
+    if (data.event){
+        fields_activated.push(`P.*`)
+    }
+
+    if (data.event && data.type === "Asset tracking") {
+        event_table = ` Tracked as P ` 
+    } else if (data.event && data.type === "Buttons") {
+        event_table = ` Pressed as P `
+    }
+
+    // if (fields_activated.length){
+    data["query"] += fields_activated.join(' , ')
+    
+    // Add the basic table name
+    data["query"] += ` FROM DEVICE ` 
+
+    // Add extra table names 
+    if (data.assigned) {
+        data["query"]+= ` JOIN Assigned as A on d_id = A.device_id `
+        if (data.user){
+            data["query"]+= ` JOIN USER as U on A.user_id = U.u_id `
+        }
+    }
+
+    if (data.event && event_table) {
+        data["query"]+= ` JOIN ${event_table} on P.device_id=d_id `
+    }
+
+    // Check the arguments provided and add them to the query
+
+    data["arguments"] = []
+
+    if (data.assigned){
+
+        if (data.time_status === "past") {
+            query_activated.push(`A.date_returned IS NOT NULL `)
+        } else if (data.time_status === "current") {
+            query_activated.push(`A.date_returned IS NULL `)
+        }
+        
+        if (data.user_id ){
+            query_activated.push("A.user_id = ? ")
+            data["arguments"].push(data.user_id)
+        }
+
+        if (data.date_received) {
+            query_activated.push("A.date_received = ? ")
+            data["arguments"].push(data.date_received)
+        }
+
+        if (data.event && event_table) {
+            query_activated.push(`P.date >= A.date_received `)
+            if (data.time_status === "past") {
+                query_activated.push(`A.date_returned <= P.date `)
+            }
+        }
+    }
+
+
+    if (data.type){
+        query_activated.push(`type = ? `)
+        data["arguments"].push(data.type)
+    }
+
+    if (data.serial){
+        query_activated.push("serial = ? ")
+        data["arguments"].push(data.serial)
+    }
+
+
+    if (data.d_id){
+        query_activated.push("d_id = ? ")
+        data["arguments"].push(data.d_id)
+    }
+    
+
+    if (data.linker === undefined || data.linker === null) {
+        data.linker = ' and '
+    }
+    
+    if (query_activated.length){
+        data ["query"] += ` WHERE `;
+        data["query"] += query_activated.join(data.linker)
+    }
+    // console.log(data)
+    this.execute(data, callback)
+
+}

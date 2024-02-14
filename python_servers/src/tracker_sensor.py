@@ -137,6 +137,7 @@ class TrackerMQTTFormat(SensorMQTTFormat):
                 "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
                 "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
                 "applicationName": "Asset tracking",
+                # "applicationName": "tracker",
                 # Standarized data
                 "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
                 "deviceProfileName": "Digital Matter Oyster3",
@@ -191,7 +192,8 @@ class TrackerMQTTFormat(SensorMQTTFormat):
         # Change this into the TrackerCPF Class instance
 
         device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
-        device_type = self.info.get("deviceInfo").get("applicationName")
+        # device_type = self.info.get("deviceInfo").get("applicationName")
+        device_type = "tracker"
 
         latitude = self.info.get("object").get("cached").get("latitudeDeg")
         longitude = self.info.get("object").get("cached").get("longitudeDeg")
@@ -200,6 +202,9 @@ class TrackerMQTTFormat(SensorMQTTFormat):
         temperature_value = 0
         temperature_metadata = {}
         timestamp = self.info.get("time")
+
+        batteryCrit = self.info.get("object").get("batCritical")
+        battery_metadata = {}
 
         # The data that is going to be sent to the Context Provider. This is only the important highlighed data that we need to put in the constructor
         entity_data = {
@@ -211,6 +216,8 @@ class TrackerMQTTFormat(SensorMQTTFormat):
             "temperature_value": temperature_value,
             "temperature_metadata": temperature_metadata,
             "timestamp": timestamp,
+            "batteryCrit": batteryCrit,
+            "battery_metadata": battery_metadata,
         }
 
         # Creating the instance of the Context Provider Format of the Tracker and getting back the correct structure of json formated information
@@ -271,6 +278,9 @@ class TrackerCPFormat(SensorCPFormat):
         self.latitude = entity_data.get("latitude")
         self.longitude = entity_data.get("longitude")
         self.location_metadata = entity_data.get("location_metadata")
+        self.battery_dict = entity_data.get("battery")
+        self.batteryCrit = entity_data.get("batteryCrit")
+        self.battery_metadata = entity_data.get("battery_metadata")
 
     def default_values(self):
         """
@@ -280,7 +290,7 @@ class TrackerCPFormat(SensorCPFormat):
         # Example:
         #     {
         #         "id": "tracker4",
-        #         "type": "Asset Tracking",
+        #         "type": "tracker",
         #         "location": {
         #             "metadata": {},
         #             "type": "None",
@@ -291,9 +301,14 @@ class TrackerCPFormat(SensorCPFormat):
         #             "type": "Float",
         #             "value": 25.5,
         #         },
-        #         "timestamp": {
-        #             "date": "2021-08-25",
-        #             "time": "12:00:00",
+        #        "timestamp": {
+        #            "type": "datetime",
+        #            "value": {
+        #                "date": "2024-02-14",
+        #                "time": "04:00:58.609486",
+        #            },
+        #        },
+
         #     }
         """
 
@@ -320,11 +335,23 @@ class TrackerCPFormat(SensorCPFormat):
 
         if self.timestamp:
             timestamp = {
-                "date": self.get_date(self.timestamp),
-                "time": self.get_time(self.timestamp),
+                "type": "datetime",
+                "value": {
+                    "date": self.get_date(self.timestamp),
+                    "time": self.get_time(self.timestamp),
+                },
             }
         else:
             timestamp = None
+
+        if self.battery_dict is None:
+            battery = {
+                "type": "Bool",
+                "value": self.batteryCrit,
+                "metadata": {},
+            }
+        else:
+            battery = self.battery
 
         tracker_info = {
             "id": self.id,
@@ -332,28 +359,10 @@ class TrackerCPFormat(SensorCPFormat):
             "location": location,
             "temperature": temperature,
             "timestamp": timestamp,
+            "battery": battery,
         }
 
         self.info.update(tracker_info)
-
-        # {
-        #     "id": "tracker4",
-        #     "type": "Tracker",
-        #     "location": {
-        #         "metadata": {},
-        #         "type": "None",
-        #         "value": null,
-        #     },
-        #     "temperature": {
-        #         "metadata": {},
-        #         "type": "Float",
-        #         "value": 25.5,
-        #     },
-        #     "timestamp": {
-        #         "date": "2021-08-25",
-        #         "time": "12:00:00",
-        #     }
-        # }
 
 
 if __name__ == "__main__":
@@ -389,8 +398,8 @@ if __name__ == "__main__":
     tracker.mqtt_to_cp()
     print(tracker.cp_info)
 
-    print(next(tracker))
-    print(next(tracker))
-    print(next(tracker))
-    for i in tracker:
-        print(i.keys())
+    # print(next(tracker))
+    # print(next(tracker))
+    # print(next(tracker))
+    # for i in tracker:
+    #     print(i.keys())

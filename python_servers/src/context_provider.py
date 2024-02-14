@@ -124,6 +124,7 @@ class ContextProvider:
             # Check if the response status is ok
             if self.response.ok is False:
                 if self.debug:
+                    print(self.payload)
                     print(f"Error: {self.response.status_code}")
                     print(self.response.text)
                 return False
@@ -141,6 +142,7 @@ class ContextProvider:
 
         try:
             self.response_json = self.response.json()
+            # self.response_json = json.loads(self.response.text)
             self.response_python_object = json.loads(self.response.text)
         except Exception as e:
             self.response_json = None
@@ -169,24 +171,20 @@ if __name__ == "__main__":
 
     # id?type=
 
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=Buttons"
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=tracker"
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=FireForestStatus"
     # Get the entities
     cp = ContextProvider(
-        url="http://150.140.186.118:1026/v2/entities",
+        url=url,
         headers={"Accept": "application/json"},
         method="GET",
         automated=True,
     )
-    # print(cp)
-
+    print(cp.response_python_object)
     # Context broker get the keys to the dictionaries that the entities use
-    for item in cp.response_python_object:
-        # print(item)
-        # print(item.get("id"))
-        # if "location" in item:
-        # print(item)
-        # if item.get("id") == "tracker":
-        #     print(item)
-        print(list(item.keys()))
+    # for item in cp.response_python_object:
+    #     print(list(item.keys()))
     # print(cp.response_dict[1])
 
     # cp2 = ContextProvider(
@@ -196,3 +194,36 @@ if __name__ == "__main__":
     #     payload={"data": "Dome", "form": "fodmt data"},
     # )
     # print(cp2.response.text)
+
+    # example = [
+    #     {
+    #         "id": "forest_status_0",
+    #         "type": "FireForestStatus",
+    #         "dateObserved": {
+    #             "type": "DateTime",
+    #             "value": "2024-02-14T18:51:43.682Z",
+    #             "metadata": {},
+    #         },
+    #         "fireDetected": {"type": "Boolean", "value": false, "metadata": {}},
+    #         "fireDetectedConfidence": {"type": "Float", "value": 0, "metadata": {}},
+    #         "fireRiskIndex": {"type": "Float", "value": 0, "metadata": {}},
+    #         "location": {
+    #             "type": "geo:json",
+    #             "value": {
+    #                 "type": "Polygon",
+    #                 "coordinates": [
+    #                     [
+    #                         [21.92257, 38.27095],
+    #                         [21.98112, 38.29897],
+    #                         [21.95278, 38.31716],
+    #                         [21.91518, 38.31635],
+    #                         [21.86109, 38.30934],
+    #                         [21.88135, 38.28941],
+    #                         [21.92257, 38.27095],
+    #                     ]
+    #                 ],
+    #             },
+    #             "metadata": {},
+    #         },
+    #     },
+    # ]
