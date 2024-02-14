@@ -2,14 +2,14 @@ const express = require('express');
 
 const authentication = require('../controllers/authentication.js')
 const router = express.Router();
-const database = require('../controllers/remoteDatabase.js');
+const remoteDatabase = require('../controllers/remoteDatabase.js');
 const middleware = require('../controllers/middleware.js');
 
 // All this should first pass by the middleware login to be on the safe side
 
 router.post('/assign',(req,res)=>{
     let data = req.body.data;
-    database.databaseRequest(link='/devices/assign',data,(err, result) => {
+    remoteDatabase.databaseRequest(link='/devices/assign',data,(err, result) => {
         if (err) {
             res.status(500).send(err)
         } 
@@ -30,7 +30,7 @@ router.post('/map/:extra',
     authentication.demandAdminRights,
     // request the map/:device_id only if it is assigned to you or you are admin 
     (req, res) => {
-        database.databaseRequest(link=`/devices/map/${req.params.extra}`,data={data:{}} ,(err, result) => {
+        remoteDatabase.databaseRequest(link=`/devices/map/${req.params.extra}`,data={data:{}} ,(err, result) => {
             if (err) {
                 res.status(500).send(err)
             } else {
@@ -39,6 +39,26 @@ router.post('/map/:extra',
         })
     },
 )
+
+
+// --------------
+
+router.get("/fire_info",
+    (req, res) => {
+        let link = "http://150.140.186.118:1026/v2/entities?type=FireForestStatus"
+        let link_data = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"}
+            }
+        // remoteDatabase.
+        
+    }
+)
+
+
+
+// Middleware 
 
 
 router.get('/device_general',
@@ -92,7 +112,7 @@ getDeviceInformationDB = (req, res, next) => {
         single: true
     }
 
-    database.databaseRequest(link='/devices/all',data = data,(err, device) => {
+    remoteDatabase.databaseRequest(link='/devices/all',data = data,(err, device) => {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error 1 ')
@@ -111,7 +131,7 @@ getDeviceHistory =(req,res,next) => {
     let data = {}
     data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
     data.arguments = [req.query['serial']]
-    database.databaseRequest(link='/command/select',data,(err,device) => {
+    remoteDatabase.databaseRequest(link='/command/select',data,(err,device) => {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -127,7 +147,7 @@ getDevicePresses = (req,res,next) => {
     let data = {
         serial: req.query['serial']
     }
-    database.databaseRequest(link='/devices/presses/buttons',data,(err,device) => {
+    remoteDatabase.databaseRequest(link='/devices/presses/buttons',data,(err,device) => {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -145,7 +165,7 @@ getAssignedUser = (req, res,next) => {
         user: true,
         time_status: "current"
     }
-    database.databaseRequest(link='/devices/assigned',data,(err,device) => {
+    remoteDatabase.databaseRequest(link='/devices/assigned',data,(err,device) => {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -162,7 +182,7 @@ getAssignedUser = (req, res,next) => {
 
 
 getUnassignedUsers = (req,res,next) => {
-    database.databaseRequest(link='/user/unassigned_users',data={},(err,result) => {
+    remoteDatabase.databaseRequest(link='/user/unassigned_users',data={},(err,result) => {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -184,6 +204,8 @@ let deviceInfoList = [
     getAssignedUser,
     getUnassignedUsers,
 ]
+
+
 
 
 // returns a list of device that have the given title
