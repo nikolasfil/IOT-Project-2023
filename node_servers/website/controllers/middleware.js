@@ -189,7 +189,15 @@ exports.getAssignedButton = (req, res, next) => {
 
 exports.getContextProvider =(req,res,next) => {
     if (res.locals.signedIn) {
-        
+        remoteDatabase.contextProvider(data = {serial: req.query["serial"]}, function (err, data) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error getContextProvider')
+            } else {
+                res.locals.context = data;
+                next();
+            }
+        });
     } else {
         next();
     }

@@ -3,12 +3,13 @@ const express = require('express');
 const authentication = require('../controllers/authentication.js')
 const router = express.Router();
 const database = require('../controllers/remoteDatabase.js');
+const middleware = require('../controllers/middleware.js');
 
 // All this should first pass by the middleware login to be on the safe side
 
 router.post('/assign',(req,res)=>{
     let data = req.body.data;
-    database.databaseRequest(link='/devives/assign',data,(err, result) => {
+    database.databaseRequest(link='/devices/assign',data,(err, result) => {
         if (err) {
             res.status(500).send(err)
         } 
@@ -72,57 +73,75 @@ router.get('/device_general',
         res.send(res.locals.info);
     });
 
-// returns a list of device that have the given title
-router.get('/device_info',
-    (req, res, next) => {
-        if (req.query['serial']) {
-            res.locals.serial = req.query['serial'];
+
+getSerialParameter = (req, res, next) => {
+    if (req.query['serial']) {
+        res.locals.serial = req.query['serial'];
+        next();
+    }
+    else {
+        res.redirect('/');
+    }
+}
+
+
+getDeviceInformationDB = (req, res, next) => {
+    // get device info
+    let data = {
+        serial: req.query['serial'],
+        single: true
+    }
+
+    database.databaseRequest(link='/devices/all',data = data,(err, device) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error 1 ')
+        } else {
+            // assign the res.locals.device the first device in the list
+            res.locals.device = device;
             next();
         }
-        else {
-            res.redirect('/');
-        }
-    },
-    (req, res, next) => {
-        // get device info
-        let data = {
-            serial: req.query['serial'],
-            single: true
-        }
+    });
+}
 
-        database.databaseRequest(link='/devices/all',data = data,(err, device) => {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error 1 ')
-            } else {
-                // assign the res.locals.device the first device in the list
-                res.locals.device = device;
-                next();
-            }
-        });
-    },
 
-    (req,res,next) => {
-        // select d_id,user_id,date_received,date_returned  
-        // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
-        let data = {}
-        data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
-        data.arguments = [req.query['serial']]
-        database.databaseRequest(link='/command/select',data,(err,device) => {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.locals.deviceHistory = device;
-                next();
-            }
-        })
-    },
+getDeviceHistory =(req,res,next) => {
+    // select d_id,user_id,date_received,date_returned  
+    // from DEVICE join Assigned on d_id = device_id   WHERE serial = ? 
+    let data = {}
+    data.query = "SELECT user_id,date_received,date_returned FROM DEVICE join Assigned on d_id = device_id WHERE serial = ? ORDER by date_received"
+    data.arguments = [req.query['serial']]
+    database.databaseRequest(link='/command/select',data,(err,device) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        } else {
+            res.locals.deviceHistory = device;
+            next();
+        }
+    })
+}
+
+
+
+
+let deviceInfoList = [
+    authentication.demandAuthentication,
+    getSerialParameter,
+    getDeviceInformationDB,
+    middleware.getContextProvider,
+    getDeviceHistory
+]
+
+
+// returns a list of device that have the given title
+router.get('/device_info',
+    deviceInfoList,
     (req, res) => {
+        console.log(res.locals.context)
         res.render('device_info', {
             title: 'device Info',
             style: ['device_info.css'],
-            signedIn: req.session.signedIn
         });
     });
 

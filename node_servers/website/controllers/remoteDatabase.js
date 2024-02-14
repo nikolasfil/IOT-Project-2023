@@ -51,18 +51,13 @@ function dbCom(route, data, callback){
  * @param {*} callback 
  */
 exports.databaseRequest= (link, data, callback) =>  {
-    dbCom(link, data,(err, data) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, data)
-        }
-    });
+    dbCom(link, data,callback);
 }
 
 
 exports.contextProvider = ( data, callback) => {
-    let link = `http://${process.env.CPURL}/v2/entities/${data.id}`
+    let link = `http://${process.env.CPURL}/v2/entities/${data.serial}`
+    console.log(link)
     let link_data = { 
         method: "GET",
         credentials: "same-origin",
@@ -71,7 +66,8 @@ exports.contextProvider = ( data, callback) => {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        // body: JSON.stringify({}),
     }
     fetchResponse(link, link_data, callback)
 }
+
+

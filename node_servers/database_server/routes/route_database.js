@@ -70,7 +70,10 @@ router.post("/devices/:function",
         dbFunction = database.getAllAttributes;
     }  else if (func === "assign") {
         console.log(data);
-    } else {
+    } else if (func === "assigned" ) {
+        data["assigned"] = true;
+        dbFunction = database.getDeviceData;
+    }else {
         dbFunction = null;
     }
 
