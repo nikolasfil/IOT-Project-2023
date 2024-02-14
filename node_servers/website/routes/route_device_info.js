@@ -123,6 +123,20 @@ getDeviceHistory =(req,res,next) => {
 }
 
 
+getDevicePresses = (req,res,next) => {
+    let data = {
+        serial: req.query['serial']
+    }
+    database.databaseRequest(link='/devices/presses/buttons',data,(err,device) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        } else {
+            res.locals.devicePresses = device;
+            next();
+        }
+    })
+}
 
 
 let deviceInfoList = [
@@ -130,6 +144,7 @@ let deviceInfoList = [
     getSerialParameter,
     getDeviceInformationDB,
     middleware.getContextProvider,
+    getDevicePresses,
     getDeviceHistory
 ]
 
@@ -138,7 +153,6 @@ let deviceInfoList = [
 router.get('/device_info',
     deviceInfoList,
     (req, res) => {
-        console.log(res.locals.context)
         res.render('device_info', {
             title: 'device Info',
             style: ['device_info.css'],

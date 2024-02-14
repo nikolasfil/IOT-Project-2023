@@ -121,8 +121,11 @@ router.post("/devices/:function/:extra",
             data["serial"] = extra;
             // data["time_status"] = "current";
             dbFunction = database.getDeviceData
-        } 
-        else {
+        } else if (func === "presses") {
+            data["event"] = true;
+            // data["serial"] = extra;
+            dbFunction = database.getDeviceData;
+        } else {
             dbFunction = null;
         }
         functionChecker(data,dbFunction,res,func);
