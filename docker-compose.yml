@@ -18,40 +18,40 @@ x-common-node: &common-node
   <<: *network-restart
 
 services:
-  # subscriber-app:
-  #   <<: *common-python
+  subscriber-app:
+    <<: *common-python
 
-  #   image: pythonsubscriber
+    image: pythonsubscriber
 
-  #   depends_on:
-  #     - connector-app
-  #   ports:
-  #     - "3000:5000"
-  #   environment:
-  #     - URL=connector-app
-  #   command: ["python", "subscriber_broker.py"]
+    depends_on:
+      - connector-app
+    ports:
+      - "3000:5000"
+    environment:
+      - URL=connector-app
+    command: ["python", "subscriber_broker.py"]
 
-  # publisher-app:
-  #   <<: *common-python
-  #   image: pythonpublisher
+  publisher-app:
+    <<: *common-python
+    image: pythonpublisher
 
-  #   depends_on:
-  #     - subscriber-app
-  #   ports:
-  #     - "4000:5000"
-  #   command: ["python", "publisher_broker.py"]
+    depends_on:
+      - subscriber-app
+    ports:
+      - "4000:5000"
+    command: ["python", "publisher_broker.py"]
 
-  # connector-app:
-  #   <<: *common-python
+  connector-app:
+    <<: *common-python
 
-  #   image: pythonconnector
-  #   depends_on:
-  #     - database-app
-  #   ports:
-  #     - "5000:5000"
-  #   environment:
-  #     - DBURL=database-app
-  #   command: ["python", "connector_server.py"]
+    image: pythonconnector
+    depends_on:
+      - database-app
+    ports:
+      - "5000:5000"
+    environment:
+      - DBURL=database-app
+    command: ["python", "connector_server.py"]
 
   node-app:
     build:

@@ -124,6 +124,7 @@ class ContextProvider:
             # Check if the response status is ok
             if self.response.ok is False:
                 if self.debug:
+                    print(self.payload)
                     print(f"Error: {self.response.status_code}")
                     print(self.response.text)
                 return False
@@ -141,6 +142,7 @@ class ContextProvider:
 
         try:
             self.response_json = self.response.json()
+            # self.response_json = json.loads(self.response.text)
             self.response_python_object = json.loads(self.response.text)
         except Exception as e:
             self.response_json = None

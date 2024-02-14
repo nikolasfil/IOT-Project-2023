@@ -191,7 +191,8 @@ class TrackerMQTTFormat(SensorMQTTFormat):
         # Change this into the TrackerCPF Class instance
 
         device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
-        device_type = self.info.get("deviceInfo").get("applicationName")
+        # device_type = self.info.get("deviceInfo").get("applicationName")
+        device_type = "tracker"
 
         latitude = self.info.get("object").get("cached").get("latitudeDeg")
         longitude = self.info.get("object").get("cached").get("longitudeDeg")

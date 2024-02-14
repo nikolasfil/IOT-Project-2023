@@ -62,7 +62,8 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
-    save_to_database(data)
+    print(data)
+    # save_to_database(data)
 
     return data
 
@@ -106,7 +107,10 @@ def handling_device(information):
     # print(asset.cp_info)
 
     # Create the entity in the context broker
-    entity = SensorCPConnector(entity_data=asset.cp_info)
+    entity = SensorCPConnector(
+        entity_data=asset.cp_info,
+        debug=True,
+    )
     # If the entity with the given id exists in the context provider it, delete it and create a new. If it is not, create a new one
     entity.new_entity()
 
