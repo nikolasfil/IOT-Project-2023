@@ -15,8 +15,17 @@ class Publisher(Broker):
         self.subscribe_topic = None
         self.client = self.connect_mqtt()
 
-    def virtual_tracker(self, counter):
+    def virtual_tracker(self, counter=0, timestamp=None, coordinates=None):
+
+        if coordinates is None:
+            min_x = 38.20
+            # max_x = 38.21
+            min_y = 21.81
+            # max_y = 21.85
+            step = 0.01
+
         tracker_info = {
+            "time": timestamp,
             "type": "position",
             "deviceId": f"digital-matter-oyster3:{random.randint(1,55)}",
             # cached
@@ -28,13 +37,13 @@ class Publisher(Broker):
         }
 
         payload = TrackerMQTTFormat(important_info=tracker_info).info_json
-
+        print(payload)
         return payload
 
     def virtual_button(self, counter=0):
         button_info = {
+            # ""
             "deviceName": "mclimate-multipurpose-button:1",
-            # "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
             "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
             "batteryVoltage": 3.1,
             "temperature": 21.7 + (random.choice([1, -1]) * 2),
@@ -48,17 +57,22 @@ class Publisher(Broker):
     def main(self):
         # This needs to be from a folder
         counter = 0
-        time_sleeping = 4
+        time_sleeping = 1
 
         # timestamp = "2024-02-10T01:05:29.934532"
+        min_x = 38.20
+        # max_x = 38.21
+        min_y = 21.81
+        # max_y = 21.85
+        step = 0.01
 
         for counter in range(1000):
             time.sleep(time_sleeping)
             payload = self.virtual_tracker(counter)
-            self.publish(self.client, payload)
-            time.sleep(time_sleeping)
-            payload = self.virtual_button()
-            self.publish(self.client, payload)
+            # self.publish(self.client, payload)
+            # time.sleep(time_sleeping)
+            # payload = self.virtual_button()
+            # self.publish(self.client, payload)
 
 
 if __name__ == "__main__":

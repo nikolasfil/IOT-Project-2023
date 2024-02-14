@@ -3,8 +3,36 @@ import csv
 
 
 class CoordsGenerator:
+    def __init__(self, **kwargs) -> None:
+        """
+        Description:
+            Initializes the CoordsGenerator object.
 
-    def generate_coordinates(self, min_x, max_x, min_y, max_y, num_sets):
+        Args:
+            min_x (float): the minimum x value
+            max_x (float): the maximum x value
+            min_y (float): the minimum y value
+            max_y (float): the maximum y value
+            num_sets (int): the number of coordinates to generate
+        """
+        self.min_x = kwargs.get("min_x")
+        if self.min_x is None:
+            self.min_x = 38.20
+        self.max_x = kwargs.get("max_x")
+        if self.max_x is None:
+            self.max_x = 38.21
+        self.min_y = kwargs.get("min_y")
+        if self.min_y is None:
+            self.min_y = 21.81
+        self.max_y = kwargs.get("max_y")
+        if self.max_y is None:
+            self.max_y = 21.85
+        self.num_sets = kwargs.get("num_sets")
+        if self.num_sets is None:
+            self.num_sets = 60
+        self.coordinates = []
+
+    def generate_coordinates(self, **kwargs):
         """
         Description :
             Generates a list of random coordinates within the given ranges.
@@ -17,12 +45,28 @@ class CoordsGenerator:
         Returns:
             list: a list of (x, y) tuples representing the coordinates
         """
-        coordinates = []
+
+        min_x = kwargs.get("min_x")
+        if min_x is None:
+            min_x = self.min_x
+        max_x = kwargs.get("max_x")
+        if max_x is None:
+            max_x = self.max_x
+        min_y = kwargs.get("min_y")
+        if min_y is None:
+            min_y = self.min_y
+        max_y = kwargs.get("max_y")
+        if max_y is None:
+            max_y = self.max_y
+        num_sets = kwargs.get("num_sets")
+        if num_sets is None:
+            num_sets = 60
+
         for _ in range(num_sets):
             x = random.uniform(min_x, max_x)
             y = random.uniform(min_y, max_y)
-            coordinates.append((x, y))
-        return coordinates
+            self.coordinates.append((x, y))
+        return self.coordinates
 
     def write_to_csv(self, filename, coordinates):
         """
@@ -39,7 +83,34 @@ class CoordsGenerator:
             for _ in range(num):
                 writer.writerow(coordinates.pop(0))
 
+    def sort_coordinates(self, **kwargs):
+        """
+        Description:
+            Sorts the given coordinates by x and then by y.
+        Args:
+            coordinates (list): a list of (x, y) tuples representing the coordinates
+        Returns:
+            list: the sorted coordinates
+        """
+
+        coordinates = kwargs.get("coordinates")
+        if coordinates is None:
+            coordinates = self.coordinates
+
+        coordinates.sort()
+        coordinates.sort(key=lambda coord: coord[1])
+
+        if kwargs.get("coordinates") is None:
+            self.coordinates = coordinates
+
+        return coordinates
+
     def main(self):
+        for i in range(self.num_sets):
+            self.generate_coordinates()
+        self.sort_coordinates()
+
+    def example_generate(self):
         """
         Description:
             Generates 10 csv files with random coordinates within the given ranges.
@@ -85,4 +156,9 @@ class CoordsGenerator:
 
 if __name__ == "__main__":
     generator = CoordsGenerator()
-    generator.main()
+    # generator.example_generate()
+    # generator.main()
+
+    thousand = CoordsGenerator(num_sets=1000)
+    thousand.main()
+    print(thousand.coordinates)
