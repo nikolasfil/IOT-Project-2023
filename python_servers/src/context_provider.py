@@ -194,3 +194,36 @@ if __name__ == "__main__":
     #     payload={"data": "Dome", "form": "fodmt data"},
     # )
     # print(cp2.response.text)
+
+    # example = [
+    #     {
+    #         "id": "forest_status_0",
+    #         "type": "FireForestStatus",
+    #         "dateObserved": {
+    #             "type": "DateTime",
+    #             "value": "2024-02-14T18:51:43.682Z",
+    #             "metadata": {},
+    #         },
+    #         "fireDetected": {"type": "Boolean", "value": false, "metadata": {}},
+    #         "fireDetectedConfidence": {"type": "Float", "value": 0, "metadata": {}},
+    #         "fireRiskIndex": {"type": "Float", "value": 0, "metadata": {}},
+    #         "location": {
+    #             "type": "geo:json",
+    #             "value": {
+    #                 "type": "Polygon",
+    #                 "coordinates": [
+    #                     [
+    #                         [21.92257, 38.27095],
+    #                         [21.98112, 38.29897],
+    #                         [21.95278, 38.31716],
+    #                         [21.91518, 38.31635],
+    #                         [21.86109, 38.30934],
+    #                         [21.88135, 38.28941],
+    #                         [21.92257, 38.27095],
+    #                     ]
+    #                 ],
+    #             },
+    #             "metadata": {},
+    #         },
+    #     },
+    # ]
