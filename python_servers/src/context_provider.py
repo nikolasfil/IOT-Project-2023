@@ -183,6 +183,7 @@ if __name__ == "__main__":
 
     # Context broker get the keys to the dictionaries that the entities use
     for item in cp.response_python_object:
+        print(item.values())
         print(list(item.keys()))
     # print(cp.response_dict[1])
 
