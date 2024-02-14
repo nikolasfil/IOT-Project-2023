@@ -68,9 +68,6 @@ exports.getAssignedButtonInfoPerUser=(req, res, next) => {
 }
 
 
-
-
-
 /**
  * 
  * saves the result of the database to the res.locals.active_users
@@ -187,3 +184,14 @@ exports.getAssignedButton = (req, res, next) => {
         next();
     }
 }
+
+
+
+exports.getContextProvider =(req,res,next) => {
+    if (res.locals.signedIn) {
+        
+    } else {
+        next();
+    }
+}
+

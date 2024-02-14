@@ -1,6 +1,21 @@
 require('dotenv').config();
 
 
+fetchResponse = (link,link_data,callback)=> {
+    let response = fetch(link, link_data).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
+    }).then((data) => {
+        callback(null, data)
+    }).catch(error => {
+        callback(error, null)
+        console.log(error);
+    });
+    return response; 
+}
+
+
 /**
  * Connects to the database server that is specified in the .env file. 
  *  
@@ -9,7 +24,7 @@ require('dotenv').config();
  * @param {*} callback The function that handles the result
  * @returns the response of the request from the database
  */
-async function fetchResponse(route, data, callback){
+function dbCom(route, data, callback){
     
     let link = `http://${process.env.DBURL}:7080` + route
 
@@ -23,19 +38,10 @@ async function fetchResponse(route, data, callback){
         referrerPolicy: "no-referrer",
         body: JSON.stringify({data:data}),        
     }
-    
-    let response =  fetch(link, link_data).then((res) => {
-        return res.text();
-    }).then((data) => {
-        return JSON.parse(data);
-    }).then((data) => {
-        callback(null, data)
-    }).catch(error => {
-        callback(error, null)
-        console.log(error);
-    });
 
-    return response;
+    let response = fetchResponse(link,link_data,callback)
+    return response
+
 }
 
 /**
@@ -45,12 +51,20 @@ async function fetchResponse(route, data, callback){
  * @param {*} callback 
  */
 exports.databaseRequest= (link, data, callback) =>  {
-
-    fetchResponse(link, data,(err, data) => {
+    dbCom(link, data,(err, data) => {
         if (err) {
             callback(err, null)
         } else {
             callback(null, data)
         }
     });
+}
+
+
+exports.contextProvider = ( data, callback) => {
+    let link = `http://150.140.186.118:1026/v2/entities`
+    let link_data = { 
+        
+    }
+    fetchResponse(link, link_data, callback)
 }

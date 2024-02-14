@@ -176,16 +176,9 @@ if __name__ == "__main__":
         method="GET",
         automated=True,
     )
-    # print(cp)
 
     # Context broker get the keys to the dictionaries that the entities use
     for item in cp.response_python_object:
-        # print(item)
-        # print(item.get("id"))
-        # if "location" in item:
-        # print(item)
-        # if item.get("id") == "tracker":
-        #     print(item)
         print(list(item.keys()))
     # print(cp.response_dict[1])
 
