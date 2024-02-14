@@ -456,3 +456,5 @@ function removeMarkers(map) {
         map.getView().fit(extent, { padding: [60, 60, 60, 60] });
     }
 }
+
+

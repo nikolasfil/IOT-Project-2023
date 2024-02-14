@@ -172,7 +172,6 @@ exports.getAssignedTracker = (req, res, next) => {
 exports.getAssignedButton = (req, res, next) => {
     if (res.locals.signedIn) {
         remoteDatabase.databaseRequest(link='/devices/assigned/buttons',data = {single:true,user_id: res.locals.user_id}, function (err, devices) {
-
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error getAssignedButton')
