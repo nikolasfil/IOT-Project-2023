@@ -87,7 +87,8 @@ router.get("/fire_info",
                 //     },
                 // ]
                 let fire_info = {}
-                if (result.length >1){
+                console.log(result.length);
+                if (result.length >0){
                     // sort the result on the dateObserved.value 
                     
                     result.sort((a,b) => {
@@ -95,11 +96,13 @@ router.get("/fire_info",
                     })
                     // get the first element of the list
                     result = result[0];
-                    if (result.fireDetected && result.fireDetected.value){
-                        fire_info.fireDetected = true;
-                        fire_info["dateObserved"] = result.dateObserved.value;
-                        fire_info["location"] = result.location.value.coordinates;
-                    }                    
+                    
+
+                    // if (result.fireDetected && result.fireDetected.value){
+                    fire_info["fireDetected"] = true;
+                    fire_info["dateObserved"] = result.dateObserved.value;
+                    fire_info["location"] = result.location.value.coordinates;
+                    // }                    
                 }
                 res.send(fire_info);
             }
