@@ -171,9 +171,11 @@ if __name__ == "__main__":
 
     # id?type=
 
+    url = f"http://150.140.186.118:1026/v2/entities" + "?type=Buttons"
+    url = f"http://150.140.186.118:1026/v2/entities" + "?type=tracker"
     # Get the entities
     cp = ContextProvider(
-        url="http://150.140.186.118:1026/v2/entities",
+        url=url,
         headers={"Accept": "application/json"},
         method="GET",
         automated=True,
