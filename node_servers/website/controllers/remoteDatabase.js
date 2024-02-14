@@ -50,12 +50,12 @@ function dbCom(route, data, callback){
  * @param {*} data 
  * @param {*} callback 
  */
-exports.databaseRequest= (link, data, callback) =>  {
+databaseRequest= (link, data, callback) =>  {
     dbCom(link, data,callback);
 }
 
 
-exports.contextProvider = ( data, callback) => {
+contextProvider = ( data, callback) => {
     let link = `http://${process.env.CPURL}/v2/entities/${data.serial}`
     console.log(link)
     let link_data = { 
@@ -68,3 +68,8 @@ exports.contextProvider = ( data, callback) => {
 }
 
 
+module.exports = {
+    databaseRequest,
+    contextProvider,
+    fetchResponse
+};

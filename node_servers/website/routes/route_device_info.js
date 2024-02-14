@@ -48,11 +48,15 @@ router.get("/fire_info",
         let link = "http://150.140.186.118:1026/v2/entities?type=FireForestStatus"
         let link_data = {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json"}
             }
-        // remoteDatabase.
-        
+        remoteDatabase.fetchResponse(link,link_data,(err, result) => {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else {
+                res.send(result);
+            }
+    })
     }
 )
 
