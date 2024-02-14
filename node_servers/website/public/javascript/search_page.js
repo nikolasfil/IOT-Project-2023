@@ -54,10 +54,9 @@ async function fetchResults(limit = null, offset = null, numbering = false){
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: {},
+        body: JSON.stringify(body_data),
 
     }
-
     let response =  await fetch(link, link_data).then((res) => {
         // It checks if it should be returning a json or text (which in this case is html code )
         if (numbering){
