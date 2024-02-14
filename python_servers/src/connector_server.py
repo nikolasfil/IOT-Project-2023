@@ -62,8 +62,8 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
-    print(data)
-    # save_to_database(data)
+    # print(data)
+    save_to_database(data)
 
     return data
 
@@ -109,7 +109,7 @@ def handling_device(information):
     # Create the entity in the context broker
     entity = SensorCPConnector(
         entity_data=asset.cp_info,
-        debug=True,
+        # debug=True,
     )
     # If the entity with the given id exists in the context provider it, delete it and create a new. If it is not, create a new one
     entity.new_entity()
@@ -137,24 +137,27 @@ def save_to_database(data):
     query = "INSERT INTO "
     data = build_sql_data(data)
 
-    print(data)
-    return None
+    if data is None:
+        print("Something went wrong with the sql building")
+        return None
 
     if data.get("event") is not None:
         query += "Pressed "
-    elif data.get("latitude") is not None:
+    # elif data.get("latitude") is not None:
+    elif data.get("location") is not None:
         query += "Tracked "
 
-    # New lists
-    query += f"({','.join(data.keys())}) VALUES ("
+    columns = list(data.keys())
+    values = [data[key] for key in columns]
 
-    query += ",".join([f"'{data[key]}'" for key in data.keys()]) + " )"
+    # New lists
+    query += f"({','.join(columns)}) VALUES ("
 
     payload = {
         "data": {
-            "command": {
+            "data": {
                 "query": query,
-                "arguments": [],
+                "arguments": values,
             }
         }
     }
@@ -187,7 +190,7 @@ def get_id(serial):
 
     payload = {
         "data": {
-            "command": {
+            "data": {
                 "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
                 "arguments": [serial],
             }
