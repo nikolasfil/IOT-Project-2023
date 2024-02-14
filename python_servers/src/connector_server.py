@@ -20,6 +20,22 @@ def home():
     return data
 
 
+@app.route("/fire", methods=["GET", "POST"])
+def fire():
+    """
+    Description:
+        A simple request to check if the server is running
+
+    Returns:
+        str: Html rendered information
+    """
+    data = "<p>Fire</p>"
+
+    # ?type=FireForestStatus
+
+    return data
+
+
 @app.get("/device")
 @app.post("/device")
 def get_device():

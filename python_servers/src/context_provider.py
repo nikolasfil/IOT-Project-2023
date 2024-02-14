@@ -171,8 +171,9 @@ if __name__ == "__main__":
 
     # id?type=
 
-    url = f"http://150.140.186.118:1026/v2/entities" + "?type=Buttons"
-    url = f"http://150.140.186.118:1026/v2/entities" + "?type=tracker"
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=Buttons"
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=tracker"
+    url = "http://150.140.186.118:1026/v2/entities" + "?type=FireForestStatus"
     # Get the entities
     cp = ContextProvider(
         url=url,
@@ -180,11 +181,10 @@ if __name__ == "__main__":
         method="GET",
         automated=True,
     )
-
+    print(cp.response_python_object)
     # Context broker get the keys to the dictionaries that the entities use
-    for item in cp.response_python_object:
-        print(item.values())
-        print(list(item.keys()))
+    # for item in cp.response_python_object:
+    #     print(list(item.keys()))
     # print(cp.response_dict[1])
 
     # cp2 = ContextProvider(
