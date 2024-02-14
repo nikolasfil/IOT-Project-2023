@@ -127,10 +127,17 @@ router.post("/devices/:function/:extra",
 
 
 
-router.post("/command",
+router.post("/command/:function",
 (req, res) => {
     let data = req.body.data;
-    functionChecker(data,database.execute,res,"command");
+    let dbFunction = null;
+    let func = req.params.function;
+    if (func === "select"){
+        dbFunction = database.execute;
+    } else if (func === "insert") {
+        dbFunction = database.insert;
+    }
+    functionChecker(data,dbFunction,res,func);
 
 })
 

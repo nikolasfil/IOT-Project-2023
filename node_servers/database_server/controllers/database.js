@@ -355,6 +355,9 @@ exports.userFunctions=(data,callback)=> {
         }
         // callback_function = existence_checker
         this.execute(data, existence_checker)
+    } else if (data.function === "add"){
+        // Adds the user to the database
+        this.insert(data, callback)
     } else {
         this.execute(data, callback)
     }
@@ -524,12 +527,12 @@ exports.insert=(data, callback) =>  {
     let stmt, result;
     try {
         stmt = betterDb.prepare(data.query)
-        if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
-            result = stmt.all(data.arguments);
-        } else if (data.arguments && data.arguments.length && data.single) {
-            result = stmt.get(data.arguments);
+        if (data.arguments && data.arguments.length ) {
+            result = stmt.run(data.arguments);
+        // } else if (data.arguments && data.arguments.length && data.single) {
+        //     result = stmt.get(data.arguments);
         } else {
-            result = stmt.all();
+            result = stmt.run();
         }
         if (result === undefined) {
             result = null
