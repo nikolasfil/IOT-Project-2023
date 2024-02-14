@@ -14,6 +14,13 @@ homepage_render = (req, res) => {
     });
 }
 
+central_map = (req,res,next)=>{
+    if (res.locals.signedIn && res.locals.isAdmin) {
+        res.locals.serial = res.locals.active_trackers[0].serial;
+    }
+    next();
+}
+
 const homepage_route_list = [
     authentication.checkAuthentication,
     authentication.checkAdminRights,
@@ -21,6 +28,7 @@ const homepage_route_list = [
     middleware.getAssignedButtonInfoPerUser,
     middleware.getAllActiveUsers,
     middleware.getAllActiveTrackers,
+    central_map,
     homepage_render
 ] 
 

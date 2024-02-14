@@ -175,3 +175,10 @@ Either make it an extra page for admins or make the search page only for admins
 [OpenLayers](https://openlayers.org/en/latest/apidoc/)
 
 Ανανεωση των γενικων σημειωσεων και οδηγιων για το πως να τρεχει το οικοσυστημα (infrastructure)
+
+---
+
+- Path για maps με id
+- Fetch και τσεκς για τα live data
+- fetch και τσεκς για τα data του cp
+- fetch for context provider

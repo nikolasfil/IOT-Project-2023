@@ -1,0 +1,1462 @@
+{
+  "statistics": {
+    "detectionDate": "2024-02-14T01:20:44.991Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/sphinx_highlight.js": {
+            "lines": 153,
+            "tokens": 1290,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 5,
+            "duplicatedTokens": 75,
+            "percentage": 3.27,
+            "percentageTokens": 5.81,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/searchtools.js": {
+            "lines": 573,
+            "tokens": 5036,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/language_data.js": {
+            "lines": 197,
+            "tokens": 1829,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 14,
+            "duplicatedTokens": 174,
+            "percentage": 7.11,
+            "percentageTokens": 9.51,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/documentation_options.js": {
+            "lines": 12,
+            "tokens": 86,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/doctools.js": {
+            "lines": 155,
+            "tokens": 1166,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/_sphinx_javascript_frameworks_compat.js": {
+            "lines": 122,
+            "tokens": 1092,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 5,
+            "duplicatedTokens": 75,
+            "percentage": 4.1,
+            "percentageTokens": 6.87,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/sign_in.js": {
+            "lines": 72,
+            "tokens": 532,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/show_pages.js": {
+            "lines": 158,
+            "tokens": 1069,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/searchbar.js": {
+            "lines": 19,
+            "tokens": 123,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/search_page.js": {
+            "lines": 95,
+            "tokens": 548,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/map.js": {
+            "lines": 456,
+            "tokens": 2928,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 82,
+            "duplicatedTokens": 596,
+            "percentage": 17.98,
+            "percentageTokens": 20.36,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/filters.js": {
+            "lines": 119,
+            "tokens": 917,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/public/javascript/alerting.js": {
+            "lines": 27,
+            "tokens": 186,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_user_profile.js": {
+            "lines": 83,
+            "tokens": 515,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_sign.js": {
+            "lines": 84,
+            "tokens": 705,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_search.js": {
+            "lines": 111,
+            "tokens": 791,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 14,
+            "duplicatedTokens": 146,
+            "percentage": 12.61,
+            "percentageTokens": 18.46,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_homepage.js": {
+            "lines": 47,
+            "tokens": 294,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_device_info.js": {
+            "lines": 132,
+            "tokens": 979,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 44,
+            "duplicatedTokens": 351,
+            "percentage": 33.33,
+            "percentageTokens": 35.85,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/routes/route_about.js": {
+            "lines": 17,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/controllers/remoteDatabase.js": {
+            "lines": 76,
+            "tokens": 496,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/controllers/middleware.js": {
+            "lines": 194,
+            "tokens": 1484,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/controllers/helpers.js": {
+            "lines": 69,
+            "tokens": 484,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/controllers/c_search.js": {
+            "lines": 41,
+            "tokens": 387,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/controllers/authentication.js": {
+            "lines": 86,
+            "tokens": 395,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/routes/route_homepage.js": {
+            "lines": 38,
+            "tokens": 265,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/routes/route_device_info.js": {
+            "lines": 151,
+            "tokens": 1005,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 44,
+            "duplicatedTokens": 351,
+            "percentage": 29.14,
+            "percentageTokens": 34.93,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/routes/route_database.js": {
+            "lines": 143,
+            "tokens": 1188,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/controllers/database.js": {
+            "lines": 627,
+            "tokens": 3773,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/index.js": {
+            "lines": 72,
+            "tokens": 563,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 19,
+            "duplicatedTokens": 123,
+            "percentage": 26.39,
+            "percentageTokens": 21.85,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/index.js": {
+            "lines": 48,
+            "tokens": 322,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 19,
+            "duplicatedTokens": 123,
+            "percentage": 39.58,
+            "percentageTokens": 38.2,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 4177,
+          "tokens": 30578,
+          "sources": 30,
+          "clones": 8,
+          "duplicatedLines": 123,
+          "duplicatedTokens": 1007,
+          "percentage": 2.94,
+          "percentageTokens": 3.29,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "handlebars": {
+        "sources": {
+          "node_servers/website/views/partials/timeline.hbs": {
+            "lines": 101,
+            "tokens": 996,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 28,
+            "duplicatedTokens": 292,
+            "percentage": 27.72,
+            "percentageTokens": 29.32,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/sign_in_up.hbs": {
+            "lines": 100,
+            "tokens": 723,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 28,
+            "duplicatedTokens": 182,
+            "percentage": 28,
+            "percentageTokens": 25.17,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/searchbar.hbs": {
+            "lines": 20,
+            "tokens": 187,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/membershipCard.hbs": {
+            "lines": 8,
+            "tokens": 99,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/map.hbs": {
+            "lines": 25,
+            "tokens": 156,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/item-banner.hbs": {
+            "lines": 13,
+            "tokens": 119,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/info_grid.hbs": {
+            "lines": 30,
+            "tokens": 466,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/heatmap_map.hbs": {
+            "lines": 12,
+            "tokens": 108,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/heatmap_filters.hbs": {
+            "lines": 38,
+            "tokens": 250,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/heatmap.hbs": {
+            "lines": 8,
+            "tokens": 36,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/header.hbs": {
+            "lines": 38,
+            "tokens": 269,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/footer.hbs": {
+            "lines": 20,
+            "tokens": 261,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/filterCategories.hbs": {
+            "lines": 28,
+            "tokens": 265,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/devices_grid.hbs": {
+            "lines": 4,
+            "tokens": 28,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/device_placement.hbs": {
+            "lines": 45,
+            "tokens": 551,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/deviceHistoryList.hbs": {
+            "lines": 20,
+            "tokens": 170,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/card_user.hbs": {
+            "lines": 24,
+            "tokens": 270,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/card.hbs": {
+            "lines": 28,
+            "tokens": 266,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/card copy.hbs": {
+            "lines": 18,
+            "tokens": 233,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/assigning_device.hbs": {
+            "lines": 26,
+            "tokens": 267,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/active_users.hbs": {
+            "lines": 7,
+            "tokens": 89,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/partials/active_trackers.hbs": {
+            "lines": 9,
+            "tokens": 101,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/layouts/main.hbs": {
+            "lines": 66,
+            "tokens": 483,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/user_profile.hbs": {
+            "lines": 62,
+            "tokens": 554,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/search.hbs": {
+            "lines": 60,
+            "tokens": 419,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/print_list.hbs": {
+            "lines": 24,
+            "tokens": 90,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/homepage.hbs": {
+            "lines": 18,
+            "tokens": 92,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/device_info.hbs": {
+            "lines": 68,
+            "tokens": 538,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/book_info_og.hbs": {
+            "lines": 109,
+            "tokens": 1086,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/website/views/about.hbs": {
+            "lines": 64,
+            "tokens": 747,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 1093,
+          "tokens": 9919,
+          "sources": 30,
+          "clones": 2,
+          "duplicatedLines": 28,
+          "duplicatedTokens": 237,
+          "percentage": 2.56,
+          "percentageTokens": 2.39,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "python": {
+        "sources": {
+          "node_servers/database_server/model/python/database_managing.py": {
+            "lines": 226,
+            "tokens": 1144,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "node_servers/database_server/model/python/database.py": {
+            "lines": 247,
+            "tokens": 1141,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/sphinx_documentation/conf.py": {
+            "lines": 47,
+            "tokens": 210,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 33,
+            "duplicatedTokens": 161,
+            "percentage": 70.21,
+            "percentageTokens": 76.67,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "docs/documentation/python_documentation/files_keeping/conf.py": {
+            "lines": 46,
+            "tokens": 202,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 33,
+            "duplicatedTokens": 161,
+            "percentage": 71.74,
+            "percentageTokens": 79.7,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/virtual_sensor.py": {
+            "lines": 257,
+            "tokens": 1073,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/tracker_sensor.py": {
+            "lines": 395,
+            "tokens": 2076,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 21,
+            "duplicatedTokens": 230,
+            "percentage": 5.32,
+            "percentageTokens": 11.08,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/subscriber_broker.py": {
+            "lines": 49,
+            "tokens": 360,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/sensor_context_provider.py": {
+            "lines": 298,
+            "tokens": 1370,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/publisher_broker.py": {
+            "lines": 64,
+            "tokens": 509,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/coords_generator.py": {
+            "lines": 87,
+            "tokens": 423,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/context_provider.py": {
+            "lines": 190,
+            "tokens": 1080,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/connector_server.py": {
+            "lines": 269,
+            "tokens": 1286,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 34,
+            "duplicatedTokens": 196,
+            "percentage": 12.64,
+            "percentageTokens": 15.24,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/button_sensor.py": {
+            "lines": 262,
+            "tokens": 1797,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 21,
+            "duplicatedTokens": 230,
+            "percentage": 8.02,
+            "percentageTokens": 12.8,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "python_servers/src/broker.py": {
+            "lines": 141,
+            "tokens": 998,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 2578,
+          "tokens": 13669,
+          "sources": 14,
+          "clones": 4,
+          "duplicatedLines": 71,
+          "duplicatedTokens": 489,
+          "percentage": 2.75,
+          "percentageTokens": 3.58,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 7848,
+      "tokens": 54166,
+      "sources": 74,
+      "clones": 14,
+      "duplicatedLines": 222,
+      "duplicatedTokens": 1733,
+      "percentage": 2.83,
+      "percentageTokens": 3.2,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": ";\n    if (re.test(w)) {\n      var fp = re.exec(w);\n      stem = fp[1];\n      suffix = fp[2];\n      re = new RegExp(mgr0);\n      if (re.test(stem))\n        w = stem + step3list",
+      "tokens": 0,
+      "firstFile": {
+        "name": "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/language_data.js",
+        "start": 147,
+        "end": 154,
+        "startLoc": {
+          "line": 147,
+          "column": 49,
+          "position": 1288
+        },
+        "endLoc": {
+          "line": 154,
+          "column": 10,
+          "position": 1375
+        }
+      },
+      "secondFile": {
+        "name": "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/language_data.js",
+        "start": 136,
+        "end": 143,
+        "startLoc": {
+          "line": 136,
+          "column": 139,
+          "position": 1182
+        },
+        "endLoc": {
+          "line": 143,
+          "column": 10,
+          "position": 1269
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 6,
+      "fragment": ".getBBox();\n                    rect.x.baseVal.value = bbox.x;\n                    rect.y.baseVal.value = bbox.y;\n                    rect.width.baseVal.value = bbox.width;\n                    rect.height.baseVal.value = bbox.height;\n                    rect.setAttribute('class'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/_sphinx_javascript_frameworks_compat.js",
+        "start": 73,
+        "end": 78,
+        "startLoc": {
+          "line": 73,
+          "column": 14,
+          "position": 621
+        },
+        "endLoc": {
+          "line": 78,
+          "column": 8,
+          "position": 696
+        }
+      },
+      "secondFile": {
+        "name": "docs/documentation/python_documentation/sphinx_documentation/_build/html/_static/sphinx_highlight.js",
+        "start": 51,
+        "end": 56,
+        "startLoc": {
+          "line": 51,
+          "column": 7,
+          "position": 404
+        },
+        "endLoc": {
+          "line": 56,
+          "column": 8,
+          "position": 479
+        }
+      }
+    },
+    {
+      "format": "handlebars",
+      "lines": 15,
+      "fragment": "}}\n      <ul class=\"col timeline scale\">\n        <li class=\"li overdue\">\n          <div class=\"timestamp\">\n            <span class=\"status1\">Reserved<br />{{resDate}}</span>\n          </div>\n        </li>\n        <li class=\"li overdue\">\n          <div class=\"timestamp\">\n            <span class=\"status2\">Borrowed<br />{{borDate}}</span>\n          </div>\n        </li>\n        <li class=\"li overdue\">\n          <div class=\"timestamp\">\n            <span class=\"status3\">Overdue",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/website/views/partials/timeline.hbs",
+        "start": 38,
+        "end": 52,
+        "startLoc": {
+          "line": 38,
+          "column": 5,
+          "position": 372
+        },
+        "endLoc": {
+          "line": 52,
+          "column": 8,
+          "position": 518
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/views/partials/timeline.hbs",
+        "start": 20,
+        "end": 34,
+        "startLoc": {
+          "line": 20,
+          "column": 9,
+          "position": 186
+        },
+        "endLoc": {
+          "line": 34,
+          "column": 9,
+          "position": 332
+        }
+      }
+    },
+    {
+      "format": "handlebars",
+      "lines": 15,
+      "fragment": "required />\n      </div>\n\n      <div class=\"d-flex flex-column justify-content-center\">\n        <label for=\"psw\">Password</label>\n        <input\n          type=\"password\"\n          placeholder=\"Enter Password\"\n          name=\"psw\"\n          required\n        />\n      </div>\n\n      <div class=\"d-flex flex-row justify-content-end\">\n        <button type=\"submit\" class=\"btn\" id=\"submit-sign-up\"",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/website/views/partials/sign_in_up.hbs",
+        "start": 82,
+        "end": 96,
+        "startLoc": {
+          "line": 82,
+          "column": 2,
+          "position": 600
+        },
+        "endLoc": {
+          "line": 96,
+          "column": 17,
+          "position": 691
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/views/partials/sign_in_up.hbs",
+        "start": 22,
+        "end": 35,
+        "startLoc": {
+          "line": 22,
+          "column": 2,
+          "position": 188
+        },
+        "endLoc": {
+          "line": 35,
+          "column": 17,
+          "position": 278
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 30,
+      "fragment": "]);\n        coordinates.push(coordinate);\n\n        let pointFeature = new ol.Feature({\n            geometry: new ol.geom.Point(coordinate),\n        });\n\n        vectorSource.addFeature(pointFeature);\n    }\n\n    // Create a line string using the coordinates and add it to the vector source\n    // Make the color of the line red\n    let lineFeature = new ol.Feature({\n        geometry: new ol.geom.LineString(coordinates),\n    });\n\n    vectorSource.addFeature(lineFeature);\n\n    // Create a vector layer using the vector source\n    let vectorLayer = new ol.layer.Vector({\n        source: vectorSource,\n        style: new ol.style.Style({\n            stroke: new ol.style.Stroke({\n                color: 'red',\n                width: 3,\n            }),\n        }),\n    });\n\n    // Get the last coordinate",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/website/public/javascript/map.js",
+        "start": 238,
+        "end": 267,
+        "startLoc": {
+          "line": 238,
+          "column": 2,
+          "position": 1520
+        },
+        "endLoc": {
+          "line": 267,
+          "column": 27,
+          "position": 1723
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/public/javascript/map.js",
+        "start": 89,
+        "end": 118,
+        "startLoc": {
+          "line": 89,
+          "column": 9,
+          "position": 482
+        },
+        "endLoc": {
+          "line": 118,
+          "column": 46,
+          "position": 685
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": ";\n\n    // Create the map\n    let map = new ol.Map({\n        target: 'map',\n        layers: [\n            new ol.layer.Tile({\n                source: new ol.source.OSM(),\n            }),\n            vectorLayer,\n        ],\n        view: new ol.View({\n            center: ol.proj.fromLonLat([",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/website/public/javascript/map.js",
+        "start": 285,
+        "end": 297,
+        "startLoc": {
+          "line": 285,
+          "column": 2,
+          "position": 1852
+        },
+        "endLoc": {
+          "line": 297,
+          "column": 2,
+          "position": 1947
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/public/javascript/map.js",
+        "start": 119,
+        "end": 131,
+        "startLoc": {
+          "line": 119,
+          "column": 2,
+          "position": 750
+        },
+        "endLoc": {
+          "line": 131,
+          "column": 7,
+          "position": 845
+        }
+      }
+    },
+    {
+      "format": "python",
+      "lines": 34,
+      "fragment": ".parent\nparent = parent.parent\nparent = parent.parent\nparent = parent.parent\nsrc_folder = Path(parent, \"python_servers\", \"src\")\nsys.path.insert(0, os.path.abspath(str(src_folder)))\n\n# -- Project information -----------------------------------------------------\n# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information\n\nproject = \"IOT\"\ncopyright = \"2024, nikolasfil\"\nauthor = \"nikolasfil\"\n\n# -- General configuration ---------------------------------------------------\n# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration\n\nextensions = [\n    \"sphinx.ext.autodoc\",\n    \"sphinx.ext.napoleon\",\n    \"sphinx.ext.viewcode\",\n    # \"sphinx_rtd_dark_mode\",\n]\n\ntemplates_path = [\"_templates\"]\nexclude_patterns = [\"_build\", \"Thumbs.db\", \".DS_Store\"]\n\n\n# -- Options for HTML output -------------------------------------------------\n# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output\n\n# html_theme = \"alabaster\"\nhtml_theme = \"sphinx_rtd_theme\"\nhtml_static_path = [\"_static\"]",
+      "tokens": 0,
+      "firstFile": {
+        "name": "docs/documentation/python_documentation/files_keeping/conf.py",
+        "start": 14,
+        "end": 47,
+        "startLoc": {
+          "line": 14,
+          "column": 2,
+          "position": 41
+        },
+        "endLoc": {
+          "line": 47,
+          "column": 2,
+          "position": 202
+        }
+      },
+      "secondFile": {
+        "name": "docs/documentation/python_documentation/sphinx_documentation/conf.py",
+        "start": 15,
+        "end": 48,
+        "startLoc": {
+          "line": 15,
+          "column": 7,
+          "position": 49
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 2,
+          "position": 210
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": ",\n        }\n        remoteDatabase.databaseRequest(link='/devices/attributes',data=data, function (err, devices)    {   \n        if (err) {\n                console.log(err)\n                res.status(500).send('Internal Server Error')\n            } else {\n                res.locals.type",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/website/routes/route_search.js",
+        "start": 79,
+        "end": 86,
+        "startLoc": {
+          "line": 79,
+          "column": 7,
+          "position": 560
+        },
+        "endLoc": {
+          "line": 86,
+          "column": 5,
+          "position": 633
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/routes/route_search.js",
+        "start": 63,
+        "end": 70,
+        "startLoc": {
+          "line": 63,
+          "column": 9,
+          "position": 425
+        },
+        "endLoc": {
+          "line": 70,
+          "column": 7,
+          "position": 498
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 32,
+      "fragment": "let link_data = {\n            method: \"GET\",\n            credentials: \"same-origin\",\n            headers: {\n                \"Content-Type\": \"application/json\",\n            },\n            redirect: \"follow\",\n            referrerPolicy: \"no-referrer\",\n        }\n\n        fetch(link, link_data).then((res) => {\n            return res.json();\n        }).then((data) => {\n            // console.log(data);\n            // Because it is async you have to let the next function know that it is done\n            res.locals.info = data;\n            next();\n            return data;            \n        }).catch(error => {\n            console.log(error);\n            res.send(error)\n        });\n    },      \n    (req, res) => {\n        res.send(res.locals.info);\n    });\n\n// returns a list of device that have the given title\nrouter.get('/device_info',\n    (req, res, next) => {\n        if (req.query['serial']) {\n            next",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/database_server/routes/route_device_info.js",
+        "start": 55,
+        "end": 86,
+        "startLoc": {
+          "line": 55,
+          "column": 9,
+          "position": 340
+        },
+        "endLoc": {
+          "line": 86,
+          "column": 5,
+          "position": 580
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/routes/route_device_info.js",
+        "start": 48,
+        "end": 79,
+        "startLoc": {
+          "line": 48,
+          "column": 9,
+          "position": 335
+        },
+        "endLoc": {
+          "line": 79,
+          "column": 4,
+          "position": 575
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 14,
+      "fragment": "data,(err,device) => {\n            if (err) {\n                console.log(err)\n                res.status(500).send('Internal Server Error')\n            } else {\n                res.locals.deviceHistory = device;\n                next();\n            }\n        })\n    },\n    (req, res) => {\n        res.render('device_info', {\n            title: 'device Info',\n            style: 'device_info.css'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/database_server/routes/route_device_info.js",
+        "start": 132,
+        "end": 145,
+        "startLoc": {
+          "line": 132,
+          "column": 2,
+          "position": 861
+        },
+        "endLoc": {
+          "line": 145,
+          "column": 18,
+          "position": 972
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/routes/route_device_info.js",
+        "start": 111,
+        "end": 124,
+        "startLoc": {
+          "line": 111,
+          "column": 2,
+          "position": 830
+        },
+        "endLoc": {
+          "line": 124,
+          "column": 2,
+          "position": 941
+        }
+      }
+    },
+    {
+      "format": "python",
+      "lines": 18,
+      "fragment": "],\n            }\n        }\n    }\n\n    database_url = f\"http://{os.getenv('DBURL')}:7080/command\"\n    headers = {\"Content-Type\": \"application/json\"}\n    db = ContextProvider(\n        url=database_url,\n        headers=headers,\n        method=\"POST\",\n        payload=payload,\n        automated=True,\n    )\n\n    if not db.response.ok:\n        print(db.response.text)\n        return",
+      "tokens": 0,
+      "firstFile": {
+        "name": "python_servers/src/connector_server.py",
+        "start": 185,
+        "end": 202,
+        "startLoc": {
+          "line": 185,
+          "column": 7,
+          "position": 793
+        },
+        "endLoc": {
+          "line": 202,
+          "column": 7,
+          "position": 891
+        }
+      },
+      "secondFile": {
+        "name": "python_servers/src/connector_server.py",
+        "start": 150,
+        "end": 169,
+        "startLoc": {
+          "line": 150,
+          "column": 2,
+          "position": 650
+        },
+        "endLoc": {
+          "line": 169,
+          "column": 4,
+          "position": 749
+        }
+      }
+    },
+    {
+      "format": "python",
+      "lines": 12,
+      "fragment": "if kwargs.get(\"deviceInfo\") is None:\n            device_info = {\n                \"tenantId\": kwargs.get(\"tenantId\"),\n                \"tenantName\": kwargs.get(\"tenantName\"),\n                \"applicationId\": kwargs.get(\"applicationId\"),\n                \"applicationName\": kwargs.get(\"applicationName\"),\n                \"deviceProfileId\": kwargs.get(\"deviceProfileId\"),\n                \"deviceProfileName\": kwargs.get(\"deviceProfileName\"),\n                \"deviceName\": kwargs.get(\"deviceName\"),\n                \"devEui\": kwargs.get(\"devEui\"),\n                \"tags\": {\n                    \"model\"",
+      "tokens": 0,
+      "firstFile": {
+        "name": "python_servers/src/button_sensor.py",
+        "start": 10,
+        "end": 21,
+        "startLoc": {
+          "line": 10,
+          "column": 9,
+          "position": 61
+        },
+        "endLoc": {
+          "line": 21,
+          "column": 8,
+          "position": 185
+        }
+      },
+      "secondFile": {
+        "name": "python_servers/src/tracker_sensor.py",
+        "start": 40,
+        "end": 51,
+        "startLoc": {
+          "line": 40,
+          "column": 9,
+          "position": 66
+        },
+        "endLoc": {
+          "line": 51,
+          "column": 11,
+          "position": 190
+        }
+      }
+    },
+    {
+      "format": "python",
+      "lines": 11,
+      "fragment": "= {\n            \"deviceInfo\": device_info,\n            \"devAddr\": kwargs.get(\"devAddr\"),\n            \"adr\": kwargs.get(\"adr\"),\n            \"dr\": kwargs.get(\"dr\"),\n            \"fCnt\": kwargs.get(\"fCnt\"),\n            \"fPort\": kwargs.get(\"fPort\"),\n            \"confirmed\": kwargs.get(\"confirmed\"),\n            \"data\": kwargs.get(\"data\"),\n            \"object\": object_info,\n            \"rxInfo\": rxInfo_list",
+      "tokens": 0,
+      "firstFile": {
+        "name": "python_servers/src/button_sensor.py",
+        "start": 96,
+        "end": 106,
+        "startLoc": {
+          "line": 96,
+          "column": 2,
+          "position": 694
+        },
+        "endLoc": {
+          "line": 106,
+          "column": 12,
+          "position": 800
+        }
+      },
+      "secondFile": {
+        "name": "python_servers/src/tracker_sensor.py",
+        "start": 113,
+        "end": 123,
+        "startLoc": {
+          "line": 113,
+          "column": 2,
+          "position": 721
+        },
+        "endLoc": {
+          "line": 123,
+          "column": 7,
+          "position": 827
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 20,
+      "fragment": "app.use('/controllers', express.static(`${__dirname}/controllers/`));\n\n\napp.use(session({\n    secret: process.env.secret || \"secret\",\n    resave: false,\n    saveUninitialized: false,\n    cookie: {\n        // httpOnly: true,\n        sameSite: true,\n        // cookie age is 2 hours\n        maxAge: 2*60*60*1000\n    },\n    store: new sqliteStore({db: 'session.sqlite',dir: './model/sessions'})\n}))\n\n\n\n\napp",
+      "tokens": 0,
+      "firstFile": {
+        "name": "node_servers/database_server/index.js",
+        "start": 23,
+        "end": 42,
+        "startLoc": {
+          "line": 23,
+          "column": 1,
+          "position": 152
+        },
+        "endLoc": {
+          "line": 42,
+          "column": 4,
+          "position": 275
+        }
+      },
+      "secondFile": {
+        "name": "node_servers/website/index.js",
+        "start": 27,
+        "end": 44,
+        "startLoc": {
+          "line": 27,
+          "column": 1,
+          "position": 225
+        },
+        "endLoc": {
+          "line": 44,
+          "column": 11,
+          "position": 346
+        }
+      }
+    }
+  ],
+  "filename": "/home/figaro/.nvm/versions/node/v18.16.0/lib/node_modules/jscpd/node_modules/@jscpd/html-reporter/dist/templates/main.pug"
+}

@@ -1,0 +1,13 @@
+<div>
+  <h1>Device Form</h1>
+  <form action="/assign/tracker" method="post">
+    <label for="deviceSelect">Select a device:</label>
+    <select id="trackerSelect" name="selectedDevice">
+      {{#each unassignedUsers}}
+        <option value="{{u_id}}">{{u_id}}-{{first_name}} {{last_name}}</option>
+      {{/each}}
+    </select>
+    <br />
+    <input type="submit" value="Submit" />
+  </form>
+</div>

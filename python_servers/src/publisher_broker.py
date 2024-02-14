@@ -34,6 +34,7 @@ class Publisher(Broker):
     def virtual_button(self, counter=0):
         button_info = {
             "deviceName": "mclimate-multipurpose-button:1",
+            # "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
             "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
             "batteryVoltage": 3.1,
             "temperature": 21.7 + (random.choice([1, -1]) * 2),

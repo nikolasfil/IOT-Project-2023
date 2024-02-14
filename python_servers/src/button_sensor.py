@@ -185,6 +185,7 @@ class ButtonCPF(SensorCPFormat):
         self.event = entity_data.get("event")
         self.press_event = entity_data.get("press_event")
         self.event_metadata = entity_data.get("press_event_metadata")
+        self.battery = entity_data.get("battery")
         self.batteryVoltage = entity_data.get("batteryVoltage")
 
     def default_values(self):
@@ -207,18 +208,31 @@ class ButtonCPF(SensorCPFormat):
 
         if self.timestamp:
             timestamp = {
-                "date": self.get_date(self.timestamp),
-                "time": self.get_time(self.timestamp),
+                "type": "datetime",
+                "value": {
+                    "date": self.get_date(self.timestamp),
+                    "time": self.get_time(self.timestamp),
+                },
             }
         else:
-            timestamp = None
+            timestamp = {}
+
+        if self.battery is None:
+            battery = {
+                "type": "Float",
+                "value": self.batteryVoltage,
+                "metadata": {},
+            }
+        else:
+            battery = self.battery
 
         button_info = {
             "id": self.id,
             "type": self.type,
             "temperature": temperature,
             "event": event,
-            "batteryVoltage": self.batteryVoltage,
+            "battery": battery,
+            # "batteryVoltage": self.batteryVoltage,
             "timestamp": timestamp,
         }
 
@@ -237,10 +251,13 @@ class ButtonCPF(SensorCPFormat):
         #         "value": "00",
         #         "metadata": {},
         #     },
-        #     "timestamp": {
-        #         "date": "2021-10-14",
-        #         "time": "10:00:00",
-        #     },
+        #    "timestamp" : {
+        #            "type": "datetime",
+        #            "value": {
+        #                "date": "2021-10-14",
+        #                "time": "10:00:00",
+        #            },
+        #        },
         #     "batteryVoltage": 3.1,
         # }
 
@@ -253,11 +270,9 @@ if __name__ == "__main__":
         "temperature": 21.700000000000003,
         "thermistorProperlyConnected": True,
         "pressEvent": "00",
-        # "timestamp": "2021-10-14T10:00:00.000Z",
+        "timestamp": "2021-10-14T10:00:00.000Z",
     }
 
     button = Button(important_info=important_info)
-    # print(button.info_json)
-    # print(button.info)
     button.mqtt_to_cp()
     print(button.cp_info)

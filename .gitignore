@@ -3,7 +3,7 @@ backup*
 **/node_modules/*
 **/__pycache__/*
 node_servers/website/model/sessions/session.sqlite
-
+node_servers/database_server/model/sessions/session.sqlite
 **/app_venv/*
 **/tempCodeRunnerFile.py/*
 **/README_link/*

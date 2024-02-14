@@ -42,16 +42,16 @@ services:
   #   command: ["python", "publisher_broker.py"]
 
   # connector-app:
-  #   <<: *common-python
+  # <<: *common-python
 
-  #   image: pythonconnector
-  #   depends_on:
-  #     - database-app
-  #   ports:
-  #     - "5000:5000"
-  #  environment:
-  #     - DBURL=database-app
-  #   command: ["python", "connector_server.py"]
+  # image: pythonconnector
+  # depends_on:
+  #   - database-app
+  # ports:
+  #   - "5000:5000"
+  # environment:
+  #   - DBURL=database-app
+  # command: ["python", "connector_server.py"]
 
   node-app:
     build:
