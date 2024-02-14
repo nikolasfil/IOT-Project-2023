@@ -447,3 +447,5 @@ function checkSafeZonesCheckboxExists(safeZoneCoordinates) {
         return false;
     }
 }
+
+// fetch(`/device_location?serial=${serial}`)
