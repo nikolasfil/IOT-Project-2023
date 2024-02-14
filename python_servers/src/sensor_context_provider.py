@@ -226,27 +226,6 @@ class SensorCPConnector(ContextProvider):
 
 
 if __name__ == "__main__":
-    # entity_data = {
-    #     "id": "tracker4",
-    #     "type": "Tracker",
-    #     "location": {
-    #         "type": "geo-json",
-    #         "value": {
-    #             "latitude": 40.7128,
-    #             "longitude": 91.0,
-    #         },
-    #         "metadata": {},
-    #     },
-    #     "temperature": {
-    #         "type": "Float",
-    #         "value": 41,
-    #         "metadata": {},
-    #     },
-    # }
-    # entity_data = {
-    #     "id": "tracker4",
-    #     "type": "Tracker",
-    # }
 
     # entity_data = {
     #     # "id": "digital-matter-oyster3:3",
@@ -274,7 +253,6 @@ if __name__ == "__main__":
             "metadata": {},
         },
         "temperature": {"type": "Float", "value": 0, "metadata": {}},
-        # "time": {"metadata": {"date": "2024_02_14"}},
         "timestamp": {
             "type": "datetime",
             "value": {
@@ -284,35 +262,22 @@ if __name__ == "__main__":
         },
     }
 
+    entity_data = {
+        "id": "mclimate-multipurpose-button:1",
+        "type": "Buttons",
+        "temperature": {"type": "Float", "value": 21.700000000000003, "metadata": {}},
+        "event": {"value": "00", "metadata": {}},
+        "timestamp": {
+            "type": "datetime",
+            "value": {"date": "2024-02-14", "time": "04:33:05.757013"},
+        },
+    }
+
     tracker = SensorCPConnector(
         base_url="http://150.140.186.118:1026",
         entity_data=entity_data,
-        # debug=True,
+        debug=True,
     )
-    # print(tracker.get_entity())
-    # print(tracker)
-    # Delete the entity
-    # tracker.delete_entity()
     # Create the entitiy
-    tracker.new_entity()
-    print(tracker.get_entity())
-
-
-# Example Data
-# example_data = {
-#     "id": "tracker1",
-#     "type": "Tracker",
-#     "location": {
-#         "type": "geo:json",
-#         "value": {
-#             "latitude": 40.7128,
-#             "longitude": 90,
-#         },
-#         "metadata": {},
-#     },
-#     "temperature": {
-#         "type": "Float",
-#         "value": 25.5,
-#         "metadata": {},
-#     },
-# }
+    # tracker.new_entity()
+    # print(tracker.get_entity())

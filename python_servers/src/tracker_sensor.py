@@ -136,8 +136,8 @@ class TrackerMQTTFormat(SensorMQTTFormat):
                 "tenantName": "Smart Campus",
                 "tenantId": "063a0ecb-e8c2-4a13-975a-93d791e8d40c",
                 "applicationId": "9be10a72-026f-4e3b-8eac-4a74d0beecb8",
-                # "applicationName": "Asset tracking",
-                "applicationName": "tracker",
+                "applicationName": "Asset tracking",
+                # "applicationName": "tracker",
                 # Standarized data
                 "deviceProfileId": "82ff747e-1de8-4c38-8a8a-9319f3468732",
                 "deviceProfileName": "Digital Matter Oyster3",
@@ -192,8 +192,8 @@ class TrackerMQTTFormat(SensorMQTTFormat):
         # Change this into the TrackerCPF Class instance
 
         device_id = self.info.get("deviceInfo").get("tags").get("deviceId")
-        device_type = self.info.get("deviceInfo").get("applicationName")
-        # device_type = "tracker"
+        # device_type = self.info.get("deviceInfo").get("applicationName")
+        device_type = "tracker"
 
         latitude = self.info.get("object").get("cached").get("latitudeDeg")
         longitude = self.info.get("object").get("cached").get("longitudeDeg")
@@ -344,28 +344,6 @@ class TrackerCPFormat(SensorCPFormat):
         }
 
         self.info.update(tracker_info)
-
-        # {
-        #     "id": "tracker4",
-        #     "type": "Tracker",
-        #     "location": {
-        #         "metadata": {},
-        #         "type": "None",
-        #         "value": null,
-        #     },
-        #     "temperature": {
-        #         "metadata": {},
-        #         "type": "Float",
-        #         "value": 25.5,
-        #     },
-        #     "timestamp": {
-        #         "type": "datetime",
-        #         "value": {
-        #             "date": "2024-02-14",
-        #             "time": "04:00:58.609486",
-        #         },
-        #     },
-        # }
 
 
 if __name__ == "__main__":

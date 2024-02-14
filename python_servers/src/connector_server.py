@@ -63,7 +63,7 @@ def device_info():
     data = request.json
     data = handling_device(data)
     print(data)
-    save_to_database(data)
+    # save_to_database(data)
 
     return data
 
