@@ -505,10 +505,41 @@ exports.execute=(data, callback) =>  {
         }
         callback(null, result);
     } catch (err) {
+        console.log(err)
         callback(err, null)
     }
 }
 
+
+
+/**
+ * 
+ * @param {*} data 
+ * @param {*} data.query (not optional)
+ * @param {*} data.arguments (optional)
+ * @param {*} callback 
+ */
+exports.insert=(data, callback) =>  {
+
+    let stmt, result;
+    try {
+        stmt = betterDb.prepare(data.query)
+        if (data.arguments && data.arguments.length && (data.single === undefined || data.single === null || data.single === false) ) {
+            result = stmt.all(data.arguments);
+        } else if (data.arguments && data.arguments.length && data.single) {
+            result = stmt.get(data.arguments);
+        } else {
+            result = stmt.all();
+        }
+        if (result === undefined) {
+            result = null
+        }
+        callback(null, result);
+    } catch (err) {
+        console.log(err)
+        callback(err, null)
+    }
+}
 
 
 // --------- Dynamic Insertion into Database --------

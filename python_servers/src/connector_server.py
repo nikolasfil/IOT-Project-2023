@@ -62,7 +62,7 @@ def device_info():
 
     data = request.json
     data = handling_device(data)
-    # print(data)
+    print("============== ===========")
     save_to_database(data)
 
     return data
@@ -143,24 +143,27 @@ def save_to_database(data):
 
     if data.get("event") is not None:
         query += "Pressed "
-    # elif data.get("latitude") is not None:
-    elif data.get("location") is not None:
+    elif data.get("latitude") is not None:
+        # elif data.get("location") is not None:
         query += "Tracked "
+    else:
+        print("No event or location")
+        return None
 
     columns = list(data.keys())
     values = [data[key] for key in columns]
 
     # New lists
     query += f"({','.join(columns)}) VALUES ("
+    query += ",".join(["?" for _ in columns]) + ")"
 
     payload = {
         "data": {
-            "data": {
-                "query": query,
-                "arguments": values,
-            }
+            "query": query,
+            "arguments": values,
         }
     }
+    print(query, values)
 
     database_url = f"http://{os.getenv('DBURL')}:7080/command"
     headers = {"Content-Type": "application/json"}
@@ -170,9 +173,10 @@ def save_to_database(data):
         method="POST",
         payload=payload,
         automated=True,
+        debug=True,
     )
 
-    if not db.response.ok:
+    if db and not db.response.ok:
         print(db.response.text)
 
 
@@ -190,10 +194,8 @@ def get_id(serial):
 
     payload = {
         "data": {
-            "data": {
-                "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
-                "arguments": [serial],
-            }
+            "query": "SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 ",
+            "arguments": [serial],
         }
     }
 
@@ -211,7 +213,6 @@ def get_id(serial):
         print(db.response.text)
         return None
 
-    # print(db.response_python_object)
     # Check what the response is and return only the id
     d_id = db.response_json[0].get("d_id")
     return d_id
