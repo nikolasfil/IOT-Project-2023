@@ -502,12 +502,12 @@ async function drawPaths(serial) {
     // Create a vector layer using the vector source
     deviceHistoryLayer = new ol.layer.Vector({
         source: vectorSource,
-        style: new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 3,
-            }),
-        }),
+        // style: new ol.style.Style({
+        //     stroke: new ol.style.Stroke({
+        //         color: 'red',
+        //         width: 3,
+        //     }),
+        // }),
     });
 
     // // Fit the view to the extent of the vector layer
