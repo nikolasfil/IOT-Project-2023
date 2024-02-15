@@ -2,51 +2,53 @@
 
 {{>header}}
 
-<main style="background: #2B1756">
+<main class="d-flex flex-column align-content-center pageborder" style="background: #2B1756">
 
-  {{!-- make it better at a later date --}}
+    {{!-- make it better at a later date --}}
+    <div class="gen-info-assigned">
 
-  <div class="pageborder">
+            <div class="general-info" id="device">
 
-    <div class="row align-items-center">
-      <!-- card -->
-      <div class="col justify-self-center align-items-center scale">
-        {{>membershipCard name=profile.first_name surname=profile.last_name id=profile.u_id}}
-      </div>
+                <div class="profile_info col" style="background: #6F518C; border-radius: 15px;padding: 30px">
 
-      <!-- Personal information -->
-      <div class="profile_info col">
-        <div class="d-flex flex-wrap align-items-center">
-          <h2 style="color: #FFFFFF"><strong>{{profile.first_name}} {{profile.last_name}}</strong></h2>
-          <form action="/sign_out" method="get">
-            <input class="button-white justify-self-end" type="submit" value="Sign Out">
-          </form>
+                    <div class="d-flex flex-row align-items-center">
+                        <img src="/img/person-fill.svg" alt="device cover" class="device-img" width="150px"
+                             style="padding: 10px">
+                        <h2 style="color: #FFFFFF"><strong>{{profile.first_name}} {{profile.last_name}}</strong></h2>
+                        <form action="/sign_out" method="get">
+                            <input class="button-white justify-self-end" type="submit" value="Sign Out">
+                        </form>
 
-        </div>
-        {{> user_profile_info id=profile.u_id role=profile.role phone=profile.phone}}
-      </div>
+                    </div>
+                    {{> user_profile_info id=profile.u_id role=profile.role phone=profile.phone}}
+                </div>
+
+            </div>
+
+        {{#if isAdmin}}
+            {{> assigning_device }}
+        {{/if}}
+
+
     </div>
-     
+    <br>
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2" style="color: #ffffff"><strong> Assigned Devices </strong></h2>
+        {{!-- Missing button to add them on the heat map to display them, and their path --}}
+        <div class="scrolling">
+            {{#if assigned_tracker}}
+                {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}
+            {{!-- {{> card battery=100 }}                     --}}
+
+            {{/if}}
+
+            {{#if assigned_button}}
+                {{> card battery=100 status=assigned_button.status d_id=assigned_button.d_id serial=assigned_button.serial type=assigned_button.type }}
+            {{/if}}
+        </div>
+    </div>
 
 
-    {{!-- This should only be displayed when the user does not have a device assigned --}}
-
-    {{#if isAdmin}}
-      {{> assigning_device }}
-    {{/if}}
-
-    {{#if assigned_tracker}}
-        <h6><strong>Assigned Devices </strong></h6>
-        {{> card battery=100 status=assigned_tracker.status d_id=assigned_tracker.d_id serial=assigned_tracker.serial type=assigned_tracker.type}}                    
-        {{!-- {{> card battery=100 }}                     --}}
-
-    {{/if}}
-
-    {{#if assigned_button}}
-        {{> card battery=100 status=assigned_button.status d_id=assigned_button.d_id serial=assigned_button.serial type=assigned_button.type }}                    
-    {{/if}}
-
-  </div>
     {{!-- display past trips --}}
     {{!-- show date and duration --}}
 

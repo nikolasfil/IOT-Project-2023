@@ -485,7 +485,7 @@ async function fetchResponse(link, link_data) {
         const parsedData = JSON.parse(data);
         return parsedData;
     } catch (error) {
-        console.error(error);
+        console.console(error);
         throw error;
     }
 }
