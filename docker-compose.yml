@@ -14,6 +14,10 @@ x-common-python: &common-python
   <<: *network-restart
 
 x-common-node: &common-node
+  command: ["npm", "run", "startWebsite"]
+  <<: *network-restart
+
+x-common-node-dev: &common-node-dev
   command: ["npm", "start"]
   <<: *network-restart
 

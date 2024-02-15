@@ -84,7 +84,7 @@ class Publisher(Broker):
         coordGen.main()
 
         for counter in range(times):
-            longitude, latitude = coordGen.coordinates[counter]
+            latitude, longitude = coordGen.coordinates[counter]
 
             payload = self.virtual_tracker(
                 counter=counter, latitude=latitude, longitude=longitude
