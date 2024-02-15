@@ -84,10 +84,84 @@
 <span class="kn">import</span> <span class="nn">json</span>
 
 
-<div class="viewcode-block" id="Sensor">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor">[docs]</a>
-<span class="k">class</span> <span class="nc">Sensor</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ClassFunctionalities">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.ClassFunctionalities">[docs]</a>
+<span class="k">class</span> <span class="nc">ClassFunctionalities</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># def __str__(self):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Description:</span>
+    <span class="c1">#         Returns the information in string format whenever the instance is called as a string</span>
+    <span class="c1">#         E.g. print(self)</span>
+
+    <span class="c1">#     Returns:</span>
+    <span class="c1">#         str: stringify the information dict</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     return str(self.info)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description :</span>
+<span class="sd">            Returns the information as a dict whenever the instance is called</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The information dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Returns the value of the key given. Whenever the instance is used as a dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Sets the value of the key given. Whenever the instance is used as a dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Returns the iterator of the information dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># return iter(self.info)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Returns the next value of the information dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+
+<div class="viewcode-block" id="ClassFunctionalities.generator">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.ClassFunctionalities.generator">[docs]</a>
+    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description:</span>
+<span class="sd">            Will be responsible for the generation of the data that will be provided with every iteration of the instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SensorMQTTFormat">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorMQTTFormat">[docs]</a>
+<span class="k">class</span> <span class="nc">SensorMQTTFormat</span><span class="p">(</span><span class="n">ClassFunctionalities</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
 <span class="sd">            Initializes the Sensor class</span>
@@ -101,6 +175,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Initialize the information dictionary that will be used to access the sensor information</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">):</span>
             <span class="n">time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -133,8 +209,8 @@
         <span class="c1"># Initialize the variable that will be used when transforming the information to a format that the Context Provider can understand</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Sensor.generate_unique_hash">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash">[docs]</a>
+<div class="viewcode-block" id="SensorMQTTFormat.generate_unique_hash">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorMQTTFormat.generate_unique_hash">[docs]</a>
     <span class="k">def</span> <span class="nf">generate_unique_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -154,8 +230,8 @@
         <span class="k">return</span> <span class="n">formatted_hash</span></div>
 
 
-<div class="viewcode-block" id="Sensor.get_datetime">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.get_datetime">[docs]</a>
+<div class="viewcode-block" id="SensorMQTTFormat.get_datetime">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorMQTTFormat.get_datetime">[docs]</a>
     <span class="k">def</span> <span class="nf">get_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -167,8 +243,8 @@
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Sensor.info_to_json">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.info_to_json">[docs]</a>
+<div class="viewcode-block" id="SensorMQTTFormat.info_to_json">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorMQTTFormat.info_to_json">[docs]</a>
     <span class="k">def</span> <span class="nf">info_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -180,8 +256,8 @@
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Sensor.mqtt_to_cp">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">[docs]</a>
+<div class="viewcode-block" id="SensorMQTTFormat.mqtt_to_cp">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorMQTTFormat.mqtt_to_cp">[docs]</a>
     <span class="k">def</span> <span class="nf">mqtt_to_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -191,16 +267,17 @@
 <span class="sd">            ValueError: _description_</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            _type_: _description_</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">            dict: information in the format the context provider for the sensor will accept</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_info</span></div>
 </div>
 
 
 
-<div class="viewcode-block" id="SensorCPF">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF">[docs]</a>
-<span class="k">class</span> <span class="nc">SensorCPF</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SensorCPFormat">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPFormat">[docs]</a>
+<span class="k">class</span> <span class="nc">SensorCPFormat</span><span class="p">(</span><span class="n">ClassFunctionalities</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
 <span class="sd">            Initializes the SensorCPF class.</span>
@@ -212,40 +289,14 @@
 <span class="sd">                type (str): The type of the device</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;entity_data&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Description:</span>
-<span class="sd">            Returns the information in string format whenever the instance is called as a string</span>
-<span class="sd">            E.g. print(self)</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            str: stringify the information dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Description :</span>
-<span class="sd">            Returns the information as a dict whenever the instance is called</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            dict: The information dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span>
-
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Description:</span>
-<span class="sd">            Returns the value of the key given. Whenever the instance is used as a dictionary</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-<div class="viewcode-block" id="SensorCPF.default_values">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.default_values">[docs]</a>
+<div class="viewcode-block" id="SensorCPFormat.default_values">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPFormat.default_values">[docs]</a>
     <span class="k">def</span> <span class="nf">default_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -253,8 +304,8 @@
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="SensorCPF.new_entity">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.new_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPFormat.new_entity">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPFormat.new_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -288,8 +339,8 @@
         <span class="k">return</span> <span class="n">entity_data</span></div>
 
 
-<div class="viewcode-block" id="SensorCPF.get_date">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.get_date">[docs]</a>
+<div class="viewcode-block" id="SensorCPFormat.get_date">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPFormat.get_date">[docs]</a>
     <span class="k">def</span> <span class="nf">get_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isoformat</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -305,8 +356,8 @@
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">isoformat</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="SensorCPF.get_time">
-<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPF.get_time">[docs]</a>
+<div class="viewcode-block" id="SensorCPFormat.get_time">
+<a class="viewcode-back" href="../virtual_sensor.html#virtual_sensor.SensorCPFormat.get_time">[docs]</a>
     <span class="k">def</span> <span class="nf">get_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isoformat</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>

@@ -84,6 +84,7 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
@@ -98,6 +99,7 @@
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="B">B</h2>
@@ -135,6 +137,8 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="virtual_sensor.html#virtual_sensor.ClassFunctionalities">ClassFunctionalities (class in virtual_sensor)</a>
+</li>
       <li><a href="broker.html#broker.Broker.connect_mqtt">connect_mqtt() (broker.Broker method)</a>
 </li>
       <li>
@@ -144,8 +148,6 @@
         <li><a href="connector_server.html#module-connector_server">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     context_provider
 
@@ -153,9 +155,20 @@
         <li><a href="context_provider.html#module-context_provider">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="context_provider.html#context_provider.ContextProvider">ContextProvider (class in context_provider)</a>
 </li>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.create_entity">create_entity() (sensor_context_provider.SensorCP method)</a>
+      <li>
+    coords_generator
+
+      <ul>
+        <li><a href="coords_generator.html#module-coords_generator">module</a>
+</li>
+      </ul></li>
+      <li><a href="coords_generator.html#coords_generator.CoordsGenerator">CoordsGenerator (class in coords_generator)</a>
+</li>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.create_entity">create_entity() (sensor_context_provider.SensorCPConnector method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -168,16 +181,16 @@
       <ul>
         <li><a href="button_sensor.html#button_sensor.ButtonCPF.default_values">(button_sensor.ButtonCPF method)</a>
 </li>
-        <li><a href="tracker_sensor.html#tracker_sensor.Tracker.default_values">(tracker_sensor.Tracker method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPFormat.default_values">(tracker_sensor.TrackerCPFormat method)</a>
 </li>
-        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF.default_values">(tracker_sensor.TrackerCPF method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.default_values">(tracker_sensor.TrackerMQTTFormat method)</a>
 </li>
-        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.default_values">(virtual_sensor.SensorCPF method)</a>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPFormat.default_values">(virtual_sensor.SensorCPFormat method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.delete_entity">delete_entity() (sensor_context_provider.SensorCP method)</a>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.delete_entity">delete_entity() (sensor_context_provider.SensorCPConnector method)</a>
 </li>
       <li><a href="connector_server.html#connector_server.device_info">device_info() (in module connector_server)</a>
 </li>
@@ -189,7 +202,19 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="coords_generator.html#coords_generator.CoordsGenerator.example_generate">example_generate() (coords_generator.CoordsGenerator method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="broker.html#broker.Broker.exit">exit() (broker.Broker method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="connector_server.html#connector_server.fire">fire() (in module connector_server)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -197,29 +222,37 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="coords_generator.html#coords_generator.CoordsGenerator.generate_coordinates">generate_coordinates() (coords_generator.CoordsGenerator method)</a>
+</li>
       <li><a href="broker.html#broker.Broker.generate_unique_hash">generate_unique_hash() (broker.Broker method)</a>
 
       <ul>
-        <li><a href="virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash">(virtual_sensor.Sensor method)</a>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.generate_unique_hash">(virtual_sensor.SensorMQTTFormat method)</a>
 </li>
       </ul></li>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_attribute">get_attribute() (sensor_context_provider.SensorCP method)</a>
+      <li><a href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.generator">generator() (tracker_sensor.TrackerMQTTFormat method)</a>
+
+      <ul>
+        <li><a href="virtual_sensor.html#virtual_sensor.ClassFunctionalities.generator">(virtual_sensor.ClassFunctionalities method)</a>
 </li>
-      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.get_date">get_date() (virtual_sensor.SensorCPF method)</a>
-</li>
-      <li><a href="virtual_sensor.html#virtual_sensor.Sensor.get_datetime">get_datetime() (virtual_sensor.Sensor method)</a>
+      </ul></li>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_attribute">get_attribute() (sensor_context_provider.SensorCPConnector method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPFormat.get_date">get_date() (virtual_sensor.SensorCPFormat method)</a>
+</li>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.get_datetime">get_datetime() (virtual_sensor.SensorMQTTFormat method)</a>
+</li>
       <li><a href="connector_server.html#connector_server.get_device">get_device() (in module connector_server)</a>
 </li>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_entity">get_entity() (sensor_context_provider.SensorCP method)</a>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_entity">get_entity() (sensor_context_provider.SensorCPConnector method)</a>
 </li>
       <li><a href="connector_server.html#connector_server.get_id">get_id() (in module connector_server)</a>
 </li>
       <li><a href="context_provider.html#context_provider.ContextProvider.get_json_response">get_json_response() (context_provider.ContextProvider method)</a>
 </li>
-      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.get_time">get_time() (virtual_sensor.SensorCPF method)</a>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPFormat.get_time">get_time() (virtual_sensor.SensorCPFormat method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -243,12 +276,12 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="virtual_sensor.html#virtual_sensor.Sensor.info_to_json">info_to_json() (virtual_sensor.Sensor method)</a>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.info_to_json">info_to_json() (virtual_sensor.SensorMQTTFormat method)</a>
 </li>
       <li><a href="button_sensor.html#button_sensor.Button.initialize">initialize() (button_sensor.Button method)</a>
 
       <ul>
-        <li><a href="tracker_sensor.html#tracker_sensor.Tracker.initialize">(tracker_sensor.Tracker method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.initialize">(tracker_sensor.TrackerMQTTFormat method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -280,6 +313,8 @@
       <li><a href="broker.html#broker.Broker.main">main() (broker.Broker method)</a>
 
       <ul>
+        <li><a href="coords_generator.html#coords_generator.CoordsGenerator.main">(coords_generator.CoordsGenerator method)</a>
+</li>
         <li><a href="publisher_broker.html#publisher_broker.Publisher.main">(publisher_broker.Publisher method)</a>
 </li>
         <li><a href="subscriber_broker.html#subscriber_broker.Subscriber.main">(subscriber_broker.Subscriber method)</a>
@@ -299,6 +334,8 @@
 </li>
         <li><a href="context_provider.html#module-context_provider">context_provider</a>
 </li>
+        <li><a href="coords_generator.html#module-coords_generator">coords_generator</a>
+</li>
         <li><a href="publisher_broker.html#module-publisher_broker">publisher_broker</a>
 </li>
         <li><a href="sensor_context_provider.html#module-sensor_context_provider">sensor_context_provider</a>
@@ -315,9 +352,9 @@
       <li><a href="button_sensor.html#button_sensor.Button.mqtt_to_cp">mqtt_to_cp() (button_sensor.Button method)</a>
 
       <ul>
-        <li><a href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp">(tracker_sensor.Tracker method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.mqtt_to_cp">(tracker_sensor.TrackerMQTTFormat method)</a>
 </li>
-        <li><a href="virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp">(virtual_sensor.Sensor method)</a>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.mqtt_to_cp">(virtual_sensor.SensorMQTTFormat method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -329,11 +366,11 @@
       <li><a href="button_sensor.html#button_sensor.ButtonCPF.new_entity">new_entity() (button_sensor.ButtonCPF method)</a>
 
       <ul>
-        <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.new_entity">(sensor_context_provider.SensorCP method)</a>
+        <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.new_entity">(sensor_context_provider.SensorCPConnector method)</a>
 </li>
-        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF.new_entity">(tracker_sensor.TrackerCPF method)</a>
+        <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPFormat.new_entity">(tracker_sensor.TrackerCPFormat method)</a>
 </li>
-        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF.new_entity">(virtual_sensor.SensorCPF method)</a>
+        <li><a href="virtual_sensor.html#virtual_sensor.SensorCPFormat.new_entity">(virtual_sensor.SensorCPFormat method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -395,8 +432,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="connector_server.html#connector_server.save_to_database">save_to_database() (in module connector_server)</a>
 </li>
-      <li><a href="virtual_sensor.html#virtual_sensor.Sensor">Sensor (class in virtual_sensor)</a>
-</li>
       <li>
     sensor_context_provider
 
@@ -404,13 +439,17 @@
         <li><a href="sensor_context_provider.html#module-sensor_context_provider">module</a>
 </li>
       </ul></li>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP">SensorCP (class in sensor_context_provider)</a>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector">SensorCPConnector (class in sensor_context_provider)</a>
+</li>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPFormat">SensorCPFormat (class in virtual_sensor)</a>
+</li>
+      <li><a href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat">SensorMQTTFormat (class in virtual_sensor)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="virtual_sensor.html#virtual_sensor.SensorCPF">SensorCPF (class in virtual_sensor)</a>
-</li>
       <li><a href="context_provider.html#context_provider.ContextProvider.set_headers">set_headers() (context_provider.ContextProvider method)</a>
+</li>
+      <li><a href="coords_generator.html#coords_generator.CoordsGenerator.sort_coordinates">sort_coordinates() (coords_generator.CoordsGenerator method)</a>
 </li>
       <li><a href="broker.html#broker.Broker.subscribe">subscribe() (broker.Broker method)</a>
 </li>
@@ -429,8 +468,6 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tracker_sensor.html#tracker_sensor.Tracker">Tracker (class in tracker_sensor)</a>
-</li>
       <li>
     tracker_sensor
 
@@ -440,7 +477,9 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPF">TrackerCPF (class in tracker_sensor)</a>
+      <li><a href="tracker_sensor.html#tracker_sensor.TrackerCPFormat">TrackerCPFormat (class in tracker_sensor)</a>
+</li>
+      <li><a href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat">TrackerMQTTFormat (class in tracker_sensor)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -448,7 +487,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCP.update_entity">update_entity() (sensor_context_provider.SensorCP method)</a>
+      <li><a href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.update_entity">update_entity() (sensor_context_provider.SensorCPConnector method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -456,6 +495,8 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="publisher_broker.html#publisher_broker.Publisher.virtual_button">virtual_button() (publisher_broker.Publisher method)</a>
+</li>
       <li>
     virtual_sensor
 
@@ -463,6 +504,18 @@
         <li><a href="virtual_sensor.html#module-virtual_sensor">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="publisher_broker.html#publisher_broker.Publisher.virtual_tracker">virtual_tracker() (publisher_broker.Publisher method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="coords_generator.html#coords_generator.CoordsGenerator.write_to_csv">write_to_csv() (coords_generator.CoordsGenerator method)</a>
+</li>
   </ul></td>
 </tr></table>
 

@@ -79,8 +79,8 @@
              
   <h1>Source code for connector_server</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
-<span class="kn">from</span> <span class="nn">sensor_context_provider</span> <span class="kn">import</span> <span class="n">SensorCP</span>
-<span class="kn">from</span> <span class="nn">tracker_sensor</span> <span class="kn">import</span> <span class="n">Tracker</span>
+<span class="kn">from</span> <span class="nn">sensor_context_provider</span> <span class="kn">import</span> <span class="n">SensorCPConnector</span>
+<span class="kn">from</span> <span class="nn">tracker_sensor</span> <span class="kn">import</span> <span class="n">TrackerMQTTFormat</span>
 <span class="kn">from</span> <span class="nn">button_sensor</span> <span class="kn">import</span> <span class="n">Button</span>
 <span class="kn">from</span> <span class="nn">context_provider</span> <span class="kn">import</span> <span class="n">ContextProvider</span>
 
@@ -99,6 +99,25 @@
 <span class="sd">        str: Html rendered information</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;Home&lt;/p&gt;&quot;</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="fire">
+<a class="viewcode-back" href="../connector_server.html#connector_server.fire">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/fire&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">fire</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Description:</span>
+<span class="sd">        A simple request to check if the server is running</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Html rendered information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;Fire&lt;/p&gt;&quot;</span>
+
+    <span class="c1"># ?type=FireForestStatus</span>
+
     <span class="k">return</span> <span class="n">data</span></div>
 
 
@@ -125,7 +144,9 @@
     <span class="k">if</span> <span class="n">entity_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;No entity_id given&quot;</span>
 
-    <span class="n">device</span> <span class="o">=</span> <span class="n">SensorCP</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://150.140.186.118:1026&quot;</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="n">entity_id</span><span class="p">)</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">SensorCPConnector</span><span class="p">(</span>
+        <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://150.140.186.118:1026&quot;</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="n">entity_id</span>
+    <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">response_json</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;No data found&quot;</span>
@@ -148,6 +169,7 @@
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">handling_device</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;============== ===========&quot;</span><span class="p">)</span>
     <span class="n">save_to_database</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">data</span></div>
@@ -177,8 +199,8 @@
     <span class="n">asset</span> <span class="o">=</span> <span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;deviceInfo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;applicationName&quot;</span><span class="p">)</span>
 
     <span class="c1"># Check if it is a Tracker or a Button</span>
-    <span class="k">if</span> <span class="n">asset</span> <span class="o">==</span> <span class="s2">&quot;Asset tracking&quot;</span><span class="p">:</span>
-        <span class="n">asset</span> <span class="o">=</span> <span class="n">Tracker</span><span class="p">(</span><span class="n">generic_info</span><span class="o">=</span><span class="n">information</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">asset</span> <span class="o">==</span> <span class="s2">&quot;Asset tracking&quot;</span> <span class="ow">or</span> <span class="n">asset</span> <span class="o">==</span> <span class="s2">&quot;tracker&quot;</span><span class="p">:</span>
+        <span class="n">asset</span> <span class="o">=</span> <span class="n">TrackerMQTTFormat</span><span class="p">(</span><span class="n">generic_info</span><span class="o">=</span><span class="n">information</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">asset</span> <span class="o">==</span> <span class="s2">&quot;Buttons&quot;</span><span class="p">:</span>
         <span class="n">asset</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">generic_info</span><span class="o">=</span><span class="n">information</span><span class="p">)</span>
@@ -187,7 +209,7 @@
     <span class="k">if</span> <span class="n">asset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">asset</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">))</span>
+    <span class="c1"># print(asset.info.get(&quot;time&quot;))</span>
     <span class="c1"># Change the information to the context provider format</span>
     <span class="n">asset</span><span class="o">.</span><span class="n">mqtt_to_cp</span><span class="p">()</span>
 
@@ -195,7 +217,10 @@
     <span class="c1"># print(asset.cp_info)</span>
 
     <span class="c1"># Create the entity in the context broker</span>
-    <span class="n">entity</span> <span class="o">=</span> <span class="n">SensorCP</span><span class="p">(</span><span class="n">entity_data</span><span class="o">=</span><span class="n">asset</span><span class="o">.</span><span class="n">cp_info</span><span class="p">)</span>
+    <span class="n">entity</span> <span class="o">=</span> <span class="n">SensorCPConnector</span><span class="p">(</span>
+        <span class="n">entity_data</span><span class="o">=</span><span class="n">asset</span><span class="o">.</span><span class="n">cp_info</span><span class="p">,</span>
+        <span class="c1"># debug=True,</span>
+    <span class="p">)</span>
     <span class="c1"># If the entity with the given id exists in the context provider it, delete it and create a new. If it is not, create a new one</span>
     <span class="n">entity</span><span class="o">.</span><span class="n">new_entity</span><span class="p">()</span>
 
@@ -225,26 +250,35 @@
     <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO &quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">build_sql_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something went wrong with the sql building&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;Pressed &quot;</span>
     <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># elif data.get(&quot;location&quot;) is not None:</span>
         <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;Tracked &quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No event or location&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span>
 
     <span class="c1"># New lists</span>
-    <span class="n">query</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">) VALUES (&quot;</span>
-
-    <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span> <span class="o">+</span> <span class="s2">&quot; )&quot;</span>
+    <span class="n">query</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">) VALUES (&quot;</span>
+    <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;?&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
 
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">[],</span>
-            <span class="p">}</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="p">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/insert&quot;</span>
+    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/command/insert&quot;</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">ContextProvider</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="n">database_url</span><span class="p">,</span>
@@ -252,9 +286,10 @@
         <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
         <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
         <span class="n">automated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">db</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></div>
 
 
@@ -275,14 +310,12 @@
 
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 &quot;</span><span class="p">,</span>
-                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">serial</span><span class="p">],</span>
-            <span class="p">}</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;SELECT d_id FROM DEVICE WHERE serial = ? LIMIT 1 &quot;</span><span class="p">,</span>
+            <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">serial</span><span class="p">],</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/select&quot;</span>
+    <span class="n">database_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DBURL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:7080/command/select&quot;</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">ContextProvider</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="n">database_url</span><span class="p">,</span>
@@ -296,7 +329,6 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="c1"># print(db.response_python_object)</span>
     <span class="c1"># Check what the response is and return only the id</span>
     <span class="n">d_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">response_json</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;d_id&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">d_id</span></div>
@@ -332,8 +364,8 @@
     <span class="c1"># Create the data for the sql database</span>
     <span class="n">sql_data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="n">d_id</span><span class="p">,</span>
-        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">),</span>
-        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
         <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">device_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">),</span>
     <span class="p">}</span>
 

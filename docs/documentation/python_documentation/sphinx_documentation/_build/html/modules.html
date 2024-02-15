@@ -120,6 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="connector_server.html">connector_server module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.build_sql_data"><code class="docutils literal notranslate"><span class="pre">build_sql_data()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.device_info"><code class="docutils literal notranslate"><span class="pre">device_info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.fire"><code class="docutils literal notranslate"><span class="pre">fire()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.get_device"><code class="docutils literal notranslate"><span class="pre">get_device()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.get_id"><code class="docutils literal notranslate"><span class="pre">get_id()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="connector_server.html#connector_server.handling_device"><code class="docutils literal notranslate"><span class="pre">handling_device()</span></code></a></li>
@@ -141,18 +142,20 @@
 <li class="toctree-l1"><a class="reference internal" href="publisher_broker.html">publisher_broker module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="publisher_broker.html#publisher_broker.Publisher"><code class="docutils literal notranslate"><span class="pre">Publisher</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="publisher_broker.html#publisher_broker.Publisher.main"><code class="docutils literal notranslate"><span class="pre">Publisher.main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="publisher_broker.html#publisher_broker.Publisher.virtual_button"><code class="docutils literal notranslate"><span class="pre">Publisher.virtual_button()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="publisher_broker.html#publisher_broker.Publisher.virtual_tracker"><code class="docutils literal notranslate"><span class="pre">Publisher.virtual_tracker()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP"><code class="docutils literal notranslate"><span class="pre">SensorCP</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.create_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.create_entity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.delete_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.delete_entity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_attribute"><code class="docutils literal notranslate"><span class="pre">SensorCP.get_attribute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.get_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.get_entity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.new_entity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCP.update_entity"><code class="docutils literal notranslate"><span class="pre">SensorCP.update_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.create_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.create_entity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.delete_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.delete_entity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_attribute"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.get_attribute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.get_entity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.new_entity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor_context_provider.html#sensor_context_provider.SensorCPConnector.update_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPConnector.update_entity()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -167,32 +170,37 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tracker_sensor.html">tracker_sensor module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker"><code class="docutils literal notranslate"><span class="pre">Tracker</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.default_values"><code class="docutils literal notranslate"><span class="pre">Tracker.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.initialize"><code class="docutils literal notranslate"><span class="pre">Tracker.initialize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.Tracker.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Tracker.mqtt_to_cp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPFormat"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPFormat.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPFormat.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat.new_entity()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF"><code class="docutils literal notranslate"><span class="pre">TrackerCPF</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.generator"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.generator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.initialize"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracker_sensor.html#tracker_sensor.TrackerMQTTFormat.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtual_sensor.html">virtual_sensor module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor"><code class="docutils literal notranslate"><span class="pre">Sensor</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.generate_unique_hash"><code class="docutils literal notranslate"><span class="pre">Sensor.generate_unique_hash()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.get_datetime"><code class="docutils literal notranslate"><span class="pre">Sensor.get_datetime()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.info_to_json"><code class="docutils literal notranslate"><span class="pre">Sensor.info_to_json()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Sensor.mqtt_to_cp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.ClassFunctionalities"><code class="docutils literal notranslate"><span class="pre">ClassFunctionalities</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.ClassFunctionalities.generator"><code class="docutils literal notranslate"><span class="pre">ClassFunctionalities.generator()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF"><code class="docutils literal notranslate"><span class="pre">SensorCPF</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCPF.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.get_date"><code class="docutils literal notranslate"><span class="pre">SensorCPF.get_date()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.get_time"><code class="docutils literal notranslate"><span class="pre">SensorCPF.get_time()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPF.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat"><code class="docutils literal notranslate"><span class="pre">SensorCPFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat.default_values"><code class="docutils literal notranslate"><span class="pre">SensorCPFormat.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat.get_date"><code class="docutils literal notranslate"><span class="pre">SensorCPFormat.get_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat.get_time"><code class="docutils literal notranslate"><span class="pre">SensorCPFormat.get_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat.new_entity"><code class="docutils literal notranslate"><span class="pre">SensorCPFormat.new_entity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat"><code class="docutils literal notranslate"><span class="pre">SensorMQTTFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.generate_unique_hash"><code class="docutils literal notranslate"><span class="pre">SensorMQTTFormat.generate_unique_hash()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.get_datetime"><code class="docutils literal notranslate"><span class="pre">SensorMQTTFormat.get_datetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.info_to_json"><code class="docutils literal notranslate"><span class="pre">SensorMQTTFormat.info_to_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">SensorMQTTFormat.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -53,15 +53,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tracker_sensor module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#tracker_sensor.Tracker"><code class="docutils literal notranslate"><span class="pre">Tracker</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.Tracker.default_values"><code class="docutils literal notranslate"><span class="pre">Tracker.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.Tracker.initialize"><code class="docutils literal notranslate"><span class="pre">Tracker.initialize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.Tracker.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">Tracker.mqtt_to_cp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tracker_sensor.TrackerCPFormat"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerCPFormat.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerCPFormat.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCPFormat.new_entity()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#tracker_sensor.TrackerCPF"><code class="docutils literal notranslate"><span class="pre">TrackerCPF</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerCPF.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.default_values()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerCPF.new_entity"><code class="docutils literal notranslate"><span class="pre">TrackerCPF.new_entity()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tracker_sensor.TrackerMQTTFormat"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerMQTTFormat.default_values"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.default_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerMQTTFormat.generator"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.generator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerMQTTFormat.initialize"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tracker_sensor.TrackerMQTTFormat.mqtt_to_cp"><code class="docutils literal notranslate"><span class="pre">TrackerMQTTFormat.mqtt_to_cp()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -96,12 +97,69 @@
   <section id="module-tracker_sensor">
 <span id="tracker-sensor-module"></span><h1>tracker_sensor module<a class="headerlink" href="#module-tracker_sensor" title="Link to this heading"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="tracker_sensor.Tracker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tracker_sensor.</span></span><span class="sig-name descname"><span class="pre">Tracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="virtual_sensor.html#virtual_sensor.Sensor" title="virtual_sensor.Sensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sensor</span></code></a></p>
+<dt class="sig sig-object py" id="tracker_sensor.TrackerCPFormat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tracker_sensor.</span></span><span class="sig-name descname"><span class="pre">TrackerCPFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPFormat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPFormat" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPFormat" title="virtual_sensor.SensorCPFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensorCPFormat</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tracker_sensor.Tracker.default_values">
-<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker.default_values" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="tracker_sensor.TrackerCPFormat.default_values">
+<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPFormat.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPFormat.default_values" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Creates the information json in the format that the Context Provider can understand</p>
+</dd>
+</dl>
+<p># Example:
+#     {
+#         “id”: “tracker4”,
+#         “type”: “tracker”,
+#         “location”: {
+#             “metadata”: {},
+#             “type”: “None”,
+#             “value”: null,
+#         },
+#         “temperature”: {
+#             “metadata”: {},
+#             “type”: “Float”,
+#             “value”: 25.5,
+#         },
+#        “timestamp”: {
+#            “type”: “datetime”,
+#            “value”: {
+#                “date”: “2024-02-14”,
+#                “time”: “04:00:58.609486”,
+#            },
+#        },</p>
+<p>#     }</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tracker_sensor.TrackerCPFormat.new_entity">
+<span class="sig-name descname"><span class="pre">new_entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPFormat.new_entity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPFormat.new_entity" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Create a new entity</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entity_data</strong> (<em>dict</em><em>, </em><em>optional</em>) – Contains all the data needed to create a new entity. Defaults to None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>No return value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tracker_sensor.TrackerMQTTFormat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tracker_sensor.</span></span><span class="sig-name descname"><span class="pre">TrackerMQTTFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerMQTTFormat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerMQTTFormat" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorMQTTFormat" title="virtual_sensor.SensorMQTTFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensorMQTTFormat</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tracker_sensor.TrackerMQTTFormat.default_values">
+<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerMQTTFormat.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerMQTTFormat.default_values" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Description:</dt><dd><p>Set the default values for the tracker if no generic values are given</p>
 </dd>
@@ -109,8 +167,17 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tracker_sensor.Tracker.initialize">
-<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker.initialize" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="tracker_sensor.TrackerMQTTFormat.generator">
+<span class="sig-name descname"><span class="pre">generator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerMQTTFormat.generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerMQTTFormat.generator" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Will be responsible for the generation of the data that will be provided with every iteration of the instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tracker_sensor.TrackerMQTTFormat.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerMQTTFormat.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerMQTTFormat.initialize" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Description:</dt><dd><p>Initialize the tracker sensor and updates the info attribute of the class</p>
 </dd>
@@ -127,8 +194,8 @@ txInfo (json): The tx information of the tracker</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tracker_sensor.Tracker.mqtt_to_cp">
-<span class="sig-name descname"><span class="pre">mqtt_to_cp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#Tracker.mqtt_to_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.Tracker.mqtt_to_cp" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="tracker_sensor.TrackerMQTTFormat.mqtt_to_cp">
+<span class="sig-name descname"><span class="pre">mqtt_to_cp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerMQTTFormat.mqtt_to_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerMQTTFormat.mqtt_to_cp" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Description:</dt><dd><p>Transforms the information to a format that the Context Provider can understand</p>
 </dd>
@@ -142,59 +209,6 @@ txInfo (json): The tx information of the tracker</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tracker_sensor.TrackerCPF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tracker_sensor.</span></span><span class="sig-name descname"><span class="pre">TrackerCPF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPF" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="virtual_sensor.html#virtual_sensor.SensorCPF" title="virtual_sensor.SensorCPF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensorCPF</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="tracker_sensor.TrackerCPF.default_values">
-<span class="sig-name descname"><span class="pre">default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPF.default_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPF.default_values" title="Link to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Description:</dt><dd><p>Creates the information json in the format that the Context Provider can understand</p>
-</dd>
-</dl>
-<p># Example:
-#     {
-#         “id”: “tracker4”,
-#         “type”: “Asset Tracking”,
-#         “location”: {
-#             “metadata”: {},
-#             “type”: “None”,
-#             “value”: null,
-#         },
-#         “temperature”: {
-#             “metadata”: {},
-#             “type”: “Float”,
-#             “value”: 25.5,
-#         },
-#         “timestamp”: {
-#             “date”: “2021-08-25”,
-#             “time”: “12:00:00”,
-#     }</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tracker_sensor.TrackerCPF.new_entity">
-<span class="sig-name descname"><span class="pre">new_entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/tracker_sensor.html#TrackerCPF.new_entity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tracker_sensor.TrackerCPF.new_entity" title="Link to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Description:</dt><dd><p>Create a new entity</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>entity_data</strong> (<em>dict</em><em>, </em><em>optional</em>) – Contains all the data needed to create a new entity. Defaults to None.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>No return value</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
