@@ -28,7 +28,7 @@ const homepage_route_list = [
     middleware.getAssignedButtonInfoPerUser,
     middleware.getAllActiveUsers,
     middleware.getAllActiveTrackers,
-    central_map,
+    // central_map,
     homepage_render
 ] 
 
