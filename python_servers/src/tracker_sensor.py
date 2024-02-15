@@ -288,28 +288,28 @@ class TrackerCPFormat(SensorCPFormat):
             Creates the information json in the format that the Context Provider can understand
 
         # Example:
-        #     {
-        #         "id": "tracker4",
-        #         "type": "tracker",
-        #         "location": {
-        #             "metadata": {},
-        #             "type": "None",
-        #             "value": null,
-        #         },
-        #         "temperature": {
-        #             "metadata": {},
-        #             "type": "Float",
-        #             "value": 25.5,
-        #         },
-        #        "timestamp": {
-        #            "type": "datetime",
-        #            "value": {
-        #                "date": "2024-02-14",
-        #                "time": "04:00:58.609486",
-        #            },
-        #        },
+            # {
+            #     "id": "tracker4",
+            #     "type": "tracker",
+            #     "location": {
+            #         "metadata": {},
+            #         "type": "None",
+            #         "value": null,
+            #     },
+            #     "temperature": {
+            #         "metadata": {},
+            #         "type": "Float",
+            #         "value": 25.5,
+            #     },
+            #    "timestamp": {
+            #        "type": "datetime",
+            #        "value": {
+            #            "date": "2024-02-14",
+            #            "time": "04:00:58.609486",
+            #        },
+            #    },
 
-        #     }
+            # }
         """
 
         if self.location_dict is None:

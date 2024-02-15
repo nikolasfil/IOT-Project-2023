@@ -81,9 +81,9 @@
 <span></span><span class="kn">from</span> <span class="nn">context_provider</span> <span class="kn">import</span> <span class="n">ContextProvider</span>
 
 
-<div class="viewcode-block" id="SensorCP">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP">[docs]</a>
-<span class="k">class</span> <span class="nc">SensorCP</span><span class="p">(</span><span class="n">ContextProvider</span><span class="p">):</span>
+<div class="viewcode-block" id="SensorCPConnector">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector">[docs]</a>
+<span class="k">class</span> <span class="nc">SensorCPConnector</span><span class="p">(</span><span class="n">ContextProvider</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -112,8 +112,8 @@
         <span class="c1"># If the entity_data is given, create a new entity</span>
         <span class="c1"># self.new_entity(entity_data=self.entity_data)</span>
 
-<div class="viewcode-block" id="SensorCP.new_entity">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.new_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.new_entity">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.new_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">new_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -152,8 +152,8 @@
 
             <span class="c1">#    It should be an update function not a delete and create function</span>
 
-<div class="viewcode-block" id="SensorCP.create_entity">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.create_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.create_entity">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.create_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">create_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -183,8 +183,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">make_request</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="SensorCP.update_entity">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.update_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.update_entity">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.update_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">update_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entity_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -220,8 +220,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">make_request</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="SensorCP.delete_entity">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.delete_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.delete_entity">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.delete_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">delete_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -263,8 +263,8 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">entity_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> Not Deleted&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SensorCP.get_entity">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.get_entity">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.get_entity">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_entity">[docs]</a>
     <span class="k">def</span> <span class="nf">get_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -293,8 +293,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_python_object</span></div>
 
 
-<div class="viewcode-block" id="SensorCP.get_attribute">
-<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCP.get_attribute">[docs]</a>
+<div class="viewcode-block" id="SensorCPConnector.get_attribute">
+<a class="viewcode-back" href="../sensor_context_provider.html#sensor_context_provider.SensorCPConnector.get_attribute">[docs]</a>
     <span class="k">def</span> <span class="nf">get_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Description:</span>
@@ -327,82 +327,61 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;tracker4&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Tracker&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo-json&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">40.7128</span><span class="p">,</span>
-                <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="mf">91.0</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">41</span><span class="p">,</span>
-            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="p">},</span>
-    <span class="p">}</span>
+
     <span class="c1"># entity_data = {</span>
-    <span class="c1">#     &quot;id&quot;: &quot;tracker4&quot;,</span>
+    <span class="c1">#     # &quot;id&quot;: &quot;digital-matter-oyster3:3&quot;,</span>
+    <span class="c1">#     &quot;id&quot;: &quot;1&quot;,</span>
     <span class="c1">#     &quot;type&quot;: &quot;Tracker&quot;,</span>
+    <span class="c1">#     &quot;location&quot;: {</span>
+    <span class="c1">#         &quot;type&quot;: &quot;geo_json&quot;,</span>
+    <span class="c1">#         &quot;latitude&quot;: 38.2883084,</span>
+    <span class="c1">#         &quot;longitude&quot;: 21.7888401,</span>
+    <span class="c1">#         &quot;metadata&quot;: {},</span>
+    <span class="c1">#     },</span>
+    <span class="c1">#     &quot;temperature&quot;: {</span>
+    <span class="c1">#         &quot;type&quot;: &quot;Float&quot;,</span>
+    <span class="c1">#         &quot;value&quot;: 0,</span>
+    <span class="c1">#         &quot;metadata&quot;: {},</span>
+    <span class="c1">#     },</span>
     <span class="c1"># }</span>
 
     <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="c1"># &quot;id&quot;: &quot;digital-matter-oyster3:3&quot;,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;tracke2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Tracker&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;digital-matter-oyster3:25&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;tracker&quot;</span><span class="p">,</span>
         <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_json&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">38.2883084</span><span class="p">,</span>
-            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="mf">21.7888401</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">38.288258400000004</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="mf">21.7887901</span><span class="p">},</span>
             <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
         <span class="p">},</span>
         <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-02-14&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;04:00:58.609486&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
     <span class="p">}</span>
 
-    <span class="n">tracker</span> <span class="o">=</span> <span class="n">SensorCP</span><span class="p">(</span>
+    <span class="n">entity_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;mclimate-multipurpose-button:1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Buttons&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Float&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">21.700000000000003</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-02-14&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;04:33:05.757013&quot;</span><span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">tracker</span> <span class="o">=</span> <span class="n">SensorCPConnector</span><span class="p">(</span>
         <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://150.140.186.118:1026&quot;</span><span class="p">,</span>
         <span class="n">entity_data</span><span class="o">=</span><span class="n">entity_data</span><span class="p">,</span>
         <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1"># print(tracker.get_entity())</span>
-    <span class="c1"># print(tracker)</span>
-    <span class="c1"># Delete the entity</span>
-    <span class="c1"># tracker.delete_entity()</span>
     <span class="c1"># Create the entitiy</span>
-    <span class="n">tracker</span><span class="o">.</span><span class="n">new_entity</span><span class="p">()</span>
-
-    <span class="c1"># tracked = Tracker(base_url=&quot;http://150.140.186.118:1026&quot;, entity_data=entity_data)</span>
-    <span class="c1"># print(tracker.get_entity(entity_id=&quot;tracker1&quot;))</span>
-
-    <span class="c1"># tracker.delete_entity(entity_id=&quot;tracker1&quot;)</span>
-    <span class="c1"># print(tracker)</span>
-    <span class="c1"># track = SensorCP(</span>
-    <span class="c1">#     base_url=&quot;http://150.140.186.118:1026&quot;,</span>
-    <span class="c1">#     # entity_id=&quot;tracker4&quot;,</span>
-    <span class="c1"># )</span>
-    <span class="c1"># print(track.get_entity())</span>
-
-<span class="c1"># Example Data</span>
-<span class="c1"># example_data = {</span>
-<span class="c1">#     &quot;id&quot;: &quot;tracker1&quot;,</span>
-<span class="c1">#     &quot;type&quot;: &quot;Tracker&quot;,</span>
-<span class="c1">#     &quot;location&quot;: {</span>
-<span class="c1">#         &quot;type&quot;: &quot;geo:json&quot;,</span>
-<span class="c1">#         &quot;value&quot;: {</span>
-<span class="c1">#             &quot;latitude&quot;: 40.7128,</span>
-<span class="c1">#             &quot;longitude&quot;: 90,</span>
-<span class="c1">#         },</span>
-<span class="c1">#         &quot;metadata&quot;: {},</span>
-<span class="c1">#     },</span>
-<span class="c1">#     &quot;temperature&quot;: {</span>
-<span class="c1">#         &quot;type&quot;: &quot;Float&quot;,</span>
-<span class="c1">#         &quot;value&quot;: 25.5,</span>
-<span class="c1">#         &quot;metadata&quot;: {},</span>
-<span class="c1">#     },</span>
-<span class="c1"># }</span>
+    <span class="c1"># tracker.new_entity()</span>
+    <span class="c1"># print(tracker.get_entity())</span>
 </pre></div>
 
            </div>

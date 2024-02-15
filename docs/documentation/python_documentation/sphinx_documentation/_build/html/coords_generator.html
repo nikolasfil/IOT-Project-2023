@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coords_generator module &mdash; IOT  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            IOT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="broker.html">broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="button_sensor.html">button_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector_server.html">connector_server module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_provider.html">context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publisher_broker.html">publisher_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensor_context_provider.html">sensor_context_provider module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscriber_broker.html">subscriber_broker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracker_sensor.html">tracker_sensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtual_sensor.html">virtual_sensor module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">coords_generator module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/coords_generator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-coords_generator">
+<span id="coords-generator-module"></span><h1>coords_generator module<a class="headerlink" href="#module-coords_generator" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coords_generator.</span></span><span class="sig-name descname"><span class="pre">CoordsGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator.example_generate">
+<span class="sig-name descname"><span class="pre">example_generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator.example_generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator.example_generate" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Generates 10 csv files with random coordinates within the given ranges.</p>
+</dd>
+</dl>
+<p>The ranges are:
+min_x = 38.20
+max_x = 38.21
+min_y = 21.81
+max_y = 21.85
+num_sets = 60</p>
+<p>The csv files are named Path_1.csv, Path_2.csv, …, Path_10.csv</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator.generate_coordinates">
+<span class="sig-name descname"><span class="pre">generate_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator.generate_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator.generate_coordinates" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description :</dt><dd><p>Generates a list of random coordinates within the given ranges.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_x</strong> (<em>float</em>) – the minimum x value</p></li>
+<li><p><strong>max_x</strong> (<em>float</em>) – the maximum x value</p></li>
+<li><p><strong>min_y</strong> (<em>float</em>) – the minimum y value</p></li>
+<li><p><strong>max_y</strong> (<em>float</em>) – the maximum y value</p></li>
+<li><p><strong>num_sets</strong> (<em>int</em>) – the number of coordinates to generate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of (x, y) tuples representing the coordinates</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator.main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator.main" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator.sort_coordinates">
+<span class="sig-name descname"><span class="pre">sort_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator.sort_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator.sort_coordinates" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Sorts the given coordinates by x and then by y.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coordinates</strong> (<em>list</em>) – a list of (x, y) tuples representing the coordinates</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the sorted coordinates</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coords_generator.CoordsGenerator.write_to_csv">
+<span class="sig-name descname"><span class="pre">write_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/coords_generator.html#CoordsGenerator.write_to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#coords_generator.CoordsGenerator.write_to_csv" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Description:</dt><dd><p>Writes the given coordinates to a csv file.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the csv file</p></li>
+<li><p><strong>coordinates</strong> (<em>list</em>) – a list of (x, y) tuples representing the coordinates</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, nikolasfil.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
