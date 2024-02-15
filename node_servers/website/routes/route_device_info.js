@@ -100,6 +100,7 @@ router.get("/fire_info",
                         fire_info.fireDetected = true;
                         fire_info["dateObserved"] = result.dateObserved.value;
                         fire_info["location"] = result.location.value.coordinates;
+                        fire_info["location"] = fire_info["location"][0];
                     // }                    
                     // }                    
                 }
