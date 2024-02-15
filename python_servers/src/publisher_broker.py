@@ -24,6 +24,7 @@ class Publisher(Broker):
         longitude = kwargs.get("longitude", default_lon)
         deault_id = random.randint(1, 55)
         idd = kwargs.get("idd", deault_id)
+        timestamp = kwargs.get("timestamp", None)
 
         tracker_info = {
             "time": timestamp,
