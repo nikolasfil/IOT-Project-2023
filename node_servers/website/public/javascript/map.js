@@ -28,68 +28,68 @@ let map = new ol.Map({
     }),
 });
 
-async function mapRoute(serial) {
+async function mapRoute(serial="") {
 
     // Fetch the data from the database
     // let response = await fetch(`/map/${serial}`);
-    let link = `/map/${serial}`;    
-    let link_data = {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify({data:{}}),
+    // let link = `/map/${serial}`;    
+    // let link_data = {
+    //     method: "POST",
+    //     credentials: "same-origin",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     redirect: "follow",
+    //     referrerPolicy: "no-referrer",
+    //     body: JSON.stringify({data:{}}),
 
-    }
+    // }
 
-    let data =  await fetch(link, link_data).then((res) => {
-        // It checks if it should be returning a json or text (which in this case is html code )
-        return res.json();
-    }).then((data) => {        // Return the html code
-        return data;
-    }).catch(error => {
-        console.log(error);
-    });
+    // let data =  await fetch(link, link_data).then((res) => {
+    //     // It checks if it should be returning a json or text (which in this case is html code )
+    //     return res.json();
+    // }).then((data) => {        // Return the html code
+    //     return data;
+    // }).catch(error => {
+    //     console.log(error);
+    // });
     
-    // let data = await response.json();
-    console.log(data);
-    // Create an array to hold the coordinates
-    let coordinates = [];
+    // // let data = await response.json();
+    // console.log(data);
+    // // Create an array to hold the coordinates
+    // let coordinates = [];
 
-    // Create a vector source
-    let vectorSource = new ol.source.Vector();
+    // // Create a vector source
+    // let vectorSource = new ol.source.Vector();
 
-    // For each object in the data, create a point and add it to the vector source
+    // // For each object in the data, create a point and add it to the vector source
     
-    for (let item of data) {
-        let coordinate = ol.proj.fromLonLat([item.longitude, item.latitude]);
-        coordinates.push(coordinate);
+    // for (let item of data) {
+    //     let coordinate = ol.proj.fromLonLat([item.longitude, item.latitude]);
+    //     coordinates.push(coordinate);
 
-        let pointFeature = new ol.Feature({
-            geometry: new ol.geom.Point(coordinate),
-        });
+    //     let pointFeature = new ol.Feature({
+    //         geometry: new ol.geom.Point(coordinate),
+    //     });
 
-        vectorSource.addFeature(pointFeature);
-    }
+    //     vectorSource.addFeature(pointFeature);
+    // }
 
-    // Create a line string using the coordinates and add it to the vector source
-    // Make the color of the line red
-    let lineFeature = new ol.Feature({
-        geometry: new ol.geom.LineString(coordinates),
-    });
+    // // Create a line string using the coordinates and add it to the vector source
+    // // Make the color of the line red
+    // let lineFeature = new ol.Feature({
+    //     geometry: new ol.geom.LineString(coordinates),
+    // });
 
-    vectorSource.addFeature(lineFeature);
+    // vectorSource.addFeature(lineFeature);
 
-    // Create a vector layer using the vector source
-    let vectorLayer = new ol.layer.Vector({
-        source: vectorSource,
-    });
+    // // Create a vector layer using the vector source
+    // let vectorLayer = new ol.layer.Vector({
+    //     source: vectorSource,
+    // });
  
-     // Add the vector layer to the map
-     map.addLayer(vectorLayer);
+    //  // Add the vector layer to the map
+    //  map.addLayer(vectorLayer);
 
     // Get middle point of the 1st and last point
     // center = [(data[0].longitude + data[data.length - 1].longitude) / 2, (data[0].latitude + data[data.length - 1].latitude) / 2];
@@ -510,9 +510,9 @@ async function drawPaths(serial) {
         }),
     });
 
-    // Fit the view to the extent of the vector layer
-    let extent = deviceHistoryLayer.getSource().getExtent();
-    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+    // // Fit the view to the extent of the vector layer
+    // let extent = deviceHistoryLayer.getSource().getExtent();
+    // map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 
     // Add the vector layer to the map
     map.addLayer(deviceHistoryLayer);
@@ -524,8 +524,6 @@ function removePaths() {
     if (deviceHistoryLayer) {
         map.removeLayer(deviceHistoryLayer);
         deviceHistoryLayer = null;
-        let extent = baseSource.getView().getExtent();
-        map.getView().fit(extent);
     }
 }
 
