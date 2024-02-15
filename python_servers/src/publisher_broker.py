@@ -3,6 +3,7 @@ import time
 from tracker_sensor import TrackerMQTTFormat
 from button_sensor import Button
 import random
+from coords_generator import CoordsGenerator
 
 
 class Publisher(Broker):
@@ -15,15 +16,23 @@ class Publisher(Broker):
         self.subscribe_topic = None
         self.client = self.connect_mqtt()
 
-    def virtual_tracker(self, counter):
+    def virtual_tracker(self, **kwargs):
+        counter = kwargs.get("counter", 1)
+        default_lat = 38.2882484 + (random.choice([1, -1]) * 0.01 * counter)
+        default_lon = 21.7887801 + (random.choice([1, -1]) * 0.01 * counter)
+        latitude = kwargs.get("latitude", default_lat)
+        longitude = kwargs.get("longitude", default_lon)
+        deault_id = random.randint(1, 55)
+        idd = kwargs.get("idd", deault_id)
+
         tracker_info = {
             "type": "position",
-            "deviceId": f"digital-matter-oyster3:{random.randint(1,55)}",
+            "deviceId": f"digital-matter-oyster3:{idd}",
             # cached
             "speedKmph": 0,
-            "latitudeDeg": 38.2882484 + counter * 0.00001,
+            "latitudeDeg": latitude,
             "headingDeg": 348.75,
-            "longitudeDeg": 21.7887801 + counter * 0.00001,
+            "longitudeDeg": longitude,
             "batV": 5 - counter * 0.001,
         }
 
@@ -31,15 +40,20 @@ class Publisher(Broker):
 
         return payload
 
-    def virtual_button(self, counter=0):
+    def virtual_button(self, **kwargs):
+        default_idd = random.randint(1, 45)
+        idd = kwargs.get("idd", default_idd)
+        default_event = f"0{random.randint(0, 2)}"
+        event = kwargs.get("event", default_event)
+
         button_info = {
             "deviceName": "mclimate-multipurpose-button:1",
             # "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
-            "deviceId": f"mclimate-multipurpose-button:{random.randint(1,45)}",
+            "deviceId": f"mclimate-multipurpose-button:{idd}",
             "batteryVoltage": 3.1,
             "temperature": 21.7 + (random.choice([1, -1]) * 2),
             "thermistorProperlyConnected": True,
-            "pressEvent": f"0{random.randint(0, 2)}",
+            "pressEvent": event,
         }
 
         payload = Button(important_info=button_info).info_json

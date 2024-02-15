@@ -101,6 +101,7 @@ router.get("/fire_info",
                         fire_info["dateObserved"] = result.dateObserved.value;
                         fire_info["location"] = result.location.value.coordinates;
                     // }                    
+                    // }                    
                 }
                 res.send(fire_info);
             }
