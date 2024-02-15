@@ -87,7 +87,7 @@ router.get("/fire_info",
                 //     },
                 // ]
                 let fire_info = {}
-                if (result.length >0){
+                if (result.length > 0){
                     // sort the result on the dateObserved.value 
                     
                     result.sort((a,b) => {
@@ -96,12 +96,13 @@ router.get("/fire_info",
                     // get the first element of the list
                     result = result[0];
                     
-
-                    // // if (result.fireDetected && result.fireDetected.value){
-                    fire_info["fireDetected"] = true;
-                    fire_info["dateObserved"] = result.dateObserved.value;
-                    fire_info["location"] = result.location.value.coordinates;
-                    // // }                    
+                    // if (result.fireDetected && result.fireDetected.value){
+                        fire_info.fireDetected = true;
+                        fire_info["dateObserved"] = result.dateObserved.value;
+                        fire_info["location"] = result.location.value.coordinates;
+                        fire_info["location"] = fire_info["location"][0];
+                    // }                    
+                    // }                    
                 }
                 res.send(fire_info);
             }
@@ -197,7 +198,7 @@ getDeviceHistory =(req,res,next) => {
 
 getDeviceLocation = (req,res,next) => {
     let data = {}
-    data.query = "SELECT Tracked.* FROM DEVICE join Tracked on d_id = device_id WHERE serial = ? ORDER by date, time"
+    data.query = "SELECT Tracked.* FROM DEVICE join Tracked on DEVICE.d_id = Tracked.device_id WHERE serial = ? ORDER by date, time"
     data.arguments = [req.query['serial']]
     remoteDatabase.databaseRequest(link='/command/select',data,(err,device) => {
         if (err) {
@@ -298,5 +299,12 @@ module.exports = router;
 router.get('/device_location',
     getDeviceLocation,
     (req, res) => {
-        res.send(res.locals.deviceHistory);
+        res.send(res.locals.deviceLocation);
 });
+
+router.get('/live_location',
+    middleware.getContextProvider,
+    (req, res) => {
+        res.send(res.locals.context);
+    });
+
