@@ -309,7 +309,14 @@ function intToRGB(i) {
 
 async function drawPaths(route) {
     // Fetch the coordinates from the server-side route
-    let trackers = await fetch(route);
+    let trackers = await fetch(route).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
+    }).catch(error => {
+        callback(error, null)
+        console.log(error);
+    });
 
     console.log(trackers);
     // Create an array to hold the coordinates
