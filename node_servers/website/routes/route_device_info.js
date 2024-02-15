@@ -303,8 +303,13 @@ router.get('/device_location',
 });
 
 router.get('/live_location',
+    authentication.checkAdminRights,
+    authentication.checkAuthentication,
     middleware.getContextProvider,
     (req, res) => {
+        console.log(res.locals.context);
         res.send(res.locals.context);
-    });
+    }
+);
+
 

@@ -1,53 +1,18 @@
 let safezone1 = [21.785351204491658, 38.311830806954475];
 let safezone2 = [21.863205676199108, 38.205627533188114];
 let safezone3 = [21.841758965584102, 38.17388090958384];
+let safezone4 = [21.785301516944624, 38.289606268498105];
 
 
-let baseCenter = [(safezone1[0] + safezone2[0] + safezone3[0]) / 3, (safezone1[1] + safezone2[1] + safezone3[1]) / 3];
+let baseCenter = [(safezone1[0] + safezone2[0] + safezone3[0] + safezone4[0]) / 4, (safezone1[1] + safezone2[1] + safezone3[1] + safezone4[1]) / 4];
  
 let zoom = 11;
-
+let markersLayer;
 let baseLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
 });
 
 let baseSource = new ol.source.Vector();
-
-let iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([21.785301516944624, 38.289606268498105])),
-    name: 'Icon',
-});
-
-let iconFeature2 = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat(safezone1)),
-    name: 'Icon',
-}); 
-
-let iconFeature3 = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat(safezone2)),
-    name: 'Icon',
-});
-
-let iconFeature4 = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat(safezone3)),
-    name: 'Icon',
-});
-
-for (let feature of [iconFeature, iconFeature2, iconFeature3, iconFeature4]) {
-    feature.setStyle(
-        new ol.style.Style({
-            image: new ol.style.Icon({
-                anchor: [0.5, 0.5],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                src: 'img/location-heart-filled.svg',
-                scale: 1,
-            })
-        })
-    );
-
-    baseSource.addFeature(feature);
-}
 
 let map = new ol.Map({
     target: 'map',
@@ -94,8 +59,6 @@ async function mapRoute(serial) {
     // Create an array to hold the coordinates
     let coordinates = [];
 
-    let center ;
-
     // Create a vector source
     let vectorSource = new ol.source.Vector();
 
@@ -129,9 +92,9 @@ async function mapRoute(serial) {
      map.addLayer(vectorLayer);
 
     // Get middle point of the 1st and last point
-    center = [(data[0].longitude + data[data.length - 1].longitude) / 2, (data[0].latitude + data[data.length - 1].latitude) / 2];
+    // center = [(data[0].longitude + data[data.length - 1].longitude) / 2, (data[0].latitude + data[data.length - 1].latitude) / 2];
 
-    checkSafeZonesCheckboxExists([safezone1, safezone2, safezone3]);
+    checkSafeZonesCheckboxExists([safezone1, safezone2, safezone3, safezone4]);
     checkDangerZonesCheckboxExists();
     checkDeviceHistoryCheckboxExists(serial);
     checkLiveFeedCheckboxExists(serial);
@@ -383,11 +346,16 @@ function removeFireLocation() {
     }
 }
 
-let markersLayer;
 
-function addMarkers(coordinates, iconPath = 'img/geo-alt-fill.svg') {
+
+function addMarkers(coordinates, iconPath = 'img/geo-alt-fill.svg', source) {
     // Create a vector source
-    let vectorSource = new ol.source.Vector();
+    let vectorSource;
+    if (source) {
+        vectorSource = source;
+    } else {
+            vectorSource = new ol.source.Vector();
+    }
 
     // For each set of coordinates, create a feature and add it to the vector source
     for (let coordinate of coordinates) {
@@ -485,7 +453,7 @@ async function fetchResponse(link, link_data) {
         const parsedData = JSON.parse(data);
         return parsedData;
     } catch (error) {
-        console.console(error);
+        console.log(error);
         throw error;
     }
 }
@@ -556,6 +524,8 @@ function removePaths() {
     if (deviceHistoryLayer) {
         map.removeLayer(deviceHistoryLayer);
         deviceHistoryLayer = null;
+        let extent = baseSource.getView().getExtent();
+        map.getView().fit(extent);
     }
 }
 
@@ -598,40 +568,40 @@ async function drawLiveFeed(serial) {
     // Create a vector source
     let vectorSource = new ol.source.Vector();
 
+    let located = data.location.value;
+
     // For each object in the data, create a point and add it to the vector source
-    for (let item of data) {
-        let coordinate = ol.proj.fromLonLat([item.longitude, item.latitude]);
-        coordinates.push(coordinate);
 
-        let pointFeature = new ol.Feature({
-            geometry: new ol.geom.Point(coordinate),
-        });
+    let coordinate = ol.proj.fromLonLat([located.longitude, located.latitude]);
+    coordinates.push(coordinate);
 
-        vectorSource.addFeature(pointFeature);
-    }
+    let pointFeature = new ol.Feature({
+        geometry: new ol.geom.Point(coordinate),
+    });
+
+    vectorSource.addFeature(pointFeature);
 
     // Create a line string using the coordinates and add it to the vector source
     // Make the color of the line green
-    let lineFeature = new ol.Feature({
-        geometry: new ol.geom.LineString(coordinates),
-    });
+    // let lineFeature = new ol.Feature({
+    //     geometry: new ol.geom.LineString(coordinates),
+    // });
 
-    vectorSource.addFeature(lineFeature);
+    // vectorSource.addFeature(lineFeature);
 
     // Create a vector layer using the vector source
     liveFeedLayer = new ol.layer.Vector({
         source: vectorSource,
         style: new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'green',
-                width: 3,
+            image: new ol.style.Icon({
+                src: 'img/geo-alt-fill.svg',
             }),
         }),
     });
 
     // Fit the view to the extent of the vector layer
-    let extent = liveFeedLayer.getSource().getExtent();
-    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+    // let extent = liveFeedLayer.getSource().getExtent();
+    // map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 
     // Add the vector layer to the map
     map.addLayer(liveFeedLayer);
