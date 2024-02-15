@@ -38,17 +38,8 @@
                     {{!-- Make a divider that will be able to fetch user info --}}
                     {{!-- And be able to update them  --}}
                     <h2 style="color: #FFFFFF"><strong>Assigned User</strong></h2>
-                    <div class="info-container">
-                        <div class="id-title" id="device-title-summary" style="padding: 20px">
-                            <h1 id="title" style="color: #FFFFFF; font-size: 35px">{{ assignedUser.first_name }} {{ assignedUser.last_name }}</h1>
-                                <div class="col">
-                                    <img src="/img/person-fill.svg" alt="device cover" class="device-img" width="180px"
-                                         style="background: #6F518C; border-radius: 15px">
-                                </div>
-
-                        </div>
-                        {{> user_profile_info id=assignedUser.user_id role=assignedUser.role phone=assignedUser.phone}}
-                    </div>
+                    <div class="info-container"></div>
+                    {{> user_profile_info id=assignedUser.user_id role=assignedUser.role phone=assignedUser.phone}}
                     {{else}}
                     {{> assigning_user}}
                     {{/if}}
@@ -79,7 +70,7 @@
 
                 {{else }}
                 <h2 style="color: #FFFFFF;align-self: start"><strong>Map And History</strong></h2>
-                {{> heatmap}}
+                {{> heatmap_device}}
                 {{!-- Button Presses  --}}
                 {{/if}}
             </div>

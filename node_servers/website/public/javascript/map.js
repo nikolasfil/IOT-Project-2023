@@ -1,52 +1,75 @@
+let safezone1 = [21.822057501641, 38.216649297601];
+let safezone2 = [21.822787062493, 38.221099885448];
+let safezone3 = [21.823559538689, 38.222920502012];
 
-// /**
-//  * Initializing the embedded map feature
-//  * @param {*} lon longtitude
-//  * @param {*} lat latitude
-//  */
-// function mapInit(lon, lat) {
+let baseCenter = [(safezone1[0] + safezone2[0] + safezone3[0]) / 3, (safezone1[1] + safezone2[1] + safezone3[1]) / 3];
+ 
+let zoom = 11;
 
-//     let zoom = 16;
+let baseLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
 
-//     const iconFeature = new ol.Feature({
-//         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
-//         name: 'Icon',
-//     });
+let baseSource = new ol.source.Vector();
 
-//     const map = new ol.Map({
-//         target: 'map',
-//         layers: [
-//             new ol.layer.Tile({
-//                 source: new ol.source.OSM(),
-//             }),
-//             new ol.layer.Vector({
-//                 source: new ol.source.Vector({
-//                     features: [iconFeature]
+let iconFeature = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([21.785301516944624, 38.289606268498105])),
+    name: 'Icon',
+});
 
-//                 }),
-//                 style: new ol.style.Style({
-//                     image: new ol.style.Icon({
-//                         anchor: [0.5, 0.5],
-//                         anchorXUnits: 'fraction',
-//                         anchorYUnits: 'pixels',
-//                         src: 'img/geo-alt-fill.svg',
-//                         scale: 2,
-//                     })
-//                 })
-//             })
-//         ],
-//         view: new ol.View({
-//             center: ol.proj.fromLonLat([lon, lat]),
-//             zoom: zoom
-//         }),
+let iconFeature2 = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.fromLonLat(safezone1)),
+    name: 'Icon',
+}); 
 
-//     });
-// }
+let iconFeature4 = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.fromLonLat(safezone3)),
+    name: 'Icon',
+});
 
-/**
- * 
- * @param {*} coords 
- */
+for (let feature of [iconFeature, iconFeature2, iconFeature4]) {
+    feature.setStyle(
+        new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 0.5],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                src: 'img/heart-l',
+                scale: 2,
+            })
+        })
+    );
+
+    baseSource.addFeature(feature);
+}
+// iconFeature.setStyle(
+//     new ol.style.Style({
+//         image: new ol.style.Icon({
+//             anchor: [0.5, 0.5],
+//             anchorXUnits: 'fraction',
+//             anchorYUnits: 'pixels',
+//             src: 'img/geo-alt-fill.svg',
+//             scale: 2,
+//         })
+//     })
+// );
+
+// baseSource.addFeature(iconFeature);
+
+let map = new ol.Map({
+    target: 'map',
+    layers: [
+        baseLayer,
+        new ol.layer.Vector({
+            source: baseSource,
+        }),
+    ],
+    view: new ol.View({
+        center: ol.proj.fromLonLat(baseCenter),
+        zoom: zoom
+    }),
+});
+
 async function mapRoute(serial) {
 
     // Fetch the data from the database
@@ -107,64 +130,27 @@ async function mapRoute(serial) {
     // Create a vector layer using the vector source
     let vectorLayer = new ol.layer.Vector({
         source: vectorSource,
-        style: new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 3,
-            }),
-        }),
     });
+ 
+     // Add the vector layer to the map
+     map.addLayer(vectorLayer);
 
     // Get middle point of the 1st and last point
     center = [(data[0].longitude + data[data.length - 1].longitude) / 2, (data[0].latitude + data[data.length - 1].latitude) / 2];
 
-    // Create the map
-    let map = new ol.Map({
-        target: 'map',
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.OSM(),
-            }),
-            vectorLayer,
-        ],
-        view: new ol.View({
-            center: ol.proj.fromLonLat(center),
-            zoom: 10,
-        }),
-    });
+    checkSafeZonesCheckboxExists([safezone1, safezone2, safezone3]);
+    checkDangerZonesCheckboxExists();
 
-    // // If #safe-zones in heatmap_filters is checked, call addMarkers
-    // if (document.getElementById("safe-zones").checked) {
-    //     addMarkers(map, [[21.822057501641, 38.216649297601], [21.822787062493, 38.221099885448], [21.823559538689, 38.222920502012], [21.824804083672, 38.222886787304], [21.825662390557, 38.223493649649], [21.826391951409, 38.223426220749], [21.827636496392, 38.22362850726], [21.828709379998, 38.224741073015], [21.829696432915, 38.225314206308], [21.830898062554, 38.224437647678]]);
-    // }
+     // Fit the view to the extent of the vector layer
+     let extent = vectorLayer.getSource().getExtent();
+     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 
-    console.log(document.getElementById("safe-zones"));
-    // Get the checkbox
-    let checkbox = document.getElementById('safe-zones');
+    // // Add the vector layer to the map
+    // map.addLayer(vectorLayer);
 
-    // Add an event listener to the checkbox
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            // If the checkbox is checked, call the addMarkers function
-            // Replace 'map' and 'coordinates' with your actual map and coordinates
-            addMarkers(map, [[21.822057501641, 38.216649297601], [21.822787062493, 38.221099885448], [21.823559538689, 38.222920502012], [21.824804083672, 38.222886787304], [21.825662390557, 38.223493649649], [21.826391951409, 38.223426220749], [21.827636496392, 38.22362850726], [21.828709379998, 38.224741073015], [21.829696432915, 38.225314206308], [21.830898062554, 38.224437647678]]);
-        } else {
-            // If the checkbox is unchecked, you might want to remove the markers
-            // This depends on your specific requirements
-            removeMarkers(map);
-        }
-    });
-
-    // // If #trackers in heatmap_filters is checked, call drawPaths
-    // if (document.getElementById().checked) {
-    //     drawPaths(map, '/map');
-    // }  
-
-
-    // Fit the view to the extent of the vector layer
-    let extent = vectorLayer.getSource().getExtent();
-    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
-
+    // console.log(document.getElementById("safe-zones"));
+    
+    
  
 }
 
@@ -304,60 +290,6 @@ async function mapMult() {
     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 }
 
-// Can be used to add markers to the map for sage zones or other points of interest
-// function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
-
-//     // Get the vector source from the map's vector layer
-//     let vectorSource = map.getLayers().getArray()[1].getSource();
-
-//     // For each set of coordinates, create a feature and add it to the vector source
-//     for (let coordinate of coordinates) {
-//         let pointFeature = new ol.Feature({
-//             geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate)),
-//         });
-
-//         pointFeature.setStyle(
-//             new ol.style.Style({
-//                 image: new ol.style.Icon({
-//                     src: iconPath, // Replace with the path to your icon
-//                 }),
-//             })
-//         );
-
-//         vectorSource.addFeature(pointFeature);
-//     }
-// }
-
-// function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
-//     // Create a vector source
-//     let vectorSource = new ol.source.Vector();
-
-//     // For each set of coordinates, create a feature and add it to the vector source
-//     for (let coordinate of coordinates) {
-//         let pointFeature = new ol.Feature({
-//             geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate)),
-//         });
-
-//         pointFeature.setStyle(
-//             new ol.style.Style({
-//                 image: new ol.style.Icon({
-//                     src: iconPath, // Replace with the path to your icon
-//                 }),
-//             })
-//         );
-
-//         vectorSource.addFeature(pointFeature);
-//     }
-
-//     // Create a vector layer using the vector source
-//     let vectorLayer = new ol.layer.Vector({
-//         source: vectorSource,
-//     });
-
-//     // Add the vector layer to the map
-//     map.addLayer(vectorLayer);
-// }
-
 function hashCode(str) {
     // Simple hash function to generate a number from a string
     var hash = 0;
@@ -375,46 +307,71 @@ function intToRGB(i) {
     return "00000".substring(0, 6 - c.length) + c;
 }
 
-async function drawPaths(map, route) {
+async function drawPaths(route) {
     // Fetch the coordinates from the server-side route
-    let response = await fetch(route);
-    let trackers = await response.json();
+    let trackers = await fetch(route).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
+    }).catch(error => {
+        callback(error, null)
+        console.log(error);
+    });
 
-    // Get the vector source from the map's vector layer
-    let vectorSource = map.getLayers().getArray()[1].getSource();
+    console.log(trackers);
+    // Create an array to hold the coordinates
+    let coordinates = [];
 
-    // For each tracker, create a line string using the coordinates and add it to the vector source
-    for (let tracker of trackers) {
-        let lineFeature = new ol.Feature({
-            geometry: new ol.geom.LineString(tracker.coordinates.map(coordinate => ol.proj.fromLonLat(coordinate))),
+    // Create a vector source
+    let vectorSource = new ol.source.Vector();
+
+    // For each object in the data, create a point and add it to the vector source
+    
+    for (let item of trackers["location"]) {
+        let coordinate = ol.proj.fromLonLat(item);
+        coordinates.push(coordinate);
+
+        let pointFeature = new ol.Feature({
+            geometry: new ol.geom.Point(coordinate),
         });
 
-        let color = intToRGB(hashCode(tracker.trackerId));
-
-        lineFeature.setStyle(
-            new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: '#' + color,
-                    width: 3,
-                }),
-            })
-        );
-
-        vectorSource.addFeature(lineFeature);
+        vectorSource.addFeature(pointFeature);
     }
+
+    // Create a line string using the coordinates and add it to the vector source
+    // Make the color of the line red
+    let pathFeature = new ol.Feature({
+        geometry: new ol.geom.LineString(coordinates),
+    });
+
+    // Create a vector layer using the vector source
+    let vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+    });
+
+    let color = intToRGB(hashCode(tracker.type));
+
+    pathFeature.setStyle(
+        new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: '#' + color,
+                width: 3,
+            }),
+        })
+    );
+
+    vectorSource.addFeature(pathFeature);
+    // // Fit the view to the extent of the vector layer
+    // let extent = vectorLayer.getSource().getExtent();
+    // map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+    // Add the vector layer to the map
+    map.addLayer(vectorLayer);
+    
 }
-
-// function removeMarkers(map) {
-//     // Get the vector source from the map's vector layer
-//     let vectorSource = map.getLayers().getArray()[1].getSource();
-
-//     // Clear the vector source
-//     vectorSource.clear();
-// }
 
 let markersLayer;
 
-function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
+function addMarkers(coordinates, iconPath = 'img/geo-alt-fill.svg') {
     // Create a vector source
     let vectorSource = new ol.source.Vector();
 
@@ -447,7 +404,7 @@ function addMarkers(map, coordinates, iconPath = 'img/geo-alt-fill.svg') {
     map.addLayer(markersLayer);
 }
 
-function removeMarkers(map) {
+function removeMarkers() {
     // Remove the markers layer from the map
     if (markersLayer) {
         map.removeLayer(markersLayer);
@@ -457,4 +414,62 @@ function removeMarkers(map) {
     }
 }
 
+function checkSafeZonesCheckboxExists(safeZoneCoordinates) {
+    // Get the 'safe-zones' checkbox
+    let safeZonesCheckbox = document.getElementById('safe-zones');
 
+    // Check if the checkbox exists
+    if (safeZonesCheckbox) {
+        // 'safe-zones' checkbox exists
+        // Add an event listener to the checkbox
+        safeZonesCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // If the checkbox is checked, call the addMarkers function
+                // Replace 'map' and 'coordinates' with your actual map and coordinates
+                addMarkers(safeZoneCoordinates, 'img/location-heart-filled.svg');
+            } else {
+                // If the checkbox is unchecked, you might want to remove the markers
+                // This depends on your specific requirements
+                removeMarkers();
+            }
+        });
+    } else {
+        // 'safe-zones' checkbox does not exist
+        return false;
+    }
+}
+
+// fetch(`/device_location?serial=${serial}`)
+
+// function getSerialParameter() {
+//     let url = new URL(window.location.href);
+//     let serial = url.searchParams.get("serial");
+//     return serial;
+// }
+
+// let serial = getSerialParameter();
+// mapRoute(serial);
+
+function checkDangerZonesCheckboxExists() {
+    // Get the 'danger-zones' checkbox
+    let dangerZonesCheckbox = document.getElementById('dangerous-zones');
+
+    // Check if the checkbox exists
+    if (dangerZonesCheckbox) {
+        // 'danger-zones' checkbox exists
+        // Add an event listener to the checkbox
+        dangerZonesCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // If the checkbox is checked, call the drawPaths function
+                drawPaths(`/fire_info`);
+            } else {
+                // If the checkbox is unchecked, you might want to remove the markers
+                // This depends on your specific requirements
+                removeMarkers();
+            }
+        });
+    } else {
+        // 'danger-zones' checkbox does not exist
+        return false;
+    }
+}
