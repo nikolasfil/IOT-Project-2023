@@ -15,21 +15,11 @@ class CoordsGenerator:
             max_y (float): the maximum y value
             num_sets (int): the number of coordinates to generate
         """
-        self.min_x = kwargs.get("min_x")
-        if self.min_x is None:
-            self.min_x = 38.20
-        self.max_x = kwargs.get("max_x")
-        if self.max_x is None:
-            self.max_x = 38.21
-        self.min_y = kwargs.get("min_y")
-        if self.min_y is None:
-            self.min_y = 21.81
-        self.max_y = kwargs.get("max_y")
-        if self.max_y is None:
-            self.max_y = 21.85
-        self.num_sets = kwargs.get("num_sets")
-        if self.num_sets is None:
-            self.num_sets = 60
+        self.min_x = kwargs.get("min_x", 38.20)
+        self.max_x = kwargs.get("max_x", 38.21)
+        self.min_y = kwargs.get("min_y", 21.81)
+        self.max_y = kwargs.get("max_y", 21.85)
+        self.num_sets = kwargs.get("num_sets", 60)
         self.coordinates = []
 
     def generate_coordinates(self, **kwargs):

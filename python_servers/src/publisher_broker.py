@@ -38,8 +38,10 @@ class Publisher(Broker):
             "batV": 5 - counter * 0.001,
         }
 
-        payload = TrackerMQTTFormat(important_info=tracker_info).info_json
-        print(payload)
+        payload = TrackerMQTTFormat(important_info=tracker_info)
+        payload = payload.mqtt_to_cp()
+
+        # payload = payload.info_json
         return payload
 
     def virtual_button(self, **kwargs):
@@ -59,28 +61,45 @@ class Publisher(Broker):
             "pressEvent": event,
         }
 
-        payload = Button(important_info=button_info).info_json
+        payload = Button(important_info=button_info)
+        payload = payload.mqtt_to_cp()
+        # payload = payload.info_json
         return payload
 
     def main(self):
         # This needs to be from a folder
         counter = 0
-        time_sleeping = 1
-
+        time_sleeping = 4
+        times = 1000
         # timestamp = "2024-02-10T01:05:29.934532"
         min_x = 38.20
-        # max_x = 38.21
+        max_x = 38.21
         min_y = 21.81
-        # max_y = 21.85
-        step = 0.01
+        max_y = 21.85
 
-        for counter in range(1000):
+        coordGen = CoordsGenerator(
+            min_x=min_x,
+            max_x=max_x,
+            min_y=min_y,
+            max_y=max_y,
+            num_sets=times,
+        )
+        coordGen.main()
+
+        for counter in range(times):
+
+            longitude, latitude = coordGen.coordinates[counter]
+
+            payload = self.virtual_tracker(
+                counter=counter, latitude=latitude, longitude=longitude
+            )
+            self.publish(self.client, payload)
+
             time.sleep(time_sleeping)
-            payload = self.virtual_tracker(counter)
-            # self.publish(self.client, payload)
-            # time.sleep(time_sleeping)
-            # payload = self.virtual_button()
-            # self.publish(self.client, payload)
+            payload = self.virtual_button()
+
+            self.publish(self.client, payload)
+            time.sleep(time_sleeping)
 
 
 if __name__ == "__main__":
