@@ -1,7 +1,8 @@
-<div>
-  <h1>Device Form</h1>
+
+<div style="background: #6F518C; border-radius: 15px;padding: 50px">
+  <h1 style="color: #FFFFFF">Assign Tracker</h1>
   <form action="/assign/tracker" method="post">
-    <label for="deviceSelect">Select a device:</label>
+    <label for="deviceSelect" style="color: #FFFFFF">Select a device:</label>
     <select id="trackerSelect" name="selectedDevice">
       {{#each available_trackers}}
         <option value="{{serial}}">{{serial}}</option>
@@ -12,10 +13,10 @@
   </form>
 </div>
 
-<div>
-  <h1>Device Form</h1>
+<div style="background: #6F518C; border-radius: 15px;padding: 40px">
+  <h1 style="color: #FFFFFF">Assign Button</h1>
   <form action="/assign/button" method="post">
-    <label for="deviceSelect">Select a device:</label>
+    <label for="deviceSelect" style="color: #FFFFFF">Select a device:</label>
     <select id="buttonSelect" name="selectedDevice">
       {{#each available_buttons}}
         <option value="{{serial}}">{{serial}}</option>
