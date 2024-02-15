@@ -50,7 +50,7 @@ const userInfoMiddleware = (req, res, next) => {
 const userProfilePageMiddleware = (req, res) => { 
     res.render('user_profile', {
         title: 'User Profile',
-        style: ['user_profile.css'],
+        style: ['user_profile.css', 'device_info.css'],
     });
 }
 

@@ -10,7 +10,10 @@
     >
       <div class="status-div">
         <div class="status-circle-active">{{status}}</div>
-        <img src="img/svg/battery_status.svg" alt="Battery Status" />
+          <div style="text-align: center; position: relative;">
+              <img src="img/svg/battery_status.svg" alt="Battery Status">
+              <span style="position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); font-weight: 600">{{battery}}</span>
+          </div>
       </div>
       <div class="status-div">
         <span class="card-text-bold">DEVICE_ID:</span>
