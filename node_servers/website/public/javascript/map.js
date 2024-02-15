@@ -140,6 +140,7 @@ async function mapRoute(serial) {
 
     checkSafeZonesCheckboxExists([safezone1, safezone2, safezone3]);
     checkDangerZonesCheckboxExists();
+    checkDeviceHistoryCheckboxExists(serial);
 
      // Fit the view to the extent of the vector layer
      let extent = vectorLayer.getSource().getExtent();
@@ -307,21 +308,34 @@ function intToRGB(i) {
     return "00000".substring(0, 6 - c.length) + c;
 }
 
-async function drawPaths(route) {
+async function drawFireLocation(route) {
     // Fetch the coordinates from the server-side route
-    let trackers = await fetch(route);
+    let trackers = await fetch(route).then((res) => {
+        return res.text();
+    }).then((data) => {
+        return JSON.parse(data);
+    }).catch(error => {
+        callback(error, null)
+        console.log(error);
+    });
 
-    console.log(trackers);
+    console.log(trackers.location);
     // Create an array to hold the coordinates
     let coordinates = [];
 
     // Create a vector source
     let vectorSource = new ol.source.Vector();
 
+    let located = trackers.location;
+
+    console.log(located);
+
     // For each object in the data, create a point and add it to the vector source
     
-    for (let item of trackers["location"]) {
+    for (let item of located) {
+        // console.log(i);
         let coordinate = ol.proj.fromLonLat(item);
+        console.log(coordinate);
         coordinates.push(coordinate);
 
         let pointFeature = new ol.Feature({
@@ -330,6 +344,8 @@ async function drawPaths(route) {
 
         vectorSource.addFeature(pointFeature);
     }
+
+    console.log(coordinates);
 
     // Create a line string using the coordinates and add it to the vector source
     // Make the color of the line red
@@ -342,7 +358,7 @@ async function drawPaths(route) {
         source: vectorSource,
     });
 
-    let color = intToRGB(hashCode(tracker.type));
+    let color = intToRGB(hashCode(trackers.dateObserved));
 
     pathFeature.setStyle(
         new ol.style.Style({
@@ -357,6 +373,7 @@ async function drawPaths(route) {
     // // Fit the view to the extent of the vector layer
     // let extent = vectorLayer.getSource().getExtent();
     // map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+
     // Add the vector layer to the map
     map.addLayer(vectorLayer);
     
@@ -444,17 +461,17 @@ function checkSafeZonesCheckboxExists(safeZoneCoordinates) {
 // mapRoute(serial);
 
 function checkDangerZonesCheckboxExists() {
-    // Get the 'danger-zones' checkbox
+    // Get the 'dangerous-zones' checkbox
     let dangerZonesCheckbox = document.getElementById('dangerous-zones');
 
     // Check if the checkbox exists
     if (dangerZonesCheckbox) {
-        // 'danger-zones' checkbox exists
+        // 'dangerous-zones' checkbox exists
         // Add an event listener to the checkbox
         dangerZonesCheckbox.addEventListener('change', function() {
             if (this.checked) {
                 // If the checkbox is checked, call the drawPaths function
-                drawPaths(`/fire_info`);
+                drawFireLocation(`/fire_info`);
             } else {
                 // If the checkbox is unchecked, you might want to remove the markers
                 // This depends on your specific requirements
@@ -462,7 +479,107 @@ function checkDangerZonesCheckboxExists() {
             }
         });
     } else {
-        // 'danger-zones' checkbox does not exist
+        // 'dangerous-zones' checkbox does not exist
+        return false;
+    }
+}
+
+async function fetchResponse(link, link_data) {
+    try {
+        const res = await fetch(link, link_data);
+        const data = await res.text();
+        console.log(data);
+        const parsedData = JSON.parse(data);
+        return parsedData;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+async function drawPaths(serial) {
+    // Fetch the coordinates from the server-side route
+    // Fetch the data from the database
+    let link = `/device_location?serial=${serial}`; 
+    let link_data = {method: "GET"};
+    let data = await fetchResponse(link, link_data);   
+    // let data = await fetch(link).then((res) => {
+    //     return res.text();
+    // }).then((data) => {
+    //     return JSON.parse(data);
+    // }).catch(error => {
+    //     console.log(error);
+    // });
+    console.log('data in drawPaths');
+    // let data = await response.json();
+    console.log(data);
+
+    // Create an array to hold the coordinates
+    let coordinates = [];
+
+    // Create a vector source
+    let vectorSource = new ol.source.Vector();
+
+    // For each object in the data, create a point and add it to the vector source
+    for (let item of data) {
+        let coordinate = ol.proj.fromLonLat([item.longitude, item.latitude]);
+        coordinates.push(coordinate);
+
+        let pointFeature = new ol.Feature({
+            geometry: new ol.geom.Point(coordinate),
+        });
+
+        vectorSource.addFeature(pointFeature);
+    }
+
+    // Create a line string using the coordinates and add it to the vector source
+    // Make the color of the line red
+    let lineFeature = new ol.Feature({
+        geometry: new ol.geom.LineString(coordinates),
+    });
+
+    vectorSource.addFeature(lineFeature);
+
+    // Create a vector layer using the vector source
+    let vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 3,
+            }),
+        }),
+    });
+
+    // Fit the view to the extent of the vector layer
+    let extent = vectorLayer.getSource().getExtent();
+    map.getView().fit(extent, { padding: [60, 60, 60, 60] });
+
+    // Add the vector layer to the map
+    map.addLayer(vectorLayer);
+    
+}
+
+function checkDeviceHistoryCheckboxExists(serial) {
+    // Get the 'device-history' checkbox
+    let deviceHistoryCheckbox = document.getElementById('device-history');
+
+    // Check if the checkbox exists
+    if (deviceHistoryCheckbox) {
+        // 'device-history' checkbox exists
+        // Add an event listener to the checkbox
+        deviceHistoryCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // If the checkbox is checked, call the drawPaths function
+                drawPaths(serial);
+            } else {
+                // If the checkbox is unchecked, you might want to remove the markers
+                // This depends on your specific requirements
+                removeMarkers();
+            }
+        });
+    } else {
+        // 'device-history' checkbox does not exist
         return false;
     }
 }
