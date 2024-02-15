@@ -37,7 +37,7 @@ input[type="checkbox"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 95%;
+  width: 90%;
   /*border: 5px solid #583f83;*/
 }
 .on-map-trackers {

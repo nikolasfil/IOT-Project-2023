@@ -13,7 +13,7 @@ router.get('/about',
     (req, res) => {
         res.render('about', {
             title: 'About us',
-            style: 'about.css',
+            style: ['about.css'],
             signedIn: req.session.signedIn
         });
     });
