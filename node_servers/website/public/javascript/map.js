@@ -449,17 +449,6 @@ function checkSafeZonesCheckboxExists(safeZoneCoordinates) {
     }
 }
 
-// fetch(`/device_location?serial=${serial}`)
-
-// function getSerialParameter() {
-//     let url = new URL(window.location.href);
-//     let serial = url.searchParams.get("serial");
-//     return serial;
-// }
-
-// let serial = getSerialParameter();
-// mapRoute(serial);
-
 function checkDangerZonesCheckboxExists() {
     // Get the 'dangerous-zones' checkbox
     let dangerZonesCheckbox = document.getElementById('dangerous-zones');
@@ -497,19 +486,15 @@ async function fetchResponse(link, link_data) {
     }
 }
 
+let deviceHistoryLayer;
+
 async function drawPaths(serial) {
     // Fetch the coordinates from the server-side route
     // Fetch the data from the database
     let link = `/device_location?serial=${serial}`; 
     let link_data = {method: "GET"};
     let data = await fetchResponse(link, link_data);   
-    // let data = await fetch(link).then((res) => {
-    //     return res.text();
-    // }).then((data) => {
-    //     return JSON.parse(data);
-    // }).catch(error => {
-    //     console.log(error);
-    // });
+    
     console.log('data in drawPaths');
     // let data = await response.json();
     console.log(data);
@@ -529,6 +514,8 @@ async function drawPaths(serial) {
             geometry: new ol.geom.Point(coordinate),
         });
 
+
+
         vectorSource.addFeature(pointFeature);
     }
 
@@ -541,7 +528,7 @@ async function drawPaths(serial) {
     vectorSource.addFeature(lineFeature);
 
     // Create a vector layer using the vector source
-    let vectorLayer = new ol.layer.Vector({
+    deviceHistoryLayer = new ol.layer.Vector({
         source: vectorSource,
         style: new ol.style.Style({
             stroke: new ol.style.Stroke({
@@ -552,12 +539,20 @@ async function drawPaths(serial) {
     });
 
     // Fit the view to the extent of the vector layer
-    let extent = vectorLayer.getSource().getExtent();
+    let extent = deviceHistoryLayer.getSource().getExtent();
     map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 
     // Add the vector layer to the map
-    map.addLayer(vectorLayer);
+    map.addLayer(deviceHistoryLayer);
     
+}
+
+function removePaths() {
+    // Remove the markers layer from the map
+    if (deviceHistoryLayer) {
+        map.removeLayer(deviceHistoryLayer);
+        deviceHistoryLayer = null;
+    }
 }
 
 function checkDeviceHistoryCheckboxExists(serial) {
@@ -575,7 +570,7 @@ function checkDeviceHistoryCheckboxExists(serial) {
             } else {
                 // If the checkbox is unchecked, you might want to remove the markers
                 // This depends on your specific requirements
-                removeMarkers();
+                removePaths();
             }
         });
     } else {
