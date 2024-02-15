@@ -33,21 +33,21 @@ class AdventureGuard(Database):
             Fills the database with data from the csv files after it clears the datbase.
         """
 
-        self.clear_all()
+        # self.clear_all()
 
-        self.fill_users()
-        print("Filled users table")
+        # self.fill_users()
+        # print("Filled users table")
 
-        self.fill_device()
-        print("Filled device table")
+        # self.fill_device()
+        # print("Filled device table")
 
-        self.fill_assigned()
-        print("Filled assigned table")
+        # self.fill_assigned()
+        # print("Filled assigned table")
 
-        # self.fill_pressed()
+        self.fill_pressed()
         # print("Filled pressed table")
 
-        # self.fill_tracked()
+        self.fill_tracked()
         # print("Filled tracked table")
 
     def fill_users(self):
@@ -193,10 +193,10 @@ class AdventureGuard(Database):
             self.insert_data(tableName, data_button)
 
     def fill_pressed(self):
-        pass
+        self.clearing("Pressed")
 
     def fill_tracked(self):
-        pass
+        self.clearing("Tracked")
 
     def random_date(self, start=None, num_days=None):
         """Generate a random date, later than the provided start date if given."""
