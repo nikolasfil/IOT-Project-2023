@@ -300,3 +300,10 @@ router.get('/device_location',
     (req, res) => {
         res.send(res.locals.deviceLocation);
 });
+
+router.get('/live_location',
+    middleware.getContextProvider,
+    (req, res) => {
+        res.send(res.locals.context);
+    });
+
