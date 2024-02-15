@@ -40,8 +40,8 @@ for (let feature of [iconFeature, iconFeature2, iconFeature3, iconFeature4]) {
                 anchor: [0.5, 0.5],
                 anchorXUnits: 'fraction',
                 anchorYUnits: 'pixels',
-                src: 'img/heart-l',
-                scale: 2,
+                src: 'img/location-heart-filled.svg',
+                scale: 1,
             })
         })
     );
@@ -302,9 +302,11 @@ function intToRGB(i) {
     return "00000".substring(0, 6 - c.length) + c;
 }
 
+let fireLocationlayer;
+
 async function drawFireLocation(route) {
     // Fetch the coordinates from the server-side route
-    let trackers = await fetch(route).then((res) => {
+    let fireResponse = await fetch(route).then((res) => {
         return res.text();
     }).then((data) => {
         return JSON.parse(data);
@@ -313,14 +315,14 @@ async function drawFireLocation(route) {
         console.log(error);
     });
 
-    console.log(trackers.location);
+    console.log(fireResponse.location);
     // Create an array to hold the coordinates
     let coordinates = [];
 
     // Create a vector source
     let vectorSource = new ol.source.Vector();
 
-    let located = trackers.location;
+    let located = fireResponse.location;
 
     console.log(located);
 
@@ -348,11 +350,11 @@ async function drawFireLocation(route) {
     });
 
     // Create a vector layer using the vector source
-    let vectorLayer = new ol.layer.Vector({
+    fireLocationlayer = new ol.layer.Vector({
         source: vectorSource,
     });
 
-    let color = intToRGB(hashCode(trackers.dateObserved));
+    let color = intToRGB(hashCode(fireResponse.dateObserved));
 
     pathFeature.setStyle(
         new ol.style.Style({
@@ -369,8 +371,16 @@ async function drawFireLocation(route) {
     // map.getView().fit(extent, { padding: [60, 60, 60, 60] });
 
     // Add the vector layer to the map
-    map.addLayer(vectorLayer);
+    map.addLayer(fireLocationlayer);
     
+}
+
+function removeFireLocation() {
+    // Remove the markers layer from the map
+    if (fireLocationlayer) {
+        map.removeLayer(fireLocationlayer);
+        fireLocationlayer = null;
+    }
 }
 
 let markersLayer;
@@ -458,7 +468,7 @@ function checkDangerZonesCheckboxExists() {
             } else {
                 // If the checkbox is unchecked, you might want to remove the markers
                 // This depends on your specific requirements
-                removeMarkers();
+                removeFireLocation();
             }
         });
     } else {
