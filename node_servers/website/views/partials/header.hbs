@@ -3,16 +3,17 @@
 <header class="sticky-header">
     <div class="header pageborder">
 
-
+<!--        {{#if isAdmin}}-->
         {{>searchbar}}
+
 
         <div class="d-flex flex-row justify-content-center align-items-center">
             
             <button class="button-light " id="trackers_url">
-                <a href="/search">Trackers</a>
+                <a href="/search">Devices</a>
             </button>
         </div>
-
+<!--        {{/if}}-->
         <a href="/" class="headerLogo">
             <img src="./img/logo_white_2.svg" alt="Adventure Guard Logo" width="75" height="75">
         </a>
