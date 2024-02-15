@@ -87,7 +87,6 @@ router.get("/fire_info",
                 //     },
                 // ]
                 let fire_info = {}
-                console.log(result.length);
                 if (result.length >0){
                     // sort the result on the dateObserved.value 
                     
@@ -98,11 +97,11 @@ router.get("/fire_info",
                     result = result[0];
                     
 
-                    // if (result.fireDetected && result.fireDetected.value){
+                    // // if (result.fireDetected && result.fireDetected.value){
                     fire_info["fireDetected"] = true;
                     fire_info["dateObserved"] = result.dateObserved.value;
                     fire_info["location"] = result.location.value.coordinates;
-                    // }                    
+                    // // }                    
                 }
                 res.send(fire_info);
             }
@@ -196,6 +195,22 @@ getDeviceHistory =(req,res,next) => {
     })
 }
 
+getDeviceLocation = (req,res,next) => {
+    let data = {}
+    data.query = "SELECT Tracked.* FROM DEVICE join Tracked on d_id = device_id WHERE serial = ? ORDER by date, time"
+    data.arguments = [req.query['serial']]
+    remoteDatabase.databaseRequest(link='/command/select',data,(err,device) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        } else {
+            res.locals.deviceLocation = device;
+            next();
+        }
+    }
+    )
+}
+
 
 getDevicePresses = (req,res,next) => {
     let data = {
@@ -254,6 +269,7 @@ let deviceInfoList = [
     getDeviceInformationDB,
     middleware.getContextProvider,
     getDevicePresses,
+    getDeviceLocation,
     getDeviceHistory,
     getAssignedUser,
     getUnassignedUsers,
@@ -279,3 +295,8 @@ router.get('/device_info',
 module.exports = router;
 
 
+router.get('/device_location',
+    getDeviceLocation,
+    (req, res) => {
+        res.send(res.locals.deviceHistory);
+});
