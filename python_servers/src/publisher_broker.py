@@ -39,9 +39,7 @@ class Publisher(Broker):
         }
 
         payload = TrackerMQTTFormat(important_info=tracker_info)
-        payload = payload.mqtt_to_cp()
-
-        # payload = payload.info_json
+        payload = payload.info_json
         return payload
 
     def virtual_button(self, **kwargs):
@@ -62,8 +60,7 @@ class Publisher(Broker):
         }
 
         payload = Button(important_info=button_info)
-        payload = payload.mqtt_to_cp()
-        # payload = payload.info_json
+        payload = payload.info_json
         return payload
 
     def main(self):
@@ -87,7 +84,6 @@ class Publisher(Broker):
         coordGen.main()
 
         for counter in range(times):
-
             longitude, latitude = coordGen.coordinates[counter]
 
             payload = self.virtual_tracker(
