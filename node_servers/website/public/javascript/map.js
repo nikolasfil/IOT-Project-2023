@@ -354,12 +354,12 @@ async function drawFireLocation(route) {
         source: vectorSource,
     });
 
-    let color = intToRGB(hashCode(fireResponse.dateObserved));
+    // let color = intToRGB(hashCode(fireResponse.dateObserved));
 
     pathFeature.setStyle(
         new ol.style.Style({
             stroke: new ol.style.Stroke({
-                color: '#' + color,
+                color: 'darkred', // Replace with 'color' if you want to use the color generated from the date
                 width: 3,
             }),
         })
